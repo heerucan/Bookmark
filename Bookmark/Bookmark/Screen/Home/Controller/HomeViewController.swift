@@ -7,6 +7,30 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    
+    // MARK: - LifeCycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    // MARK: - Configure UI & Layout
+    
+    override func configureUI() {
+        super.configureUI()
+    }
+    
+    override func configureLayout() {
+        super.configureLayout()
+    }
+    
+    // MARK: - Custom Method
+    
+    
+    // MARK: - @objc
 }

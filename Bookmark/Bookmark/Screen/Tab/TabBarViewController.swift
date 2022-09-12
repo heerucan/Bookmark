@@ -7,23 +7,42 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
+final class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureDelegate()
+        configureTabBarViewController()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureDelegate() {
+        delegate = self
     }
-    */
 
+    private func configureTabBarViewController() {
+        UITabBar.appearance().scrollEdgeAppearance = tabBar.standardAppearance
+        UITabBar.appearance().backgroundColor = .white
+        tabBar.tintColor = .black
+        
+        let firstTabController = UINavigationController(rootViewController: HomeViewController())
+        let secondTabController = UINavigationController(rootViewController: BookmarkViewController())
+        let thirdTabController = UINavigationController(rootViewController: SettingViewController())
+        
+        firstTabController.tabBarItem = UITabBarItem(
+            title: "홈",
+            image: Icon.TabBar.unselectedMap,
+            selectedImage: Icon.TabBar.map)
+                
+        secondTabController.tabBarItem = UITabBarItem(
+            title: "책갈피",
+            image: Icon.TabBar.unselectedBookmark,
+            selectedImage: Icon.TabBar.bookmark)
+        
+        thirdTabController.tabBarItem = UITabBarItem(
+            title: "설정",
+            image: Icon.TabBar.unselectedSetting,
+            selectedImage: Icon.TabBar.setting)
+        
+        self.viewControllers = [firstTabController, secondTabController, thirdTabController]
+    }
 }

@@ -5,4 +5,32 @@
 //  Created by heerucan on 2022/09/12.
 //
 
-import Foundation
+import UIKit
+
+final class WriteViewController: BaseViewController {
+    
+    // MARK: - Property
+    
+    
+    // MARK: - LifeCycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    // MARK: - Configure UI & Layout
+    
+    override func configureUI() {
+        super.configureUI()
+    }
+    
+    override func configureLayout() {
+        super.configureLayout()
+    }
+    
+    // MARK: - Custom Method
+    
+    
+    // MARK: - @objc
+}

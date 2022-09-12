@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  BookmarkViewController.swift
 //  Bookmark
 //
 //  Created by heerucan on 2022/09/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController {
+final class BookmarkViewController: BaseViewController {
     
     // MARK: - Property
     
