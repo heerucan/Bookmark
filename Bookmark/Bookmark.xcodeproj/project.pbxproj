@@ -19,7 +19,7 @@
 		5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */; };
 		5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444428CEFDC100781EC8 /* TabBarViewController.swift */; };
 		5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444628CEFDD600781EC8 /* SearchViewController.swift */; };
-		5B55444928CEFDE600781EC8 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444828CEFDE600781EC8 /* BookmarkController.swift */; };
+		5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444828CEFDE600781EC8 /* BookmarkViewController.swift */; };
 		5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444B28CEFDF500781EC8 /* DetailViewController.swift */; };
 		5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444E28CEFE0200781EC8 /* WriteViewController.swift */; };
 		5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55445028CEFE0B00781EC8 /* SettingViewController.swift */; };
@@ -28,6 +28,18 @@
 		5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544B428CF1A7800781EC8 /* Date+.swift */; };
 		5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544B628CF1A7F00781EC8 /* UIView+.swift */; };
 		5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544B828CF1A9A00781EC8 /* UITextField+.swift */; };
+		5B5544BB28CF1D1A00781EC8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544BA28CF1D1A00781EC8 /* BaseView.swift */; };
+		5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544BC28CF1D2D00781EC8 /* BaseTableViewCell.swift */; };
+		5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544BE28CF1D3E00781EC8 /* BaseCollectionViewCell.swift */; };
+		5B5544C228CF46D800781EC8 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544C128CF46D800781EC8 /* Icon.swift */; };
+		5B5AA8EA28CF6F1800BBD00D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E628CF6F1800BBD00D /* Pretendard-SemiBold.otf */; };
+		5B5AA8EB28CF6F1800BBD00D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E728CF6F1800BBD00D /* Pretendard-Bold.otf */; };
+		5B5AA8EC28CF6F1800BBD00D /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E828CF6F1800BBD00D /* Pretendard-Regular.otf */; };
+		5B5AA8ED28CF6F1800BBD00D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E928CF6F1800BBD00D /* Pretendard-Medium.otf */; };
+		5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8EE28CF6FD400BBD00D /* Font.swift */; };
+		5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8F028CF6FDB00BBD00D /* Color.swift */; };
+		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
+		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,7 +68,7 @@
 		5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAPIManager.swift; sourceTree = "<group>"; };
 		5B55444428CEFDC100781EC8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5B55444628CEFDD600781EC8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		5B55444828CEFDE600781EC8 /* BookmarkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkController.swift; sourceTree = "<group>"; };
+		5B55444828CEFDE600781EC8 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		5B55444B28CEFDF500781EC8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5B55444E28CEFE0200781EC8 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		5B55445028CEFE0B00781EC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +77,18 @@
 		5B5544B428CF1A7800781EC8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		5B5544B628CF1A7F00781EC8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5B5544B828CF1A9A00781EC8 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		5B5544BA28CF1D1A00781EC8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5B5544BC28CF1D2D00781EC8 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		5B5544BE28CF1D3E00781EC8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B5544C128CF46D800781EC8 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		5B5AA8E628CF6F1800BBD00D /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		5B5AA8E728CF6F1800BBD00D /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		5B5AA8E828CF6F1800BBD00D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		5B5AA8E928CF6F1800BBD00D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		5B5AA8EE28CF6FD400BBD00D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		5B5AA8F028CF6FDB00BBD00D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +126,6 @@
 			children = (
 				5B55443328CEF2BE00781EC8 /* Network */,
 				5B55449D28CF123F00781EC8 /* Global */,
-				5B5544B028CF1A1300781EC8 /* DesignSystem */,
 				5B55443128CEF28000781EC8 /* Screen */,
 				5B55443228CEF2A600781EC8 /* Support */,
 			);
@@ -126,7 +149,8 @@
 		5B55443228CEF2A600781EC8 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				5B3FAD0328CE207F0062D9F6 /* Assets.xcassets */,
+				5B5544C428CF486E00781EC8 /* Font */,
+				5B5544C328CF482500781EC8 /* Asset */,
 				5B3FAD0828CE207F0062D9F6 /* Info.plist */,
 				5B3FAD0528CE207F0062D9F6 /* LaunchScreen.storyboard */,
 				5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */,
@@ -204,7 +228,7 @@
 		5B55443B28CEFA1500781EC8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B55444828CEFDE600781EC8 /* BookmarkController.swift */,
+				5B55444828CEFDE600781EC8 /* BookmarkViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,8 +308,9 @@
 			isa = PBXGroup;
 			children = (
 				5B5544A028CF125B00781EC8 /* Base */,
-				5B5544B128CF1A3A00781EC8 /* Protocol */,
+				5B5544B028CF1A1300781EC8 /* DesignSystem */,
 				5B5544AF28CF1A0000781EC8 /* Extension */,
+				5B5544B128CF1A3A00781EC8 /* Protocol */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -293,7 +318,10 @@
 		5B5544A028CF125B00781EC8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5B5544BA28CF1D1A00781EC8 /* BaseView.swift */,
 				5B55449E28CF125300781EC8 /* BaseViewController.swift */,
+				5B5544BC28CF1D2D00781EC8 /* BaseTableViewCell.swift */,
+				5B5544BE28CF1D3E00781EC8 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -302,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5544B428CF1A7800781EC8 /* Date+.swift */,
+				5BB659A528CF7D7F0009BF1A /* UIFont+.swift */,
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
 				5B5544B828CF1A9A00781EC8 /* UITextField+.swift */,
 			);
@@ -311,6 +340,8 @@
 		5B5544B028CF1A1300781EC8 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				5BB659A828CF83E80009BF1A /* Foundation */,
+				5BB659A728CF83DA0009BF1A /* CTA */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -321,6 +352,43 @@
 				5B5544B228CF1A5D00781EC8 /* ReusableProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		5B5544C328CF482500781EC8 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				5B3FAD0328CE207F0062D9F6 /* Assets.xcassets */,
+				5BB659A928CF847B0009BF1A /* Color.xcassets */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		5B5544C428CF486E00781EC8 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				5B5AA8E728CF6F1800BBD00D /* Pretendard-Bold.otf */,
+				5B5AA8E928CF6F1800BBD00D /* Pretendard-Medium.otf */,
+				5B5AA8E828CF6F1800BBD00D /* Pretendard-Regular.otf */,
+				5B5AA8E628CF6F1800BBD00D /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		5BB659A728CF83DA0009BF1A /* CTA */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CTA;
+			sourceTree = "<group>";
+		};
+		5BB659A828CF83E80009BF1A /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5B5AA8F028CF6FDB00BBD00D /* Color.swift */,
+				5B5AA8EE28CF6FD400BBD00D /* Font.swift */,
+				5B5544C128CF46D800781EC8 /* Icon.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,8 +458,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5AA8EA28CF6F1800BBD00D /* Pretendard-SemiBold.otf in Resources */,
+				5B5AA8EB28CF6F1800BBD00D /* Pretendard-Bold.otf in Resources */,
+				5B5AA8EC28CF6F1800BBD00D /* Pretendard-Regular.otf in Resources */,
 				5B3FAD0728CE207F0062D9F6 /* LaunchScreen.storyboard in Resources */,
+				5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */,
 				5B3FAD0428CE207F0062D9F6 /* Assets.xcassets in Resources */,
+				5B5AA8ED28CF6F1800BBD00D /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,19 +477,26 @@
 			files = (
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
+				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
+				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
+				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
-				5B55444928CEFDE600781EC8 /* BookmarkController.swift in Sources */,
+				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
 				5B5544B328CF1A5D00781EC8 /* ReusableProtocol.swift in Sources */,
+				5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */,
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
+				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
+				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */,
 				5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */,
+				5B5544BB28CF1D1A00781EC8 /* BaseView.swift in Sources */,
 				5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */,
 				5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */,
 			);
