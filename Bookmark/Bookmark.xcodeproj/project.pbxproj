@@ -23,22 +23,22 @@
 		5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444B28CEFDF500781EC8 /* DetailViewController.swift */; };
 		5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444E28CEFE0200781EC8 /* WriteViewController.swift */; };
 		5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55445028CEFE0B00781EC8 /* SettingViewController.swift */; };
-		5B55449A28CF108E00781EC8 /* BookmarkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55449628CF107700781EC8 /* BookmarkKit.framework */; };
-		5B55449B28CF108E00781EC8 /* BookmarkKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55449628CF107700781EC8 /* BookmarkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55449E28CF125300781EC8 /* BaseViewController.swift */; };
+		5B5544AD28CF15EE00781EC8 /* BookmarkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5544AA28CF15DE00781EC8 /* BookmarkKit.framework */; };
+		5B5544AE28CF15EE00781EC8 /* BookmarkKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5544AA28CF15DE00781EC8 /* BookmarkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5B55449528CF107700781EC8 /* PBXContainerItemProxy */ = {
+		5B5544A928CF15DE00781EC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+			containerPortal = 5B5544A428CF15DE00781EC8 /* BookmarkKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5B55445E28CF0B2800781EC8;
 			remoteInfo = BookmarkKit;
 		};
-		5B55449728CF107700781EC8 /* PBXContainerItemProxy */ = {
+		5B5544AB28CF15DE00781EC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+			containerPortal = 5B5544A428CF15DE00781EC8 /* BookmarkKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5B55446828CF0B2900781EC8;
 			remoteInfo = BookmarkKitTests;
@@ -52,7 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5B55449B28CF108E00781EC8 /* BookmarkKit.framework in Embed Frameworks */,
+				5B5544AE28CF15EE00781EC8 /* BookmarkKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,8 +76,8 @@
 		5B55444B28CEFDF500781EC8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5B55444E28CEFE0200781EC8 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		5B55445028CEFE0B00781EC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookmarkKit.xcodeproj; path = ../../BookmarkKit/BookmarkKit.xcodeproj; sourceTree = "<group>"; };
 		5B55449E28CF125300781EC8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5B5544A428CF15DE00781EC8 /* BookmarkKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookmarkKit.xcodeproj; path = ../BookmarkKit/BookmarkKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 			files = (
 				5B3FAD1428CECE5E0062D9F6 /* Then in Frameworks */,
 				5B3FAD1728CECE840062D9F6 /* SnapKit in Frameworks */,
-				5B55449A28CF108E00781EC8 /* BookmarkKit.framework in Frameworks */,
+				5B5544AD28CF15EE00781EC8 /* BookmarkKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
-				5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */,
+				5B5544A428CF15DE00781EC8 /* BookmarkKit.xcodeproj */,
 				5B3FACF928CE207D0062D9F6 /* Bookmark */,
 				5B3FACF828CE207D0062D9F6 /* Products */,
 				5B55449928CF108E00781EC8 /* Frameworks */,
@@ -287,15 +287,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5B55449128CF107700781EC8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5B55449628CF107700781EC8 /* BookmarkKit.framework */,
-				5B55449828CF107700781EC8 /* BookmarkKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5B55449928CF108E00781EC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +308,15 @@
 				5B55449E28CF125300781EC8 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		5B5544A528CF15DE00781EC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B5544AA28CF15DE00781EC8 /* BookmarkKit.framework */,
+				5B5544AC28CF15DE00781EC8 /* BookmarkKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,8 +376,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5B55449128CF107700781EC8 /* Products */;
-					ProjectRef = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+					ProductGroup = 5B5544A528CF15DE00781EC8 /* Products */;
+					ProjectRef = 5B5544A428CF15DE00781EC8 /* BookmarkKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -388,18 +388,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		5B55449628CF107700781EC8 /* BookmarkKit.framework */ = {
+		5B5544AA28CF15DE00781EC8 /* BookmarkKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = BookmarkKit.framework;
-			remoteRef = 5B55449528CF107700781EC8 /* PBXContainerItemProxy */;
+			remoteRef = 5B5544A928CF15DE00781EC8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5B55449828CF107700781EC8 /* BookmarkKitTests.xctest */ = {
+		5B5544AC28CF15DE00781EC8 /* BookmarkKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = BookmarkKitTests.xctest;
-			remoteRef = 5B55449728CF107700781EC8 /* PBXContainerItemProxy */;
+			remoteRef = 5B5544AB28CF15DE00781EC8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
