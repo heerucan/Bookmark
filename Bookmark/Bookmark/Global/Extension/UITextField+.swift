@@ -1,6 +1,6 @@
 //
 //  UITextField+.swift
-//  BookmarkKit
+//  Bookmark
 //
 //  Created by heerucan on 2022/09/12.
 //
@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITextField {
-    public func addPadding() {
+    func addPadding() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: self.frame.height))
         self.leftView = paddingView
         self.rightView = paddingView
