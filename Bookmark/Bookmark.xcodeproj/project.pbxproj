@@ -16,14 +16,48 @@
 		5B3FAD1728CECE840062D9F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3FAD1628CECE840062D9F6 /* SnapKit */; };
 		5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */; };
 		5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55443F28CEFA6600781EC8 /* EndPoint.swift */; };
-		5B55444228CEFA8B00781EC8 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444128CEFA8B00781EC8 /* StoreManager.swift */; };
+		5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */; };
 		5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444428CEFDC100781EC8 /* TabBarViewController.swift */; };
 		5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444628CEFDD600781EC8 /* SearchViewController.swift */; };
 		5B55444928CEFDE600781EC8 /* BookmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444828CEFDE600781EC8 /* BookmarkController.swift */; };
 		5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444B28CEFDF500781EC8 /* DetailViewController.swift */; };
 		5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444E28CEFE0200781EC8 /* WriteViewController.swift */; };
 		5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55445028CEFE0B00781EC8 /* SettingViewController.swift */; };
+		5B55449A28CF108E00781EC8 /* BookmarkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55449628CF107700781EC8 /* BookmarkKit.framework */; };
+		5B55449B28CF108E00781EC8 /* BookmarkKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B55449628CF107700781EC8 /* BookmarkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55449E28CF125300781EC8 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B55449528CF107700781EC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B55445E28CF0B2800781EC8;
+			remoteInfo = BookmarkKit;
+		};
+		5B55449728CF107700781EC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B55446828CF0B2900781EC8;
+			remoteInfo = BookmarkKitTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B55449C28CF108E00781EC8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5B55449B28CF108E00781EC8 /* BookmarkKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5B3FACF728CE207D0062D9F6 /* Bookmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,13 +69,15 @@
 		5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B55443F28CEFA6600781EC8 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		5B55444128CEFA8B00781EC8 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAPIManager.swift; sourceTree = "<group>"; };
 		5B55444428CEFDC100781EC8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5B55444628CEFDD600781EC8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5B55444828CEFDE600781EC8 /* BookmarkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkController.swift; sourceTree = "<group>"; };
 		5B55444B28CEFDF500781EC8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5B55444E28CEFE0200781EC8 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		5B55445028CEFE0B00781EC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookmarkKit.xcodeproj; path = ../../BookmarkKit/BookmarkKit.xcodeproj; sourceTree = "<group>"; };
+		5B55449E28CF125300781EC8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +87,7 @@
 			files = (
 				5B3FAD1428CECE5E0062D9F6 /* Then in Frameworks */,
 				5B3FAD1728CECE840062D9F6 /* SnapKit in Frameworks */,
+				5B55449A28CF108E00781EC8 /* BookmarkKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +97,10 @@
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
+				5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */,
 				5B3FACF928CE207D0062D9F6 /* Bookmark */,
 				5B3FACF828CE207D0062D9F6 /* Products */,
+				5B55449928CF108E00781EC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				5B55443328CEF2BE00781EC8 /* Network */,
+				5B55449D28CF123F00781EC8 /* Global */,
 				5B55443128CEF28000781EC8 /* Screen */,
 				5B55443228CEF2A600781EC8 /* Support */,
 			);
@@ -113,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				5B55443E28CEFA4B00781EC8 /* Base */,
-				5B55443D28CEFA3E00781EC8 /* Manager */,
+				5B55443D28CEFA3E00781EC8 /* APIManager */,
 				5B55445328CEFE3C00781EC8 /* Model */,
 			);
 			path = Network;
@@ -191,12 +231,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B55443D28CEFA3E00781EC8 /* Manager */ = {
+		5B55443D28CEFA3E00781EC8 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
-				5B55444128CEFA8B00781EC8 /* StoreManager.swift */,
+				5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */,
 			);
-			path = Manager;
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		5B55443E28CEFA4B00781EC8 /* Base */ = {
@@ -247,6 +287,38 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B55449128CF107700781EC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B55449628CF107700781EC8 /* BookmarkKit.framework */,
+				5B55449828CF107700781EC8 /* BookmarkKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5B55449928CF108E00781EC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B55449D28CF123F00781EC8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				5B5544A028CF125B00781EC8 /* Base */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		5B5544A028CF125B00781EC8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5B55449E28CF125300781EC8 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,6 +329,7 @@
 				5B3FACF328CE207D0062D9F6 /* Sources */,
 				5B3FACF428CE207D0062D9F6 /* Frameworks */,
 				5B3FACF528CE207D0062D9F6 /* Resources */,
+				5B55449C28CF108E00781EC8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,12 +374,35 @@
 			);
 			productRefGroup = 5B3FACF828CE207D0062D9F6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5B55449128CF107700781EC8 /* Products */;
+					ProjectRef = 5B55449028CF107700781EC8 /* BookmarkKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5B3FACF628CE207D0062D9F6 /* Bookmark */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5B55449628CF107700781EC8 /* BookmarkKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BookmarkKit.framework;
+			remoteRef = 5B55449528CF107700781EC8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5B55449828CF107700781EC8 /* BookmarkKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BookmarkKitTests.xctest;
+			remoteRef = 5B55449728CF107700781EC8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5B3FACF528CE207D0062D9F6 /* Resources */ = {
@@ -325,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
@@ -334,7 +431,7 @@
 				5B55444928CEFDE600781EC8 /* BookmarkController.swift in Sources */,
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
-				5B55444228CEFA8B00781EC8 /* StoreManager.swift in Sources */,
+				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */,
 				5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */,
 			);
@@ -480,6 +577,7 @@
 				DEVELOPMENT_TEAM = 5GQ6QL9S3X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookmark/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "책갈피";
 				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요합니다!";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
@@ -514,6 +612,7 @@
 				DEVELOPMENT_TEAM = 5GQ6QL9S3X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookmark/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "책갈피";
 				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요합니다!";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
