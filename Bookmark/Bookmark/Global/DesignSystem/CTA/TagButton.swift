@@ -36,11 +36,11 @@ class TagButton: UIButton {
         $0.image = Icon.Image.like
     }
     
-    var isUnselected: Bool = true {
+    override var isSelected: Bool {
         didSet {
-            tagLabel.textColor = isUnselected ? Color.black100 : Color.green100
-            tagImageView.image = isUnselected ? Icon.Image.unselectedLike : Icon.Image.like
-            layer.borderColor = isUnselected ? Color.gray300.cgColor : Color.green100.cgColor
+            tagLabel.textColor = isSelected ? Color.green100 : Color.black100
+            tagImageView.image = isSelected ? Icon.Image.like : Icon.Image.unselectedLike
+            layer.borderColor = isSelected ? Color.green100.cgColor : Color.gray300.cgColor 
         }
     }
     

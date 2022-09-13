@@ -35,17 +35,17 @@ final class HomeView: BaseView {
         }
     
     let bookmarkButton = TagButton(.bookmark).then {
-        $0.isUnselected = true
+        $0.isSelected = false
     }
     
     let newStoreButton = TagButton(.category).then {
         $0.tagLabel.text = "새책방"
-        $0.isUnselected = true
+        $0.isSelected = false
     }
     
     let oldStoreButton = TagButton(.category).then {
         $0.tagLabel.text = "헌책방"
-        $0.isUnselected = true
+        $0.isSelected = false
     }
     
     let mapView = UIView().then {
@@ -54,7 +54,7 @@ final class HomeView: BaseView {
     
     let findButton = TagButton(.location).then {
         $0.tagLabel.text = "현 지도에서 검색"
-        $0.isUnselected = true
+        $0.isSelected = false
         $0.makeShadow(radius: 4, offset: CGSize(width: 0, height: 3), opacity: 0.25)
     }
     
