@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BookmarkButton: UIButton {
+final class BookmarkButton: UIButton {
     
     // MARK: - Enum
     
