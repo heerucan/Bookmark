@@ -26,6 +26,8 @@ class BaseView: UIView {
     
     // MARK: - Configure UI & Layout
     
-    func configureUI() { }
+    func configureUI() {
+        self.backgroundColor = .white
+    }
     func configureLayout() { }
 }
