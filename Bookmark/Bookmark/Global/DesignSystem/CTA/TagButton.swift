@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TagButton: UIButton {
+final class TagButton: UIButton {
     
     // MARK: - Enum
     
@@ -16,9 +16,7 @@ class TagButton: UIButton {
         
         var font: UIFont? {
             switch self {
-            case .bookmark:
-                return nil
-            case .category:
+            case .bookmark, .category:
                 return Font.body4.font
             case .location:
                 return Font.body6.font
