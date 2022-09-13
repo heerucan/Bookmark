@@ -11,26 +11,71 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Property
     
+    private let searchView = SearchView()
+    
+    let resultArray = ["북카페 파오", "이북카페", "최인아책방", "문학살롱", "초고산점"]
     
     // MARK: - LifeCycle
     
+    override func loadView() {
+        self.view = searchView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupDelegate()
+        setupAction()
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
         super.configureUI()
-    }
-    
-    override func configureLayout() {
-        super.configureLayout()
+        searchView.result = resultArray.count
     }
     
     // MARK: - Custom Method
     
+    private func setupDelegate() {
+        searchView.tableView.delegate = self
+        searchView.tableView.dataSource = self
+        searchView.searchBar.delegate = self
+    }
+    
+    private func setupAction() {
+        searchView.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
+    }
     
     // MARK: - @objc
+    
+    @objc func touchupBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - SearchBar Protocol
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchBar.text)
+    }
+}
+
+// MARK: - TableView Protocol
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return resultArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell
+        else { return UITableViewCell() }
+        cell.storeLabel.text = resultArray[indexPath.row]
+
+        if let searchWord = searchView.searchBar.text {
+            cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord)
+        }
+        return cell
+    }
 }
