@@ -154,7 +154,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         mapView.snp.makeConstraints { make in
             make.top.equalTo(secondTitleLabel.snp.bottom).offset(16)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(contentView.frame.width)
+            make.height.equalTo(mapView.frame.width).multipliedBy(1)
             make.bottom.equalToSuperview().inset(200)
         }
         
