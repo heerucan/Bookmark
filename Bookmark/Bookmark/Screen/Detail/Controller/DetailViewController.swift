@@ -11,10 +11,8 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let detailView = DetailView()
-    
-    let navigationBar = BookmarkNavigationBar()
-    
+    let detailView = DetailView()
+        
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -26,14 +24,6 @@ final class DetailViewController: BaseViewController {
     }
     
     // MARK: - Configure UI & Layout
-    
-    override func configureUI() {
-        super.configureUI()
-    }
-    
-    override func configureLayout() {
-        super.configureLayout()
-    }
     
     // MARK: - Custom Method
     

@@ -82,7 +82,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let viewController = DetailViewController()
-        viewController.navigationBar.titleLabel.text = resultArray[indexPath.row]
+        viewController.detailView.navigationBar.titleLabel.text = resultArray[indexPath.row]
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
