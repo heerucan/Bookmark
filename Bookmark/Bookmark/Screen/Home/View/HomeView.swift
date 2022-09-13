@@ -7,6 +7,8 @@
 
 import UIKit
 
+import NMapsMap
+
 final class HomeView: BaseView {
     
     // MARK: - Property
@@ -48,9 +50,7 @@ final class HomeView: BaseView {
         $0.isSelected = false
     }
     
-    let mapView = UIView().then {
-        $0.backgroundColor = .lightGray
-    }
+    lazy var mapView = NMFMapView(frame: self.frame)
     
     let findButton = TagButton(.location).then {
         $0.tagLabel.text = "현 지도에서 검색"
