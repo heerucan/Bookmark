@@ -24,6 +24,7 @@ enum Icon {
         static let write = UIImage(named: "btnWrite")
         static let share = UIImage(named: "btnShare")
         static let myLocation = UIImage(named: "btnMyLocation")
+        static let highlightedMyLocation = UIImage(named: "btnSelectedMyLocation")
         static let goMapApp = UIImage(named: "btnGoMapApp")
         static let highlightedGoMapApp = UIImage(named: "btnHighlightedGoMapApp")
     }
@@ -32,6 +33,7 @@ enum Icon {
         static let emptyState = UIImage(named: "imgEmptyState")
         static let search = UIImage(named: "icnSearch")
         static let like = UIImage(named: "icnLike")
+        static let unselectedLike = UIImage(named: "icnUnselectedLike")
         static let gallery = UIImage(named: "icnImage")
     } 
 }
