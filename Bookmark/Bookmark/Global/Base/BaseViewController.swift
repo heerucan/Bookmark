@@ -19,12 +19,11 @@ class BaseViewController: UIViewController {
         configureUI()
         configureLayout()
     }
-    
+
     // MARK: - Configure UI & Layout
     
     func configureUI() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
     }
     
     func configureLayout() { }

@@ -11,8 +11,8 @@ final class HomeView: BaseView {
     
     // MARK: - Property
     
-    private lazy var searchBackView = UIView().then {
-        $0.addSubviews([searchBar, searchIconView])
+    lazy var transitionButton = UIButton().then {
+        $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = Color.gray500
         $0.makeCornerStyle(width: 0, color: nil, radius: 5)
     }
@@ -21,8 +21,12 @@ final class HomeView: BaseView {
         $0.image = Icon.Image.search
     }
     
-    private let searchBar = UISearchBar()
-    
+    private let searchLabel = UILabel().then {
+        $0.text = "책방을 검색해주세요"
+        $0.textColor = Color.gray300
+        $0.font = Font.body5.font
+    }
+        
     private lazy var tagStackView = UIStackView(arrangedSubviews: [
         bookmarkButton, newStoreButton, oldStoreButton]).then {
             $0.axis = .horizontal
@@ -48,18 +52,17 @@ final class HomeView: BaseView {
         $0.backgroundColor = .lightGray
     }
     
-    
     let findButton = TagButton(.location).then {
         $0.tagLabel.text = "현 지도에서 검색"
         $0.isUnselected = true
-        // MARK: - 그림자
+        $0.makeShadow(radius: 4, offset: CGSize(width: 0, height: 3), opacity: 0.25)
     }
     
-    private lazy var storeView = UIView().then {
+    lazy var storeButton = UIButton().then {
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
-        // MARK: - 그림자
+        $0.makeShadow(radius: 37, offset: CGSize(width: 2, height: 2), opacity: 0.1)
     }
     
     let nameLabel = UILabel().then {
@@ -87,31 +90,26 @@ final class HomeView: BaseView {
     let myLocationButton = UIButton().then {
         $0.setImage(Icon.Button.myLocation, for: .normal)
         $0.setImage(Icon.Button.highlightedMyLocation, for: .highlighted)
-        // MARK: - 그림자
+        $0.makeShadow(radius: 14, offset: CGSize(width: 0, height: 0), opacity: 0.15)
     }
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setupSearchBar()
     }
     
     // MARK: - Configure UI & Layout
     
-    override func configureUI() {
-        super.configureUI()
-    }
-    
     override func configureLayout() {
-        self.addSubviews([searchBackView,
+        self.addSubviews([transitionButton,
                           tagStackView,
                           mapView,
                           findButton,
                           myLocationButton,
-                          storeView])
+                          storeButton])
         
-        searchBackView.snp.makeConstraints { make in
+        transitionButton.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(40)
@@ -122,13 +120,14 @@ final class HomeView: BaseView {
             make.leading.equalToSuperview().inset(12)
         }
         
-        searchBar.snp.makeConstraints { make in
-            make.top.trailing.bottom.equalToSuperview()
-            make.leading.equalTo(searchIconView.snp.trailing).inset(10)
+        searchLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(10)
+            make.leading.equalTo(searchIconView.snp.trailing).offset(8)
+            make.bottom.equalToSuperview().inset(9)
         }
         
         tagStackView.snp.makeConstraints { make in
-            make.top.equalTo(searchBackView.snp.bottom).offset(12)
+            make.top.equalTo(transitionButton.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(16)
             make.height.equalTo(38)
         }
@@ -144,7 +143,7 @@ final class HomeView: BaseView {
             make.centerX.equalToSuperview()
         }
         
-        storeView.snp.makeConstraints { make in
+        storeButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(89)
@@ -169,26 +168,7 @@ final class HomeView: BaseView {
         
         myLocationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(storeView.snp.top).offset(-20)
+            make.bottom.equalTo(storeButton.snp.top).offset(-20)
         }
-    }
-    
-    // MARK: - Custom Method
-    
-    private func setupSearchBar() {
-        searchBar.clipsToBounds = true
-        searchBar.tintColor = Color.black100
-        searchBar.backgroundColor = Color.gray500
-        searchBar.backgroundImage = UIImage()
-        searchBar.searchTextField.backgroundColor = Color.gray500
-        searchBar.searchTextField.textColor = Color.black100
-        searchBar.searchTextField.font = Font.body5.font
-        searchBar.makeCornerStyle(width: 0, color: nil, radius: 5)
-        let attributedString = NSMutableAttributedString(
-            string: "책방을 검색해주세요",
-            attributes: [.foregroundColor: Color.gray300,
-                         .font: Font.body5.font])
-        searchBar.searchTextField.attributedPlaceholder = attributedString
-        searchBar.searchTextField.leftView = .none
     }
 }

@@ -180,6 +180,7 @@
 		5B55443428CEF94C00781EC8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5B799D1328D09D3200648C94 /* Cell */,
 				5B799D1028D06ADB00648C94 /* View */,
 				5B55443728CEF95E00781EC8 /* Controller */,
 			);
@@ -389,6 +390,13 @@
 				5B799D1128D06AE500648C94 /* HomeView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5B799D1328D09D3200648C94 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
