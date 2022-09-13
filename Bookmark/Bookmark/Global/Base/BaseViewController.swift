@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
         configureUI()
         configureLayout()
     }
-    
+
     // MARK: - Configure UI & Layout
     
     func configureUI() {

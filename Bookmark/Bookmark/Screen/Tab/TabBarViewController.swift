@@ -24,9 +24,9 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         UITabBar.appearance().backgroundColor = .white
         tabBar.tintColor = .black
         
-        let firstTabController = UINavigationController(rootViewController: HomeViewController())
-        let secondTabController = UINavigationController(rootViewController: BookmarkViewController())
-        let thirdTabController = UINavigationController(rootViewController: SettingViewController())
+        let firstTabController = HomeViewController()
+        let secondTabController = BookmarkViewController()
+        let thirdTabController = SettingViewController()
         
         firstTabController.tabBarItem = UITabBarItem(
             title: "홈",
