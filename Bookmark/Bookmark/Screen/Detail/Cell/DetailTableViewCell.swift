@@ -1,5 +1,5 @@
 //
-//  DetailView.swift
+//  DetailTableViewCell.swift
 //  Bookmark
 //
 //  Created by heerucan on 2022/09/14.
@@ -7,16 +7,11 @@
 
 import UIKit
 
-final class DetailView: BaseView {
+import NMapsMap
+
+final class DetailTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
-    
-    let navigationBar = BookmarkNavigationBar()
-    
-    private lazy var scrollView = UIScrollView().then {
-        $0.alwaysBounceHorizontal = true
-        $0.contentSize = CGSize(width: self.frame.width, height: 700)
-    }
     
     private let firstTitleLabel = UILabel().then {
         $0.text = "책방 상세정보"
@@ -46,27 +41,27 @@ final class DetailView: BaseView {
     }
     
     private let phoneLabel = UILabel().then {
-        $0.text = "전화번호   0507-0989-1232"
+        $0.text = "전화번호    0507-0989-1232"
     }
     
     private let timeLabel = UILabel().then {
-        $0.text = "운영시간   평일 12:00 - 22:00  |  주말 12:00 - 20:00"
+        $0.text = "운영시간    평일 12:00 - 22:00 | 주말 12:00 - 20:00"
     }
     
     private let restLabel = UILabel().then {
-        $0.text = "휴무일   월요일, 화요일 휴무"
+        $0.text = "휴무일    월요일, 화요일 휴무"
     }
     
     private let urlView = UIView()
     
     private lazy var urlStackView = UIStackView(
-        arrangedSubviews: [homeLabel, snsLabel]).then {
+        arrangedSubviews: [homePageLabel, snsLabel]).then {
             $0.axis = .vertical
             $0.spacing = 12
             $0.distribution = .equalSpacing
         }
     
-    private let homeLabel = UILabel().then {
+    private let homePageLabel = UILabel().then {
         $0.text = "홈페이지   https://homepagename.com"
     }
     
@@ -74,7 +69,7 @@ final class DetailView: BaseView {
         $0.text = "SNS   instagram.com/heerucan"
     }
     
-    private lazy var mapView = UIView().then {
+    private lazy var mapView = NMFMapView(frame: frame).then {
         $0.addSubview(mapAppButton)
     }
     
@@ -83,34 +78,15 @@ final class DetailView: BaseView {
         $0.setImage(Icon.Button.highlightedGoMapApp, for: .highlighted)
     }
     
-    private lazy var backView = UIView().then {
-        $0.backgroundColor = .white
-        $0.addSubviews([writeButton, bookmarkButton])
-    }
+    // MARK: - Initializer
     
-    let writeButton = BookmarkButton(.bookmark).then {
-        $0.isDisabled = false
-    }
-    
-    let bookmarkButton = UIButton().then {
-        $0.setImage(Icon.Button.bookmark, for: .selected)
-        $0.setImage(Icon.Button.unselectedBookmark, for: .normal)
-    }
-    
-    // MARK: - LifeCycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
-        super.configureUI()
         [detailView, urlView, mapView].forEach {
             $0.backgroundColor = Color.gray500
             $0.makeCornerStyle(width: 0, color: nil, radius: 5)
@@ -122,7 +98,7 @@ final class DetailView: BaseView {
         }
         
         [addressLabel, phoneLabel, timeLabel,
-         restLabel, homeLabel, snsLabel].forEach {
+         restLabel, homePageLabel, snsLabel].forEach {
             $0.textColor = Color.gray100
             $0.font = Font.body8.font
         }
@@ -130,25 +106,13 @@ final class DetailView: BaseView {
     
     override func configureLayout() {
         super.configureLayout()
-        self.addSubviews([navigationBar, scrollView, backView])
-        scrollView.addSubviews([firstTitleLabel,
-                                detailView,
-                                detailStackView,
-                                urlView,
-                                urlStackView,
-                                secondTitleLabel,
-                                mapView])
-        
-        navigationBar.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(50)
-        }
-        
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
-            make.leading.bottom.trailing.equalToSuperview()
-        }
+        contentView.addSubviews([firstTitleLabel,
+                                 detailView,
+                                 detailStackView,
+                                 urlView,
+                                 urlStackView,
+                                 secondTitleLabel,
+                                 mapView])
         
         firstTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
@@ -189,9 +153,9 @@ final class DetailView: BaseView {
         
         mapView.snp.makeConstraints { make in
             make.top.equalTo(secondTitleLabel.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(343)
-            make.bottom.equalToSuperview().offset(50)
+            make.directionalHorizontalEdges.equalToSuperview().inset(16)
+            make.height.equalTo(contentView.frame.width)
+            make.bottom.equalToSuperview().inset(200)
         }
         
         mapAppButton.snp.makeConstraints { make in
@@ -202,28 +166,6 @@ final class DetailView: BaseView {
             make.top.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().inset(20)
         }
-        
-        backView.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(95)
-        }
-        
-        writeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
-            make.leading.equalToSuperview().inset(16)
-            make.height.equalTo(49)
-            make.trailing.equalTo(bookmarkButton.snp.leading).offset(-12)
-        }
-        
-        bookmarkButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
-            make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(49)
-        }
     }
-    
-    // MARK: - Custom Method
-    
-    
-    // MARK: - @objc
 }
+

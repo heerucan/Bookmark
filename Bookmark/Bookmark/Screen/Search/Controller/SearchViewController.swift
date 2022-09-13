@@ -39,7 +39,6 @@ final class SearchViewController: BaseViewController {
     private func setupDelegate() {
         searchView.tableView.delegate = self
         searchView.tableView.dataSource = self
-        searchView.searchBar.delegate = self
     }
     
     private func setupAction() {
@@ -50,14 +49,6 @@ final class SearchViewController: BaseViewController {
     
     @objc func touchupBackButton() {
         navigationController?.popViewController(animated: true)
-    }
-}
-
-// MARK: - SearchBar Protocol
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchBar.text)
     }
 }
 
@@ -82,7 +73,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let viewController = DetailViewController()
-        viewController.detailView.navigationBar.titleLabel.text = resultArray[indexPath.row]
+        viewController.navigationBar.titleLabel.text = resultArray[indexPath.row]
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

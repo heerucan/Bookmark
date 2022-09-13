@@ -53,10 +53,6 @@ final class SearchView: BaseView {
         setupSearchBar()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {

@@ -18,7 +18,6 @@
 		5B3FAD1728CECE840062D9F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3FAD1628CECE840062D9F6 /* SnapKit */; };
 		5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */; };
 		5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */; };
-		5B3FE00C28D0E63700B3DB69 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00B28D0E63700B3DB69 /* DetailView.swift */; };
 		5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */; };
 		5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55443F28CEFA6600781EC8 /* EndPoint.swift */; };
 		5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */; };
@@ -51,6 +50,7 @@
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AF28CF942D0009BF1A /* TagButton.swift */; };
+		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +79,6 @@
 		5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
-		5B3FE00B28D0E63700B3DB69 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkNavigationBar.swift; sourceTree = "<group>"; };
 		5B55443F28CEFA6600781EC8 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAPIManager.swift; sourceTree = "<group>"; };
@@ -112,6 +111,7 @@
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BB659AF28CF942D0009BF1A /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A651DBDD74A3122D53EBFEA /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		F396F509962615F401613FA1 /* Pods-Bookmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.release.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,12 +168,12 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
-		5B3FE00A28D0E62E00B3DB69 /* View */ = {
+		5B3FE00A28D0E62E00B3DB69 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5B3FE00B28D0E63700B3DB69 /* DetailView.swift */,
+				5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */,
 			);
-			path = View;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5B55443128CEF28000781EC8 /* Screen */ = {
@@ -251,7 +251,7 @@
 		5B55443828CEF99300781EC8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				5B3FE00A28D0E62E00B3DB69 /* View */,
+				5B3FE00A28D0E62E00B3DB69 /* Cell */,
 				5B55444A28CEFDE900781EC8 /* Controller */,
 			);
 			path = Detail;
@@ -426,14 +426,6 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		5B799D1028D06ADB00648C94 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5B799D1128D06AE500648C94 /* HomeView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5B578A9428D0C64B0039855C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +440,14 @@
 				5B578A9828D0CFA00039855C /* SearchTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		5B799D1028D06ADB00648C94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B799D1128D06AE500648C94 /* HomeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
@@ -626,8 +626,8 @@
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
+				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
 				5B5544B328CF1A5D00781EC8 /* ReusableProtocol.swift in Sources */,
-				5B3FE00C28D0E63700B3DB69 /* DetailView.swift in Sources */,
 				5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */,
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,

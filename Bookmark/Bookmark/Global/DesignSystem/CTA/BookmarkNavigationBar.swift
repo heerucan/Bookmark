@@ -33,15 +33,7 @@ final class BookmarkNavigationBar: BaseView {
         super.init(frame: .zero)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Configure UI & Layout
-    
-    override func configureUI() {
-        super.configureUI()
-    }
     
     override func configureLayout() {
         self.addSubviews([backButton, shareButton, lineView, titleLabel])
@@ -55,10 +47,8 @@ final class BookmarkNavigationBar: BaseView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
-            make.leading.equalTo(backButton.snp.trailing).offset(82)
-            make.trailing.equalTo(shareButton.snp.leading).offset(83)
-            make.bottom.equalToSuperview().inset(10)
+            make.top.equalToSuperview().inset(13)
+            make.centerX.equalToSuperview()
         }
         
         lineView.snp.makeConstraints { make in
