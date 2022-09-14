@@ -7,6 +7,7 @@
 
 import UIKit
 
+import CoreLocation
 import NMapsMap
 
 final class HomeView: BaseView {
@@ -50,7 +51,9 @@ final class HomeView: BaseView {
         $0.isSelected = false
     }
     
-    lazy var mapView = NMFMapView(frame: self.frame)
+    lazy var mapView = NMFMapView(frame: self.frame).then {
+        $0.positionMode = .direction
+    }
     
     let findButton = TagButton(.location).then {
         $0.tagLabel.text = "현 지도에서 검색"
@@ -97,6 +100,7 @@ final class HomeView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        setupAction()
     }
     
     // MARK: - Configure UI & Layout
@@ -170,5 +174,17 @@ final class HomeView: BaseView {
             make.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(storeButton.snp.top).offset(-20)
         }
+    }
+    
+    func setupAction() {
+        [bookmarkButton, newStoreButton, oldStoreButton].forEach {
+            $0.addTarget(self, action: #selector(touchupTagButton(_:)), for: .touchUpInside)
+        }
+    }
+    
+    // MARK: - @objc
+    
+    @objc func touchupTagButton(_ sender: UIButton) {
+        sender.isSelected.toggle()
     }
 }
