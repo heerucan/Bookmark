@@ -56,7 +56,7 @@ final class HomeView: BaseView {
         $0.locationOverlay.hidden = false
         $0.locationOverlay.heading = 180
         $0.locationOverlay.circleRadius = 150
-        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0.15)
+        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0.1)
     }
     
     let findButton = TagButton(.location).then {
