@@ -44,6 +44,7 @@
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AF28CF942D0009BF1A /* TagButton.swift */; };
+		5BF4703428D2407F00A6AA66 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4703328D2407F00A6AA66 /* CLLocationCoordinate2D+.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BB659AF28CF942D0009BF1A /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		5BF4703328D2407F00A6AA66 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A651DBDD74A3122D53EBFEA /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		F396F509962615F401613FA1 /* Pods-Bookmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.release.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				5BB659A528CF7D7F0009BF1A /* UIFont+.swift */,
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
 				5B5544B828CF1A9A00781EC8 /* UITextField+.swift */,
+				5BF4703328D2407F00A6AA66 /* CLLocationCoordinate2D+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B799D1228D06AE500648C94 /* HomeView.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
+				5BF4703428D2407F00A6AA66 /* CLLocationCoordinate2D+.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,

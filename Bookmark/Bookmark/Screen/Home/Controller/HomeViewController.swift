@@ -21,7 +21,6 @@ final class HomeViewController: BaseViewController {
     
     private let locationManager = CLLocationManager()
     
-    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -31,7 +30,6 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
-        setupDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +39,9 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Configure UI & Layout
     
-    override func configureLayout() {
-        super.configureLayout()
+    override func setupDelegate() {
+        locationManager.delegate = self
+        homeView.setupDelegate(delegate: self)
     }
     
     // MARK: - Custom Method
@@ -56,9 +55,12 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    private func setupDelegate() {
-        locationManager.delegate = self
-        homeView.mapView.touchDelegate = self
+    private func setupMarker() {
+        let nmgLatLng = NMGLatLng(lat: testLatitude, lng: testLongtitude)
+        let marker = NMFMarker()
+        marker.position = nmgLatLng
+        marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
+        marker.mapView = homeView.mapView
     }
     
     private func updateCurrentLocation() {
@@ -71,13 +73,7 @@ final class HomeViewController: BaseViewController {
         homeView.mapView.moveCamera(cameraUpdate)
     }
     
-    private func setupMarker() {
-        let nmgLatLng = NMGLatLng(lat: testLatitude, lng: testLongtitude)
-        let marker = NMFMarker()
-        marker.position = nmgLatLng
-        marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
-        marker.mapView = homeView.mapView
-    }
+//    private func 
     
     // MARK: - @objc
 
@@ -99,11 +95,11 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - NMFMapView Protocol
+// MARK: - 지도 터치에 대한 콜백 프로토콜.
 
 extension HomeViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.2) {
             self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: 188)
             self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: 105)
         }
@@ -175,8 +171,8 @@ extension HomeViewController {
             print("DENIED, 아이폰 설정으로 유도")
             showRequestLocationServiceAlert()
             
-        case .authorizedWhenInUse:
-            print("🤩 WHEN IN USE")
+        case .authorizedWhenInUse, .authorizedAlways:
+            print("🤩 WHEN IN USE or ALWAYS")
             // 사용자가 위치를 허용해둔 상태라면, startUpdatingLocation을 통해 didUpdateLocations 메소드가 실행된다.
             locationManager.startUpdatingLocation()
             updateCurrentLocation()

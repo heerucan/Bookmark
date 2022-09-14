@@ -18,6 +18,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureLayout()
+        setupDelegate()
     }
 
     // MARK: - Configure UI & Layout
@@ -27,4 +28,5 @@ class BaseViewController: UIViewController {
     }
     
     func configureLayout() { }
+    func setupDelegate() { }
 }
