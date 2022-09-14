@@ -16,12 +16,13 @@ final class HomeViewController: BaseViewController {
     
     private let homeView = HomeView()
     
+    private let geocoder = CLGeocoder()
     private let locationManager = CLLocationManager()
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
-    private lazy var myLongtitude = CLLocationManager().location?.coordinate.longitude
+    private lazy var myLongtitude = locationManager.location?.coordinate.longitude
     
     private var bookStoreList: [BookStoreInfo] = []
-    
+        
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -43,7 +44,7 @@ final class HomeViewController: BaseViewController {
     
     override func setupDelegate() {
         locationManager.delegate = self
-        homeView.setupDelegate(delegate: self)
+        homeView.setupDelegate(touchDelegate: self)
     }
     
     // MARK: - RequestAPI
@@ -68,7 +69,15 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: - Custom Map
+    
     private func setupMarker() {
+        // MARK: - 여기서 사용자가 지도를 움직일 때마다 지도의 lat,long 값을 반환해주면 그걸로 findAddress를 통해서 행정구를 가져오고
+        // 그래서 해당 행정구가 어디인지 알아서 filtering을 해주는 것임 1차적으로
+        // 그래서 나는 현 지도 검색을 하는 경우에는 Overlay를 다른색으로 제공해주는 것도 괜찮을 것 같음
+        let cameraPosition = homeView.mapView.cameraPosition
+        findAddress(cameraPosition.target.lat, cameraPosition.target.lng)
+
         for bookStore in self.bookStoreList {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
@@ -95,15 +104,24 @@ final class HomeViewController: BaseViewController {
     
     @discardableResult
     private func updateMyLocation() -> NMGLatLng {
-        if let latitude = myLatitude,
-           let longtitude = myLongtitude {
-            let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+        if let lat = myLatitude, let long = myLongtitude {
+            let coordinate = NMGLatLng(lat: lat, lng: long)
             let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
             cameraUpdate.animation = .easeIn
             homeView.mapView.moveCamera(cameraUpdate)
             return coordinate
         } else {
             return NMGLatLng()
+        }
+    }
+    
+    private func findAddress(_ lat: CLLocationDegrees, _ long: CLLocationDegrees) {
+        let locale = Locale(identifier: "Ko-kr")
+        let location = CLLocation(latitude: lat, longitude: long)
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { (placemarks, nil) in
+            if let district = placemarks?.last?.subLocality {
+                print(district)
+            }
         }
     }
     
@@ -118,7 +136,6 @@ final class HomeViewController: BaseViewController {
             setupMarker()
         case homeView.myLocationButton:
             updateMyLocation()
-            print("여기")
         case homeView.storeButton:
             let viewController = DetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
@@ -128,7 +145,7 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - 지도 터치에 대한 콜백 프로토콜.
+// MARK: - 지도 터치에 대한 콜백 프로토콜
 
 extension HomeViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {

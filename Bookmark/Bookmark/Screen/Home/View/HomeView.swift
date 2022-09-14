@@ -52,6 +52,8 @@ final class HomeView: BaseView {
     }
     
     lazy var mapView = NMFMapView(frame: self.frame).then {
+        $0.minZoomLevel = 9
+        $0.maxZoomLevel = 18
         $0.positionMode = .direction
         $0.locationOverlay.hidden = false
         $0.locationOverlay.heading = 180
@@ -180,8 +182,8 @@ final class HomeView: BaseView {
     
     // MARK: - Custom Method
     
-    func setupDelegate(delegate: NMFMapViewTouchDelegate) {
-        mapView.touchDelegate = delegate
+    func setupDelegate(touchDelegate: NMFMapViewTouchDelegate) {
+        mapView.touchDelegate = touchDelegate
     }
     
     private func setupAction() {
