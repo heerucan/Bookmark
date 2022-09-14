@@ -14,12 +14,11 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let testLatitude =  37.56677780536712
-    private let testLongtitude = 126.92908615722659
-    
     private let homeView = HomeView()
     
     private let locationManager = CLLocationManager()
+    private lazy var myLatitude = locationManager.location?.coordinate.latitude
+    private lazy var myLongtitude = CLLocationManager().location?.coordinate.longitude
     
     private var bookStoreList: [BookStoreInfo] = []
     
@@ -40,7 +39,7 @@ final class HomeViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: - Configure UI & Layout
+    // MARK: - Configure UI & Layout & Delegate
     
     override func setupDelegate() {
         locationManager.delegate = self
@@ -54,9 +53,6 @@ final class HomeViewController: BaseViewController {
             guard let data = data else { return }
             DispatchQueue.main.async {
                 self.bookStoreList.append(contentsOf: data.total.info)
-//                print("👚", self.bookStoreList)
-                
-           
             }
         }
     }
@@ -76,33 +72,39 @@ final class HomeViewController: BaseViewController {
         for bookStore in self.bookStoreList {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
-            let nmgLatLng = NMGLatLng(lat: latitude, lng: longtitude)
+            let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
             let marker = NMFMarker()
-            marker.position = nmgLatLng
+            marker.position = coordinate
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
             marker.mapView = homeView.mapView
-            let handler = { (overlay: NMFOverlay) -> Bool in
+            let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+                guard let self = self else { return false }
+                self.homeView.setupData(data: bookStore, kilometer: self.updateMyLocation().distance(to: coordinate))
                 UIView.animate(withDuration: 0.2) {
     //                self.homeView.storeButton.isHidden = false
                     self.homeView.storeButton.transform = .identity
                     self.homeView.myLocationButton.transform = .identity
                 }
                 return true
-            };
-            marker.touchHandler = handler
+            }
+            marker.touchHandler = markerHandler
         }
     }
     
-    private func updateCurrentLocation() {
-        guard let latitude = locationManager.location?.coordinate.latitude,
-              let longtitude = locationManager.location?.coordinate.longitude else { return }
-        
-        let nmgLatLng = NMGLatLng(lat: latitude, lng: longtitude)
-        let cameraUpdate = NMFCameraUpdate(scrollTo: nmgLatLng)
-        cameraUpdate.animation = .easeIn
-        homeView.mapView.moveCamera(cameraUpdate)
+    @discardableResult
+    private func updateMyLocation() -> NMGLatLng {
+        if let latitude = myLatitude,
+           let longtitude = myLongtitude {
+            let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+            let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
+            cameraUpdate.animation = .easeIn
+            homeView.mapView.moveCamera(cameraUpdate)
+            return coordinate
+        } else {
+            return NMGLatLng()
+        }
     }
     
     // MARK: - @objc
@@ -115,7 +117,8 @@ final class HomeViewController: BaseViewController {
         case homeView.findButton:
             setupMarker()
         case homeView.myLocationButton:
-            updateCurrentLocation()
+            updateMyLocation()
+            print("여기")
         case homeView.storeButton:
             let viewController = DetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
@@ -140,12 +143,10 @@ extension HomeViewController: NMFMapViewTouchDelegate {
 
 extension HomeViewController: CLLocationManagerDelegate {
     
-    // 사용자의 위치를 성공적으로 가지고 온 경우
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
     }
     
-    // 사용자의 위치를 가지고 오지 못한 경우
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("😡 사용자의 위치를 가져오지 못했습니다.")
     }
@@ -158,13 +159,8 @@ extension HomeViewController: CLLocationManagerDelegate {
 // MARK: - 위치 서비스 활성화 체크
 
 extension HomeViewController {
-    /*
-     환경설정 -> 개인 정보 보호 -> 위치 서비스가 켜져있다면 요청이 가능하고,
-     꺼져 있다면 custom alert으로 상황을 알려줘야 한다.
-     꺼져 있으면 어떤 앱에서도 위치 서비스를 사용하고 있지 않는 상황이고,
-     사용자가 이 위치 서비스를 사용하고 있지 않는 걸 사용자도 모르고 있을 수 있기 때문
-     */
-    func checkUserDeviceLocationServiceAuthorization() {
+    // 환경설정 -> 개인 정보 보호 -> 위치 서비스 체크
+    private func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
         authorizationStatus = locationManager.authorizationStatus
         
@@ -184,7 +180,7 @@ extension HomeViewController {
      사용자가 위치를 허용했는지, 거부했는지, 아직 선택하지 않았는지 등을 확인
      (단, 사전에 iOS 위치 서비스 활성화 꼭 확인)
      */
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
             print("NOT DETERMINED")
@@ -205,13 +201,13 @@ extension HomeViewController {
             print("🤩 WHEN IN USE or ALWAYS")
             // 사용자가 위치를 허용해둔 상태라면, startUpdatingLocation을 통해 didUpdateLocations 메소드가 실행된다.
             locationManager.startUpdatingLocation()
-            updateCurrentLocation()
+            updateMyLocation()
             
         default: print("DEFAULT")
         }
     }
     
-    func showRequestLocationServiceAlert() {
+    private func showRequestLocationServiceAlert() {
         let requestLocationServiceAlert = UIAlertController(
             title: "위치정보 이용",
             message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.",

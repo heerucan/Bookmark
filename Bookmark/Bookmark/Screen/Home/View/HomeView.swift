@@ -73,23 +73,20 @@ final class HomeView: BaseView {
         $0.makeShadow(radius: 37, offset: CGSize(width: 2, height: 2), opacity: 0.1)
     }
     
-    let nameLabel = UILabel().then {
+    private let nameLabel = UILabel().then {
         $0.font = Font.body1.font
-        $0.text = "북카페 파오"
         $0.textColor = Color.green100
         $0.numberOfLines = 1
     }
     
-    let addressLabel = UILabel().then {
+    private let addressLabel = UILabel().then {
         $0.font = Font.body8.font
-        $0.text = "서울 서대문구 대현동 201 럭키 아파트 2층 상가"
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
     }
     
-    let distanceLabel = UILabel().then {
+    private let distanceLabel = UILabel().then {
         $0.font = Font.body7.font
-        $0.text = "3km"
         $0.textColor = Color.black100
         $0.numberOfLines = 1
         $0.textAlignment = .right
@@ -197,5 +194,13 @@ final class HomeView: BaseView {
     
     @objc func touchupTagButton(_ sender: UIButton) {
         sender.isSelected.toggle()
+    }
+    
+    // MARK: - Set Data
+    
+    func setupData(data: BookStoreInfo, kilometer: Double) {
+        nameLabel.text = data.name
+        addressLabel.text = data.address
+        distanceLabel.text = "\(round((kilometer/1000)*10)/10)km"
     }
 }

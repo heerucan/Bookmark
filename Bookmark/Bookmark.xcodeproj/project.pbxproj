@@ -40,8 +40,8 @@
 		5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8F028CF6FDB00BBD00D /* Color.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
-		5B819ED228D245F400626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED128D245F400626693 /* BookStore.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
+		5B819ED728D25F1100626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED628D25F1100626693 /* BookStore.swift */; };
 		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
@@ -98,8 +98,8 @@
 		5B5AA8F028CF6FDB00BBD00D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		5B819ED128D245F400626693 /* BookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookStore.swift; path = Bookmark/Network/APIManager/DataModel/BookStore.swift; sourceTree = SOURCE_ROOT; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		5B819ED628D25F1100626693 /* BookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
 		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
@@ -405,7 +405,7 @@
 		5B819ED528D2599100626693 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				5B819ED128D245F400626693 /* BookStore.swift */,
+				5B819ED628D25F1100626693 /* BookStore.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -569,6 +569,7 @@
 			files = (
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B799D1228D06AE500648C94 /* HomeView.swift in Sources */,
+				5B819ED728D25F1100626693 /* BookStore.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5BF4703428D2407F00A6AA66 /* CLLocationCoordinate2D+.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
@@ -578,7 +579,6 @@
 				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
-				5B819ED228D245F400626693 /* BookStore.swift in Sources */,
 				5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
