@@ -180,7 +180,7 @@ final class HomeView: BaseView {
         }
     }
     
-    func setupAction() {
+    private func setupAction() {
         [bookmarkButton, newStoreButton, oldStoreButton].forEach {
             $0.addTarget(self, action: #selector(touchupTagButton(_:)), for: .touchUpInside)
         }
