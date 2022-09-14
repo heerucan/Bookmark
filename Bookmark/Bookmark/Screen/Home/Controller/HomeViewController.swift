@@ -48,18 +48,18 @@ final class HomeViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func setupAction() {
-        homeView.transitionButton.addTarget(self, action: #selector(touchupTransitionButton),
-                                            for: .touchUpInside)
-        
-        homeView.storeButton.addTarget(self, action: #selector(touchupStoreButton),
-                                       for: .touchUpInside)
+        [homeView.goToSearchViewButton,
+         homeView.myLocationButton,
+         homeView.storeButton].forEach {
+            $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
+        }
     }
     
     private func setupLocation() {
         locationManager.delegate = self
     }
     
-    private func updateCamera() {
+    private func updateCurrentLocation() {
         guard let latitude = locationManager.location?.coordinate.latitude,
               let longtitude = locationManager.location?.coordinate.longitude else { return }
         
@@ -67,7 +67,13 @@ final class HomeViewController: BaseViewController {
         let cameraUpdate = NMFCameraUpdate(scrollTo: nmgLatLng)
         cameraUpdate.animation = .easeIn
         homeView.mapView.moveCamera(cameraUpdate)
+    }
+    
+    private func setupMarker() {
+        guard let latitude = locationManager.location?.coordinate.latitude,
+              let longtitude = locationManager.location?.coordinate.longitude else { return }
         
+        let nmgLatLng = NMGLatLng(lat: latitude, lng: longtitude)
         let marker = NMFMarker()
         marker.position = nmgLatLng
         marker.mapView = homeView.mapView
@@ -75,20 +81,27 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - @objc
     
-    @objc func touchupTransitionButton() {
-        let viewController = SearchViewController()
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    @objc func touchupStoreButton() {
-        let viewController = DetailViewController()
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     @objc func didTapView(_ sender: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.4) {
             self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: 188)
             self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: 105)
+        }
+    }
+
+    @objc func touchupButton(_ sender: UIButton) {
+        switch sender {
+        case homeView.goToSearchViewButton:
+            let viewController = SearchViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        case homeView.myLocationButton:
+            updateCurrentLocation()
+            print(#function, "내위치버튼")
+
+        case homeView.storeButton:
+            let viewController = DetailViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        default:
+            break
         }
     }
 }
@@ -143,9 +156,9 @@ extension HomeViewController {
             print("🤩 WHEN IN USE")
             // 사용자가 위치를 허용해둔 상태라면, startUpdatingLocation을 통해 didUpdateLocations 메소드가 실행된다.
             locationManager.startUpdatingLocation()
-            print("🤩", locationManager.location?.coordinate)
-            updateCamera()
-            
+            updateCurrentLocation()
+//            setupMarker()
+            print(#function)
             
         default: print("DEFAULT")
         }

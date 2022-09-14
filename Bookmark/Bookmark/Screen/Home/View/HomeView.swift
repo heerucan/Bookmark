@@ -14,7 +14,7 @@ final class HomeView: BaseView {
     
     // MARK: - Property
     
-    lazy var transitionButton = UIButton().then {
+    lazy var goToSearchViewButton = UIButton().then {
         $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = Color.gray500
         $0.makeCornerStyle(width: 0, color: nil, radius: 5)
@@ -37,22 +37,26 @@ final class HomeView: BaseView {
             $0.distribution = .equalSpacing
         }
     
-    let bookmarkButton = TagButton(.bookmark).then {
+    private let bookmarkButton = TagButton(.bookmark).then {
         $0.isSelected = false
     }
     
-    let newStoreButton = TagButton(.category).then {
+    private let newStoreButton = TagButton(.category).then {
         $0.tagLabel.text = "새책방"
         $0.isSelected = false
     }
     
-    let oldStoreButton = TagButton(.category).then {
+    private let oldStoreButton = TagButton(.category).then {
         $0.tagLabel.text = "헌책방"
         $0.isSelected = false
     }
     
     lazy var mapView = NMFMapView(frame: self.frame).then {
         $0.positionMode = .direction
+        $0.locationOverlay.hidden = false
+        $0.locationOverlay.heading = 180
+        $0.locationOverlay.circleRadius = 150
+        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0.15)
     }
     
     let findButton = TagButton(.location).then {
@@ -93,7 +97,7 @@ final class HomeView: BaseView {
     let myLocationButton = UIButton().then {
         $0.setImage(Icon.Button.myLocation, for: .normal)
         $0.setImage(Icon.Button.highlightedMyLocation, for: .highlighted)
-        $0.makeShadow(radius: 14, offset: CGSize(width: 0, height: 0), opacity: 0.15)
+        $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 0), opacity: 0.25)
     }
     
     // MARK: - Initializer
@@ -106,14 +110,14 @@ final class HomeView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([transitionButton,
+        self.addSubviews([goToSearchViewButton,
                           tagStackView,
                           mapView,
                           findButton,
                           myLocationButton,
                           storeButton])
         
-        transitionButton.snp.makeConstraints { make in
+        goToSearchViewButton.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(40)
@@ -131,7 +135,7 @@ final class HomeView: BaseView {
         }
         
         tagStackView.snp.makeConstraints { make in
-            make.top.equalTo(transitionButton.snp.bottom).offset(12)
+            make.top.equalTo(goToSearchViewButton.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(16)
             make.height.equalTo(38)
         }
