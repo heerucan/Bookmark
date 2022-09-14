@@ -39,6 +39,9 @@
 		5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8EE28CF6FD400BBD00D /* Font.swift */; };
 		5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8F028CF6FDB00BBD00D /* Color.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
+		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
+		5B819ED228D245F400626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED128D245F400626693 /* BookStore.swift */; };
+		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
 		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
@@ -94,6 +97,9 @@
 		5B5AA8EE28CF6FD400BBD00D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		5B5AA8F028CF6FDB00BBD00D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		5B819ED128D245F400626693 /* BookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookStore.swift; path = Bookmark/Network/APIManager/DataModel/BookStore.swift; sourceTree = SOURCE_ROOT; };
+		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
@@ -180,7 +186,7 @@
 			children = (
 				5B55443E28CEFA4B00781EC8 /* Base */,
 				5B55443D28CEFA3E00781EC8 /* APIManager */,
-				5B55445328CEFE3C00781EC8 /* Model */,
+				5B819ED528D2599100626693 /* DataModel */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			children = (
 				5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */,
 				5B55443F28CEFA6600781EC8 /* EndPoint.swift */,
+				5B819ECF28D245D200626693 /* APIError.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -307,13 +314,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B55445328CEFE3C00781EC8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		5B55449928CF108E00781EC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +325,7 @@
 		5B55449D28CF123F00781EC8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				5B819ED328D2589400626693 /* Matrix.swift */,
 				5B5544A028CF125B00781EC8 /* Base */,
 				5B5544B028CF1A1300781EC8 /* DesignSystem */,
 				5B5544AF28CF1A0000781EC8 /* Extension */,
@@ -399,6 +400,14 @@
 				5B799D1128D06AE500648C94 /* HomeView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5B819ED528D2599100626693 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B819ED128D245F400626693 /* BookStore.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
@@ -569,6 +578,7 @@
 				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
+				5B819ED228D245F400626693 /* BookStore.swift in Sources */,
 				5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
@@ -581,9 +591,11 @@
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */,
+				5B819ED028D245D200626693 /* APIError.swift in Sources */,
 				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */,
 				5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */,
+				5B819ED428D2589400626693 /* Matrix.swift in Sources */,
 				5B5544BB28CF1D1A00781EC8 /* BaseView.swift in Sources */,
 				5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */,
 				5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */,

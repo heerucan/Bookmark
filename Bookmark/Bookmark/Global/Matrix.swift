@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Matrix {
+    private init() { }
+    
+    static let markerSize = 37.0
+}

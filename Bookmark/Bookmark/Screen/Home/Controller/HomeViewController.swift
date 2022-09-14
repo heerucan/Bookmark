@@ -21,6 +21,8 @@ final class HomeViewController: BaseViewController {
     
     private let locationManager = CLLocationManager()
     
+    private var bookStoreList: [BookStoreInfo] = []
+    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -30,6 +32,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
+        requestAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +47,20 @@ final class HomeViewController: BaseViewController {
         homeView.setupDelegate(delegate: self)
     }
     
+    // MARK: - RequestAPI
+    
+    private func requestAPI() {
+        StoreAPIManager.shared.fetchBookStore() { (data, error) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                self.bookStoreList.append(contentsOf: data.total.info)
+//                print("👚", self.bookStoreList)
+                
+           
+            }
+        }
+    }
+    
     // MARK: - Custom Method
     
     private func setupAction() {
@@ -56,11 +73,26 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setupMarker() {
-        let nmgLatLng = NMGLatLng(lat: testLatitude, lng: testLongtitude)
-        let marker = NMFMarker()
-        marker.position = nmgLatLng
-        marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
-        marker.mapView = homeView.mapView
+        for bookStore in self.bookStoreList {
+            guard let latitude = Double(bookStore.latitude),
+                  let longtitude = Double(bookStore.longtitude) else { return }
+            let nmgLatLng = NMGLatLng(lat: latitude, lng: longtitude)
+            let marker = NMFMarker()
+            marker.position = nmgLatLng
+            marker.width = Matrix.markerSize
+            marker.height = Matrix.markerSize
+            marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
+            marker.mapView = homeView.mapView
+            let handler = { (overlay: NMFOverlay) -> Bool in
+                UIView.animate(withDuration: 0.2) {
+    //                self.homeView.storeButton.isHidden = false
+                    self.homeView.storeButton.transform = .identity
+                    self.homeView.myLocationButton.transform = .identity
+                }
+                return true
+            };
+            marker.touchHandler = handler
+        }
     }
     
     private func updateCurrentLocation() {
@@ -72,8 +104,6 @@ final class HomeViewController: BaseViewController {
         cameraUpdate.animation = .easeIn
         homeView.mapView.moveCamera(cameraUpdate)
     }
-    
-//    private func 
     
     // MARK: - @objc
 
