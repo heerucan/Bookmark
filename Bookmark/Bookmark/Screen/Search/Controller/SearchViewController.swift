@@ -37,8 +37,7 @@ final class SearchViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func setupDelegate() {
-        searchView.tableView.delegate = self
-        searchView.tableView.dataSource = self
+        searchView.setupTableView(self, self)
     }
     
     private func setupAction() {
@@ -62,8 +61,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell
         else { return UITableViewCell() }
-        cell.storeLabel.text = resultArray[indexPath.row]
+        cell.setupData(data: resultArray[indexPath.row])
 
+        // MARK: - TODO 기능 구현하면서 cell 관련 UI니까 쪽으로 분리시키기
         if let searchWord = searchView.searchBar.text {
             cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord)
         }

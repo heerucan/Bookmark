@@ -94,17 +94,19 @@ final class DetailViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
-        showAlert { _ in
-            print("글")
-            let viewController = WriteViewController()
-            viewController.viewType = .sentence
-            self.navigationController?.pushViewController(viewController, animated: true)
-        } secondHander: { _ in
-            print("책")
+        let firstAction = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             viewController.viewType = .sentence
             self.navigationController?.pushViewController(viewController, animated: true)
         }
+        let secondAction = UIAlertAction(title: "공감 가는 책 한 권", style: .default) { _ in
+            let viewController = WriteViewController()
+            viewController.viewType = .book
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        showAlert(title: "어떤 책갈피를 꽂으실 건가요?",
+                  message: nil,
+                  actions: [firstAction, secondAction])
     }
     
     @objc func touchupBookmarkButton(_ sender: UIButton) {

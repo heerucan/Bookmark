@@ -40,7 +40,7 @@ final class SearchView: BaseView {
         $0.textColor = Color.black100
     }
     
-    let tableView = UITableView(frame: .zero, style: .plain).then {
+    private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
@@ -112,5 +112,10 @@ final class SearchView: BaseView {
                          .font: Font.body5.font])
         searchBar.searchTextField.attributedPlaceholder = attributedString
         searchBar.searchTextField.leftView = .none
+    }
+    
+    func setupTableView(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+        tableView.delegate = delegate
+        tableView.dataSource = datasource
     }
 }

@@ -35,4 +35,10 @@ final class SearchTableViewCell: BaseTableViewCell {
             make.leading.trailing.equalToSuperview().inset(20)
         }
     }
+    
+    // MARK: - Set Up Data
+    
+    func setupData(data: String) {
+        storeLabel.text = data
+    }
 }
