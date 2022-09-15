@@ -18,7 +18,6 @@ extension UIView {
         layer.borderWidth = width
         layer.borderColor = color
         layer.cornerRadius = radius
-        clipsToBounds = true
     }
     
     func makeShadow(color: CGColor = Color.black100.cgColor,
@@ -29,5 +28,6 @@ extension UIView {
         layer.shadowRadius = radius
         layer.shadowOffset = offset
         layer.shadowOpacity = opacity
+        clipsToBounds = false
     }
 }

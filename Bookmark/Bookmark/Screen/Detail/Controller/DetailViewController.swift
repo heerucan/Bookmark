@@ -40,7 +40,6 @@ final class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
         setupAction()
     }
     
@@ -82,7 +81,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Custom Method
     
-    private func setupTableView() {
+    override func setupDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
     }

@@ -44,7 +44,7 @@ final class HomeViewController: BaseViewController {
     
     override func setupDelegate() {
         locationManager.delegate = self
-        homeView.setupDelegate(touchDelegate: self)
+        homeView.setupDelegate(touchDelegate: self, cameraDelegate: self)
     }
     
     // MARK: - RequestAPI
@@ -93,8 +93,7 @@ final class HomeViewController: BaseViewController {
             let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self else { return false }
                 self.homeView.setupData(data: bookStore, kilometer: self.updateMyLocation().distance(to: coordinate))
-                UIView.animate(withDuration: 0.2) {
-    //                self.homeView.storeButton.isHidden = false
+                UIView.animate(withDuration: 0.1) {
                     self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.storeButton.frame.height-16)
                     self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.myLocationButton.frame.height-40)
                 }
@@ -121,9 +120,7 @@ final class HomeViewController: BaseViewController {
         let locale = Locale(identifier: "Ko-kr")
         let location = CLLocation(latitude: lat, longitude: long)
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { (placemarks, nil) in
-            let placemark = placemarks?.last
-//            print(placemark?.name, placemark.)
-            if let district = placemarks?.last {
+            if let district = placemarks?.last?.subLocality {
                 print(district)
             }
         }
@@ -138,6 +135,9 @@ final class HomeViewController: BaseViewController {
             navigationController?.pushViewController(viewController, animated: true)
         case homeView.findButton:
             setupMarker()
+            UIView.animate(withDuration: 0.1) {
+                self.homeView.findButton.alpha = 0
+            }
         case homeView.myLocationButton:
             updateMyLocation()
         case homeView.storeButton:
@@ -151,11 +151,17 @@ final class HomeViewController: BaseViewController {
 
 // MARK: - 지도 터치에 대한 콜백 프로토콜
 
-extension HomeViewController: NMFMapViewTouchDelegate {
+extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
         UIView.animate(withDuration: 0.2) {
             self.homeView.storeButton.transform = .identity
             self.homeView.myLocationButton.transform = .identity
+        }
+    }
+    
+    func mapViewCameraIdle(_ mapView: NMFMapView) {
+        UIView.animate(withDuration: 0.2) {
+            self.homeView.findButton.alpha = 1
         }
     }
 }

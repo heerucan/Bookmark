@@ -23,7 +23,6 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegate()
         setupAction()
     }
     
@@ -36,7 +35,7 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Custom Method
     
-    private func setupDelegate() {
+    override func setupDelegate() {
         searchView.setupTableView(self, self)
     }
     

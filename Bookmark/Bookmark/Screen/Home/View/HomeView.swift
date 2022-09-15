@@ -68,7 +68,6 @@ final class HomeView: BaseView {
     }
     
     lazy var storeButton = UIButton().then {
-//        $0.isHidden = true
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
@@ -182,8 +181,9 @@ final class HomeView: BaseView {
     
     // MARK: - Custom Method
     
-    func setupDelegate(touchDelegate: NMFMapViewTouchDelegate) {
+    func setupDelegate(touchDelegate: NMFMapViewTouchDelegate, cameraDelegate: NMFMapViewCameraDelegate) {
         mapView.touchDelegate = touchDelegate
+        mapView.addCameraDelegate(delegate: cameraDelegate)
     }
     
     private func setupAction() {
