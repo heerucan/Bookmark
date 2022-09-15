@@ -153,7 +153,7 @@ final class HomeView: BaseView {
         
         storeButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.bottom)
             make.height.equalTo(89)
         }
         
@@ -171,7 +171,7 @@ final class HomeView: BaseView {
         distanceLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(addressLabel.snp.centerY)
-            make.width.equalTo(45)
+            make.width.equalTo(50)
         }
         
         myLocationButton.snp.makeConstraints { make in
