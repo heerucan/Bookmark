@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175EC728D103F100101CEC /* UIViewController+.swift */; };
+		5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175ECB28D107CA00101CEC /* WriteView.swift */; };
 		5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */; };
 		5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FACFC28CE207D0062D9F6 /* SceneDelegate.swift */; };
 		5B3FAD0428CE207F0062D9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FAD0328CE207F0062D9F6 /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 		5B3FAD1428CECE5E0062D9F6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3FAD1328CECE5E0062D9F6 /* Then */; };
 		5B3FAD1728CECE840062D9F6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B3FAD1628CECE840062D9F6 /* SnapKit */; };
 		5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */; };
+		5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */; };
+		5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */; };
 		5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55443F28CEFA6600781EC8 /* EndPoint.swift */; };
 		5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */; };
 		5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55444428CEFDC100781EC8 /* TabBarViewController.swift */; };
@@ -32,6 +36,8 @@
 		5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544BC28CF1D2D00781EC8 /* BaseTableViewCell.swift */; };
 		5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544BE28CF1D3E00781EC8 /* BaseCollectionViewCell.swift */; };
 		5B5544C228CF46D800781EC8 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5544C128CF46D800781EC8 /* Icon.swift */; };
+		5B578A9628D0C6570039855C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B578A9528D0C6570039855C /* SearchView.swift */; };
+		5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B578A9828D0CFA00039855C /* SearchTableViewCell.swift */; };
 		5B5AA8EA28CF6F1800BBD00D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E628CF6F1800BBD00D /* Pretendard-SemiBold.otf */; };
 		5B5AA8EB28CF6F1800BBD00D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E728CF6F1800BBD00D /* Pretendard-Bold.otf */; };
 		5B5AA8EC28CF6F1800BBD00D /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E828CF6F1800BBD00D /* Pretendard-Regular.otf */; };
@@ -44,6 +50,7 @@
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AF28CF942D0009BF1A /* TagButton.swift */; };
+		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B175EC728D103F100101CEC /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		5B175ECB28D107CA00101CEC /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		5B3FACF728CE207D0062D9F6 /* Bookmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B3FACFC28CE207D0062D9F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +78,8 @@
 		5B3FAD0828CE207F0062D9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkNavigationBar.swift; sourceTree = "<group>"; };
 		5B55443F28CEFA6600781EC8 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		5B55444128CEFA8B00781EC8 /* StoreAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAPIManager.swift; sourceTree = "<group>"; };
 		5B55444428CEFDC100781EC8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +97,8 @@
 		5B5544BC28CF1D2D00781EC8 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		5B5544BE28CF1D3E00781EC8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B5544C128CF46D800781EC8 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		5B578A9528D0C6570039855C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		5B578A9828D0CFA00039855C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		5B5AA8E628CF6F1800BBD00D /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		5B5AA8E728CF6F1800BBD00D /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		5B5AA8E828CF6F1800BBD00D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -98,6 +111,7 @@
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BB659AF28CF942D0009BF1A /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A651DBDD74A3122D53EBFEA /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		F396F509962615F401613FA1 /* Pods-Bookmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.release.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B175ECA28D107C200101CEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B175ECB28D107CA00101CEC /* WriteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +166,14 @@
 				5B55443228CEF2A600781EC8 /* Support */,
 			);
 			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		5B3FE00A28D0E62E00B3DB69 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5B55443128CEF28000781EC8 /* Screen */ = {
@@ -195,6 +225,8 @@
 		5B55443528CEF95100781EC8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				5B578A9728D0CF8C0039855C /* Cell */,
+				5B578A9428D0C64B0039855C /* View */,
 				5B55443C28CEFA2900781EC8 /* Controller */,
 			);
 			path = Search;
@@ -219,6 +251,7 @@
 		5B55443828CEF99300781EC8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				5B3FE00A28D0E62E00B3DB69 /* Cell */,
 				5B55444A28CEFDE900781EC8 /* Controller */,
 			);
 			path = Detail;
@@ -227,6 +260,7 @@
 		5B55443928CEF9AD00781EC8 /* Write */ = {
 			isa = PBXGroup;
 			children = (
+				5B175ECA28D107C200101CEC /* View */,
 				5B55444D28CEFDF800781EC8 /* Controller */,
 			);
 			path = Write;
@@ -347,8 +381,10 @@
 			children = (
 				5B5544B428CF1A7800781EC8 /* Date+.swift */,
 				5BB659A528CF7D7F0009BF1A /* UIFont+.swift */,
+				5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */,
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
 				5B5544B828CF1A9A00781EC8 /* UITextField+.swift */,
+				5B175EC728D103F100101CEC /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -390,6 +426,22 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		5B578A9428D0C64B0039855C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B578A9528D0C6570039855C /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B578A9728D0CF8C0039855C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B578A9828D0CFA00039855C /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5B799D1028D06ADB00648C94 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +456,7 @@
 				5BB659AF28CF942D0009BF1A /* TagButton.swift */,
 				5BB659AB28CF87930009BF1A /* BookmarkButton.swift */,
 				5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */,
+				5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */,
 			);
 			path = CTA;
 			sourceTree = "<group>";
@@ -564,14 +617,20 @@
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
 				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
+				5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
 				5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */,
+				5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
+				5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
+				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
+				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
 				5B5544B328CF1A5D00781EC8 /* ReusableProtocol.swift in Sources */,
 				5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */,
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
+				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
@@ -580,6 +639,7 @@
 				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */,
 				5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */,
+				5B578A9628D0C6570039855C /* SearchView.swift in Sources */,
 				5B5544BB28CF1D1A00781EC8 /* BaseView.swift in Sources */,
 				5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */,
 				5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */,

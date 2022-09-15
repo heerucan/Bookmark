@@ -9,7 +9,16 @@ import UIKit
 
 final class WriteViewController: BaseViewController {
     
+    // MARK: - Enum
+    
+    enum WriteViewType {
+        case sentence
+        case book
+    }
+    
     // MARK: - Property
+    
+    var viewType: WriteViewType = .sentence
     
     
     // MARK: - LifeCycle

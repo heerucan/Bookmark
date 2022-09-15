@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookmarkTextField: UITextField {
+final class BookmarkTextField: UITextField {
     
     // MARK: - Property
     
