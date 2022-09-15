@@ -23,6 +23,12 @@ final class HomeViewController: BaseViewController {
     
     private var bookStoreList: [BookStoreInfo] = []
     
+    private var selectedStore: BookStoreInfo? {
+        willSet {
+            self.selectedStore = newValue
+        }
+    }
+    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -75,16 +81,14 @@ final class HomeViewController: BaseViewController {
         // MARK: - 여기서 사용자가 지도를 움직일 때마다 지도의 lat,long 값을 반환해주면 그걸로 findAddress를 통해서 행정구를 가져오고
         // 그래서 해당 행정구가 어디인지 알아서 filtering을 해주는 것임 1차적으로
         // 그래서 나는 현 지도 검색을 하는 경우에는 Overlay를 다른색으로 제공해주는 것도 괜찮을 것 같음
-        let cameraPosition = homeView.mapView.cameraPosition
         
         for bookStore in self.bookStoreList {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
+            
+            self.findAddress(latitude, longtitude)
+            
             let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
-            print("🎒", bookStore.district)
-            
-            findAddress(latitude, longtitude)
-            
             let marker = NMFMarker()
             marker.position = coordinate
             marker.width = Matrix.markerSize
@@ -93,13 +97,16 @@ final class HomeViewController: BaseViewController {
             marker.mapView = homeView.mapView
             
             let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
-                guard let self = self else { return false }
-                guard let lat = self.myLatitude, let long = self.myLongtitude else { return false }
-                let myCoordinate = NMGLatLng(lat: lat, lng: long)
+                guard let self = self,
+                      let lat = self.myLatitude,
+                      let long = self.myLongtitude else { return false }
+                print("🥑내위치기준")
+                self.findAddress(lat, long)
                 
-                self.homeView.setupData(data: bookStore,
-                                        kilometer: myCoordinate.distance(to: coordinate))
+                let myCoordinate = NMGLatLng(lat: lat, lng: long)
+                self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
                 self.transformView(.storeButtonShowUp)
+                self.selectedStore = bookStore
                 return true
             }
             marker.touchHandler = markerHandler
@@ -138,6 +145,7 @@ final class HomeViewController: BaseViewController {
             updateMyLocation()
         case homeView.storeButton:
             let viewController = DetailViewController()
+            viewController.setupData(data: selectedStore)
             navigationController?.pushViewController(viewController, animated: true)
         default:
             break
@@ -145,7 +153,7 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: - 지도 터치에 대한 콜백 프로토콜
+// MARK: - 지도 터치와 지도 이동에 대한 콜백 프로토콜
 
 extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -160,7 +168,6 @@ extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate 
 // MARK: - CLLocation Protocol
 
 extension HomeViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
     }
@@ -174,11 +181,10 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - 위치 서비스 활성화 체크
+// MARK: - UIView.animate & 위치 서비스 활성화 체크
 
 extension HomeViewController {
-    
-    func transformView(_ viewState: ViewState) {
+    private func transformView(_ viewState: ViewState) {
         switch viewState {
         case .storeButtonDismiss:
             UIView.animate(withDuration: 0.2) {
@@ -226,12 +232,6 @@ extension HomeViewController {
         switch authorizationStatus {
         case .notDetermined:
             print("NOT DETERMINED")
-            
-            /*
-             1. kCLLocationAccuracyBest : 각각의 기기에 맞는 위치 정확도를 알아서 해줌
-             2. 앱을 사용하는 동안에 위치 권한을 요청
-             -> 단, plist에 WhenInUse가 등록되어야 해당 request~ 메소드를 사용할 수 있다.
-             */
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
             

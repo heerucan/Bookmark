@@ -200,11 +200,11 @@ final class HomeView: BaseView {
         sender.isSelected.toggle()
     }
     
-    // MARK: - Set Data
+    // MARK: - Set Up Data
     
-    func setupData(data: BookStoreInfo, kilometer: Double) {
+    func setupData(data: BookStoreInfo, distance: Double) {
         nameLabel.text = data.name
         addressLabel.text = data.address
-        distanceLabel.text = "\(round((kilometer/1000)*10)/10)km"
+        distanceLabel.text = "\(round((distance/1000)*10)/10)km"
     }
 }

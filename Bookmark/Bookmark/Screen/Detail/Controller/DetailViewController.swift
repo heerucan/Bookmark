@@ -10,6 +10,8 @@ import UIKit
 final class DetailViewController: BaseViewController {
     
     // MARK: - Property
+    
+    var storeId: Float = 0
         
     let navigationBar = BookmarkNavigationBar()
 
@@ -88,6 +90,11 @@ final class DetailViewController: BaseViewController {
     
     private func setupAction() {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
+    }
+    
+    func setupData(data: BookStoreInfo?) {
+        guard let data = data else { return }
+        print("넘어왔냐?", data)
     }
     
     // MARK: - @objc

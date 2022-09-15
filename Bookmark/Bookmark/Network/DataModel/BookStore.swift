@@ -45,11 +45,13 @@ struct Result: Codable {
 // MARK: - BookStoreInfo
 
 struct BookStoreInfo: Codable {
+    let storeId: Float
     let name, district, address, phone: String
     let homeURL, typeNo, typeName, latitude, longtitude: String
     let sns: String
 
     enum CodingKeys: String, CodingKey {
+        case storeId = "STORE_SEQ_NO"
         case name = "STORE_NAME"
         case district = "CODE_VALUE"
         case address = "ADRES"
