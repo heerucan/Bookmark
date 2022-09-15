@@ -179,15 +179,17 @@ final class HomeView: BaseView {
         }
     }
     
-    // MARK: - Custom Method
-    
     func setupDelegate(touchDelegate: NMFMapViewTouchDelegate, cameraDelegate: NMFMapViewCameraDelegate) {
         mapView.touchDelegate = touchDelegate
         mapView.addCameraDelegate(delegate: cameraDelegate)
     }
     
+    // MARK: - Custom Method
+    
     private func setupAction() {
-        [bookmarkButton, newStoreButton, oldStoreButton].forEach {
+        [bookmarkButton,
+         newStoreButton,
+         oldStoreButton].forEach {
             $0.addTarget(self, action: #selector(touchupTagButton(_:)), for: .touchUpInside)
         }
     }
