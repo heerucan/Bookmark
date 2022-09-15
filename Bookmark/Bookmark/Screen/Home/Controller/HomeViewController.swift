@@ -82,6 +82,8 @@ final class HomeViewController: BaseViewController {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
             let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+            print("🎒", bookStore.district)
+            findAddress(latitude, longtitude)
             let marker = NMFMarker()
             marker.position = coordinate
             marker.width = Matrix.markerSize
@@ -93,8 +95,8 @@ final class HomeViewController: BaseViewController {
                 self.homeView.setupData(data: bookStore, kilometer: self.updateMyLocation().distance(to: coordinate))
                 UIView.animate(withDuration: 0.2) {
     //                self.homeView.storeButton.isHidden = false
-                    self.homeView.storeButton.transform = .identity
-                    self.homeView.myLocationButton.transform = .identity
+                    self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.storeButton.frame.height-16)
+                    self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.myLocationButton.frame.height-40)
                 }
                 return true
             }
@@ -119,7 +121,9 @@ final class HomeViewController: BaseViewController {
         let locale = Locale(identifier: "Ko-kr")
         let location = CLLocation(latitude: lat, longitude: long)
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { (placemarks, nil) in
-            if let district = placemarks?.last?.subLocality {
+            let placemark = placemarks?.last
+//            print(placemark?.name, placemark.)
+            if let district = placemarks?.last {
                 print(district)
             }
         }
@@ -150,8 +154,8 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
         UIView.animate(withDuration: 0.2) {
-            self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: 188)
-            self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: 105)
+            self.homeView.storeButton.transform = .identity
+            self.homeView.myLocationButton.transform = .identity
         }
     }
 }

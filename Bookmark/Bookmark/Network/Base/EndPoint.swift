@@ -8,5 +8,5 @@
 import Foundation
 
 enum EndPoint {
-    static let seoulURL = URL(string: "http://openapi.seoul.go.kr:8088/\(APIKey.seoul)/json/TbSlibBookstoreInfo/1/25")
+    static let seoulURL = URL(string: "http://openapi.seoul.go.kr:8088/\(APIKey.seoul)/json/TbSlibBookstoreInfo/1/50")
 }
