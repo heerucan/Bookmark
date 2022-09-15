@@ -10,5 +10,5 @@ import Foundation
 struct Matrix {
     private init() { }
     
-    static let markerSize = 37.0
+    static let markerSize = 35.0
 }
