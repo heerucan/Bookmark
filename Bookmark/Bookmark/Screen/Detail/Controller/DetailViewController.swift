@@ -11,8 +11,12 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    var storeId: Float = 0
-        
+    var detailStoreInfo: BookStoreInfo? {
+        willSet {
+            self.detailStoreInfo = newValue
+        }
+    }
+            
     let navigationBar = BookmarkNavigationBar()
 
     private let tableView = UITableView(frame: .zero, style: .plain).then {
@@ -46,6 +50,12 @@ final class DetailViewController: BaseViewController {
     }
     
     // MARK: - Configure UI & Layout
+    
+    override func configureUI() {
+        super.configureUI()
+        guard let detailStoreInfo = detailStoreInfo else { return }
+        navigationBar.titleLabel.text = detailStoreInfo.name
+    }
     
     override func configureLayout() {
         view.addSubviews([navigationBar, tableView, backView])
@@ -92,11 +102,6 @@ final class DetailViewController: BaseViewController {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
     }
     
-    func setupData(data: BookStoreInfo?) {
-        guard let data = data else { return }
-        print("넘어왔냐?", data)
-    }
-    
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
@@ -110,8 +115,7 @@ final class DetailViewController: BaseViewController {
             viewController.viewType = .book
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        showAlert(title: "어떤 책갈피를 꽂으실 건가요?",
-                  message: nil,
+        showAlert(title: "어떤 책갈피를 꽂으실 건가요?", message: nil,
                   actions: [firstAction, secondAction])
     }
     
@@ -145,6 +149,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath) as? DetailTableViewCell
         else { return UITableViewCell() }
+        cell.setupMapView(data: detailStoreInfo)
+        cell.setupData(data: detailStoreInfo)
         cell.cloneButton.addTarget(self, action: #selector(touchupCloneButton), for: .touchUpInside)
         return cell
     }

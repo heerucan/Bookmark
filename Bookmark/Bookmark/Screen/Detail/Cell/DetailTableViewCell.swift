@@ -26,9 +26,9 @@ final class DetailTableViewCell: BaseTableViewCell {
     }
     
     private lazy var detailStackView = UIStackView(
-        arrangedSubviews: [addressLabel, phoneLabel, timeLabel, restLabel]).then {
+        arrangedSubviews: [addressLabel, phoneLabel, typeLabel]).then {
             $0.axis = .vertical
-            $0.spacing = 12
+            $0.spacing = 15
             $0.distribution = .equalSpacing
         }
     
@@ -36,41 +36,26 @@ final class DetailTableViewCell: BaseTableViewCell {
         $0.setImage(Icon.Button.clone, for: .normal)
     }
     
-    private let addressLabel = UILabel().then {
-        $0.text = "광주광역시 서대문구 대현동 201 럭키 아파트 2층 상가50"
-    }
-    
-    private let phoneLabel = UILabel().then {
-        $0.text = "전화번호    0507-0989-1232"
-    }
-    
-    private let timeLabel = UILabel().then {
-        $0.text = "운영시간    평일 12:00 - 22:00 | 주말 12:00 - 20:00"
-    }
-    
-    private let restLabel = UILabel().then {
-        $0.text = "휴무일    월요일, 화요일 휴무"
-    }
+    private let addressLabel = UILabel()
+    private let phoneLabel = UILabel()
+    private let typeLabel = UILabel()
     
     private let urlView = UIView()
     
     private lazy var urlStackView = UIStackView(
         arrangedSubviews: [homePageLabel, snsLabel]).then {
             $0.axis = .vertical
-            $0.spacing = 12
+            $0.spacing = 15
             $0.distribution = .equalSpacing
         }
     
-    private let homePageLabel = UILabel().then {
-        $0.text = "홈페이지   https://homepagename.com"
-    }
-    
-    private let snsLabel = UILabel().then {
-        $0.text = "SNS   instagram.com/heerucan"
-    }
+    private let homePageLabel = UILabel()
+    private let snsLabel = UILabel()
     
     private lazy var mapView = NMFMapView(frame: frame).then {
         $0.addSubview(mapAppButton)
+        $0.allowsScrolling = false
+        $0.locationOverlay.hidden = true
     }
     
     let mapAppButton = UIButton().then {
@@ -97,10 +82,10 @@ final class DetailTableViewCell: BaseTableViewCell {
             $0.textColor = Color.black100
         }
         
-        [addressLabel, phoneLabel, timeLabel,
-         restLabel, homePageLabel, snsLabel].forEach {
+        [addressLabel, phoneLabel, typeLabel, homePageLabel, snsLabel].forEach {
             $0.textColor = Color.gray100
             $0.font = Font.body8.font
+            $0.numberOfLines = 2
         }
     }
     
@@ -122,7 +107,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         detailView.snp.makeConstraints { make in
             make.top.equalTo(firstTitleLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(136)
+            make.bottom.equalTo(detailStackView.snp.bottom).offset(-16)
         }
         
         detailStackView.snp.makeConstraints { make in
@@ -136,7 +121,7 @@ final class DetailTableViewCell: BaseTableViewCell {
             make.top.equalTo(detailView.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(80)
+            make.bottom.equalTo(urlStackView.snp.bottom).offset(-16)
         }
         
         urlStackView.snp.makeConstraints { make in
@@ -147,15 +132,15 @@ final class DetailTableViewCell: BaseTableViewCell {
         }
         
         secondTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(urlView.snp.bottom).offset(30)
+            make.top.equalTo(urlView.snp.bottom).offset(35)
             make.leading.equalToSuperview().inset(16)
         }
         
         mapView.snp.makeConstraints { make in
             make.top.equalTo(secondTitleLabel.snp.bottom).offset(16)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(mapView.snp.width).multipliedBy(1)
-            make.bottom.equalToSuperview().inset(100)
+            make.height.equalTo(mapView.snp.width).multipliedBy(0.7)
+            make.bottom.equalToSuperview().inset(150)
         }
         
         mapAppButton.snp.makeConstraints { make in
@@ -165,6 +150,50 @@ final class DetailTableViewCell: BaseTableViewCell {
         cloneButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().inset(20)
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    func setupMapView(data: BookStoreInfo?) {
+        guard let data = data,
+              let latitude = Double(data.latitude),
+              let longtitude = Double(data.longtitude) else { return }
+        
+        let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+        let marker = NMFMarker()
+        marker.captionText = data.name
+        marker.captionTextSize = 15
+        marker.position = coordinate
+        marker.width = Matrix.markerSize
+        marker.height = Matrix.markerSize
+        marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
+        marker.mapView = mapView
+        mapView.moveCamera(NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longtitude)))
+    }
+    
+    // MARK: - Set Up Data
+    
+    func setupData(data: BookStoreInfo?) {
+        guard let data = data else { return }
+        addressLabel.text = "상세주소    \(data.address)"
+        phoneLabel.text = "전화번호    \(data.phone)"
+        typeLabel.text = "책방타입    \(data.typeName)"
+        homePageLabel.text = "홈페이지    \(data.homeURL)"
+        snsLabel.text = "SNS    \(data.sns)"
+
+        homePageLabel.isHidden = (data.homeURL == "") ? true : false
+        snsLabel.isHidden = (data.sns == "") ? true : false
+        phoneLabel.isHidden = (data.phone == "") ? true : false
+        
+        if data.homeURL == "" && data.sns == "" {
+            urlView.isHidden = true
+            secondTitleLabel.snp.remakeConstraints { make in
+                make.top.equalTo(detailView.snp.bottom).offset(35)
+                make.leading.equalToSuperview().inset(16)
+            }
+        } else {
+            urlView.isHidden = false
         }
     }
 }

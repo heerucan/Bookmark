@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - Enum
 
-enum ViewState {
-    case storeButtonDismiss
-    case storeButtonShowUp
+enum ComponentStatus {
+    case storeButtonHidden
+    case storeButtonNotHidden
     case findButtonHidden
     case findButtonNotHidden
 }

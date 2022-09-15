@@ -23,11 +23,13 @@ final class HomeViewController: BaseViewController {
     
     private var bookStoreList: [BookStoreInfo] = []
     
-    private var selectedStore: BookStoreInfo? {
+    private var selectedStoreInfo: BookStoreInfo? {
         willSet {
-            self.selectedStore = newValue
+            self.selectedStoreInfo = newValue
         }
     }
+    
+    
     
     // MARK: - LifeCycle
     
@@ -89,13 +91,15 @@ final class HomeViewController: BaseViewController {
             self.findAddress(latitude, longtitude)
             
             let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+            
+            
             let marker = NMFMarker()
             marker.position = coordinate
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
             marker.mapView = homeView.mapView
-            
+
             let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self,
                       let lat = self.myLatitude,
@@ -105,8 +109,8 @@ final class HomeViewController: BaseViewController {
                 
                 let myCoordinate = NMGLatLng(lat: lat, lng: long)
                 self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
-                self.transformView(.storeButtonShowUp)
-                self.selectedStore = bookStore
+                self.transformView(.storeButtonNotHidden)
+                self.selectedStoreInfo = bookStore
                 return true
             }
             marker.touchHandler = markerHandler
@@ -145,7 +149,7 @@ final class HomeViewController: BaseViewController {
             updateMyLocation()
         case homeView.storeButton:
             let viewController = DetailViewController()
-            viewController.setupData(data: selectedStore)
+            viewController.detailStoreInfo = selectedStoreInfo
             navigationController?.pushViewController(viewController, animated: true)
         default:
             break
@@ -157,7 +161,7 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        transformView(.storeButtonDismiss)
+        transformView(.storeButtonHidden)
     }
     
     func mapViewCameraIdle(_ mapView: NMFMapView) {
@@ -184,14 +188,14 @@ extension HomeViewController: CLLocationManagerDelegate {
 // MARK: - UIView.animate & 위치 서비스 활성화 체크
 
 extension HomeViewController {
-    private func transformView(_ viewState: ViewState) {
+    private func transformView(_ viewState: ComponentStatus) {
         switch viewState {
-        case .storeButtonDismiss:
+        case .storeButtonHidden:
             UIView.animate(withDuration: 0.2) {
                 self.homeView.storeButton.transform = .identity
                 self.homeView.myLocationButton.transform = .identity
             }
-        case .storeButtonShowUp:
+        case .storeButtonNotHidden:
             UIView.animate(withDuration: 0.1) {
                 self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.storeButton.frame.height-16)
                 self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.myLocationButton.frame.height-40)

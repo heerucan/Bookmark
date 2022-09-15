@@ -24,7 +24,7 @@ final class BookmarkButton: UIButton {
             case .edit:
                 return "수정"
             case .bookmark:
-                return "책갈피 꽂아두기"
+                return "책갈피 기록하기"
             }
         }
     }
