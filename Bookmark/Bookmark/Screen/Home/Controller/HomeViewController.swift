@@ -76,23 +76,30 @@ final class HomeViewController: BaseViewController {
         // 그래서 해당 행정구가 어디인지 알아서 filtering을 해주는 것임 1차적으로
         // 그래서 나는 현 지도 검색을 하는 경우에는 Overlay를 다른색으로 제공해주는 것도 괜찮을 것 같음
         let cameraPosition = homeView.mapView.cameraPosition
-        findAddress(cameraPosition.target.lat, cameraPosition.target.lng)
 
         for bookStore in self.bookStoreList {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
             let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
             print("🎒", bookStore.district)
+            
             findAddress(latitude, longtitude)
+            
             let marker = NMFMarker()
             marker.position = coordinate
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
             marker.mapView = homeView.mapView
+
             let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self else { return false }
-                self.homeView.setupData(data: bookStore, kilometer: self.updateMyLocation().distance(to: coordinate))
+                guard let lat = self.myLatitude, let long = self.myLongtitude else { return false }
+                let myCoordinate = NMGLatLng(lat: lat, lng: long)
+                
+                self.homeView.setupData(data: bookStore,
+                                        kilometer: myCoordinate.distance(to: coordinate))
+                
                 UIView.animate(withDuration: 0.1) {
                     self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.storeButton.frame.height-16)
                     self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.myLocationButton.frame.height-40)
@@ -103,17 +110,12 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    @discardableResult
-    private func updateMyLocation() -> NMGLatLng {
-        if let lat = myLatitude, let long = myLongtitude {
-            let coordinate = NMGLatLng(lat: lat, lng: long)
-            let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
-            cameraUpdate.animation = .easeIn
-            homeView.mapView.moveCamera(cameraUpdate)
-            return coordinate
-        } else {
-            return NMGLatLng()
-        }
+    private func updateMyLocation() {
+        guard let lat = myLatitude, let long = myLongtitude else { return }
+        let coordinate = NMGLatLng(lat: lat, lng: long)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
+        cameraUpdate.animation = .easeIn
+        homeView.mapView.moveCamera(cameraUpdate)
     }
     
     private func findAddress(_ lat: CLLocationDegrees, _ long: CLLocationDegrees) {
