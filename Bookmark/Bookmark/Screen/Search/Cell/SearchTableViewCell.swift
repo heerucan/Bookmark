@@ -22,10 +22,6 @@ final class SearchTableViewCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
@@ -38,7 +34,7 @@ final class SearchTableViewCell: BaseTableViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(_ data: String) {
-        storeLabel.text = data
+    func setupData(_ data: BookStoreInfo) {
+        storeLabel.text = data.typeName.replacingOccurrences(of: " ", with: "") + " - \(data.name)"
     }
 }

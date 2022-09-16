@@ -89,7 +89,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell
         else { return UITableViewCell() }
-        cell.setupData(divideCaseOfData(indexPath.row).name)
+        cell.setupData(divideCaseOfData(indexPath.row))
 
         // MARK: - TODO 기능 구현하면서 cell 관련 UI니까 쪽으로 분리시키기
         if isSearching {

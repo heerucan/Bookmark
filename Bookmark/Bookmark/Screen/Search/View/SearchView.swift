@@ -41,6 +41,7 @@ final class SearchView: BaseView {
     }
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.keyboardDismissMode = .onDrag
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
