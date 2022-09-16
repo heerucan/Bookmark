@@ -118,4 +118,12 @@ final class SearchView: BaseView {
         tableView.delegate = delegate
         tableView.dataSource = datasource
     }
+    
+    func setupSearchBarDelegate(_ delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
+    }
+    
+    func tableViewReload() {
+        tableView.reloadData()
+    }
 }

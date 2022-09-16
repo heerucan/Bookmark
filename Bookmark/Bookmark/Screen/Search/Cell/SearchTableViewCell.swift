@@ -38,7 +38,7 @@ final class SearchTableViewCell: BaseTableViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: String) {
+    func setupData(_ data: String) {
         storeLabel.text = data
     }
 }
