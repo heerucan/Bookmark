@@ -12,8 +12,7 @@ struct StoreAPIManager {
     static let shared = StoreAPIManager()
     
     func fetchBookStore(completion: @escaping (BookStore?, APIError?) -> Void) {
-        guard let url = EndPoint.seoulURL else { return }
-       
+        guard let url = EndPoint.seoul.makeURL() else { return }       
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil else {
                 print("요청 실패")
