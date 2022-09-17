@@ -13,11 +13,14 @@ final class DetailTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
     
-    private let firstTitleLabel = UILabel().then {
+    private var bookStore = ""
+    private var phoneNumber = ""
+    
+    private let infoTitleLabel = UILabel().then {
         $0.text = "책방 상세정보"
     }
     
-    private let secondTitleLabel = UILabel().then {
+    private let locationTitleLabel = UILabel().then {
         $0.text = "책방 위치"
     }
     
@@ -26,19 +29,20 @@ final class DetailTableViewCell: BaseTableViewCell {
     }
     
     private lazy var detailStackView = UIStackView(
-        arrangedSubviews: [addressLabel, phoneLabel, typeLabel]).then {
+        arrangedSubviews: [typeLabel, phoneLabel, addressLabel]).then {
             $0.axis = .vertical
             $0.spacing = 15
             $0.distribution = .equalSpacing
         }
     
-    let cloneButton = UIButton().then {
+    private let cloneButton = UIButton().then {
         $0.setImage(Icon.Button.clone, for: .normal)
+        $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
     
-    private let addressLabel = UILabel()
-    private let phoneLabel = UILabel()
     private let typeLabel = UILabel()
+    private let phoneLabel = UILabel()
+    private let addressLabel = UILabel()
     
     private let urlView = UIView()
     
@@ -52,15 +56,17 @@ final class DetailTableViewCell: BaseTableViewCell {
     private let homePageLabel = UILabel()
     private let snsLabel = UILabel()
     
-    private lazy var mapView = NMFMapView(frame: frame).then {
-        $0.addSubview(mapAppButton)
+    private let mapView = NMFMapView(frame: .zero).then {
         $0.allowsScrolling = false
+        $0.allowsZooming = false
         $0.locationOverlay.hidden = true
     }
     
     let mapAppButton = UIButton().then {
+        $0.makeShadow(color: Color.black100.cgColor, radius: 4, offset: CGSize(width: 0, height: 0), opacity: 0.25)
         $0.setImage(Icon.Button.goMapApp, for: .normal)
         $0.setImage(Icon.Button.highlightedGoMapApp, for: .highlighted)
+        $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
     
     // MARK: - Initializer
@@ -77,35 +83,36 @@ final class DetailTableViewCell: BaseTableViewCell {
             $0.makeCornerStyle(width: 0, color: nil, radius: 5)
         }
         
-        [firstTitleLabel, secondTitleLabel].forEach {
+        [infoTitleLabel, locationTitleLabel].forEach {
             $0.font = Font.body2.font
             $0.textColor = Color.black100
         }
         
-        [addressLabel, phoneLabel, typeLabel, homePageLabel, snsLabel].forEach {
+        [addressLabel, phoneLabel, typeLabel, snsLabel, homePageLabel].forEach {
             $0.textColor = Color.gray100
-            $0.font = Font.body8.font
-            $0.numberOfLines = 2
+            $0.font = Font.body7.font
+            $0.isUserInteractionEnabled = true
         }
     }
     
     override func configureLayout() {
         super.configureLayout()
-        contentView.addSubviews([firstTitleLabel,
+        contentView.addSubviews([infoTitleLabel,
                                  detailView,
                                  detailStackView,
                                  urlView,
                                  urlStackView,
-                                 secondTitleLabel,
-                                 mapView])
+                                 locationTitleLabel,
+                                 mapView,
+                                 mapAppButton])
         
-        firstTitleLabel.snp.makeConstraints { make in
+        infoTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.leading.equalToSuperview().inset(16)
         }
         
         detailView.snp.makeConstraints { make in
-            make.top.equalTo(firstTitleLabel.snp.bottom).offset(16)
+            make.top.equalTo(infoTitleLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(detailStackView.snp.bottom).offset(-16)
         }
@@ -131,35 +138,65 @@ final class DetailTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(urlView.snp.trailing).inset(20)
         }
         
-        secondTitleLabel.snp.makeConstraints { make in
+        locationTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(urlView.snp.bottom).offset(35)
             make.leading.equalToSuperview().inset(16)
         }
         
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(secondTitleLabel.snp.bottom).offset(16)
+            make.top.equalTo(locationTitleLabel.snp.bottom).offset(16)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
             make.height.equalTo(mapView.snp.width).multipliedBy(0.7)
             make.bottom.equalToSuperview().inset(150)
         }
         
         mapAppButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(15)
+            make.top.equalTo(mapView.snp.top).inset(15)
+            make.trailing.equalTo(mapView.snp.trailing).inset(15)
         }
         
         cloneButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
+            make.centerY.equalTo(addressLabel.snp.centerY)
             make.trailing.equalToSuperview().inset(20)
         }
     }
     
-    // MARK: - Custom Method
+    // MARK: - @objc
+    
+    @objc func touchupButton(_ sender: UIButton) {
+        switch sender {
+        case cloneButton:
+            guard let address = addressLabel.text else { return }
+            UIPasteboard.general.string = address
+            
+            
+        case mapAppButton:
+            guard let naver = EndPoint.naver.makeURL(bookStore) else { return }
+            guard let appStore = EndPoint.appstore.makeURL() else { return }
+            if UIApplication.shared.canOpenURL(naver) {
+                UIApplication.shared.open(naver)
+            } else {
+                UIApplication.shared.open(appStore)
+            }
+            
+        default:
+            print("전화하기 팝업 present")
+            guard let phoneURL = EndPoint.phone.makeURL(phoneNumber) else { return }
+            UIApplication.shared.canOpenURL(phoneURL)
+        }
+
+        // 홈페이지
+        
+        // sns
+    }
+    
+    
+    // MARK: - Set Up Data
     
     func setupMapView(data: BookStoreInfo?) {
         guard let data = data,
               let latitude = Double(data.latitude),
               let longtitude = Double(data.longtitude) else { return }
-        
         let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
         let marker = NMFMarker()
         marker.captionText = data.name
@@ -172,23 +209,27 @@ final class DetailTableViewCell: BaseTableViewCell {
         mapView.moveCamera(NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longtitude)))
     }
     
-    // MARK: - Set Up Data
-    
     func setupData(data: BookStoreInfo?) {
         guard let data = data else { return }
-        addressLabel.text = "상세주소    \(data.address)"
-        phoneLabel.text = "전화번호    \(data.phone)"
+        bookStore = data.name
+        phoneNumber = data.phone
         typeLabel.text = "책방타입    \(data.typeName)"
+        phoneLabel.text = "전화번호    \(data.phone)"
+        addressLabel.text = data.address
         homePageLabel.text = "홈페이지    \(data.homeURL)"
         snsLabel.text = "SNS    \(data.sns)"
-
+        
+        phoneLabel.addLinkStyle(color: Color.gray100, range: data.phone)
+        homePageLabel.addLinkStyle(color: Color.green100, range: data.homeURL)
+        snsLabel.addLinkStyle(color: Color.green100, range: data.sns)
+        
         homePageLabel.isHidden = (data.homeURL == "") ? true : false
         snsLabel.isHidden = (data.sns == "") ? true : false
         phoneLabel.isHidden = (data.phone == "") ? true : false
         
         if data.homeURL == "" && data.sns == "" {
             urlView.isHidden = true
-            secondTitleLabel.snp.remakeConstraints { make in
+            locationTitleLabel.snp.remakeConstraints { make in
                 make.top.equalTo(detailView.snp.bottom).offset(35)
                 make.leading.equalToSuperview().inset(16)
             }
@@ -197,4 +238,3 @@ final class DetailTableViewCell: BaseTableViewCell {
         }
     }
 }
-

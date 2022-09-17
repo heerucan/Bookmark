@@ -74,7 +74,7 @@ final class DetailViewController: BaseViewController {
         
         backView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(95)
+            make.height.equalTo(97)
         }
         
         writeButton.snp.makeConstraints { make in
@@ -110,12 +110,12 @@ final class DetailViewController: BaseViewController {
             viewController.viewType = .sentence
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        let secondAction = UIAlertAction(title: "공감 가는 책 한 권", style: .default) { _ in
+        let secondAction = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             viewController.viewType = .book
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        showAlert(title: "어떤 책갈피를 꽂으실 건가요?", message: nil,
+        showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
                   actions: [firstAction, secondAction])
     }
     
@@ -131,12 +131,6 @@ final class DetailViewController: BaseViewController {
     @objc func touchupBackButton() {
         navigationController?.popViewController(animated: true)
     }
-    
-    @objc func touchupCloneButton() {
-//        guard let address = addressLabel.text else { return }
-//        UIPasteboard.general.string = address
-        print("clone완료")
-    }
 }
 
 // MARK: - TableView Protocol
@@ -151,7 +145,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         else { return UITableViewCell() }
         cell.setupMapView(data: detailStoreInfo)
         cell.setupData(data: detailStoreInfo)
-        cell.cloneButton.addTarget(self, action: #selector(touchupCloneButton), for: .touchUpInside)
         return cell
     }
 }
