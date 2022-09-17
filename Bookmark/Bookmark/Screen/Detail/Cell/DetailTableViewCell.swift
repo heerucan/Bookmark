@@ -168,7 +168,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         case cloneButton:
             guard let address = addressLabel.text else { return }
             UIPasteboard.general.string = address
-            
+            showToast(message: "클립보드에 책방 주소가 복사됐어요!")
             
         case mapAppButton:
             guard let naver = EndPoint.naver.makeURL(bookStore) else { return }
