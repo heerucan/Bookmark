@@ -17,9 +17,8 @@ final class HomeViewController: BaseViewController {
     private let tagData = TagData()
     
     private let homeView = HomeView()
-    private let geocoder = CLGeocoder()
-    private let locationManager = CLLocationManager()
     
+    private let locationManager = CLLocationManager()
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
     private lazy var myLongtitude = locationManager.location?.coordinate.longitude
     

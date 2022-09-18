@@ -31,8 +31,4 @@ struct TagData {
     func getTagImage(index: Int) -> UIImage? {
         return tagArray[index].image
     }
-    
-//    func getTagSelection(index: Int) -> Bool {
-//        return tagArray[index].select
-//    }
 }
