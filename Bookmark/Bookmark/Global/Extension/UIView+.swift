@@ -37,7 +37,7 @@ extension UIView {
                                                width: 283, height: 47)).then {
             $0.backgroundColor = Color.black100.withAlphaComponent(0.89)
             $0.textColor = .white
-            $0.font = Font.body3.font
+            $0.font = Font.body5.font
             $0.textAlignment = .center
             $0.text = message
             $0.layer.cornerRadius = 47/2

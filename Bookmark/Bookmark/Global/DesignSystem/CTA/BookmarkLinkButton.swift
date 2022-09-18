@@ -1,5 +1,5 @@
 //
-//  UnderlineButton.swift
+//  HyperLinkButton.swift
 //  Bookmark
 //
 //  Created by heerucan on 2022/09/18.
@@ -7,10 +7,7 @@
 
 import UIKit
 
-import SnapKit
-import Then
-
-final class HyperLinkButton: UIButton {
+final class BookmarkLinkButton: UIButton {
     
     // MARK: - Enum
     
@@ -41,19 +38,22 @@ final class HyperLinkButton: UIButton {
     // MARK: - Configure UI & Layout
     
     private func configureUI(type: LinkType) {
-        titleLabel?.textAlignment = .left
+        contentEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: -1, right: 0)
         setTitleColor(Color.gray100, for: .normal)
         titleLabel?.font = Font.body7.font
     }
 }
 
-extension HyperLinkButton {
+extension BookmarkLinkButton {
     func addLinkStyle(_ type: LinkType, range: String) {
         if let labelText = titleLabel?.text, labelText.count > 0 {
             let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(.underlineColor, value: type.color, range: (labelText as NSString).range(of: range))
-            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: (labelText as NSString).range(of: range))
-            attributedString.addAttribute(.foregroundColor, value: type.color, range: (labelText as NSString).range(of: range))
+            attributedString.addAttribute(.underlineColor, value: type.color,
+                                          range: (labelText as NSString).range(of: range))
+            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue,
+                                          range: (labelText as NSString).range(of: range))
+            attributedString.addAttribute(.foregroundColor, value: type.color,
+                                          range: (labelText as NSString).range(of: range))
             setAttributedTitle(attributedString, for: .normal)
         }
     }

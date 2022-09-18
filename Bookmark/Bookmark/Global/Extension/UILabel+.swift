@@ -18,14 +18,4 @@ extension UILabel {
         attributedText.addAttributes(highlighteAttributes, range: range)
         self.attributedText = attributedText
     }
-    
-    func addLinkStyle(color: UIColor, range: String) {
-        if let labelText = text, labelText.count > 0 {
-            let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(.underlineColor, value: color, range: (labelText as NSString).range(of: range))
-            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: (labelText as NSString).range(of: range))
-            attributedString.addAttribute(.foregroundColor, value: color, range: (labelText as NSString).range(of: range))
-            attributedText = attributedString
-        }
-    }
 }
