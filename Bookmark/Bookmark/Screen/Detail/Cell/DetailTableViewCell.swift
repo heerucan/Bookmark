@@ -8,14 +8,19 @@
 import UIKit
 
 import NMapsMap
+import SafariServices
 
 final class DetailTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
     
+    weak var safariViewDelegate: SafariViewDelegate?
+    
     private var bookStore = ""
     private var phoneNumber = ""
-    
+    private var homepage = ""
+    private var sns = ""
+        
     private let infoTitleLabel = UILabel().then {
         $0.text = "책방 상세정보"
     }
@@ -29,32 +34,33 @@ final class DetailTableViewCell: BaseTableViewCell {
     }
     
     private lazy var detailStackView = UIStackView(
-        arrangedSubviews: [typeLabel, phoneLabel, addressLabel]).then {
+        arrangedSubviews: [typeLabel, phoneButton, addressLabel]).then {
             $0.axis = .vertical
             $0.spacing = 15
             $0.distribution = .equalSpacing
+            $0.alignment = .leading
         }
     
     private let cloneButton = UIButton().then {
         $0.setImage(Icon.Button.clone, for: .normal)
         $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
-    
+
     private let typeLabel = UILabel()
-    private let phoneLabel = UILabel()
     private let addressLabel = UILabel()
-    
     private let urlView = UIView()
     
     private lazy var urlStackView = UIStackView(
-        arrangedSubviews: [homePageLabel, snsLabel]).then {
+        arrangedSubviews: [homePageButton, snsButton]).then {
             $0.axis = .vertical
-            $0.spacing = 15
+            $0.spacing = 10
             $0.distribution = .equalSpacing
+            $0.alignment = .leading
         }
     
-    private let homePageLabel = UILabel()
-    private let snsLabel = UILabel()
+    private let phoneButton = BookmarkLinkButton(.phone)
+    private let homePageButton = BookmarkLinkButton(.url)
+    private let snsButton = BookmarkLinkButton(.url)
     
     private let mapView = NMFMapView(frame: .zero).then {
         $0.allowsScrolling = false
@@ -62,8 +68,11 @@ final class DetailTableViewCell: BaseTableViewCell {
         $0.locationOverlay.hidden = true
     }
     
-    let mapAppButton = UIButton().then {
-        $0.makeShadow(color: Color.black100.cgColor, radius: 4, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+    private let mapAppButton = UIButton().then {
+        $0.makeShadow(color: Color.black100.cgColor,
+                      radius: 4,
+                      offset: CGSize(width: 0, height: 0),
+                      opacity: 0.25)
         $0.setImage(Icon.Button.goMapApp, for: .normal)
         $0.setImage(Icon.Button.highlightedGoMapApp, for: .highlighted)
         $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
@@ -88,10 +97,14 @@ final class DetailTableViewCell: BaseTableViewCell {
             $0.textColor = Color.black100
         }
         
-        [addressLabel, phoneLabel, typeLabel, snsLabel, homePageLabel].forEach {
+        [addressLabel, typeLabel].forEach {
             $0.textColor = Color.gray100
             $0.font = Font.body7.font
             $0.isUserInteractionEnabled = true
+        }
+        
+        [phoneButton, homePageButton, snsButton].forEach {
+            $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
         }
     }
     
@@ -165,10 +178,25 @@ final class DetailTableViewCell: BaseTableViewCell {
     
     @objc func touchupButton(_ sender: UIButton) {
         switch sender {
+        case phoneButton:
+            if let phone = EndPoint.phone.makeURL(phoneNumber), UIApplication.shared.canOpenURL(phone) {
+                UIApplication.shared.open(phone, options: [:], completionHandler: nil)
+            }
+            
         case cloneButton:
             guard let address = addressLabel.text else { return }
             UIPasteboard.general.string = address
             showToast(message: "클립보드에 책방 주소가 복사됐어요!")
+            
+        case homePageButton:
+            guard let homepage = EndPoint.safari.makeURL(homepage) else { return }
+            let homepageViewController = SFSafariViewController(url: homepage)
+            safariViewDelegate?.presentSafariView(homepageViewController)
+                        
+        case snsButton:
+            guard let sns = EndPoint.safari.makeURL(sns) else { return }
+            let snsViewController = SFSafariViewController(url: sns)
+            safariViewDelegate?.presentSafariView(snsViewController)
             
         case mapAppButton:
             guard let naver = EndPoint.naver.makeURL(bookStore) else { return }
@@ -178,18 +206,10 @@ final class DetailTableViewCell: BaseTableViewCell {
             } else {
                 UIApplication.shared.open(appStore)
             }
-            
         default:
-            print("전화하기 팝업 present")
-            guard let phoneURL = EndPoint.phone.makeURL(phoneNumber) else { return }
-            UIApplication.shared.canOpenURL(phoneURL)
+            break
         }
-
-        // 홈페이지
-        
-        // sns
     }
-    
     
     // MARK: - Set Up Data
     
@@ -213,19 +233,21 @@ final class DetailTableViewCell: BaseTableViewCell {
         guard let data = data else { return }
         bookStore = data.name
         phoneNumber = data.phone
+        homepage = data.homeURL
+        sns = data.sns
         typeLabel.text = "책방타입    \(data.typeName)"
-        phoneLabel.text = "전화번호    \(data.phone)"
-        addressLabel.text = data.address
-        homePageLabel.text = "홈페이지    \(data.homeURL)"
-        snsLabel.text = "SNS    \(data.sns)"
+        addressLabel.text = "책방주소    \(data.address)"
+        phoneButton.setTitle("전화번호    \(data.phone)", for: .normal)
+        homePageButton.setTitle("홈페이지    \(data.homeURL)", for: .normal)
+        snsButton.setTitle("SNS        \(data.sns)", for: .normal)
         
-        phoneLabel.addLinkStyle(color: Color.gray100, range: data.phone)
-        homePageLabel.addLinkStyle(color: Color.green100, range: data.homeURL)
-        snsLabel.addLinkStyle(color: Color.green100, range: data.sns)
+        phoneButton.addLinkStyle(.phone, range: data.phone)
+        homePageButton.addLinkStyle(.url, range: data.homeURL)
+        snsButton.addLinkStyle(.url, range: data.sns)
         
-        homePageLabel.isHidden = (data.homeURL == "") ? true : false
-        snsLabel.isHidden = (data.sns == "") ? true : false
-        phoneLabel.isHidden = (data.phone == "") ? true : false
+        homePageButton.isHidden = (data.homeURL == "") ? true : false
+        snsButton.isHidden = (data.sns == "") ? true : false
+        phoneButton.isHidden = (data.phone.replacingOccurrences(of: " ", with: "") == "") ? true : false
         
         if data.homeURL == "" && data.sns == "" {
             urlView.isHidden = true

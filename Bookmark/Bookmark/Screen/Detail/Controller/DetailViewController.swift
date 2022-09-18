@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class DetailViewController: BaseViewController {
+import SafariServices
+
+final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     // MARK: - Property
     
@@ -59,7 +61,6 @@ final class DetailViewController: BaseViewController {
     
     override func configureLayout() {
         view.addSubviews([navigationBar, tableView, backView])
-        
         navigationBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.directionalHorizontalEdges.equalToSuperview()
@@ -91,32 +92,36 @@ final class DetailViewController: BaseViewController {
         }
     }
     
-    // MARK: - Custom Method
-    
     override func setupDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    // MARK: - Custom Method
+    
     private func setupAction() {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
     }
     
+    func presentSafariView(_ safariView: SFSafariViewController) {
+        self.present(safariView, animated: true)
+    }
+        
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
-        let firstAction = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+        let sentenceAction = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             viewController.viewType = .sentence
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        let secondAction = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
+        let bookAction = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             viewController.viewType = .book
             self.navigationController?.pushViewController(viewController, animated: true)
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
-                  actions: [firstAction, secondAction])
+                  actions: [sentenceAction, bookAction])
     }
     
     @objc func touchupBookmarkButton(_ sender: UIButton) {
@@ -130,7 +135,7 @@ final class DetailViewController: BaseViewController {
     
     @objc func touchupBackButton() {
         navigationController?.popViewController(animated: true)
-    }
+    }    
 }
 
 // MARK: - TableView Protocol
@@ -145,6 +150,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         else { return UITableViewCell() }
         cell.setupMapView(data: detailStoreInfo)
         cell.setupData(data: detailStoreInfo)
+        cell.safariViewDelegate = self
         return cell
     }
 }

@@ -46,6 +46,9 @@
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
 		5B819ED728D25F1100626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED628D25F1100626693 /* BookStore.swift */; };
+		5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8A28D646FD00C30AA8 /* Transition+.swift */; };
+		5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */; };
+		5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9028D705A700C30AA8 /* Protocol.swift */; };
 		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
@@ -111,6 +114,9 @@
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		5B819ED628D25F1100626693 /* BookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
+		5B96BF8A28D646FD00C30AA8 /* Transition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+.swift"; sourceTree = "<group>"; };
+		5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkLinkButton.swift; sourceTree = "<group>"; };
+		5B96BF9028D705A700C30AA8 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
@@ -385,6 +391,7 @@
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
 				5B5544B828CF1A9A00781EC8 /* UITextField+.swift */,
 				5B175EC728D103F100101CEC /* UIViewController+.swift */,
+				5B96BF8A28D646FD00C30AA8 /* Transition+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -401,6 +408,7 @@
 		5B5544B128CF1A3A00781EC8 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				5B96BF9028D705A700C30AA8 /* Protocol.swift */,
 				5B5544B228CF1A5D00781EC8 /* ReusableProtocol.swift */,
 			);
 			path = Protocol;
@@ -465,6 +473,7 @@
 				5BB659AB28CF87930009BF1A /* BookmarkButton.swift */,
 				5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */,
 				5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */,
+				5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */,
 			);
 			path = CTA;
 			sourceTree = "<group>";
@@ -625,6 +634,7 @@
 				5B819ED728D25F1100626693 /* BookStore.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
+				5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
@@ -636,8 +646,10 @@
 				5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */,
+				5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
+				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
 				5B5544B328CF1A5D00781EC8 /* ReusableProtocol.swift in Sources */,

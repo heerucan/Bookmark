@@ -21,6 +21,9 @@ final class HomeViewController: BaseViewController {
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
     private lazy var myLongtitude = locationManager.location?.coordinate.longitude
     
+    var markers: [NMFMarker] = []
+    
+    // 배열을 만들어서 필터링된 행정구역의 서점들을 추가하기.
     private var bookStoreList: [BookStoreInfo] = []
     
     private var selectedStoreInfo: BookStoreInfo? {
@@ -28,8 +31,6 @@ final class HomeViewController: BaseViewController {
             self.selectedStoreInfo = newValue
         }
     }
-    
-    
     
     // MARK: - LifeCycle
     
@@ -62,6 +63,7 @@ final class HomeViewController: BaseViewController {
             guard let data = data else { return }
             DispatchQueue.main.async {
                 self.bookStoreList.append(contentsOf: data.total.info)
+                self.setupMarker()
             }
         }
     }
@@ -77,43 +79,30 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    // MARK: - Custom Map
+    // MARK: - Customize Map
     
     private func setupMarker() {
-        // MARK: - 여기서 사용자가 지도를 움직일 때마다 지도의 lat,long 값을 반환해주면 그걸로 findAddress를 통해서 행정구를 가져오고
-        // 그래서 해당 행정구가 어디인지 알아서 filtering을 해주는 것임 1차적으로
-        // 그래서 나는 현 지도 검색을 하는 경우에는 Overlay를 다른색으로 제공해주는 것도 괜찮을 것 같음
-        
         for bookStore in self.bookStoreList {
             guard let latitude = Double(bookStore.latitude),
                   let longtitude = Double(bookStore.longtitude) else { return }
-            
-            self.findAddress(latitude, longtitude)
-            
             let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
-            
-            
             let marker = NMFMarker()
             marker.position = coordinate
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
-            marker.mapView = homeView.mapView
-
-            let markerHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self,
                       let lat = self.myLatitude,
                       let long = self.myLongtitude else { return false }
-                print("🥑내위치기준")
-                self.findAddress(lat, long)
-                
                 let myCoordinate = NMGLatLng(lat: lat, lng: long)
                 self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
                 self.transformView(.storeButtonNotHidden)
                 self.selectedStoreInfo = bookStore
                 return true
             }
-            marker.touchHandler = markerHandler
+            marker.mapView = homeView.mapView
+            markers.append(marker)
         }
     }
     
@@ -125,14 +114,18 @@ final class HomeViewController: BaseViewController {
         homeView.mapView.moveCamera(cameraUpdate)
     }
     
-    private func findAddress(_ lat: CLLocationDegrees, _ long: CLLocationDegrees) {
+    @discardableResult
+    private func findAddress(_ lat: CLLocationDegrees, _ long: CLLocationDegrees) -> String {
         let locale = Locale(identifier: "Ko-kr")
         let location = CLLocation(latitude: lat, longitude: long)
+        var address = ""
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { (placemarks, nil) in
-            if let district = placemarks?.last?.subLocality {
-                print(district)
-            }
+            guard let district = placemarks?.last?.subLocality else { return }
+//            return district
+            address = district
+            print(address, placemarks?.last)
         }
+        return address
     }
     
     // MARK: - @objc
@@ -142,11 +135,13 @@ final class HomeViewController: BaseViewController {
         case homeView.goToSearchViewButton:
             let viewController = SearchViewController()
             navigationController?.pushViewController(viewController, animated: true)
+            
         case homeView.findButton:
-            setupMarker()
             transformView(.findButtonHidden)
+            
         case homeView.myLocationButton:
             updateMyLocation()
+            
         case homeView.storeButton:
             let viewController = DetailViewController()
             viewController.detailStoreInfo = selectedStoreInfo
@@ -164,8 +159,22 @@ extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate 
         transformView(.storeButtonHidden)
     }
     
+    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
+//        UIView.animate(withDuration: 0.2) {
+//            self.markers.forEach { $0.alpha = 0 }
+//        }
+        homeView.mapView.locationOverlay.location = NMGLatLng(lat: mapView.latitude, lng: mapView.longitude)
+    }
+    
+    // 움직임이 끝나면 호출
     func mapViewCameraIdle(_ mapView: NMFMapView) {
+        print("🥝 지도 이동했다!")
+        homeView.mapView.locationOverlay.location = NMGLatLng(lat: mapView.latitude, lng: mapView.longitude)
+//        UIView.animate(withDuration: 0.2) {
+//            self.markers.forEach { $0.alpha = 1 }
+//        }
         transformView(.findButtonNotHidden)
+//        findAddress(markers[0].position.lat, markers[0].position.lng)
     }
 }
 
@@ -197,8 +206,12 @@ extension HomeViewController {
             }
         case .storeButtonNotHidden:
             UIView.animate(withDuration: 0.1) {
-                self.homeView.storeButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.storeButton.frame.height-16)
-                self.homeView.myLocationButton.transform = CGAffineTransform(translationX: 0, y: -self.homeView.myLocationButton.frame.height-40)
+                self.homeView.storeButton.transform = CGAffineTransform(
+                    translationX: 0,
+                    y: -self.homeView.storeButton.frame.height-16)
+                self.homeView.myLocationButton.transform = CGAffineTransform(
+                    translationX: 0,
+                    y: -self.homeView.myLocationButton.frame.height-40)
             }
         case .findButtonHidden:
             UIView.animate(withDuration: 0.1) {
@@ -230,7 +243,6 @@ extension HomeViewController {
     /*
      사용자의 위치 서비스가 활성화된 것을 확인 후, 그 다음 위치 권한 상태 확인
      사용자가 위치를 허용했는지, 거부했는지, 아직 선택하지 않았는지 등을 확인
-     (단, 사전에 iOS 위치 서비스 활성화 꼭 확인)
      */
     private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
@@ -245,7 +257,6 @@ extension HomeViewController {
             
         case .authorizedWhenInUse, .authorizedAlways:
             print("🤩 WHEN IN USE or ALWAYS")
-            // 사용자가 위치를 허용해둔 상태라면, startUpdatingLocation을 통해 didUpdateLocations 메소드가 실행된다.
             locationManager.startUpdatingLocation()
             updateMyLocation()
             

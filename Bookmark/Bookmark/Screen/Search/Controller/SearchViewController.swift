@@ -91,7 +91,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         else { return UITableViewCell() }
         cell.setupData(divideCaseOfData(indexPath.row))
 
-        // MARK: - TODO 기능 구현하면서 cell 관련 UI니까 쪽으로 분리시키기
+        // MARK: - TODO 기능 구현하면서 cell 관련 UI니까 쪽으로 분리시키기 + 색대응 오류 발견
         if isSearching {
             if let searchWord = searchView.searchBar.text {
                 cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord)
