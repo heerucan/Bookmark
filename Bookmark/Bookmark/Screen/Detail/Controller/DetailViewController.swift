@@ -20,7 +20,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
             
     let navigationBar = BookmarkNavigationBar()
-
+    
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.allowsSelection = false
         $0.register(DetailTableViewCell.self,
@@ -101,27 +101,30 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     private func setupAction() {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
+        navigationBar.shareButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
     }
     
     func presentSafariView(_ safariView: SFSafariViewController) {
-        self.present(safariView, animated: true)
+        transition(safariView, .present)
     }
-        
+
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
-        let sentenceAction = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+        let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
-            viewController.viewType = .sentence
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.transition(viewController, .push) { _ in
+                viewController.viewType = .sentence
+            }
         }
-        let bookAction = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
-            viewController.viewType = .book
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.transition(viewController, .push) { _ in
+                viewController.viewType = .book
+            }
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
-                  actions: [sentenceAction, bookAction])
+                  actions: [sentence, book])
     }
     
     @objc func touchupBookmarkButton(_ sender: UIButton) {
@@ -134,8 +137,18 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
     
     @objc func touchupBackButton() {
-        navigationController?.popViewController(animated: true)
-    }    
+        transition(self, .pop)
+    }
+    
+    @objc func touchupShareButton() {
+        guard let detailStoreInfo = detailStoreInfo else { return }
+        showActivity(activityItems: ["🔖",
+                                     detailStoreInfo.name,
+                                     detailStoreInfo.address,
+                                     detailStoreInfo.phone,
+                                     detailStoreInfo.homeURL,
+                                     detailStoreInfo.sns])
+    }
 }
 
 // MARK: - TableView Protocol

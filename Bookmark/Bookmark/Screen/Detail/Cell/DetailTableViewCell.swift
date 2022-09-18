@@ -38,7 +38,6 @@ final class DetailTableViewCell: BaseTableViewCell {
             $0.axis = .vertical
             $0.spacing = 15
             $0.distribution = .equalSpacing
-            $0.alignment = .leading
         }
     
     private let cloneButton = UIButton().then {
@@ -53,9 +52,8 @@ final class DetailTableViewCell: BaseTableViewCell {
     private lazy var urlStackView = UIStackView(
         arrangedSubviews: [homePageButton, snsButton]).then {
             $0.axis = .vertical
-            $0.spacing = 10
+            $0.spacing = 15
             $0.distribution = .equalSpacing
-            $0.alignment = .leading
         }
     
     private let phoneButton = BookmarkLinkButton(.phone)
@@ -179,7 +177,8 @@ final class DetailTableViewCell: BaseTableViewCell {
     @objc func touchupButton(_ sender: UIButton) {
         switch sender {
         case phoneButton:
-            if let phone = EndPoint.phone.makeURL(phoneNumber), UIApplication.shared.canOpenURL(phone) {
+            if let phone = EndPoint.phone.makeURL(phoneNumber),
+                UIApplication.shared.canOpenURL(phone) {
                 UIApplication.shared.open(phone, options: [:], completionHandler: nil)
             }
             
@@ -231,7 +230,7 @@ final class DetailTableViewCell: BaseTableViewCell {
     
     func setupData(data: BookStoreInfo?) {
         guard let data = data else { return }
-        bookStore = data.name
+        bookStore = data.name.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
         phoneNumber = data.phone
         homepage = data.homeURL
         sns = data.sns
@@ -239,7 +238,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         addressLabel.text = "책방주소    \(data.address)"
         phoneButton.setTitle("전화번호    \(data.phone)", for: .normal)
         homePageButton.setTitle("홈페이지    \(data.homeURL)", for: .normal)
-        snsButton.setTitle("SNS        \(data.sns)", for: .normal)
+        snsButton.setTitle("SNS    \(data.sns)", for: .normal)
         
         phoneButton.addLinkStyle(.phone, range: data.phone)
         homePageButton.addLinkStyle(.url, range: data.homeURL)
