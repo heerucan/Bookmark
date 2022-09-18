@@ -41,6 +41,7 @@ final class BookmarkLinkButton: UIButton {
         contentEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: -1, right: 0)
         setTitleColor(Color.gray100, for: .normal)
         titleLabel?.font = Font.body7.font
+        contentHorizontalAlignment = .left
     }
 }
 

@@ -74,7 +74,7 @@ final class SearchViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupBackButton() {
-        navigationController?.popViewController(animated: true)
+        transition(self, .pop)
     }
 }
 
@@ -107,8 +107,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let viewController = DetailViewController()
-        viewController.detailStoreInfo = divideCaseOfData(indexPath.row)
-        navigationController?.pushViewController(viewController, animated: true)
+        transition(viewController, .push) { _ in
+            viewController.detailStoreInfo = self.divideCaseOfData(indexPath.row)
+        }
     }
 }
 

@@ -10,13 +10,19 @@ import UIKit
 extension UIViewController {
     func showAlert(title: String?,
                    message: String?,
-                   actions: [UIAlertAction]) {
+                   actions: [UIAlertAction],
+                   preferredStyle: UIAlertController.Style = .actionSheet) {
         let alert = UIAlertController(title: title,
                                       message: message,
-                                      preferredStyle: .actionSheet)
+                                      preferredStyle: preferredStyle)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         actions.forEach { alert.addAction($0) }
         alert.addAction(cancel)
-        present(alert, animated: true)
+        transition(alert, .present)
+    }
+    
+    func showActivity(activityItems: [Any]) {
+        let viewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        transition(viewController, .present)
     }
 }

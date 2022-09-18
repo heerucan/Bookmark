@@ -52,6 +52,7 @@ final class HomeView: BaseView {
         $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0.1)
     }
     
+    // MARK: - 해당기능 뺄 건지 추후 검토
     let findButton = TagButton(.location).then {
         $0.tagLabel.text = "현 지도에서 검색"
         $0.isSelected = false

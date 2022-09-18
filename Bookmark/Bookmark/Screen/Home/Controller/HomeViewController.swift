@@ -14,18 +14,18 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let homeView = HomeView()
+    private let tagData = TagData()
     
+    private let homeView = HomeView()
     private let geocoder = CLGeocoder()
     private let locationManager = CLLocationManager()
+    
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
     private lazy var myLongtitude = locationManager.location?.coordinate.longitude
     
-    var markers: [NMFMarker] = []
+    private var markers: [NMFMarker] = []
     
-    // 배열을 만들어서 필터링된 행정구역의 서점들을 추가하기.
     private var bookStoreList: [BookStoreInfo] = []
-    
     private var selectedStoreInfo: BookStoreInfo? {
         willSet {
             self.selectedStoreInfo = newValue
@@ -49,21 +49,23 @@ final class HomeViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: - Configure UI & Layout & Delegate
+    // MARK: - Delegate
     
     override func setupDelegate() {
         locationManager.delegate = self
-        homeView.setupDelegate(touchDelegate: self, cameraDelegate: self)
+        homeView.setupMapDelegate(self, self)
+        homeView.setupCollectionViewDelegate(self, self)
     }
     
-    // MARK: - RequestAPI
+    // MARK: - Network
     
     private func requestAPI() {
         StoreAPIManager.shared.fetchBookStore() { (data, error) in
             guard let data = data else { return }
             DispatchQueue.main.async {
                 self.bookStoreList.append(contentsOf: data.total.info)
-                self.setupMarker()
+                self.setupMarker(Matrix.new)
+                self.setupMarker(Matrix.old)
             }
         }
     }
@@ -81,13 +83,24 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Customize Map
     
-    private func setupMarker() {
-        for bookStore in self.bookStoreList {
-            guard let latitude = Double(bookStore.latitude),
-                  let longtitude = Double(bookStore.longtitude) else { return }
-            let coordinate = NMGLatLng(lat: latitude, lng: longtitude)
+    private func updateMyLocation() {
+        guard let lat = myLatitude, let long = myLongtitude else { return }
+        let coordinate = NMGLatLng(lat: lat, lng: long)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
+        cameraUpdate.animation = .easeIn
+        homeView.mapView.moveCamera(cameraUpdate)
+    }
+    
+    private func setupMarker(_ typeNo: String? = nil) {
+        guard let typeNo = typeNo else { return }
+        let storeList = bookStoreList.filter { $0.typeNo == typeNo }
+        for bookStore in storeList {
+            guard let lat = Double(bookStore.latitude),
+                  let lng = Double(bookStore.longtitude) else { return }
+            let coor = NMGLatLng(lat: lat, lng: lng)
             let marker = NMFMarker()
-            marker.position = coordinate
+            marker.isHideCollidedMarkers = true
+            marker.position = coor
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
@@ -96,7 +109,7 @@ final class HomeViewController: BaseViewController {
                       let lat = self.myLatitude,
                       let long = self.myLongtitude else { return false }
                 let myCoordinate = NMGLatLng(lat: lat, lng: long)
-                self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
+                self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coor))
                 self.transformView(.storeButtonNotHidden)
                 self.selectedStoreInfo = bookStore
                 return true
@@ -106,53 +119,66 @@ final class HomeViewController: BaseViewController {
         }
     }
     
-    private func updateMyLocation() {
-        guard let lat = myLatitude, let long = myLongtitude else { return }
-        let coordinate = NMGLatLng(lat: lat, lng: long)
-        let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
-        cameraUpdate.animation = .easeIn
-        homeView.mapView.moveCamera(cameraUpdate)
-    }
-    
-    @discardableResult
-    private func findAddress(_ lat: CLLocationDegrees, _ long: CLLocationDegrees) -> String {
-        let locale = Locale(identifier: "Ko-kr")
-        let location = CLLocation(latitude: lat, longitude: long)
-        var address = ""
-        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { (placemarks, nil) in
-            guard let district = placemarks?.last?.subLocality else { return }
-//            return district
-            address = district
-            print(address, placemarks?.last)
-        }
-        return address
-    }
-    
     // MARK: - @objc
     
     @objc func touchupButton(_ sender: UIButton) {
         switch sender {
         case homeView.goToSearchViewButton:
             let viewController = SearchViewController()
-            navigationController?.pushViewController(viewController, animated: true)
-            
+            transition(viewController)
         case homeView.findButton:
             transformView(.findButtonHidden)
-            
         case homeView.myLocationButton:
             updateMyLocation()
-            
         case homeView.storeButton:
             let viewController = DetailViewController()
-            viewController.detailStoreInfo = selectedStoreInfo
-            navigationController?.pushViewController(viewController, animated: true)
+            transition(viewController, .push) { _ in
+                viewController.detailStoreInfo = self.selectedStoreInfo
+            }
         default:
             break
         }
     }
 }
 
-// MARK: - 지도 터치와 지도 이동에 대한 콜백 프로토콜
+// MARK: - CollectionView Protocol
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tagData.getTagCount()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTagCollectionViewCell.identifier, for: indexPath) as? HomeTagCollectionViewCell
+        else { return UICollectionViewCell() }
+        cell.setupData(index: indexPath.item)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeTagCollectionViewCell else { return }
+        if cell.clickCount == 1 {
+            cell.clickCount = 0
+        } else {
+            cell.clickCount += 1
+        }
+        
+        // MARK: - TODO 렘 연결 후 0번째는 책갈피
+        if indexPath.item == 1 && cell.isSelected {
+            markers.removeAll()
+            setupMarker(Matrix.new)
+        } else if indexPath.item == 2 && cell.isSelected {
+            markers.removeAll()
+            setupMarker(Matrix.old)
+        } else {
+            markers.removeAll()
+            setupMarker(Matrix.new)
+            setupMarker(Matrix.old)
+        }
+    }
+}
+
+// MARK: - 지도 터치 프로토콜 & 지도 이동 콜백 프로토콜
 
 extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -160,21 +186,12 @@ extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate 
     }
     
     func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
-//        UIView.animate(withDuration: 0.2) {
-//            self.markers.forEach { $0.alpha = 0 }
-//        }
         homeView.mapView.locationOverlay.location = NMGLatLng(lat: mapView.latitude, lng: mapView.longitude)
     }
     
-    // 움직임이 끝나면 호출
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-        print("🥝 지도 이동했다!")
         homeView.mapView.locationOverlay.location = NMGLatLng(lat: mapView.latitude, lng: mapView.longitude)
-//        UIView.animate(withDuration: 0.2) {
-//            self.markers.forEach { $0.alpha = 1 }
-//        }
         transformView(.findButtonNotHidden)
-//        findAddress(markers[0].position.lat, markers[0].position.lng)
     }
 }
 
@@ -182,19 +199,75 @@ extension HomeViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate 
 
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coordinate = locations.last?.coordinate {
+            myLatitude = coordinate.latitude
+            myLongtitude = coordinate.longitude
+        }
         locationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("😡 사용자의 위치를 가져오지 못했습니다.")
+        checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkUserDeviceLocationServiceAuthorization()
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkUserDeviceLocationServiceAuthorization()
+    }
 }
 
-// MARK: - UIView.animate & 위치 서비스 활성화 체크
+// MARK: - 위치 서비스 활성화 체크
+
+extension HomeViewController {
+    private func checkUserDeviceLocationServiceAuthorization() {
+        let authorizationStatus: CLAuthorizationStatus
+        authorizationStatus = locationManager.authorizationStatus
+        
+        if CLLocationManager.locationServicesEnabled() {
+            checkUserCurrentLocationAuthorization(authorizationStatus)
+        } else {
+            showLocationServiceAlert()
+        }
+    }
+    
+    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+        switch authorizationStatus {
+        case .notDetermined:
+            print("아직 결정 X")
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            
+        case .restricted, .denied:
+            print("거부 or 아이폰 설정 유도")
+            showLocationServiceAlert()
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            print("🤩 WHEN IN USE or ALWAYS")
+            locationManager.startUpdatingLocation()
+            
+        default: print("DEFAULT")
+        }
+    }
+    
+    private func showLocationServiceAlert() {
+        let setting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+            if let setting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(setting)
+            }
+        }
+        
+        showAlert(title: "위치 정보 이용",
+                  message: Matrix.settingMessage,
+                  actions: [setting],
+                  preferredStyle: .alert)
+    }
+}
+
+// MARK: - UIView.animate
 
 extension HomeViewController {
     private func transformView(_ viewState: ComponentStatus) {
@@ -222,62 +295,5 @@ extension HomeViewController {
                 self.homeView.findButton.alpha = 1
             }
         }
-    }
-    
-    // 환경설정 -> 개인 정보 보호 -> 위치 서비스 체크
-    private func checkUserDeviceLocationServiceAuthorization() {
-        let authorizationStatus: CLAuthorizationStatus
-        authorizationStatus = locationManager.authorizationStatus
-        
-        // iOS 위치 서비스 활성화 여부 체크
-        // 해당 메소드가 위치 서비스 여부를 체크해준다.
-        if CLLocationManager.locationServicesEnabled() {
-            // 위치 서비스가 활성화 되어 있으므로, 위치 권한 요청 가능해서 위치 권한을 요청함
-            checkUserCurrentLocationAuthorization(authorizationStatus)
-        } else {
-            showRequestLocationServiceAlert()
-            print("위치 서비스가 꺼져 있어서 위치 권한 요청을 못합니다.")
-        }
-    }
-    
-    /*
-     사용자의 위치 서비스가 활성화된 것을 확인 후, 그 다음 위치 권한 상태 확인
-     사용자가 위치를 허용했는지, 거부했는지, 아직 선택하지 않았는지 등을 확인
-     */
-    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
-        switch authorizationStatus {
-        case .notDetermined:
-            print("NOT DETERMINED")
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            
-        case .restricted, .denied:
-            print("DENIED, 아이폰 설정으로 유도")
-            showRequestLocationServiceAlert()
-            
-        case .authorizedWhenInUse, .authorizedAlways:
-            print("🤩 WHEN IN USE or ALWAYS")
-            locationManager.startUpdatingLocation()
-            updateMyLocation()
-            
-        default: print("DEFAULT")
-        }
-    }
-    
-    private func showRequestLocationServiceAlert() {
-        let requestLocationServiceAlert = UIAlertController(
-            title: "위치정보 이용",
-            message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.",
-            preferredStyle: .alert)
-        let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
-            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(appSetting)
-            }
-        }
-        
-        let cancel = UIAlertAction(title: "취소", style: .default)
-        requestLocationServiceAlert.addAction(cancel)
-        requestLocationServiceAlert.addAction(goSetting)
-        present(requestLocationServiceAlert, animated: true, completion: nil)
     }
 }
