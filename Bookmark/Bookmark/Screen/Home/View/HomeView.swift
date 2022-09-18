@@ -14,6 +14,18 @@ final class HomeView: BaseView {
     
     // MARK: - Property
     
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    
+    let layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: Matrix.cellWidth, height: Matrix.cellHeight)
+        layout.minimumLineSpacing = Matrix.cellSpacing
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Matrix.cellMargin, bottom: 0, right: Matrix.cellMargin)
+        layout.scrollDirection = .horizontal
+        return layout
+    }()
+    
     lazy var goToSearchViewButton = UIButton().then {
         $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = Color.gray500
@@ -29,31 +41,10 @@ final class HomeView: BaseView {
         $0.textColor = Color.gray300
         $0.font = Font.body5.font
     }
-        
-    private lazy var tagStackView = UIStackView(arrangedSubviews: [
-        bookmarkButton, newStoreButton, oldStoreButton]).then {
-            $0.axis = .horizontal
-            $0.spacing = 8
-            $0.distribution = .equalSpacing
-        }
-    
-    private let bookmarkButton = TagButton(.bookmark).then {
-        $0.isSelected = false
-    }
-    
-    private let newStoreButton = TagButton(.category).then {
-        $0.tagLabel.text = "새책방"
-        $0.isSelected = false
-    }
-    
-    private let oldStoreButton = TagButton(.category).then {
-        $0.tagLabel.text = "헌책방"
-        $0.isSelected = false
-    }
     
     lazy var mapView = NMFMapView(frame: self.frame).then {
         $0.minZoomLevel = 9
-        $0.maxZoomLevel = 18
+        $0.maxZoomLevel = 16
         $0.positionMode = .direction
         $0.locationOverlay.hidden = false
         $0.locationOverlay.heading = 180
@@ -71,7 +62,7 @@ final class HomeView: BaseView {
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
-        $0.makeShadow(radius: 37, offset: CGSize(width: 2, height: 2), opacity: 0.1)
+        $0.makeShadow(radius: 11, offset: CGSize(width: 2, height: 2), opacity: 0.2)
     }
     
     private let nameLabel = UILabel().then {
@@ -103,14 +94,13 @@ final class HomeView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setupAction()
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
         self.addSubviews([goToSearchViewButton,
-                          tagStackView,
+                          collectionView,
                           mapView,
                           findButton,
                           myLocationButton,
@@ -133,14 +123,14 @@ final class HomeView: BaseView {
             make.bottom.equalToSuperview().inset(9)
         }
         
-        tagStackView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(goToSearchViewButton.snp.bottom).offset(12)
-            make.leading.equalToSuperview().inset(16)
-            make.height.equalTo(38)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
         }
         
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(tagStackView.snp.bottom).offset(12)
+            make.top.equalTo(collectionView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
@@ -179,19 +169,19 @@ final class HomeView: BaseView {
         }
     }
     
-    func setupDelegate(touchDelegate: NMFMapViewTouchDelegate, cameraDelegate: NMFMapViewCameraDelegate) {
+    func setupMapDelegate(_ touchDelegate: NMFMapViewTouchDelegate,
+                          _ cameraDelegate: NMFMapViewCameraDelegate) {
         mapView.touchDelegate = touchDelegate
         mapView.addCameraDelegate(delegate: cameraDelegate)
     }
     
-    // MARK: - Custom Method
-    
-    private func setupAction() {
-        [bookmarkButton,
-         newStoreButton,
-         oldStoreButton].forEach {
-            $0.addTarget(self, action: #selector(touchupTagButton(_:)), for: .touchUpInside)
-        }
+    func setupCollectionViewDelegate(_ delegate: UICollectionViewDelegate,
+                                     _ dataSource: UICollectionViewDataSource) {
+        collectionView.delegate = delegate
+        collectionView.dataSource = dataSource
+        collectionView.register(
+            HomeTagCollectionViewCell.self,
+            forCellWithReuseIdentifier: HomeTagCollectionViewCell.identifier)
     }
     
     // MARK: - @objc

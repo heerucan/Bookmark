@@ -49,6 +49,8 @@
 		5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8A28D646FD00C30AA8 /* Transition+.swift */; };
 		5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */; };
 		5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9028D705A700C30AA8 /* Protocol.swift */; };
+		5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */; };
+		5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9528D731BC00C30AA8 /* Tag.swift */; };
 		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
@@ -117,6 +119,8 @@
 		5B96BF8A28D646FD00C30AA8 /* Transition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+.swift"; sourceTree = "<group>"; };
 		5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkLinkButton.swift; sourceTree = "<group>"; };
 		5B96BF9028D705A700C30AA8 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B96BF9528D731BC00C30AA8 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				5BECBE5428D34C5B00E83995 /* Model */,
+				5B96BF9228D7200900C30AA8 /* Cell */,
 				5B799D1028D06ADB00648C94 /* View */,
 				5B55443728CEF95E00781EC8 /* Controller */,
 			);
@@ -466,6 +471,14 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		5B96BF9228D7200900C30AA8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +504,7 @@
 		5BECBE5428D34C5B00E83995 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B96BF9528D731BC00C30AA8 /* Tag.swift */,
 				5BECBE5528D34C7600E83995 /* ComponentStatus.swift */,
 			);
 			path = Model;
@@ -657,9 +671,11 @@
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */,
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
+				5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
+				5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */,
 				5B819ED028D245D200626693 /* APIError.swift in Sources */,
