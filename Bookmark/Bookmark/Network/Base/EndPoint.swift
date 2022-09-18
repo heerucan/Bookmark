@@ -12,6 +12,7 @@ enum EndPoint {
     case naver
     case appstore
     case phone
+    case safari
     
     func makeURL(_ path: String? = nil) -> URL? {
         switch self {
@@ -30,6 +31,10 @@ enum EndPoint {
             let phone = "tel://" + number
             guard let phoneURL = NSURL(string: phone) as URL? else { return nil }
             return phoneURL
+        case .safari:
+            guard let pageLink = path else { return nil }
+            guard let safariURL = NSURL(string: pageLink) as URL? else { return nil }
+            return safariURL
         }
     }
 }
