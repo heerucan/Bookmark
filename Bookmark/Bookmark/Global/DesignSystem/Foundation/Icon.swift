@@ -37,5 +37,6 @@ enum Icon {
         static let like = UIImage(named: "icnLike")
         static let unselectedLike = UIImage(named: "icnUnselectedLike")
         static let gallery = UIImage(named: "icnImage")
+        static let marker = "icnMarker"
     } 
 }

@@ -15,4 +15,5 @@ enum Color {
     static let gray400 = UIColor(named: "gray400")!
     static let gray500 = UIColor(named: "gray500")!
     static let green100 = UIColor(named: "green100")!
+    static let brown100 = UIColor(named: "brown100")!
 }

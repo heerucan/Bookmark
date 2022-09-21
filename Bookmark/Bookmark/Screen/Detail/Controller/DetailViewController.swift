@@ -7,12 +7,20 @@
 
 import UIKit
 
-final class DetailViewController: BaseViewController {
+import SafariServices
+
+final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     // MARK: - Property
-        
+    
+    var detailStoreInfo: BookStoreInfo? {
+        willSet {
+            self.detailStoreInfo = newValue
+        }
+    }
+            
     let navigationBar = BookmarkNavigationBar()
-
+    
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.allowsSelection = false
         $0.register(DetailTableViewCell.self,
@@ -40,15 +48,19 @@ final class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
         setupAction()
     }
     
     // MARK: - Configure UI & Layout
     
+    override func configureUI() {
+        super.configureUI()
+        guard let detailStoreInfo = detailStoreInfo else { return }
+        navigationBar.titleLabel.text = detailStoreInfo.name
+    }
+    
     override func configureLayout() {
         view.addSubviews([navigationBar, tableView, backView])
-        
         navigationBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.directionalHorizontalEdges.equalToSuperview()
@@ -63,7 +75,7 @@ final class DetailViewController: BaseViewController {
         
         backView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(95)
+            make.height.equalTo(97)
         }
         
         writeButton.snp.makeConstraints { make in
@@ -80,33 +92,39 @@ final class DetailViewController: BaseViewController {
         }
     }
     
-    // MARK: - Custom Method
-    
-    private func setupTableView() {
+    override func setupDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    // MARK: - Custom Method
+    
     private func setupAction() {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
+        navigationBar.shareButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
     }
     
+    func presentSafariView(_ safariView: SFSafariViewController) {
+        transition(safariView, .present)
+    }
+
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
-        let firstAction = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+        let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
-            viewController.viewType = .sentence
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.transition(viewController, .push) { _ in
+                viewController.viewType = .sentence
+            }
         }
-        let secondAction = UIAlertAction(title: "공감 가는 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
-            viewController.viewType = .book
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.transition(viewController, .push) { _ in
+                viewController.viewType = .book
+            }
         }
-        showAlert(title: "어떤 책갈피를 꽂으실 건가요?",
-                  message: nil,
-                  actions: [firstAction, secondAction])
+        showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
+                  actions: [sentence, book])
     }
     
     @objc func touchupBookmarkButton(_ sender: UIButton) {
@@ -119,13 +137,17 @@ final class DetailViewController: BaseViewController {
     }
     
     @objc func touchupBackButton() {
-        navigationController?.popViewController(animated: true)
+        transition(self, .pop)
     }
     
-    @objc func touchupCloneButton() {
-//        guard let address = addressLabel.text else { return }
-//        UIPasteboard.general.string = address
-        print("clone완료")
+    @objc func touchupShareButton() {
+        guard let detailStoreInfo = detailStoreInfo else { return }
+        showActivity(activityItems: ["🔖",
+                                     detailStoreInfo.name,
+                                     detailStoreInfo.address,
+                                     detailStoreInfo.phone,
+                                     detailStoreInfo.homeURL,
+                                     detailStoreInfo.sns])
     }
 }
 
@@ -139,7 +161,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath) as? DetailTableViewCell
         else { return UITableViewCell() }
-        cell.cloneButton.addTarget(self, action: #selector(touchupCloneButton), for: .touchUpInside)
+        cell.setupMapView(data: detailStoreInfo)
+        cell.setupData(data: detailStoreInfo)
+        cell.safariViewDelegate = self
         return cell
     }
 }

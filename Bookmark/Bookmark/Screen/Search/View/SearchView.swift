@@ -41,6 +41,7 @@ final class SearchView: BaseView {
     }
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.keyboardDismissMode = .onDrag
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
@@ -117,5 +118,13 @@ final class SearchView: BaseView {
     func setupTableView(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
         tableView.delegate = delegate
         tableView.dataSource = datasource
+    }
+    
+    func setupSearchBarDelegate(_ delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
+    }
+    
+    func tableViewReload() {
+        tableView.reloadData()
     }
 }

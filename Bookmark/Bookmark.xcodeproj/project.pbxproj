@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CD78D28DAB27200175528 /* BookFilter.swift */; };
 		5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175EC728D103F100101CEC /* UIViewController+.swift */; };
 		5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175ECB28D107CA00101CEC /* WriteView.swift */; };
 		5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */; };
@@ -43,12 +44,21 @@
 		5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8EE28CF6FD400BBD00D /* Font.swift */; };
 		5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8F028CF6FDB00BBD00D /* Color.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
+		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
+		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
+		5B819ED728D25F1100626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED628D25F1100626693 /* BookStore.swift */; };
+		5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8A28D646FD00C30AA8 /* Transition+.swift */; };
+		5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */; };
+		5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9028D705A700C30AA8 /* Protocol.swift */; };
+		5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */; };
+		5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9528D731BC00C30AA8 /* Tag.swift */; };
 		5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659A528CF7D7F0009BF1A /* UIFont+.swift */; };
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AF28CF942D0009BF1A /* TagButton.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
+		5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECBE5528D34C7600E83995 /* ComponentStatus.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B0CD78D28DAB27200175528 /* BookFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFilter.swift; sourceTree = "<group>"; };
 		5B175EC728D103F100101CEC /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		5B175ECB28D107CA00101CEC /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		5B3FACF728CE207D0062D9F6 /* Bookmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,12 +115,21 @@
 		5B5AA8EE28CF6FD400BBD00D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		5B5AA8F028CF6FDB00BBD00D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		5B819ED628D25F1100626693 /* BookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
+		5B96BF8A28D646FD00C30AA8 /* Transition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+.swift"; sourceTree = "<group>"; };
+		5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkLinkButton.swift; sourceTree = "<group>"; };
+		5B96BF9028D705A700C30AA8 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B96BF9528D731BC00C30AA8 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		5BB659A528CF7D7F0009BF1A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BB659AF28CF942D0009BF1A /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		5BECBE5528D34C7600E83995 /* ComponentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStatus.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A651DBDD74A3122D53EBFEA /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		F396F509962615F401613FA1 /* Pods-Bookmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.release.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +224,7 @@
 			children = (
 				5B55443E28CEFA4B00781EC8 /* Base */,
 				5B55443D28CEFA3E00781EC8 /* APIManager */,
-				5B55445328CEFE3C00781EC8 /* Model */,
+				5B819ED528D2599100626693 /* DataModel */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -212,6 +232,8 @@
 		5B55443428CEF94C00781EC8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5BECBE5428D34C5B00E83995 /* Model */,
+				5B96BF9228D7200900C30AA8 /* Cell */,
 				5B799D1028D06ADB00648C94 /* View */,
 				5B55443728CEF95E00781EC8 /* Controller */,
 			);
@@ -299,6 +321,7 @@
 			children = (
 				5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */,
 				5B55443F28CEFA6600781EC8 /* EndPoint.swift */,
+				5B819ECF28D245D200626693 /* APIError.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -335,13 +358,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B55445328CEFE3C00781EC8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		5B55449928CF108E00781EC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +369,7 @@
 		5B55449D28CF123F00781EC8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				5B819ED328D2589400626693 /* Matrix.swift */,
 				5B5544A028CF125B00781EC8 /* Base */,
 				5B5544B028CF1A1300781EC8 /* DesignSystem */,
 				5B5544AF28CF1A0000781EC8 /* Extension */,
@@ -381,6 +398,7 @@
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
 				5B5544B828CF1A9A00781EC8 /* UITextField+.swift */,
 				5B175EC728D103F100101CEC /* UIViewController+.swift */,
+				5B96BF8A28D646FD00C30AA8 /* Transition+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -397,6 +415,7 @@
 		5B5544B128CF1A3A00781EC8 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				5B96BF9028D705A700C30AA8 /* Protocol.swift */,
 				5B5544B228CF1A5D00781EC8 /* ReusableProtocol.swift */,
 			);
 			path = Protocol;
@@ -446,6 +465,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5B819ED528D2599100626693 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B819ED628D25F1100626693 /* BookStore.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		5B96BF9228D7200900C30AA8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +488,7 @@
 				5BB659AB28CF87930009BF1A /* BookmarkButton.swift */,
 				5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */,
 				5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */,
+				5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */,
 			);
 			path = CTA;
 			sourceTree = "<group>";
@@ -465,6 +501,16 @@
 				5B5544C128CF46D800781EC8 /* Icon.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		5BECBE5428D34C5B00E83995 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B96BF9528D731BC00C30AA8 /* Tag.swift */,
+				5BECBE5528D34C7600E83995 /* ComponentStatus.swift */,
+				5B0CD78D28DAB27200175528 /* BookFilter.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		983D863AE98056FF9EA80F98 /* Pods */ = {
@@ -602,8 +648,10 @@
 			files = (
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B799D1228D06AE500648C94 /* HomeView.swift in Sources */,
+				5B819ED728D25F1100626693 /* BookStore.swift in Sources */,
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
+				5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
@@ -615,23 +663,31 @@
 				5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */,
+				5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
+				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
+				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
 				5B5544B328CF1A5D00781EC8 /* ReusableProtocol.swift in Sources */,
 				5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */,
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
+				5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */,
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
+				5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
+				5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */,
+				5B819ED028D245D200626693 /* APIError.swift in Sources */,
 				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */,
 				5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */,
 				5B578A9628D0C6570039855C /* SearchView.swift in Sources */,
+				5B819ED428D2589400626693 /* Matrix.swift in Sources */,
 				5B5544BB28CF1D1A00781EC8 /* BaseView.swift in Sources */,
 				5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */,
 				5B55445128CEFE0B00781EC8 /* SettingViewController.swift in Sources */,
@@ -780,10 +836,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookmark/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "책갈피";
-				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요합니다!";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요합니다!";
+				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요해요!";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요해요!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -816,10 +872,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookmark/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "책갈피";
-				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요합니다!";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 사용자의 현위치로부터 책방을 찾기 위해 필요합니다!";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요합니다!";
+				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요해요!";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요해요!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

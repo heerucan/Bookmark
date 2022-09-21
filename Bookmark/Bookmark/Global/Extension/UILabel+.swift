@@ -8,11 +8,13 @@
 import UIKit
 
 extension UILabel {
-    func changeSearchTextColor(_ text: String?, _ keyword: String) {
+    func changeSearchTextColor(_ text: String?,
+                               _ keyword: String,
+                               color: UIColor = Color.green100) {
         guard let text = text else { return }
         let attributedText = NSMutableAttributedString(string: text)
         let range = NSString(string: text).range(of: keyword, options: .caseInsensitive)
-        let highlighteAttributes = [NSAttributedString.Key.foregroundColor: Color.green100]
+        let highlighteAttributes = [NSAttributedString.Key.foregroundColor: color]
         attributedText.addAttributes(highlighteAttributes, range: range)
         self.attributedText = attributedText
     }
