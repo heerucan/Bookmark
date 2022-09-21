@@ -58,7 +58,6 @@ final class BookmarkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDelegate()
     }
     
     // MARK: - Configure UI & Layout
@@ -99,14 +98,6 @@ final class BookmarkViewController: BaseViewController {
         }
     }
     
-    private func configureDelegate() {
-        pageViewController.delegate = self
-        pageViewController.dataSource = self
-    }
-    
-    // MARK: - Custom Method
-    
-    
     // MARK: - @objc
         
     @objc private func changeValue(control: UISegmentedControl) {
@@ -114,24 +105,25 @@ final class BookmarkViewController: BaseViewController {
     }
     
     @objc private func touchupWriteButton() {
-        let viewController = WriteViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: true)
-    }
-}
-
-// MARK: - UIPageViewController Protocol
-
-extension BookmarkViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let index = dataViewControllers.firstIndex(of: viewController) else { return nil }
-        let previousIndex = index - 1
-        return previousIndex < 0 ? nil : dataViewControllers[previousIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = dataViewControllers.firstIndex(of: viewController) else { return nil }
-        let nextIndex = index + 1
-        return nextIndex >= dataViewControllers.count ? nil : dataViewControllers[nextIndex]
+        let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+            let viewController = WriteViewController()
+            self.transition(viewController, .present) { _ in
+                viewController.writeView.navigationView.rightBarButton.setImage(Icon.Button.close, for: .normal)
+                viewController.writeView.navigationView.backButton.isHidden = true
+                viewController.writeView.writeViewState = .sentence
+                viewController.fromWhatView = .bookmark
+            }
+        }
+        let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
+            let viewController = WriteViewController()
+            self.transition(viewController, .present) { _ in
+                viewController.writeView.navigationView.rightBarButton.setImage(Icon.Button.close, for: .normal)
+                viewController.writeView.navigationView.backButton.isHidden = true
+                viewController.writeView.writeViewState = .book
+                viewController.fromWhatView = .bookmark
+            }
+        }
+        showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
+                  actions: [sentence, book])
     }
 }

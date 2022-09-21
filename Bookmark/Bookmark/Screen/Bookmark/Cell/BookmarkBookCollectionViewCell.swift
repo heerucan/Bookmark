@@ -54,7 +54,6 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-
     // MARK: - Set Up Data
     
     func setupData(data: BookWrite) {

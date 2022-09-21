@@ -32,19 +32,10 @@ final class PhraseViewController: BaseViewController {
     }
     
     // MARK: - Configure UI & Layout
-    
-    override func configureLayout() {
-        
-    }
-    
+
     private func configureDelegate() {
         phraseView.configureTableViewDelegate(self, self)
     }
-    
-    // MARK: - Custom Method
-    
-    
-    // MARK: - @objc
 }
 
 // MARK: - UITableView Protocol

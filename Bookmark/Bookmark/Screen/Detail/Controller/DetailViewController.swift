@@ -101,7 +101,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     private func setupAction() {
         navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
-        navigationBar.shareButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
+        navigationBar.rightBarButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
     }
     
     func presentSafariView(_ safariView: SFSafariViewController) {
@@ -114,13 +114,17 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
-                viewController.viewType = .sentence
+                viewController.writeView.navigationView.rightBarButton.isHidden = true
+                viewController.writeView.writeViewState = .sentence
+                viewController.fromWhatView = .detail
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
-                viewController.viewType = .book
+                viewController.writeView.navigationView.rightBarButton.isHidden = true
+                viewController.writeView.writeViewState = .book
+                viewController.fromWhatView = .detail
             }
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,

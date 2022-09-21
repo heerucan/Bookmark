@@ -47,4 +47,3 @@ final class BookView: BaseView {
                                 forCellWithReuseIdentifier: BookmarkBookCollectionViewCell.identifier)
     }
 }
-
