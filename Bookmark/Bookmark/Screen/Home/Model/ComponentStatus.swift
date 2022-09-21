@@ -11,7 +11,5 @@ import Foundation
 
 enum ComponentStatus {
     case storeButtonHidden
-    case storeButtonNotHidden
-    case findButtonHidden
-    case findButtonNotHidden
+    case storeButtonShow
 }

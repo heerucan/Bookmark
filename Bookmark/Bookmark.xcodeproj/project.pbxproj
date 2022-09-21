@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0CD78D28DAB27200175528 /* BookFilter.swift */; };
 		5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175EC728D103F100101CEC /* UIViewController+.swift */; };
 		5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B175ECB28D107CA00101CEC /* WriteView.swift */; };
 		5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B0CD78D28DAB27200175528 /* BookFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFilter.swift; sourceTree = "<group>"; };
 		5B175EC728D103F100101CEC /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		5B175ECB28D107CA00101CEC /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		5B3FACF728CE207D0062D9F6 /* Bookmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -506,6 +508,7 @@
 			children = (
 				5B96BF9528D731BC00C30AA8 /* Tag.swift */,
 				5BECBE5528D34C7600E83995 /* ComponentStatus.swift */,
+				5B0CD78D28DAB27200175528 /* BookFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
+				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
 				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,

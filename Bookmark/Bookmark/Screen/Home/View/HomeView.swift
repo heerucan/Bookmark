@@ -26,7 +26,7 @@ final class HomeView: BaseView {
         return layout
     }()
     
-    lazy var goToSearchViewButton = UIButton().then {
+    lazy var searchButton = UIButton().then {
         $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = Color.gray500
         $0.makeCornerStyle(width: 0, color: nil, radius: 5)
@@ -43,27 +43,17 @@ final class HomeView: BaseView {
     }
     
     lazy var mapView = NMFMapView(frame: self.frame).then {
-        $0.minZoomLevel = 9
+        $0.minZoomLevel = 9.5
         $0.maxZoomLevel = 16
         $0.positionMode = .direction
         $0.locationOverlay.hidden = false
-        $0.locationOverlay.heading = 180
-        $0.locationOverlay.circleRadius = 150
-        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0.1)
-    }
-    
-    // MARK: - 해당기능 뺄 건지 추후 검토
-    let findButton = TagButton(.location).then {
-        $0.tagLabel.text = "현 지도에서 검색"
-        $0.isSelected = false
-        $0.makeShadow(radius: 4, offset: CGSize(width: 0, height: 3), opacity: 0.25)
+        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0)
     }
     
     lazy var storeButton = UIButton().then {
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
-        $0.makeShadow(radius: 11, offset: CGSize(width: 2, height: 2), opacity: 0.2)
     }
     
     private let nameLabel = UILabel().then {
@@ -85,7 +75,7 @@ final class HomeView: BaseView {
         $0.textAlignment = .right
     }
     
-    let myLocationButton = UIButton().then {
+    let locationButton = UIButton().then {
         $0.setImage(Icon.Button.myLocation, for: .normal)
         $0.setImage(Icon.Button.highlightedMyLocation, for: .highlighted)
         $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 0), opacity: 0.25)
@@ -100,14 +90,13 @@ final class HomeView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([goToSearchViewButton,
+        self.addSubviews([searchButton,
                           collectionView,
                           mapView,
-                          findButton,
-                          myLocationButton,
+                          locationButton,
                           storeButton])
         
-        goToSearchViewButton.snp.makeConstraints { make in
+        searchButton.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(40)
@@ -125,7 +114,7 @@ final class HomeView: BaseView {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(goToSearchViewButton.snp.bottom).offset(12)
+            make.top.equalTo(searchButton.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
@@ -135,12 +124,7 @@ final class HomeView: BaseView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
-        
-        findButton.snp.makeConstraints { make in
-            make.top.equalTo(mapView.snp.top).inset(12)
-            make.centerX.equalToSuperview()
-        }
-        
+
         storeButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.top.equalTo(self.safeAreaLayoutGuide.snp.bottom)
@@ -164,7 +148,7 @@ final class HomeView: BaseView {
             make.width.equalTo(50)
         }
         
-        myLocationButton.snp.makeConstraints { make in
+        locationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(storeButton.snp.top).offset(-20)
         }

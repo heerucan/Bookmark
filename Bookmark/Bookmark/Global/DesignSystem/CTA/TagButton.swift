@@ -38,7 +38,7 @@ final class TagButton: UIButton {
         didSet {
             tagLabel.textColor = isSelected ? Color.green100 : Color.black100
             tagImageView.image = isSelected ? Icon.Image.like : Icon.Image.unselectedLike
-            layer.borderColor = isSelected ? Color.green100.cgColor : Color.gray300.cgColor 
+            layer.borderColor = isSelected ? Color.green100.cgColor : Color.gray200.cgColor 
         }
     }
     
