@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+// MARK: - Enum
+
+enum FromWhatViewType {
+    case detail
+    case bookmark
+}
