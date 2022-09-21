@@ -52,4 +52,16 @@ extension UIView {
             toastLabel.removeFromSuperview()
         }
     }
+    
+    func showAlert(title: String?,
+                   message: String?,
+                   actions: [UIAlertAction],
+                   preferredStyle: UIAlertController.Style = .actionSheet) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: preferredStyle)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        actions.forEach { alert.addAction($0) }
+        alert.addAction(cancel)
+    }
 }

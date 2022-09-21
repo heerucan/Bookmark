@@ -40,7 +40,7 @@ final class BookmarkTextField: UITextField {
         layer.borderWidth = 1
         addPadding()
         clearButtonMode = .whileEditing
-        placeholder = "책 제목을 입력해주세요 (필수X)"
+        placeholder = Matrix.textFieldPlaceholder
         guard let placeholder = placeholder else { return }
         attributedPlaceholder = NSAttributedString(
             string: placeholder,
