@@ -7,4 +7,6 @@ target 'Bookmark' do
 
   # Pods for Bookmark
   pod 'NMapsMap'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'Then'
 end
