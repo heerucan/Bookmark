@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct Matrix {
-    private init() { }
-    
+enum Matrix {    
     static let markerSize = 35.0
     static let cellWidth = 68
     static let cellHeight = 38

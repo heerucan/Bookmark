@@ -34,7 +34,8 @@ extension UIView {
     func showToast(message : String) {
         let toastLabel = UILabel(frame: CGRect(x: self.frame.size.width/2-141.5,
                                                y: 550,
-                                               width: 283, height: 47)).then {
+                                               width: 283,
+                                               height: 47)).then {
             $0.backgroundColor = Color.black100.withAlphaComponent(0.89)
             $0.textColor = .white
             $0.font = Font.body5.font
