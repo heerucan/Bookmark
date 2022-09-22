@@ -25,9 +25,7 @@ final class WriteView: BaseView {
         }
     }
     
-    let navigationView = BookmarkNavigationBar().then {
-        $0.titleLabel.text = "책갈피 꽂아두기"
-    }
+    let navigationView = BookmarkNavigationBar(type: .write)
     
     let descriptionLabel = UILabel().then {
         $0.font = Font.body5.font
@@ -46,7 +44,7 @@ final class WriteView: BaseView {
     }
     
     lazy var imageButton = UIButton().then {
-        $0.contentMode = .scaleAspectFill
+        $0.imageView?.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.makeCornerStyle(width: 1, color: Color.gray300.cgColor, radius: 5)
         $0.addSubview(iconView)

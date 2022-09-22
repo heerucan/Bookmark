@@ -28,11 +28,16 @@ final class WriteViewController: BaseViewController {
         setupAction()
     }
     
-    // MARK: - Configure UI & Layout
-    
     override func configureUI() {
         super.configureUI()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
+    // MARK: - Configure UI & Layout
     
     override func setupDelegate() {
         writeView.titleTextField.delegate = self
