@@ -11,7 +11,7 @@ import RealmSwift
 
 // MARK: - Store
 
-class Store: Object {
+final class Store: Object {
     @Persisted var name: String
     @Persisted var bookmark: Bool
     

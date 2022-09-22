@@ -11,7 +11,7 @@ import RealmSwift
 
 // MARK: - Record
 
-class Record: Object {
+final class Record: Object {
     @Persisted var store: Store
     @Persisted var title: String?
     @Persisted var image: String
