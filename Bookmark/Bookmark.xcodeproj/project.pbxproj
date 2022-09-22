@@ -486,8 +486,8 @@
 		5B71FEB228DB938400F311F5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5B71FEB828DB93E200F311F5 /* BookView.swift */,
 				5B71FEBA28DB93E900F311F5 /* PhraseView.swift */,
+				5B71FEB828DB93E200F311F5 /* BookView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -495,8 +495,8 @@
 		5B71FEB328DB938800F311F5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5B71FEBC28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift */,
 				5B71FEBE28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift */,
+				5B71FEBC28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

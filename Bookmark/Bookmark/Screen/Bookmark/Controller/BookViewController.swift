@@ -35,17 +35,13 @@ final class BookViewController: BaseViewController {
     private func configureDelegate() {
         bookView.configureDelegate(self, self)
     }
-    
-    // MARK: - Custom Method
-    
-    
-    // MARK: - @objc
 }
 
 // MARK: - UICollectionView Protocol
 
 extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        bookView.emptyStateView.isHidden = (bookList.count != 0) ? true : false
         return bookList.count
     }
     

@@ -108,4 +108,11 @@ final class WriteView: BaseView {
             make.height.equalTo(49)
         }
     }
+    
+    func setupWriteViewState(_ image: UIImage? = Icon.Button.close,
+                             _ viewStates: WriteViewState) {
+        navigationView.rightBarButton.setImage(image, for: .normal)
+        navigationView.backButton.isHidden = true
+        writeViewState = viewStates
+    }
 }

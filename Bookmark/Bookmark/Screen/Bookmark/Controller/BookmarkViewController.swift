@@ -24,13 +24,8 @@ final class BookmarkViewController: BaseViewController {
         }
     }
     
-    private let phraseViewController = PhraseViewController().then {
-        $0.view.backgroundColor = .red
-    }
-    
-    private let bookViewController = BookViewController().then {
-        $0.view.backgroundColor = .blue
-    }
+    private let phraseViewController = PhraseViewController()
+    private let bookViewController = BookViewController()
     
     let segementedControl = BookmarkSegmentedControl(items: ["글 한 줄", "책 한 권"]).then {
         $0.selectedSegmentIndex = 0
@@ -108,22 +103,18 @@ final class BookmarkViewController: BaseViewController {
         let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.navigationView.rightBarButton.setImage(Icon.Button.close, for: .normal)
-                viewController.writeView.navigationView.backButton.isHidden = true
-                viewController.writeView.writeViewState = .sentence
+                viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
                 viewController.fromWhatView = .bookmark
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.navigationView.rightBarButton.setImage(Icon.Button.close, for: .normal)
-                viewController.writeView.navigationView.backButton.isHidden = true
-                viewController.writeView.writeViewState = .book
+                viewController.writeView.setupWriteViewState(Icon.Button.close, .book)
                 viewController.fromWhatView = .bookmark
             }
         }
-        showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
+        showAlert(title: "어떤 책갈피를 꽂아두실 건가요?", message: nil,
                   actions: [sentence, book])
     }
 }

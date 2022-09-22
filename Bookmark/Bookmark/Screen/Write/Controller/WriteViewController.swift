@@ -32,7 +32,6 @@ final class WriteViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-//        writeView.descriptionLabel.text = writeView.writeViewState.description
     }
     
     override func setupDelegate() {

@@ -18,6 +18,10 @@ final class PhraseView: BaseView {
         $0.allowsSelection = false
     }
     
+    let emptyStateView = UIImageView().then {
+        $0.image = Icon.Image.emptyState
+    }
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -27,10 +31,16 @@ final class PhraseView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubview(tableView)
+        self.addSubviews([tableView,
+                          emptyStateView])
         
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        emptyStateView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(235)
+            make.centerX.equalToSuperview()
         }
     }
 

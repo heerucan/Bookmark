@@ -42,6 +42,7 @@ final class PhraseViewController: BaseViewController {
 
 extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        phraseView.emptyStateView.isHidden = (phraseList.count != 0) ? true : false
         return phraseList.count
     }
     
@@ -55,6 +56,13 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             
+            let viewController = WriteViewController()
+            self.transition(viewController, .present) { _ in
+                viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
+                viewController.fromWhatView = .bookmark
+                viewController.writeView.completeButton.setTitle("수정", for: .normal)
+            }
+
 //            self.repository.updateFavorite(item: self.tasks[indexPath.row])
             
             /* 여기서도 didSet으로 프로퍼티가 변경 시마다 reload해주기 때문에 아래 코드는 주석처리해도 된다.

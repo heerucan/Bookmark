@@ -24,6 +24,10 @@ final class BookView: BaseView {
         return layout
     }()
     
+    let emptyStateView = UIImageView().then {
+        $0.image = Icon.Image.emptyState
+    }
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -33,10 +37,16 @@ final class BookView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubview(collectionView)
+        self.addSubviews([collectionView,
+                          emptyStateView])
         
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        emptyStateView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(235)
+            make.centerX.equalToSuperview()
         }
     }
     
