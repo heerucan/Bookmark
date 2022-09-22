@@ -17,8 +17,7 @@ final class Store: Object {
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(name: String,
-                     bookmark: Bool) {
+    convenience init(name: String, bookmark: Bool) {
         self.init()
         self.name = name
         self.bookmark = bookmark

@@ -9,9 +9,6 @@ import UIKit
 
 final class BookmarkSegmentedControl: UISegmentedControl {
     
-    // MARK: - Property
-    
-    
     // MARK: - Initializer
     
     override init(items: [Any]?) {

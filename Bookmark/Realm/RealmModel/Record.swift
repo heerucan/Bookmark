@@ -12,9 +12,9 @@ import RealmSwift
 // MARK: - Record
 
 final class Record: Object {
-    @Persisted var store: Store
+    @Persisted var store: Store?
     @Persisted var title: String?
-    @Persisted var image: String
+    @Persisted var image: String?
     @Persisted var category: Bool
     @Persisted var createdAt = Date()
     
@@ -22,7 +22,7 @@ final class Record: Object {
     
     convenience init(store: Store,
                      title: String?,
-                     image: String,
+                     image: String?,
                      category: Bool,
                      createdAt: Date) {
         self.init()

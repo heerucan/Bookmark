@@ -30,9 +30,9 @@ protocol BookmarkRepositoryType {
     func fetchRecord(keyPath: String, ascending: Bool) -> Results<Record>
 }
 
-final class BookmarkRepository: BookmarkRepositoryType {
-    static let shared = BookmarkRepository()
-    private init() { }
+class BookmarkRepository: BookmarkRepositoryType {
+//    static let shared = BookmarkRepository()
+//    private init() { }
     
     var realm = try! Realm()
     
