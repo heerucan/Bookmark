@@ -8,6 +8,10 @@
 import Foundation
 
 enum Setting: CaseIterable, CustomStringConvertible {
+    case notice
+    case fileManage
+    case aboutBookmark
+    
     var description: String {
         switch self {
         case .notice:
@@ -18,10 +22,6 @@ enum Setting: CaseIterable, CustomStringConvertible {
             return "기타"
         }
     }
-    
-    case notice
-    case fileManage
-    case aboutBookmark
     
     var menu: [String] {
         switch self {

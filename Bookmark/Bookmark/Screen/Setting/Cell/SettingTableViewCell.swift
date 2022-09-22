@@ -49,7 +49,6 @@ final class SettingTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(data: String) {
-        
         cellLabel.text = data
     }
 }
