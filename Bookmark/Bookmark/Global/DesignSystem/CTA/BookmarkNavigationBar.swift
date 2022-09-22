@@ -9,6 +9,23 @@ import UIKit
 
 final class BookmarkNavigationBar: BaseView {
     
+    enum NavigationType {
+        case setting
+        case write
+        case all
+        
+        var title: String {
+            switch self {
+            case .setting:
+                return "설정"
+            case .write:
+                return "책갈피 꽂아두기"
+            case .all:
+                return ""
+            }
+        }
+    }
+    
     let titleLabel = UILabel().then {
         $0.font = Font.title1.font
         $0.textColor = Color.black100
@@ -29,14 +46,18 @@ final class BookmarkNavigationBar: BaseView {
     
     // MARK: - Initializer
     
-    override init(frame: CGRect) {
+    init(type: NavigationType) {
         super.init(frame: .zero)
+        titleLabel.text = type.title
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([backButton, rightBarButton, lineView, titleLabel])
+        self.addSubviews([backButton,
+                          rightBarButton,
+                          lineView,
+                          titleLabel])
         
         backButton.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
