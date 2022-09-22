@@ -13,6 +13,8 @@ enum EndPoint {
     case appstore
     case phone
     case safari
+    case notion
+    case ask
     
     func makeURL(_ path: String? = nil) -> URL? {
         switch self {
@@ -35,6 +37,12 @@ enum EndPoint {
             guard let pageLink = path else { return nil }
             guard let safariURL = NSURL(string: pageLink) as URL? else { return nil }
             return safariURL
+        case .notion:
+            guard let notionURL = NSURL(string: APIKey.notion) as URL? else { return nil }
+            return notionURL
+        case .ask:
+            guard let askURL = NSURL(string: APIKey.ask) as URL? else { return nil }
+            return askURL
         }
     }
 }
