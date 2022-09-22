@@ -11,9 +11,9 @@ final class PhraseViewController: BaseViewController {
     
     // MARK: - Property
     
-    let phraseView = PhraseView()
+    private let phraseView = PhraseView()
     
-    let phraseList = [Phrase(image: Icon.Image.gallery, store: "초소산점", book: "나미아백화점"),
+    private let phraseList = [Phrase(image: Icon.Image.gallery, store: "초소산점", book: "나미아백화점"),
                       Phrase(image: Icon.Image.gallery, store: "교보문고 광화문점", book: "어서오세요 휴남동 서점입니다."),
                       Phrase(image: Icon.Image.gallery, store: "yes24 강서점", book: "아무 것도 하고 싶지 않습니다."),
                       Phrase(image: Icon.Image.gallery, store: "홍익문고", book: "어서오세요 휴남동 서점입니다.")]

@@ -11,7 +11,7 @@ final class BookViewController: BaseViewController {
     
     // MARK: - Property
     
-    let bookView = BookView()
+    private let bookView = BookView()
     
     private let bookList = [BookWrite(date: "2022.09.12", name: "북카페파오", image: Icon.Image.gallery),
                             BookWrite(date: "2022.12.12", name: "미스터리유니온", image: Icon.Image.gallery),

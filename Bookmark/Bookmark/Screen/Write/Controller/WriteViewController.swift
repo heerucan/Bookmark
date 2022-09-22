@@ -82,6 +82,8 @@ final class WriteViewController: BaseViewController {
     }
     
     @objc func touchupCompleteButton(sender: UIButton) {
+        guard let text = writeView.titleTextField.text,
+              let writeImage = writeView.imageButton.currentImage else { return }
         if fromWhatView == .detail {
             transition(self, .pop)
         } else if fromWhatView == .bookmark {
