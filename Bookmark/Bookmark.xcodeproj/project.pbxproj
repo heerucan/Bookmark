@@ -53,6 +53,9 @@
 		5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */; };
 		5B71FEC728DBBCBD00F311F5 /* WriteViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */; };
 		5B71FECA28DBBD0C00F311F5 /* FromWhatViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */; };
+		5B71FECD28DC154D00F311F5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FECC28DC154D00F311F5 /* Store.swift */; };
+		5B71FED028DC15C800F311F5 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FECF28DC15C800F311F5 /* Record.swift */; };
+		5B71FED228DC1C7800F311F5 /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
@@ -134,6 +137,9 @@
 		5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSegmentedControl.swift; sourceTree = "<group>"; };
 		5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewState.swift; sourceTree = "<group>"; };
 		5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromWhatViewType.swift; sourceTree = "<group>"; };
+		5B71FECC28DC154D00F311F5 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		5B71FECF28DC15C800F311F5 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
+				5B71FECB28DC153800F311F5 /* Realm */,
 				5B3FACF928CE207D0062D9F6 /* Bookmark */,
 				5B3FACF828CE207D0062D9F6 /* Products */,
 				5B55449928CF108E00781EC8 /* Frameworks */,
@@ -518,6 +525,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B71FECB28DC153800F311F5 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FECE28DC155100F311F5 /* RealmModel */,
+				5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		5B71FECE28DC155100F311F5 /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FECC28DC154D00F311F5 /* Store.swift */,
+				5B71FECF28DC15C800F311F5 /* Record.swift */,
+			);
+			path = RealmModel;
+			sourceTree = "<group>";
+		};
 		5B799D1028D06ADB00648C94 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +744,7 @@
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
 				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
+				5B71FED028DC15C800F311F5 /* Record.swift in Sources */,
 				5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
 				5B71FEBD28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift in Sources */,
@@ -742,6 +768,8 @@
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */,
 				5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */,
+				5B71FED228DC1C7800F311F5 /* BookmarkRepository.swift in Sources */,
+				5B71FECD28DC154D00F311F5 /* Store.swift in Sources */,
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
 				5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
