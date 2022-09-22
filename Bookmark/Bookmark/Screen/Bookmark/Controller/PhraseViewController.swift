@@ -26,19 +26,17 @@ final class PhraseViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureLayout()
-        configureDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function, "나와라")
         phraseView.fetchRealm()
     }
     
     // MARK: - Configure UI & Layout
-
-    private func configureDelegate() {
+    
+    override func setupDelegate() {
         phraseView.configureTableViewDelegate(self, self)
     }
 }
