@@ -19,7 +19,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         }
     }
             
-    let navigationBar = BookmarkNavigationBar()
+    let navigationBar = BookmarkNavigationBar(type: .all)
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.allowsSelection = false
@@ -60,7 +60,10 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
     
     override func configureLayout() {
-        view.addSubviews([navigationBar, tableView, backView])
+        view.addSubviews([navigationBar,
+                          tableView,
+                          backView])
+        
         navigationBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.directionalHorizontalEdges.equalToSuperview()
