@@ -27,7 +27,7 @@ protocol BookmarkRepositoryType {
     func updateBookmarkFilter(item: Store) -> Results<Store>
     
     // 6. 책갈피탭 초기 정렬
-    func fetchRecord(keyPath: String, ascending: Bool) -> Results<Record>
+    func fetchRecord(_ item: String) -> Results<Record>
 }
 
 class BookmarkRepository: BookmarkRepositoryType {
@@ -82,7 +82,7 @@ class BookmarkRepository: BookmarkRepositoryType {
         return realm.objects(Store.self).filter("bookmark == \(item.bookmark)")
     }
     
-    func fetchRecord(keyPath: String, ascending: Bool) -> Results<Record> {
-        return realm.objects(Record.self).sorted(byKeyPath: keyPath, ascending: ascending)
+    func fetchRecord(_ item: String) -> Results<Record> {
+        return realm.objects(Record.self).sorted(byKeyPath: "createdAt", ascending: false).filter("category == \(item)")
     }
 }
