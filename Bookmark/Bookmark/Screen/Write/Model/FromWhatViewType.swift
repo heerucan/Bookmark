@@ -12,4 +12,6 @@ import Foundation
 enum FromWhatViewType {
     case detail
     case bookmark
+    case write
+    case edit
 }

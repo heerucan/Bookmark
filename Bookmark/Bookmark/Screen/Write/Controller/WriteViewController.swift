@@ -16,6 +16,10 @@ final class WriteViewController: BaseViewController {
     let writeView = WriteView()
     
     var fromWhatView: FromWhatViewType = .detail
+    var viewType: FromWhatViewType = .write
+    
+    var bookStore: String = ""
+    var bookmark: Bool = false
     
     // MARK: - LifeCycle
     
@@ -87,12 +91,37 @@ final class WriteViewController: BaseViewController {
     }
     
     @objc func touchupCompleteButton(sender: UIButton) {
-        guard let text = writeView.titleTextField.text,
-              let writeImage = writeView.imageButton.currentImage else { return }
-        if fromWhatView == .detail {
+        
+        // MARK: - TODO 수정 분기처리는 어떻게 하지?
+        guard let title = writeView.titleTextField.text else { return }
+        
+        if fromWhatView == .detail { // 디테일이면 true
+            
+            // 글작성
+            let detailTask = Record(store: Store(name: bookStore, bookmark: bookmark),
+                              title: title,
+                              image: nil,
+                              category: true,
+                              createdAt: Date())
+            writeView.repository.addRecord(item: detailTask)
             transition(self, .pop)
-        } else if fromWhatView == .bookmark {
+            
+        } else if fromWhatView == .bookmark { // 책갈피면 false
+            
+            // 글작성
+            let bookmarkTask = Record(store: Store(name: bookStore, bookmark: bookmark),
+                              title: title,
+                              image: nil,
+                              category: false,
+                              createdAt: Date())
+            writeView.repository.addRecord(item: bookmarkTask)
             transition(self, .dismiss)
+        }
+        
+        if let image = writeView.imageButton.imageView?.image {
+            
+        } else {
+//            guard let
         }
     }
     

@@ -7,7 +7,15 @@
 
 import UIKit
 
+import RealmSwift
+
 final class WriteView: BaseView {
+    
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository()
+    
+    var objectId: ObjectId?
     
     // MARK: - Property
     

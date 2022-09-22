@@ -117,17 +117,23 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
+                guard let detailStoreInfo = self.detailStoreInfo else { return }
                 viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .sentence
                 viewController.fromWhatView = .detail
+                viewController.bookStore = detailStoreInfo.name
+
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
+                guard let detailStoreInfo = self.detailStoreInfo else { return }
                 viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .book
                 viewController.fromWhatView = .detail
+                viewController.bookStore = detailStoreInfo.name
+                viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,

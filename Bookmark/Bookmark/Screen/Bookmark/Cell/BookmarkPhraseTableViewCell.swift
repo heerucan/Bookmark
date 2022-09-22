@@ -17,7 +17,6 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     let dateLabel = UILabel().then {
-        $0.text = "2022.09.21"
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
@@ -25,7 +24,6 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     lazy var bookLabel = UILabel().then {
-        $0.text = "|  🔖  책방 어딘가에서"
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
@@ -77,9 +75,14 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: Phrase) {
-        phraseImageView.image = data.image
-        dateLabel.text = "2021.09.22"
-        bookLabel.text = "|  🔖  \(data.book)  -  \(data.store)"
+    func setupData(data: Record) {
+        guard let title = data.title,
+              let name = data.store?.name else { return }
+        dateLabel.text = data.createdAt.toString()
+        bookLabel.text = "|  🔖  \(name) " + "-" + " \(String(describing: title))"
+    }
+    
+    func setupImage(image: String) {
+        phraseImageView.image = UIImage(named: image)
     }
 }

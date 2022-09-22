@@ -7,7 +7,20 @@
 
 import UIKit
 
+import RealmSwift
+
 final class PhraseView: BaseView {
+    
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository()
+    
+    var tasks: Results<Record>! {
+        didSet {
+            tableView.reloadData()
+            print("Tasks 변화 발생", tasks)
+        }
+    }
     
     // MARK: - Property
     
@@ -47,5 +60,11 @@ final class PhraseView: BaseView {
     func configureTableViewDelegate(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
         tableView.delegate = delegate
         tableView.dataSource = datasource
+    }
+    
+    // MARK: - Custom Method
+    
+    func fetchRealm() {
+        self.tasks = repository.fetchRecord(keyPath: "createdAt", ascending: true)
     }
 }

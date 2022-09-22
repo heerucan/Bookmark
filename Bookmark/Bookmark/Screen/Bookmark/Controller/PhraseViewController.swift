@@ -31,6 +31,11 @@ final class PhraseViewController: BaseViewController {
         configureDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        phraseView.fetchRealm()
+    }
+    
     // MARK: - Configure UI & Layout
 
     private func configureDelegate() {
@@ -43,12 +48,13 @@ final class PhraseViewController: BaseViewController {
 extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         phraseView.emptyStateView.isHidden = (phraseList.count != 0) ? true : false
-        return phraseList.count
+        return phraseView.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkPhraseTableViewCell.identifier, for: indexPath) as? BookmarkPhraseTableViewCell else { return UITableViewCell() }
-        cell.setupData(data: phraseList[indexPath.row])
+        cell.setupData(data: phraseView.tasks[indexPath.row])
+        // MARK: - TODO 이미지 데이터 반영
         return cell
     }
     
@@ -60,6 +66,7 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
                 viewController.fromWhatView = .bookmark
+                viewController.viewType = .edit
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
             }
 
@@ -77,14 +84,14 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
         // realm 데이터 기준으로 이미지 변경
 //        let image = tasks[indexPath.row].edit ? Icon.Image.edit : "heart"
 //        edit.image = UIImage(systemName: image)
-        edit.backgroundColor = Color.green100
+//        edit.backgroundColor = Color.green100
         return UISwipeActionsConfiguration(actions: [edit])
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-//            repository.deleteItem(item: tasks[indexPath.row])
+            phraseView.repository.deleteRecord(item: phraseView.tasks[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }

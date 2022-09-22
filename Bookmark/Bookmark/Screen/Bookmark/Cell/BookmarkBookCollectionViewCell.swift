@@ -12,7 +12,6 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     // MARK: - Property
     
     let dateLabel = UILabel().then {
-        $0.text = "2022.09.21"
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
