@@ -12,6 +12,9 @@ import Foundation
 enum FromWhatViewType {
     case detail
     case bookmark
+}
+
+enum ViewType {
     case write
     case edit
 }

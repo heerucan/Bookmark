@@ -10,7 +10,7 @@ import UIKit
 final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
-   
+    
     private let phraseImageView = UIImageView().then {
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
         $0.backgroundColor = .lightGray
@@ -30,7 +30,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.textAlignment = .left
     }
     
-    private private let lineView = UIView().then {
+    private let lineView = UIView().then {
         $0.backgroundColor = Color.gray400
     }
     
@@ -43,10 +43,10 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-       addSubviews([phraseImageView,
-                   dateLabel,
-                   bookLabel,
-                    lineView])
+        addSubviews([phraseImageView,
+                     dateLabel,
+                     bookLabel,
+                     lineView])
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(18)
@@ -76,10 +76,14 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(data: Record) {
-        guard let title = data.title,
-              let name = data.store?.name else { return }
+        if let title = data.title,
+           let name = data.store?.name {
+            bookLabel.text = "|  🔖  \(name) " + "-" + "  \(String(describing: title))"
+        } else {
+            bookLabel.text = "|  🔖  책방 어딘가 "
+        }
         dateLabel.text = data.createdAt.toString()
-        bookLabel.text = "|  🔖  \(name) " + "-" + "  \(String(describing: title))"
+        
     }
     
     func setupImage(image: String) {

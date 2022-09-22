@@ -12,12 +12,7 @@ final class PhraseViewController: BaseViewController {
     // MARK: - Property
     
     private let phraseView = PhraseView()
-    
-    private let phraseList = [Phrase(image: Icon.Image.gallery, store: "초소산점", book: "나미아백화점"),
-                      Phrase(image: Icon.Image.gallery, store: "교보문고 광화문점", book: "어서오세요 휴남동 서점입니다."),
-                      Phrase(image: Icon.Image.gallery, store: "yes24 강서점", book: "아무 것도 하고 싶지 않습니다."),
-                      Phrase(image: Icon.Image.gallery, store: "홍익문고", book: "어서오세요 휴남동 서점입니다.")]
-    
+  
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -30,7 +25,6 @@ final class PhraseViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function, "나와라")
         phraseView.fetchRealm()
     }
     
@@ -45,7 +39,7 @@ final class PhraseViewController: BaseViewController {
 
 extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        phraseView.emptyStateView.isHidden = (phraseList.count != 0) ? true : false
+        phraseView.emptyStateView.isHidden = (phraseView.tasks.count != 0) ? true : false
         return phraseView.tasks.count
     }
     
@@ -64,6 +58,7 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
                 viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
                 viewController.fromWhatView = .bookmark
                 viewController.viewType = .edit
+                viewController.objectId = self.phraseView.tasks[indexPath.row].objectId
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
             }
         }

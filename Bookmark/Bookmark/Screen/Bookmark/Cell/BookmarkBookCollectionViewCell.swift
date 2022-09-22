@@ -11,19 +11,19 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Property
     
-    let dateLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
         $0.textAlignment = .left
     }
     
-    lazy var bookImageView = UIImageView().then {
+    private lazy var bookImageView = UIImageView().then {
         $0.backgroundColor = .lightGray
         $0.addSubview(bookLabel)
     }
     
-    let bookLabel = UILabel().then {
+    private let bookLabel = UILabel().then {
         $0.text = "책방이름없음"
         $0.font = Font.body1.font
         $0.textColor = .white
@@ -55,8 +55,13 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: BookWrite) {
-        bookImageView.image = data.image
-        bookLabel.text = data.name
+    func setupData(data: Record) {
+        // MARK: - TODO 이미지 처리하기
+//        bookImageView.image
+        if let name = data.store?.name {
+            bookLabel.text = name
+        } else {
+            bookLabel.text = "책방 어딘가"
+        }
     }
 }

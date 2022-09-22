@@ -7,7 +7,20 @@
 
 import UIKit
 
+import RealmSwift
+
 final class BookView: BaseView {
+    
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository()
+    
+    var tasks: Results<Record>! {
+        didSet {
+            collectionView.reloadData()
+            print("📪collectionView 변화 발생", tasks)
+        }
+    }
     
     // MARK: - Property
     
@@ -55,5 +68,11 @@ final class BookView: BaseView {
         collectionView.dataSource = dataSource
         collectionView.register(BookmarkBookCollectionViewCell.self,
                                 forCellWithReuseIdentifier: BookmarkBookCollectionViewCell.identifier)
+    }
+    
+    // MARK: - Custom Method
+    
+    func fetchRealm() {
+        self.tasks = repository.fetchRecord("false")
     }
 }

@@ -8,18 +8,29 @@
 import UIKit
 
 import PhotosUI
+import RealmSwift
 
 final class WriteViewController: BaseViewController {
+    
+    // MARK: - Realm
+    
+    var tasks: Results<Record>! {
+        didSet {
+            print("Tasks 변화 발생", tasks)
+        }
+    }
     
     // MARK: - Property
     
     let writeView = WriteView()
     
     var fromWhatView: FromWhatViewType = .detail
-    var viewType: FromWhatViewType = .write
+    var viewType: ViewType = .write
     
     var bookStore: String = ""
     var bookmark: Bool = false
+    
+    var objectId: ObjectId?
     
     // MARK: - LifeCycle
     
@@ -74,7 +85,7 @@ final class WriteViewController: BaseViewController {
         picker.delegate = self
         self.present(picker, animated: true)
     }
-        
+    
     // MARK: - @objc
     
     @objc func touchupImageButton() {
@@ -91,37 +102,38 @@ final class WriteViewController: BaseViewController {
     }
     
     @objc func touchupCompleteButton(sender: UIButton) {
-        
-        // MARK: - TODO 수정 분기처리는 어떻게 하지?
         guard let title = writeView.titleTextField.text else { return }
-        
-        if fromWhatView == .detail { // 디테일이면 true
-            
-            // 글작성
+        if writeView.writeViewState == .sentence { // 글이면 true
             let detailTask = Record(store: Store(name: bookStore, bookmark: bookmark),
-                              title: title,
-                              image: nil,
-                              category: true,
-                              createdAt: Date())
+                                    title: title,
+                                    category: true,
+                                    createdAt: Date())
             writeView.repository.addRecord(item: detailTask)
-            transition(self, .pop)
-            
-        } else if fromWhatView == .bookmark { // 책갈피면 false
-            
-            // 글작성
-            let bookmarkTask = Record(store: Store(name: bookStore, bookmark: bookmark),
-                              title: title,
-                              image: nil,
-                              category: false,
-                              createdAt: Date())
-            writeView.repository.addRecord(item: bookmarkTask)
-            transition(self, .dismiss)
+            fromWhatView == .detail ? transition(self, .pop) : transition(self, .dismiss)
+        } else if writeView.writeViewState == .book { // 책이면 false
+            if viewType == .edit { // 수정하기는 무조건 탭바 -> 모달 -> disimiss
+                guard let objectId = objectId else { return }
+                writeView.repository.updateRecord(item:["objectId": objectId,
+                                                        "Store": Store(name: bookStore, bookmark: bookmark),
+                                                        "title": title,
+                                                        "category": false,
+                                                        "createdAt": Date()])
+                transition(self, .dismiss)
+            } else {
+                let bookmarkTask = Record(store: Store(name: bookStore, bookmark: bookmark),
+                                          title: title,
+                                          category: false,
+                                          createdAt: Date())
+                writeView.repository.addRecord(item: bookmarkTask)
+                fromWhatView == .detail ? transition(self, .pop) : transition(self, .dismiss)
+            }
         }
         
+        // MARK: - TODO 이미지 처리하기
         if let image = writeView.imageButton.imageView?.image {
             
         } else {
-//            guard let
+            //            guard let
         }
     }
     

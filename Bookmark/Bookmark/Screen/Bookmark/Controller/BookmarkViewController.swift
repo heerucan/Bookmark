@@ -104,6 +104,7 @@ final class BookmarkViewController: BaseViewController {
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
                 viewController.fromWhatView = .bookmark
+                viewController.viewType = .write
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
@@ -111,6 +112,7 @@ final class BookmarkViewController: BaseViewController {
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(Icon.Button.close, .book)
                 viewController.fromWhatView = .bookmark
+                viewController.viewType = .write
             }
         }
         showAlert(title: "어떤 책갈피를 꽂아두실 건가요?",

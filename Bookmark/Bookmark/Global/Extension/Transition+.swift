@@ -11,6 +11,7 @@ extension UIViewController {
     enum TransitionStyle {
         case presentNavigation
         case present
+        case presentedViewDismiss
         case push
         case dismiss
         case pop
@@ -28,6 +29,10 @@ extension UIViewController {
         case .present:
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
+        case .presentedViewDismiss:
+            self.dismiss(animated: true) {
+                viewController.viewWillAppear(true)
+            }
         case .push:
             self.navigationController?.pushViewController(viewController, animated: true)
         case .dismiss:

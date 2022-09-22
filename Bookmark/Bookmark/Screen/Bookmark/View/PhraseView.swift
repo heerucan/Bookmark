@@ -65,6 +65,6 @@ final class PhraseView: BaseView {
     // MARK: - Custom Method
     
     func fetchRealm() {
-        self.tasks = repository.fetchRecord(keyPath: "createdAt", ascending: true)
+        self.tasks = repository.fetchRecord("true")
     }
 }

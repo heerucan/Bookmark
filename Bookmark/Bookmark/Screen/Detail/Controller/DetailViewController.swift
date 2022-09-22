@@ -122,7 +122,6 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.writeView.writeViewState = .sentence
                 viewController.fromWhatView = .detail
                 viewController.bookStore = detailStoreInfo.name
-
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in

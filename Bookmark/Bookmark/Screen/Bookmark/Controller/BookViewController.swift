@@ -13,10 +13,6 @@ final class BookViewController: BaseViewController {
     
     private let bookView = BookView()
     
-    private let bookList = [BookWrite(date: "2022.09.12", name: "북카페파오", image: Icon.Image.gallery),
-                            BookWrite(date: "2022.12.12", name: "미스터리유니온", image: Icon.Image.gallery),
-                            BookWrite(date: "2012.04.22", name: "교보문고 광화문점", image: Icon.Image.gallery)]
-    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -25,14 +21,16 @@ final class BookViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureLayout()
-        configureDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bookView.fetchRealm()
     }
     
     // MARK: - Configure UI & Layout
 
-    private func configureDelegate() {
+    override func setupDelegate() {
         bookView.configureDelegate(self, self)
     }
 }
@@ -41,14 +39,14 @@ final class BookViewController: BaseViewController {
 
 extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        bookView.emptyStateView.isHidden = (bookList.count != 0) ? true : false
-        return bookList.count
+        bookView.emptyStateView.isHidden = (bookView.tasks.count != 0) ? true : false
+        return bookView.tasks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkBookCollectionViewCell.identifier, for: indexPath) as? BookmarkBookCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.setupData(data: bookList[indexPath.item])
+        cell.setupData(data: bookView.tasks[indexPath.item])
         return cell
     }
 }
