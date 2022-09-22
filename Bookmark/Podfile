@@ -9,4 +9,5 @@ target 'Bookmark' do
   pod 'NMapsMap'
   pod 'SnapKit', '~> 5.6.0'
   pod 'Then'
+  pod 'RealmSwift', '~>10'
 end
