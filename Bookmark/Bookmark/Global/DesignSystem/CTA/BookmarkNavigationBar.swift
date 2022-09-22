@@ -19,12 +19,12 @@ final class BookmarkNavigationBar: BaseView {
         $0.setImage(Icon.Button.back, for: .normal)
     }
     
-    let shareButton = UIButton().then {
+    let rightBarButton = UIButton().then {
         $0.setImage(Icon.Button.share, for: .normal)
     }
     
     private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
+        $0.backgroundColor = Color.gray400
     }
     
     // MARK: - Initializer
@@ -36,13 +36,13 @@ final class BookmarkNavigationBar: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([backButton, shareButton, lineView, titleLabel])
+        self.addSubviews([backButton, rightBarButton, lineView, titleLabel])
         
         backButton.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
         }
         
-        shareButton.snp.makeConstraints { make in
+        rightBarButton.snp.makeConstraints { make in
             make.top.trailing.bottom.equalToSuperview()
         }
         

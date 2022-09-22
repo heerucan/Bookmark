@@ -29,6 +29,7 @@ enum Icon {
         static let highlightedGoMapApp = UIImage(named: "btnHighlightedGoMapApp")
         static let unselectedBookmark = UIImage(named: "btnDetailUnselectedLike")
         static let bookmark = UIImage(named: "btnDetailLike")
+        static let close = UIImage(named: "btnClose")
     }
     
     enum Image {

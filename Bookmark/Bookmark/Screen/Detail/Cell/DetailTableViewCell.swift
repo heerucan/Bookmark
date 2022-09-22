@@ -63,14 +63,10 @@ final class DetailTableViewCell: BaseTableViewCell {
     private let mapView = NMFMapView(frame: .zero).then {
         $0.allowsScrolling = false
         $0.allowsZooming = false
-        $0.locationOverlay.hidden = true
+        $0.zoomLevel = 13
     }
     
     private let mapAppButton = UIButton().then {
-        $0.makeShadow(color: Color.black100.cgColor,
-                      radius: 4,
-                      offset: CGSize(width: 0, height: 0),
-                      opacity: 0.25)
         $0.setImage(Icon.Button.goMapApp, for: .normal)
         $0.setImage(Icon.Button.highlightedGoMapApp, for: .highlighted)
         $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
@@ -157,7 +153,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         mapView.snp.makeConstraints { make in
             make.top.equalTo(locationTitleLabel.snp.bottom).offset(16)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(mapView.snp.width).multipliedBy(0.7)
+            make.height.equalTo(mapView.snp.width).multipliedBy(1)
             make.bottom.equalToSuperview().inset(150)
         }
         
@@ -185,7 +181,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         case cloneButton:
             guard let address = addressLabel.text else { return }
             UIPasteboard.general.string = address
-            showToast(message: "클립보드에 책방 주소가 복사됐어요!")
+            showToast(message: Matrix.clipboard)
             
         case homePageButton:
             guard let homepage = EndPoint.safari.makeURL(homepage) else { return }
