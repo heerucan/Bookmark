@@ -155,7 +155,6 @@ extension WriteViewController: UITextFieldDelegate {
 // MARK: - PHPicker / UIImagePicker / UINavigation Protocol
 
 extension WriteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    // PHPickerViewControllerDelegate
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true) {
             if let itemProvider = results.first?.itemProvider,
@@ -170,7 +169,6 @@ extension WriteViewController: PHPickerViewControllerDelegate, UINavigationContr
         }
     }
     
-    // UIImagePickerControllerDelegate, UINavigationControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             picker.transition(self, .dismiss)

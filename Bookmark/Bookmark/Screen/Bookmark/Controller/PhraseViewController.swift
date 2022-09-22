@@ -59,7 +59,6 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     // leading -> 수정
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: nil) { _, _, completion in
-            
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
@@ -67,22 +66,9 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
                 viewController.viewType = .edit
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
             }
-
-//            self.repository.updateFavorite(item: self.tasks[indexPath.row])
-            
-            /* 여기서도 didSet으로 프로퍼티가 변경 시마다 reload해주기 때문에 아래 코드는 주석처리해도 된다.
-             
-             하나의 record에서 하나만 reload하니까 상대적으로 효율적임 -> 이게 좀 더 스무스하긴 하네.. 내 취향이네..
-            // self.homeTableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
-            
-             데이터가 변경됐으니 다시 realm에서 데이터를 가지고 오기 => didSet 일관적 형태로 갱신
-            // self.fetchRealmData() */
         }
-        
-        // realm 데이터 기준으로 이미지 변경
-//        let image = tasks[indexPath.row].edit ? Icon.Image.edit : "heart"
-//        edit.image = UIImage(systemName: image)
-//        edit.backgroundColor = Color.green100
+        edit.backgroundColor = Color.green100
+        edit.title = "수정"
         return UISwipeActionsConfiguration(actions: [edit])
     }
     

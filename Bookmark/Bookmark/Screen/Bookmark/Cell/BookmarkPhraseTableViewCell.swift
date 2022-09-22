@@ -11,26 +11,26 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
    
-    let phraseImageView = UIImageView().then {
+    private let phraseImageView = UIImageView().then {
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
         $0.backgroundColor = .lightGray
     }
     
-    let dateLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
         $0.textAlignment = .left
     }
     
-    lazy var bookLabel = UILabel().then {
+    private lazy var bookLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
         $0.textAlignment = .left
     }
     
-    private let lineView = UIView().then {
+    private private let lineView = UIView().then {
         $0.backgroundColor = Color.gray400
     }
     
@@ -79,7 +79,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         guard let title = data.title,
               let name = data.store?.name else { return }
         dateLabel.text = data.createdAt.toString()
-        bookLabel.text = "|  🔖  \(name) " + "-" + " \(String(describing: title))"
+        bookLabel.text = "|  🔖  \(name) " + "-" + "  \(String(describing: title))"
     }
     
     func setupImage(image: String) {
