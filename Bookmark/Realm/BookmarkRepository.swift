@@ -31,9 +31,7 @@ protocol BookmarkRepositoryType {
 }
 
 class BookmarkRepository: BookmarkRepositoryType {
-//    static let shared = BookmarkRepository()
-//    private init() { }
-    
+
     var realm = try! Realm()
     
     func addRecord(item: Record) {
