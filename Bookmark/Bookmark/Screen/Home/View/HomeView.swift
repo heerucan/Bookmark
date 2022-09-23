@@ -18,13 +18,17 @@ final class HomeView: BaseView {
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: Matrix.cellWidth, height: Matrix.cellHeight)
+        layout.itemSize = CGSize(width: Matrix.cellWidth, height: Matrix.cellHeight-4)
         layout.minimumLineSpacing = Matrix.cellSpacing
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Matrix.cellMargin, bottom: 0, right: Matrix.cellMargin)
+        layout.sectionInset = UIEdgeInsets(top: 2, left: Matrix.cellMargin, bottom: 2, right: Matrix.cellMargin)
         layout.scrollDirection = .horizontal
         return layout
     }()
+    
+    private let backView = UIView().then {
+        $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 2), opacity: 0.3)
+    }
     
     lazy var searchButton = UIButton().then {
         $0.addSubviews([searchLabel, searchIconView])
@@ -38,7 +42,7 @@ final class HomeView: BaseView {
     
     private let searchLabel = UILabel().then {
         $0.text = "책방을 검색해주세요"
-        $0.textColor = Color.gray300
+        $0.textColor = Color.gray200
         $0.font = Font.body5.font
     }
     
@@ -51,9 +55,11 @@ final class HomeView: BaseView {
     }
     
     lazy var storeButton = UIButton().then {
-        $0.addSubviews([nameLabel, addressLabel, distanceLabel])
+        $0.addSubviews([nameLabel, addressLabel, distanceLabel, lineView])
         $0.backgroundColor = .white
-        $0.makeCornerStyle(width: 0, color: nil, radius: 10)
+        $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: -2), opacity: 0.2)
+        $0.layer.cornerRadius = 20
+        $0.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }
     
     private let nameLabel = UILabel().then {
@@ -81,6 +87,10 @@ final class HomeView: BaseView {
         $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 0), opacity: 0.25)
     }
     
+    private let lineView = UIView().then {
+        $0.backgroundColor = Color.gray400
+    }
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -90,11 +100,19 @@ final class HomeView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([searchButton,
+        self.addSubviews([backView,
+                          searchButton,
                           collectionView,
                           mapView,
                           locationButton,
-                          storeButton])
+                          storeButton,
+                          lineView])
+        
+        backView.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(mapView.snp.top)
+        }
         
         searchButton.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
@@ -126,7 +144,7 @@ final class HomeView: BaseView {
         }
 
         storeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(self.safeAreaLayoutGuide.snp.bottom)
             make.height.equalTo(89)
         }
@@ -146,6 +164,12 @@ final class HomeView: BaseView {
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(addressLabel.snp.centerY)
             make.width.equalTo(50)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.directionalHorizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
         }
         
         locationButton.snp.makeConstraints { make in

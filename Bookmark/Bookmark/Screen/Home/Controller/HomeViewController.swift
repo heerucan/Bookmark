@@ -99,8 +99,8 @@ final class HomeViewController: BaseViewController {
     private func updateCurrentLocation() {
         guard let lat = myLatitude, let long = myLongtitude else { return }
         let coordinate = NMGLatLng(lat: lat, lng: long)
-        let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate)
-        cameraUpdate.animation = .easeIn
+        let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate, zoomTo: 14)
+        cameraUpdate.animation = .linear
         homeView.mapView.moveCamera(cameraUpdate)
     }
 
@@ -192,6 +192,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTagCollectionViewCell.identifier, for: indexPath) as? HomeTagCollectionViewCell
         else { return UICollectionViewCell() }
         cell.setupData(index: indexPath.item)
+        cell.makeShadow(radius: 2, offset: CGSize.zero, opacity: 0.15)
         return cell
     }
     
@@ -311,10 +312,10 @@ extension HomeViewController {
             UIView.animate(withDuration: 0.1) {
                 self.homeView.storeButton.transform = CGAffineTransform(
                     translationX: 0,
-                    y: -self.homeView.storeButton.frame.height-16)
+                    y: -self.homeView.storeButton.frame.height)
                 self.homeView.locationButton.transform = CGAffineTransform(
                     translationX: 0,
-                    y: -self.homeView.locationButton.frame.height-40)
+                    y: -self.homeView.locationButton.frame.height-20)
             }
         }
     }

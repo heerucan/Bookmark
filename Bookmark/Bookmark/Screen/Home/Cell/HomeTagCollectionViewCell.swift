@@ -52,7 +52,6 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     override func configureUI() {
         layer.borderColor = Color.gray300.cgColor
         layer.cornerRadius = 5
-        layer.borderWidth = 1
         clipsToBounds = true
         backgroundColor = .white
     }
