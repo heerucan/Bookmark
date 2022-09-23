@@ -59,6 +59,8 @@
 		5B71FED528DC38F400F311F5 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED428DC38F400F311F5 /* SettingView.swift */; };
 		5B71FED828DC3B2C00F311F5 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */; };
 		5B71FEDB28DC41B300F311F5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDA28DC41B200F311F5 /* Setting.swift */; };
+		5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */; };
+		5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
@@ -146,6 +148,8 @@
 		5B71FED428DC38F400F311F5 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		5B71FEDA28DC41B200F311F5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
+		5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionReusableView.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5544B428CF1A7800781EC8 /* Date+.swift */,
+				5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */,
 				5BB659A528CF7D7F0009BF1A /* UIFont+.swift */,
 				5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */,
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
@@ -504,6 +509,7 @@
 			children = (
 				5B71FEBA28DB93E900F311F5 /* PhraseView.swift */,
 				5B71FEB828DB93E200F311F5 /* BookView.swift */,
+				5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -794,6 +800,7 @@
 				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
 				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
+				5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */,
 				5B71FEB728DB93C700F311F5 /* BookViewController.swift in Sources */,
 				5B71FEBF28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
@@ -807,6 +814,7 @@
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
 				5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
+				5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
 				5B71FEBB28DB93E900F311F5 /* PhraseView.swift in Sources */,

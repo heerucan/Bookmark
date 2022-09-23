@@ -28,12 +28,13 @@ final class BookView: BaseView {
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        let width = (UIScreen.main.bounds.width-3)/2
+        let width = (UIScreen.main.bounds.width-6)/3
         layout.itemSize = CGSize(width: width, height: width)
         layout.minimumLineSpacing = 3
         layout.minimumInteritemSpacing = 3
         layout.sectionInset = UIEdgeInsets.zero
         layout.scrollDirection = .vertical
+        layout.headerReferenceSize = .init(width: UIScreen.main.bounds.width, height: 36)
         return layout
     }()
     
@@ -68,6 +69,9 @@ final class BookView: BaseView {
         collectionView.dataSource = dataSource
         collectionView.register(BookmarkBookCollectionViewCell.self,
                                 forCellWithReuseIdentifier: BookmarkBookCollectionViewCell.identifier)
+        collectionView.register(BookCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: BookCollectionReusableView.identifier)
     }
     
     // MARK: - Custom Method
