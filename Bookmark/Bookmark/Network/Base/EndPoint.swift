@@ -10,6 +10,8 @@ import Foundation
 enum EndPoint {
     case seoul
     case naver
+    case kakao
+    case google
     case appstore
     case phone
     case safari
@@ -25,6 +27,14 @@ enum EndPoint {
             guard let search = path?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
             let naver = "nmap://search?query=\(String(describing: search))&appname=\(APIKey.bundleName)"
             return URL(string: naver)
+        case .kakao:
+            guard let number = path else { return nil }
+            let kakao = "kakaomap://look?p=\(number)"
+            return  URL(string: kakao)
+        case .google:
+            guard let number = path else { return nil }
+            let google = "comgooglemaps://?center=\(number)&zoom=14"
+            return  URL(string: google)
         case .appstore:
             let appStore =  "https://apps.apple.com/kr/app/%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%A7%80%EB%8F%84-%EB%82%B4%EB%B9%84%EA%B2%8C%EC%9D%B4%EC%85%98/id311867728"
             return URL(string: appStore)

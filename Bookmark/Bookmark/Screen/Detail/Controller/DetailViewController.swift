@@ -7,9 +7,22 @@
 
 import UIKit
 
+import RealmSwift
 import SafariServices
 
 final class DetailViewController: BaseViewController, SafariViewDelegate {
+    
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository()
+    
+    var tasks: Results<Store>! {
+        didSet {
+            guard let name = detailStoreInfo?.name else { return }
+            
+            print("📪bookmarkButton 변화 발생", tasks)
+        }
+    }
     
     // MARK: - Property
     
@@ -118,10 +131,11 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }
+                print("📦", detailStoreInfo.name)
                 viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .sentence
                 viewController.fromWhatView = .detail
-                viewController.bookStore = detailStoreInfo.name
+                viewController.writeView.bookStore = detailStoreInfo.name
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
@@ -131,7 +145,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .book
                 viewController.fromWhatView = .detail
-                viewController.bookStore = detailStoreInfo.name
+                viewController.writeView.bookStore = detailStoreInfo.name
                 viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
@@ -146,6 +160,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         } else {
             sender.setImage(Icon.Button.unselectedBookmark, for: .normal)
         }
+//        repository.updateBookmark(item: sender.isSelected)
     }
     
     @objc func touchupBackButton() {
@@ -160,6 +175,45 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                                      detailStoreInfo.phone,
                                      detailStoreInfo.homeURL,
                                      detailStoreInfo.sns])
+    }
+    
+    @objc func touchupMapAppButton() {
+        guard let detailStoreInfo = detailStoreInfo else {
+            return
+        }
+
+        print("???웅?")
+        let naver = UIAlertAction(title: "네이버맵으로 이동", style: .default) { _ in
+            guard let naver = EndPoint.naver.makeURL(detailStoreInfo.name) else { return }
+            guard let appStore = EndPoint.appstore.makeURL() else { return }
+            if UIApplication.shared.canOpenURL(naver) {
+                UIApplication.shared.open(naver)
+            } else {
+                UIApplication.shared.open(appStore)
+            }
+        }
+        
+        let kakao = UIAlertAction(title: "카카오맵으로 이동", style: .default) { _ in
+            guard let kakao = EndPoint.kakao.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
+            if UIApplication.shared.canOpenURL(URL(string: "kakaomap://open")!) {
+                UIApplication.shared.open(kakao)
+            } else {
+                self.showAlert(title: "카카오맵이 없네요 :(", message: nil, actions: [])
+            }
+        }
+        
+        let google = UIAlertAction(title: "구글맵으로 이동", style: .default) { _ in
+            guard let google = EndPoint.google.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
+            if UIApplication.shared.canOpenURL((URL(string:"comgooglemaps://")!)) {
+                UIApplication.shared.open(google)
+            } else {
+                self.showAlert(title: "구글맵이 없네요 :(", message: nil, actions: [])
+            }
+        }
+        showAlert(title: "앱을 선택하세요",
+                  message: nil,
+                  actions: [naver, kakao, google],
+                  preferredStyle: .actionSheet)
     }
 }
 
@@ -176,6 +230,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setupMapView(data: detailStoreInfo)
         cell.setupData(data: detailStoreInfo)
         cell.safariViewDelegate = self
+        cell.mapAppButton.addTarget(self, action: #selector(touchupMapAppButton), for: .touchUpInside)
         return cell
     }
 }

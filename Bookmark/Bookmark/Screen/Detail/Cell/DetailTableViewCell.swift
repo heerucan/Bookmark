@@ -20,7 +20,7 @@ final class DetailTableViewCell: BaseTableViewCell {
     private var phoneNumber = ""
     private var homepage = ""
     private var sns = ""
-        
+    
     private let infoTitleLabel = UILabel().then {
         $0.text = "책방 상세정보"
     }
@@ -44,7 +44,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         $0.setImage(Icon.Button.clone, for: .normal)
         $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
-
+    
     private let typeLabel = UILabel()
     private let addressLabel = UILabel()
     private let urlView = UIView()
@@ -66,10 +66,9 @@ final class DetailTableViewCell: BaseTableViewCell {
         $0.zoomLevel = 13
     }
     
-    private let mapAppButton = UIButton().then {
+    let mapAppButton = UIButton().then {
         $0.setImage(Icon.Button.goMapApp, for: .normal)
         $0.setImage(Icon.Button.highlightedGoMapApp, for: .highlighted)
-        $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
     
     // MARK: - Initializer
@@ -153,7 +152,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         mapView.snp.makeConstraints { make in
             make.top.equalTo(locationTitleLabel.snp.bottom).offset(16)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
-            make.height.equalTo(mapView.snp.width).multipliedBy(1)
+            make.height.equalTo(mapView.snp.width).multipliedBy(0.7)
             make.bottom.equalToSuperview().inset(150)
         }
         
@@ -174,7 +173,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         switch sender {
         case phoneButton:
             if let phone = EndPoint.phone.makeURL(phoneNumber),
-                UIApplication.shared.canOpenURL(phone) {
+               UIApplication.shared.canOpenURL(phone) {
                 UIApplication.shared.open(phone, options: [:], completionHandler: nil)
             }
             
@@ -187,20 +186,12 @@ final class DetailTableViewCell: BaseTableViewCell {
             guard let homepage = EndPoint.safari.makeURL(homepage) else { return }
             let homepageViewController = SFSafariViewController(url: homepage)
             safariViewDelegate?.presentSafariView(homepageViewController)
-                        
+            
         case snsButton:
             guard let sns = EndPoint.safari.makeURL(sns) else { return }
             let snsViewController = SFSafariViewController(url: sns)
             safariViewDelegate?.presentSafariView(snsViewController)
             
-        case mapAppButton:
-            guard let naver = EndPoint.naver.makeURL(bookStore) else { return }
-            guard let appStore = EndPoint.appstore.makeURL() else { return }
-            if UIApplication.shared.canOpenURL(naver) {
-                UIApplication.shared.open(naver)
-            } else {
-                UIApplication.shared.open(appStore)
-            }
         default:
             break
         }
@@ -230,6 +221,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         phoneNumber = data.phone
         homepage = data.homeURL
         sns = data.sns
+        
         typeLabel.text = "책방타입    \(data.typeName)"
         addressLabel.text = "책방주소    \(data.address)"
         phoneButton.setTitle("전화번호    \(data.phone)", for: .normal)
