@@ -51,6 +51,7 @@ class BookmarkRepository: BookmarkRepositoryType {
                 realm.delete(item)
                 print("Delete Realm 성공!")
             }
+//            FileManagerHelper.shared.removeImageFromDocument(fileName: "\(item.objectId).jpg")
         } catch let error {
             print(error)
         }
