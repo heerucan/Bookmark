@@ -52,7 +52,7 @@
 		5B71FEC228DB946300F311F5 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC128DB946300F311F5 /* Detail.swift */; };
 		5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */; };
 		5B71FEC728DBBCBD00F311F5 /* WriteViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */; };
-		5B71FECA28DBBD0C00F311F5 /* FromWhatViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */; };
+		5B71FECA28DBBD0C00F311F5 /* BookmarkViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */; };
 		5B71FECD28DC154D00F311F5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FECC28DC154D00F311F5 /* Store.swift */; };
 		5B71FED028DC15C800F311F5 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FECF28DC15C800F311F5 /* Record.swift */; };
 		5B71FED228DC1C7800F311F5 /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */; };
@@ -141,7 +141,7 @@
 		5B71FEC128DB946300F311F5 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSegmentedControl.swift; sourceTree = "<group>"; };
 		5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewState.swift; sourceTree = "<group>"; };
-		5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromWhatViewType.swift; sourceTree = "<group>"; };
+		5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewType.swift; sourceTree = "<group>"; };
 		5B71FECC28DC154D00F311F5 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		5B71FECF28DC15C800F311F5 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */,
-				5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */,
+				5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -821,7 +821,7 @@
 				5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5B71FEC228DB946300F311F5 /* Detail.swift in Sources */,
-				5B71FECA28DBBD0C00F311F5 /* FromWhatViewType.swift in Sources */,
+				5B71FECA28DBBD0C00F311F5 /* BookmarkViewType.swift in Sources */,
 				5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */,
 				5B819ED028D245D200626693 /* APIError.swift in Sources */,
 				5B71FED528DC38F400F311F5 /* SettingView.swift in Sources */,
