@@ -176,6 +176,14 @@ extension WriteViewController: UITextFieldDelegate {
         writeView.titleTextField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        writeView.titleTextField.isSelected = true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        writeView.titleTextField.isSelected = false
+    }
 }
 
 // MARK: - PHPicker / UIImagePicker / UINavigation Protocol

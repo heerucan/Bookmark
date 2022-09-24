@@ -270,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				5BECBE5428D34C5B00E83995 /* Model */,
-				5B96BF9228D7200900C30AA8 /* Cell */,
 				5B799D1028D06ADB00648C94 /* View */,
 				5B55443728CEF95E00781EC8 /* Controller */,
 			);
@@ -280,7 +279,6 @@
 		5B55443528CEF95100781EC8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				5B578A9728D0CF8C0039855C /* Cell */,
 				5B578A9428D0C64B0039855C /* View */,
 				5B55443C28CEFA2900781EC8 /* Controller */,
 			);
@@ -291,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				5B71FED928DC41A800F311F5 /* Model */,
-				5B71FED628DC3B0D00F311F5 /* Cell */,
 				5B71FED328DC38E100F311F5 /* View */,
 				5B55445228CEFE1000781EC8 /* Controller */,
 			);
@@ -329,7 +326,6 @@
 		5B55443A28CEF9D200781EC8 /* Bookmark */ = {
 			isa = PBXGroup;
 			children = (
-				5B71FEB328DB938800F311F5 /* Cell */,
 				5B71FEB228DB938400F311F5 /* View */,
 				5B55443B28CEFA1500781EC8 /* Controller */,
 			);
@@ -492,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				5B578A9528D0C6570039855C /* SearchView.swift */,
+				5B578A9728D0CF8C0039855C /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -510,6 +507,7 @@
 				5B71FEBA28DB93E900F311F5 /* PhraseView.swift */,
 				5B71FEB828DB93E200F311F5 /* BookView.swift */,
 				5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */,
+				5B71FEB328DB938800F311F5 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				5B71FED428DC38F400F311F5 /* SettingView.swift */,
+				5B71FED628DC3B0D00F311F5 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -586,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				5B799D1128D06AE500648C94 /* HomeView.swift */,
+				5B96BF9228D7200900C30AA8 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
