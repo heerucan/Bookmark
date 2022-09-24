@@ -15,7 +15,7 @@ final class BookmarkNavigationBar: BaseView {
         case bookmark
         case write
         
-        var title: String {
+        fileprivate var title: String {
             switch self {
             case .setting:
                 return "설정"
@@ -26,7 +26,7 @@ final class BookmarkNavigationBar: BaseView {
             }
         }
         
-        var rightButton: UIImage? {
+        fileprivate var rightButton: UIImage? {
             switch self {
             case .setting:
                 return nil
@@ -37,7 +37,7 @@ final class BookmarkNavigationBar: BaseView {
             }
         }
         
-        var leftButton: UIImage? {
+        fileprivate var leftButton: UIImage? {
             switch self {
             case .setting, .bookmark:
                 return nil

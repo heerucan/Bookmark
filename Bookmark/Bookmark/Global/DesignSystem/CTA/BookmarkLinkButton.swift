@@ -14,7 +14,7 @@ final class BookmarkLinkButton: UIButton {
     enum LinkType {
         case phone, url
         
-        var color: UIColor {
+        fileprivate var color: UIColor {
             switch self {
             case .phone:
                 return Color.gray100

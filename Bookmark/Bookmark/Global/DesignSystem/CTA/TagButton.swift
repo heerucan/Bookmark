@@ -14,7 +14,7 @@ final class TagButton: UIButton {
     enum ButtonType {
         case bookmark, category, location
         
-        var font: UIFont? {
+        fileprivate var font: UIFont? {
             switch self {
             case .bookmark, .category:
                 return Font.body4.font
