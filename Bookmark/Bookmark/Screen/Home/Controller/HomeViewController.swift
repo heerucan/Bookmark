@@ -7,10 +7,18 @@
 
 import UIKit
 
+import RealmSwift
 import CoreLocation
 import NMapsMap
 
 final class HomeViewController: BaseViewController {
+    
+    var tasks: Results<Category>! {
+        didSet {
+            print("Tasks 변화 발생", tasks)
+        }
+    }
+    let repository = BookmarkRepository.shared
     
     // MARK: - Property
     
@@ -54,11 +62,13 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setupAction()
         requestAPI()
+        checkFirstUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        tasks = repository.fetchRealm()
     }
     
     // MARK: - Delegate
@@ -85,6 +95,13 @@ final class HomeViewController: BaseViewController {
     }
     
     // MARK: - Custom Method
+    
+    private func checkFirstUser() {
+        if UserDefaults.standard.bool(forKey: Matrix.firstUser) == false {
+            repository.initCategory()
+            UserDefaults.standard.set(true, forKey: Matrix.firstUser)
+        }
+    }
     
     private func setupAction() {
         [homeView.searchButton,
