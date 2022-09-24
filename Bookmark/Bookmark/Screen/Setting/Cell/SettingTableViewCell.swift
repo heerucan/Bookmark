@@ -33,12 +33,12 @@ final class SettingTableViewCell: BaseTableViewCell {
                                 lineView])
         
         cellLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(17)
+            make.top.equalToSuperview().inset(21)
             make.leading.equalToSuperview().inset(20)
         }
         
         lineView.snp.makeConstraints { make in
-            make.top.equalTo(cellLabel.snp.bottom).offset(16)
+            make.top.equalTo(cellLabel.snp.bottom).offset(20)
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview().inset(20)

@@ -45,7 +45,7 @@ final class BookmarkViewController: BaseViewController {
     }
     
     private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
+        $0.backgroundColor = Color.gray500
     }
         
     // MARK: - LifeCycle
@@ -102,17 +102,17 @@ final class BookmarkViewController: BaseViewController {
         let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
+                viewController.writeView.setupWriteViewState(.sentence)
                 viewController.fromWhatView = .bookmark
-                viewController.viewType = .write
+                viewController.bookmarkViewStatus = .write
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.setupWriteViewState(Icon.Button.close, .book)
+                viewController.writeView.setupWriteViewState(.book)
                 viewController.fromWhatView = .bookmark
-                viewController.viewType = .write
+                viewController.bookmarkViewStatus = .write
             }
         }
         showAlert(title: "어떤 책갈피를 꽂아두실 건가요?",

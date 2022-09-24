@@ -47,17 +47,17 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkPhraseTableViewCell.identifier, for: indexPath) as? BookmarkPhraseTableViewCell else { return UITableViewCell() }
         cell.setupData(data: phraseView.tasks[indexPath.row])
         // MARK: - TODO 이미지 데이터 반영
+        cell.phraseImageView.image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(phraseView.tasks[indexPath.row].objectId).jpg")
         return cell
     }
     
-    // leading -> 수정
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
+                viewController.writeView.setupWriteViewState(.sentence)
                 viewController.fromWhatView = .bookmark
-                viewController.viewType = .edit
+                viewController.bookmarkViewStatus = .edit
                 viewController.objectId = self.phraseView.tasks[indexPath.row].objectId
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
             }

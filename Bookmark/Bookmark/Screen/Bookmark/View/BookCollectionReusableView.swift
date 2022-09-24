@@ -39,7 +39,7 @@ final class BookCollectionReusableView: UICollectionReusableView {
         
         titleLabel.snp.makeConstraints { make in
             make.directionalVerticalEdges.equalToSuperview().inset(10)
-            make.leading.equalToSuperview().inset(36)
+            make.leading.equalToSuperview().inset(16)
         }
     }
 }

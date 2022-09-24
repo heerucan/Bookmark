@@ -11,10 +11,7 @@ final class SettingView: BaseView {
     
     // MARK: - Property
     
-    let navigationBar = BookmarkNavigationBar(type: .setting).then {
-        $0.backButton.isHidden = true
-        $0.rightBarButton.isHidden = true
-    }
+    let navigationBar = BookmarkNavigationBar(type: .setting)
     
     let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.sectionHeaderTopPadding = 0

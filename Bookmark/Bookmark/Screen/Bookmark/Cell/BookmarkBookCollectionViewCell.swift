@@ -18,7 +18,7 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
         $0.textAlignment = .left
     }
     
-    private lazy var bookImageView = UIImageView().then {
+    lazy var bookImageView = UIImageView().then {
         $0.backgroundColor = .lightGray
         $0.addSubview(bookLabel)
     }
@@ -57,7 +57,8 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     func setupData(data: Record) {
         // MARK: - TODO 이미지 처리하기
-//        bookImageView.image
+//        bookImageView.image = data.image
+        
         if let name = data.store?.name {
             bookLabel.text = name
         } else {

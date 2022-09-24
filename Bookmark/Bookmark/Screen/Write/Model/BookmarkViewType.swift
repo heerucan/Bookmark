@@ -1,5 +1,5 @@
 //
-//  FromWhatView.swift
+//  BookmarkViewType.swift
 //  Bookmark
 //
 //  Created by heerucan on 2022/09/22.
@@ -33,7 +33,7 @@ enum FromWhatView {
     }
 }
 
-enum ViewType {
+enum ViewStatus {
     case write
     case edit
 }

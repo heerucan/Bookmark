@@ -11,7 +11,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
     
-    private let phraseImageView = UIImageView().then {
+    let phraseImageView = UIImageView().then {
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
         $0.backgroundColor = .lightGray
     }
@@ -31,7 +31,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
+        $0.backgroundColor = Color.gray500
     }
     
     // MARK: - Initializer
@@ -76,17 +76,14 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(data: Record) {
-        if let title = data.title,
-           let name = data.store?.name {
-            bookLabel.text = "|  🔖  \(name) " + "-" + "  \(String(describing: title))"
-        } else {
-            bookLabel.text = "|  🔖  책방 어딘가 "
-        }
+        guard let title = data.title,
+              let name = data.store else { return }
+        bookLabel.text = "|  🔖  책방 어딘가 \(name.name) " + "  \(String(describing: title))"
         dateLabel.text = data.createdAt.toString()
         
     }
     
-    func setupImage(image: String) {
-        phraseImageView.image = UIImage(named: image)
+    func setupImage(image: Record) {
+//        phraseImageView.image = UIImage(named: image)
     }
 }
