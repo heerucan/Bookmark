@@ -19,7 +19,7 @@ final class Record: Object {
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(store: Store,
+    convenience init(store: Store?,
                      title: String?,
                      category: Bool,
                      createdAt: Date) {
