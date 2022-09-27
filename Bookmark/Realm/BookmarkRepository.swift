@@ -9,36 +9,59 @@ import Foundation
 
 import RealmSwift
 
+// MARK: - BookmarkRepositoryType
+
 protocol BookmarkRepositoryType {
+    
+    // 0. 책갈피탭 초기 정렬
+    func fetchRecord(_ item: String) -> Results<Record>
     
     // 1. 글추가
     func addRecord(item: Record)
     
-    // 2. 글삭제
-    func deleteRecord(item: Record)
-    
-    // 3. 글수정
+    // 2. 글수정
     func updateRecord(item: Any?)
     
-    // 4. 책방 북마크추가-해제
-    func updateBookmark(item: Store)
+    // 3. 글삭제
+    func deleteRecord(item: Record)
+        
+    // 4. 책방 북마크 초기 정렬
+    func fetchBookmark() -> Results<Store>
     
-    // 5. 지도 북마크필터
-    func updateBookmarkFilter(item: Store) -> Results<Store>
-    
-    // 6. 책갈피탭 초기 정렬
-    func fetchRecord(_ item: String) -> Results<Record>
+    // 5. 책방 북마크 추가-해제
+    func updateBookmark(item: Any?)
 }
 
-class BookmarkRepository: BookmarkRepositoryType {
+// MARK: - BookmarkRepository
 
+final class BookmarkRepository: BookmarkRepositoryType {
+    static let shared = BookmarkRepository()
+    private init() { }
+    
     var realm = try! Realm()
+    
+    // MARK: - Record
+    
+    func fetchRecord(_ item: String) -> Results<Record> {
+        return realm.objects(Record.self).sorted(byKeyPath: "createdAt", ascending: false).filter("category == \(item)")
+    }
     
     func addRecord(item: Record) {
         do {
             try realm.write {
                 realm.add(item)
                 print("Create Realm 성공!")
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func updateRecord(item: Any?) {
+        do {
+            try realm.write {
+                realm.create(Record.self, value: item as Any, update: .modified)
+                print("Update Realm 성공!")
             }
         } catch let error {
             print(error)
@@ -57,33 +80,22 @@ class BookmarkRepository: BookmarkRepositoryType {
         }
     }
     
-    func updateRecord(item: Any?) {
+    // MARK: - Bookmark
+    
+    func fetchBookmark() -> Results<Store> {
+        return realm.objects(Store.self).sorted(byKeyPath: "bookmark", ascending: true)
+    }
+    
+    // MARK: - true인 애들만 따로 배열로 뽑아서 거기에 home 지도 상에 선택한 마커의 서점 이름과 재도시에 같은 아이로 반환
+    
+    func updateBookmark(item: Any?) {
         do {
             try realm.write {
-                realm.create(Record.self, value: item as Any, update: .modified)
-                print("Update Realm 성공!")
+                realm.create(Store.self, value: item as Any, update: .modified)
+                print("Update Bookmark 성공!", item)
             }
         } catch let error {
             print(error)
         }
-    }
-    
-    func updateBookmark(item: Store) {
-        do {
-            try realm.write {
-                item.bookmark = !item.bookmark
-                print("Bookmark value - \(item.bookmark) 변경 성공!")
-            }
-        } catch let error {
-            print(error)
-        }
-    }
-    
-    func updateBookmarkFilter(item: Store) -> Results<Store> {
-        return realm.objects(Store.self).filter("bookmark == \(item.bookmark)")
-    }
-    
-    func fetchRecord(_ item: String) -> Results<Record> {
-        return realm.objects(Record.self).sorted(byKeyPath: "createdAt", ascending: false).filter("category == \(item)")
     }
 }
