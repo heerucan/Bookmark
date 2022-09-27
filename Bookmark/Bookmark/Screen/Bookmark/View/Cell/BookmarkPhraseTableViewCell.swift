@@ -75,15 +75,10 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: Record) {
-        guard let title = data.title,
-              let name = data.store else { return }
-        bookLabel.text = "|  🔖  책방 어딘가 \(name.name) " + "  \(String(describing: title))"
-        dateLabel.text = data.createdAt.toString()
-        
-    }
-    
-    func setupImage(image: Record) {
-//        phraseImageView.image = UIImage(named: image)
+    func setupData(record: Record) {
+        guard let name = record.store?.name,
+              let title = record.title else { return }
+        bookLabel.text = "|  🔖  \(name) \(title)"
+        dateLabel.text = record.createdAt.toString()
     }
 }

@@ -13,7 +13,7 @@ final class PhraseView: BaseView {
     
     // MARK: - Realm
     
-    let repository = BookmarkRepository()
+    let repository = BookmarkRepository.shared
     
     var tasks: Results<Record>! {
         didSet {

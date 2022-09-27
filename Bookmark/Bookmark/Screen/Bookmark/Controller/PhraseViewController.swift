@@ -45,8 +45,7 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkPhraseTableViewCell.identifier, for: indexPath) as? BookmarkPhraseTableViewCell else { return UITableViewCell() }
-        cell.setupData(data: phraseView.tasks[indexPath.row])
-        // MARK: - TODO 이미지 데이터 반영
+        cell.setupData(record: phraseView.tasks[indexPath.row])
         cell.phraseImageView.image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(phraseView.tasks[indexPath.row].objectId).jpg")
         return cell
     }

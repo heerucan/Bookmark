@@ -107,13 +107,15 @@ final class WriteViewController: BaseViewController {
     }
     
     @objc func touchupCompleteButton(sender: UIButton) {
-        guard let title = writeView.titleTextField.text else { return }
-        if writeView.writeViewState == .sentence { // 글이면 true
-            let detailTask = Record(store: Store(name: "책방이름", bookmark: bookmark),
+        guard let title = writeView.titleTextField.text,
+              let image = writeView.imageButton.imageView?.image else { return }
+        if writeView.writeViewState == .sentence { // 글귀면 true
+            let detailTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                     title: title,
                                     category: true,
                                     createdAt: Date())
             writeView.repository.addRecord(item: detailTask)
+            FileManagerHelper.shared.saveImageToDocument(fileName: "\(detailTask.objectId).jpg", image: image)
             fromWhatView == .detail ? transition(self, .pop) : transition(self, .dismiss)
         } else if writeView.writeViewState == .book { // 책이면 false
             if bookmarkViewStatus == .edit { // 수정하기는 무조건 탭바 -> 모달 -> disimiss
@@ -124,31 +126,16 @@ final class WriteViewController: BaseViewController {
                                                         "category": false,
                                                         "createdAt": Date()])
                 transition(self, .dismiss)
-            } else {
-                let bookmarkTask = Record(store: Store(name: "책방 어딘가", bookmark: bookmark),
+            } else { // 글쓰기
+                let bookmarkTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                           title: title,
                                           category: false,
                                           createdAt: Date())
                 writeView.repository.addRecord(item: bookmarkTask)
+                FileManagerHelper.shared.saveImageToDocument(fileName: "\(bookmarkTask.objectId).jpg", image: image)
                 fromWhatView == .detail ? transition(self, .pop) : transition(self, .dismiss)
             }
         }
-        
-        // MARK: - TODO 이미지 처리하기
-        // MARK: - 아직 이미지 추가, 삭제, 로드 안되는듯
-        //        if let image = writeView.imageButton.imageView?.image {
-        //            if viewType == .edit {
-        //                guard let objectId = objectId else { return }
-        //                FileManagerHelper.shared.saveImageToDocument(fileName: "\(objectId).jpg", image: image)
-        //            } else {
-        //                let detailTask = Record(store: Store(name: bookStore, bookmark: bookmark),
-        //                                        title: title,
-        //                                        category: Matrix.phraseCategory,
-        //                                        createdAt: Date())
-        //                writeView.repository.addRecord(item: detailTask)
-        //                FileManagerHelper.shared.saveImageToDocument(fileName: "\(detailTask.objectId)", image: image)
-        //            }
-        //        }
     }
     
     @objc private func touchupButton(_ sender: UIButton) {

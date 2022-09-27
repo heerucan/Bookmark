@@ -24,7 +24,6 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     }
     
     private let bookLabel = UILabel().then {
-        $0.text = "책방이름없음"
         $0.font = Font.body1.font
         $0.textColor = .white
         $0.numberOfLines = 1
@@ -36,7 +35,7 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
+    
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
@@ -55,14 +54,8 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: Record) {
-        // MARK: - TODO 이미지 처리하기
-//        bookImageView.image = data.image
-        
-        if let name = data.store?.name {
-            bookLabel.text = name
-        } else {
-            bookLabel.text = "책방 어딘가"
-        }
+    func setupData(record: Record) {
+        guard let store = record.store?.name else { return }
+        bookLabel.text = store
     }
 }
