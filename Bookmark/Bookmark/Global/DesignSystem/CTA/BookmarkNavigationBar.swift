@@ -9,6 +9,8 @@ import UIKit
 
 final class BookmarkNavigationBar: BaseView {
     
+    // MARK: - Enum
+    
     enum NavigationType {
         case setting
         case detail
