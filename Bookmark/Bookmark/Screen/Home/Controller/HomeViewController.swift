@@ -13,12 +13,15 @@ import NMapsMap
 
 final class HomeViewController: BaseViewController {
     
-    var tasks: Results<Category>! {
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository.shared
+    
+    var tasks: Results<Store>! {
         didSet {
-            print("Tasks 변화 발생", tasks)
+            print("📪bookmarkButton 변화 발생", tasks)
         }
     }
-    let repository = BookmarkRepository.shared
     
     // MARK: - Property
     
@@ -27,7 +30,8 @@ final class HomeViewController: BaseViewController {
     
     private var isNewSelected: Bool = false
     private var isOldSelected: Bool = false
-
+    private var isBookmarkSelected: Bool = false
+    
     private let geocoder = CLGeocoder()
     private let locationManager = CLLocationManager()
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
@@ -51,7 +55,7 @@ final class HomeViewController: BaseViewController {
             }
         }
     }
-
+    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -62,13 +66,12 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setupAction()
         requestAPI()
-        checkFirstUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-        tasks = repository.fetchRealm()
+        setupRealm()
     }
     
     // MARK: - Delegate
@@ -96,19 +99,16 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Custom Method
     
-    private func checkFirstUser() {
-        if UserDefaults.standard.bool(forKey: Matrix.firstUser) == false {
-            repository.initCategory()
-            UserDefaults.standard.set(true, forKey: Matrix.firstUser)
-        }
-    }
-    
     private func setupAction() {
         [homeView.searchButton,
          homeView.locationButton,
          homeView.storeButton].forEach {
             $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
         }
+    }
+    
+    private func setupRealm() {
+        self.tasks = repository.fetchBookmark()
     }
     
     // MARK: - Customize Map
@@ -120,7 +120,7 @@ final class HomeViewController: BaseViewController {
         cameraUpdate.animation = .linear
         homeView.mapView.moveCamera(cameraUpdate)
     }
-
+    
     private func setupMarker(storeList: [BookStoreInfo], tag: Int) {
         markers.removeAll()
         for bookStore in storeList {
@@ -148,12 +148,12 @@ final class HomeViewController: BaseViewController {
             markers.append(marker)
         }
     }
-        
+    
     private func updateMarker(filter: BookFilter) {
         switch filter {
         case .new:
             if isNewSelected {
-                markers.filter { $0.tag == 2 }.forEach { $0.mapView = nil }
+                markers.filter { $0.tag != 0 }.forEach { $0.mapView = nil }
                 setupMarker(storeList: self.newStoreList, tag: 0)
             } else {
                 markers.filter { $0.tag == 0 }.forEach { $0.mapView = nil }
@@ -162,7 +162,7 @@ final class HomeViewController: BaseViewController {
             
         case .old:
             if isOldSelected {
-                markers.filter { $0.tag == 2 }.forEach { $0.mapView = nil }
+                markers.filter { $0.tag != 1 }.forEach { $0.mapView = nil }
                 setupMarker(storeList: self.oldStoreList, tag: 1)
             } else {
                 markers.filter { $0.tag == 1 }.forEach { $0.mapView = nil }
@@ -172,6 +172,21 @@ final class HomeViewController: BaseViewController {
         case .all:
             self.homeView.mapView.zoomLevel = 13
             setupMarker(storeList: self.bookStoreList, tag: 2)
+            
+        case .bookmark:
+            if isBookmarkSelected {
+                markers.filter { $0.tag != 3 }.forEach { $0.mapView = nil }
+                var bookmarkArray: [String] = []
+                tasks.forEach { bookmarkArray.append($0.name) }
+                self.bookStoreList.forEach { store in
+                    if bookmarkArray.contains(store.name) {
+                        setupMarker(storeList: self.bookStoreList.filter { $0.name == store.name }, tag: 3)
+                    }
+                }
+            } else {
+                markers.filter { $0.tag == 3 }.forEach { $0.mapView = nil }
+                setupMarker(storeList: self.bookStoreList, tag: 2)
+            }
         }
         print("📦", markers.count, filter, "//new-", isNewSelected, "//old-", isOldSelected)
     }
@@ -183,14 +198,17 @@ final class HomeViewController: BaseViewController {
         case homeView.searchButton:
             let viewController = SearchViewController()
             transition(viewController)
-
+            
         case homeView.locationButton:
             updateCurrentLocation()
             
         case homeView.storeButton:
             let viewController = DetailViewController()
             transition(viewController, .push) { _ in
-                viewController.detailStoreInfo = self.selectedStoreInfo
+                guard let selectedStoreInfo = self.selectedStoreInfo,
+                      let name = self.homeView.nameLabel.text else { return }
+                viewController.detailStoreInfo = selectedStoreInfo
+                viewController.bookmarkButton.isSelected = (name == selectedStoreInfo.name) ? true : false
             }
         default:
             break
@@ -222,8 +240,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             markers.forEach { $0.mapView = nil }
             cell.clickCount += 1
         }
-            
+        
         // MARK: - TODO new가 false인 경우에 마커가 안떠야 하는데 마커가 뜨는 엉키는 문제가 발생
+        if indexPath.item == 0 && cell.isSelected {
+            isBookmarkSelected.toggle()
+            updateMarker(filter: .bookmark)
+        }
+        
         if indexPath.item == 1 && cell.isSelected {
             isNewSelected.toggle()
             updateMarker(filter: .new)

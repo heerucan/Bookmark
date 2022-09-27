@@ -55,14 +55,14 @@ final class HomeView: BaseView {
     }
     
     lazy var storeButton = UIButton().then {
-        $0.addSubviews([nameLabel, addressLabel, distanceLabel, lineView])
+        $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: -2), opacity: 0.2)
         $0.layer.cornerRadius = 20
         $0.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }
     
-    private let nameLabel = UILabel().then {
+    let nameLabel = UILabel().then {
         $0.font = Font.body1.font
         $0.textColor = Color.green100
         $0.numberOfLines = 1
@@ -86,11 +86,7 @@ final class HomeView: BaseView {
         $0.setImage(Icon.Button.highlightedMyLocation, for: .highlighted)
         $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 0), opacity: 0.25)
     }
-    
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
-    }
-    
+        
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -105,8 +101,7 @@ final class HomeView: BaseView {
                           collectionView,
                           mapView,
                           locationButton,
-                          storeButton,
-                          lineView])
+                          storeButton])
         
         backView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
@@ -164,12 +159,6 @@ final class HomeView: BaseView {
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(addressLabel.snp.centerY)
             make.width.equalTo(50)
-        }
-        
-        lineView.snp.makeConstraints { make in
-            make.directionalHorizontalEdges.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(1)
         }
         
         locationButton.snp.makeConstraints { make in
