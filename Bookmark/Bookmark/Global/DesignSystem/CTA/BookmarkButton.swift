@@ -56,6 +56,5 @@ final class BookmarkButton: UIButton {
         setTitle(type.text, for: .normal)
         setTitleColor(.white, for: .normal)
         setTitleColor(Color.gray200, for: .highlighted)
-        makeCornerStyle(width: 0, color: nil, radius: 5)
     }
 }

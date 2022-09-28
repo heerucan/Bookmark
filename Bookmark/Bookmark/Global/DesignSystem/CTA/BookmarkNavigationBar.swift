@@ -88,7 +88,7 @@ final class BookmarkNavigationBar: BaseView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(13)
+            make.top.equalToSuperview().inset(12)
             make.centerX.equalToSuperview()
         }
         

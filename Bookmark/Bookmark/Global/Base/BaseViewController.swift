@@ -12,6 +12,10 @@ import Then
 
 class BaseViewController: UIViewController {
     
+    // MARK: - Property
+    
+    var keyboardHeight: CGFloat = 0
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -19,6 +23,7 @@ class BaseViewController: UIViewController {
         configureUI()
         configureLayout()
         setupDelegate()
+        setupNotificationCenter()
     }
 
     // MARK: - Configure UI & Layout
@@ -29,4 +34,24 @@ class BaseViewController: UIViewController {
     
     func configureLayout() { }
     func setupDelegate() { }
+    
+    // MARK: - Keyboard
+    
+    func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+    }
+    
+    // MARK: - @objc
+    
+    @objc func keyboardWillShow(_ notification:NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.keyboardHeight = keyboardHeight
+        }
+    }
 }
