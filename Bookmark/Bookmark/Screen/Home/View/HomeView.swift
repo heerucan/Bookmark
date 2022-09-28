@@ -51,7 +51,7 @@ final class HomeView: BaseView {
         $0.maxZoomLevel = 16
         $0.positionMode = .direction
         $0.locationOverlay.hidden = false
-        $0.locationOverlay.circleColor = Color.green100.withAlphaComponent(0)
+        $0.locationOverlay.circleColor = Color.main.withAlphaComponent(0)
     }
     
     lazy var storeButton = UIButton().then {
@@ -64,7 +64,7 @@ final class HomeView: BaseView {
     
     let nameLabel = UILabel().then {
         $0.font = Font.body1.font
-        $0.textColor = Color.green100
+        $0.textColor = Color.main
         $0.numberOfLines = 1
     }
     

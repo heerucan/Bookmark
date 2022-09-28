@@ -19,7 +19,7 @@ final class BookmarkLinkButton: UIButton {
             case .phone:
                 return Color.gray100
             case .url:
-                return Color.green100
+                return Color.main
             }
         }
     }

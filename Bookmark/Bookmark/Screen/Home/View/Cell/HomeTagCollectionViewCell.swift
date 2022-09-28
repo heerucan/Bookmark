@@ -71,9 +71,9 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     }
     
     private func configureSelectionStyle() {
-        tagLabel.textColor = Color.green100
+        tagLabel.textColor = Color.main
         tagImageView.image = Icon.Image.like
-        layer.borderColor = Color.green100.cgColor
+        layer.borderColor = Color.main.cgColor
     }
     
     private func configureUnelectionStyle() {

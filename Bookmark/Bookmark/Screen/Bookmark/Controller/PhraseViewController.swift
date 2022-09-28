@@ -61,7 +61,7 @@ extension PhraseViewController: UITableViewDelegate, UITableViewDataSource {
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
             }
         }
-        edit.backgroundColor = Color.green100
+        edit.backgroundColor = Color.main
         edit.title = "수정"
         return UISwipeActionsConfiguration(actions: [edit])
     }
