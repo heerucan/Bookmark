@@ -22,7 +22,7 @@ final class SplashViewController: BaseViewController {
     }
     
     override func configureUI() {
-        view.backgroundColor = Color.gray100
+        view.backgroundColor = Color.black100
     }
     
     override func configureLayout() {

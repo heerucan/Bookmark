@@ -154,6 +154,14 @@ final class WriteViewController: BaseViewController {
                   actions: [ok],
                   preferredStyle: .alert)
     }
+    
+    @objc override func keyboardWillShow(_ notification: NSNotification) {
+        super.keyboardWillShow(notification)
+        let offset = 20.0
+        UIView.animate(withDuration: 0.1) {
+            self.writeView.completeButton.transform = CGAffineTransform(translationX: 0, y: offset-(self.keyboardHeight))
+        }
+    }
 }
 
 // MARK: - TextField Delegate
@@ -170,6 +178,9 @@ extension WriteViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         writeView.titleTextField.isSelected = false
+        UIView.animate(withDuration: 0.25) {
+            self.writeView.completeButton.transform = .identity
+        }
     }
 }
 

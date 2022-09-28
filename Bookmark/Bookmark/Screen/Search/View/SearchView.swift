@@ -24,7 +24,7 @@ final class SearchView: BaseView {
     private lazy var searchBackView = UIView().then {
         $0.addSubviews([searchBar, searchIconView])
         $0.backgroundColor = Color.gray500
-        $0.makeCornerStyle(width: 0, color: nil, radius: 5)
+        $0.makeCornerStyle(width: 0, color: nil, radius: 1)
     }
     
     private let searchIconView = UIImageView().then {

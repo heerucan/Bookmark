@@ -42,30 +42,28 @@ final class WriteView: BaseView {
     let navigationView = BookmarkNavigationBar(type: .write)
     
     private let descriptionLabel = UILabel().then {
-        $0.font = Font.body5.font
+        $0.font = Font.body3.font
         $0.textColor = Color.black100
-    }
-    
-    private lazy var stackView = UIStackView(arrangedSubviews: [titleTextField, imageButton]).then {
-        $0.axis = .vertical
-        $0.distribution = .equalSpacing
-        $0.spacing = 20
-    }
-    
-    var titleTextField = BookmarkTextField().then {
-        $0.layer.cornerRadius = 5
-        $0.makeCornerStyle(width: 1, color: Color.gray300.cgColor, radius: 5)
     }
     
     lazy var imageButton = UIButton().then {
         $0.imageView?.contentMode = .scaleAspectFill
-        $0.clipsToBounds = true
-        $0.makeCornerStyle(width: 1, color: Color.gray300.cgColor, radius: 5)
+        $0.backgroundColor = Color.gray300
         $0.addSubview(iconView)
     }
     
     private let iconView = UIImageView().then {
         $0.image = Icon.Image.gallery
+    }
+
+    private let imageDescriptionLabel = UILabel().then {
+        $0.font = Font.body8.font
+        $0.textColor = Color.main
+        $0.text = "* 이미지는 추후 수정하실 수 없어요."
+    }
+    
+    let titleTextField = BookmarkTextField().then {
+        $0.makeCornerStyle(width: 1, color: Color.gray300.cgColor, radius: 0)
     }
     
     let completeButton = BookmarkButton(.complete).then {
@@ -83,41 +81,47 @@ final class WriteView: BaseView {
     override func configureLayout() {
         self.addSubviews([navigationView,
                           descriptionLabel,
-                          stackView,
+                          imageButton,
+                          imageDescriptionLabel,
+                          titleTextField,
                           completeButton])
         
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide)
             make.directionalHorizontalEdges.equalToSuperview()
-            make.height.equalTo(57)
+            make.height.equalTo(50)
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom).offset(25)
+            make.top.equalTo(navigationView.snp.bottom).offset(23)
             make.centerX.equalToSuperview()
         }
         
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(25)
-            make.directionalHorizontalEdges.equalToSuperview().inset(16)
-        }
-        
-        titleTextField.snp.makeConstraints { make in
-            make.height.equalTo(43)
-        }
-        
         imageButton.snp.makeConstraints { make in
-            make.height.equalTo(imageButton.snp.width).multipliedBy(1)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(23)
+            make.leading.equalToSuperview().inset(16)
+            make.width.height.equalTo(110)
         }
         
         iconView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
+        imageDescriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageButton.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(16)
+        }
+        
+        titleTextField.snp.makeConstraints { make in
+            make.top.equalTo(imageDescriptionLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(43)
+        }
+        
         completeButton.snp.makeConstraints { make in
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.height.equalTo(49)
+            make.height.equalTo(54)
         }
     }
     
