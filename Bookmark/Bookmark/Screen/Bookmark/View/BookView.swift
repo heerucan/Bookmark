@@ -17,26 +17,19 @@ final class BookView: BaseView {
     
     var tasks: Results<Record>! {
         didSet {
-            collectionView.reloadData()
-            print("📪collectionView 변화 발생", tasks)
+            tableView.reloadData()
+            print("📪tableView 변화 발생", tasks)
         }
     }
     
     // MARK: - Property
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    
-    let layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        let width = (UIScreen.main.bounds.width-6)/3
-        layout.itemSize = CGSize(width: width, height: width)
-        layout.minimumLineSpacing = 3
-        layout.minimumInteritemSpacing = 3
-        layout.sectionInset = UIEdgeInsets.zero
-        layout.scrollDirection = .vertical
-        layout.headerReferenceSize = .init(width: UIScreen.main.bounds.width, height: 36)
-        return layout
-    }()
+    let tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.register(BookmarkBookTableViewCell.self,
+                    forCellReuseIdentifier: BookmarkBookTableViewCell.identifier)
+        $0.separatorStyle = .none
+        $0.allowsSelection = false
+    }
     
     let emptyStateView = UIImageView().then {
         $0.image = Icon.Image.emptyState
@@ -51,10 +44,10 @@ final class BookView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([collectionView,
+        self.addSubviews([tableView,
                           emptyStateView])
         
-        collectionView.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -64,16 +57,11 @@ final class BookView: BaseView {
         }
     }
     
-    func configureDelegate(_ delegate: UICollectionViewDelegate, _ dataSource: UICollectionViewDataSource) {
-        collectionView.delegate = delegate
-        collectionView.dataSource = dataSource
-        collectionView.register(BookmarkBookCollectionViewCell.self,
-                                forCellWithReuseIdentifier: BookmarkBookCollectionViewCell.identifier)
-        collectionView.register(BookCollectionReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: BookCollectionReusableView.identifier)
+    func configureTableViewDelegate(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+        tableView.delegate = delegate
+        tableView.dataSource = datasource
     }
-    
+
     // MARK: - Custom Method
     
     func fetchRealm() {

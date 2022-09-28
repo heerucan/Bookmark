@@ -8,7 +8,11 @@
 import UIKit
 
 final class BookmarkViewController: BaseViewController {
-
+    
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository.shared
+        
     // MARK: - Property
     
     var dataViewControllers: [UIViewController] {
@@ -18,7 +22,6 @@ final class BookmarkViewController: BaseViewController {
     
     lazy var currentPage: Int = 0 {
         didSet {
-            print(oldValue, self.currentPage)
             let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
             self.pageViewController.setViewControllers([dataViewControllers[self.currentPage]],
                                                        direction: direction,
@@ -31,7 +34,9 @@ final class BookmarkViewController: BaseViewController {
     
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll,
                                                                navigationOrientation: .horizontal).then {
-        $0.setViewControllers([dataViewControllers[0]], direction: .forward, animated: true)
+        $0.setViewControllers([dataViewControllers[0]],
+                              direction: .forward,
+                              animated: true)
     }
     
     private let titleLabel = UILabel().then {
@@ -41,7 +46,6 @@ final class BookmarkViewController: BaseViewController {
     }
     
     private let totalCountLabel = UILabel().then {
-        $0.text = "34"
         $0.font = Font.title3.font
         $0.textColor = Color.subMain
     }
@@ -58,11 +62,16 @@ final class BookmarkViewController: BaseViewController {
     
     private let lineView = LineView()
     private let lineBottomView = LineView()
-        
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupCount()
     }
     
     // MARK: - Configure UI & Layout
@@ -71,7 +80,7 @@ final class BookmarkViewController: BaseViewController {
         super.configureUI()
         changeValue(control: segementedControl)
     }
-
+    
     override func configureLayout() {
         view.addSubviews([titleLabel,
                           totalCountLabel,
@@ -120,8 +129,16 @@ final class BookmarkViewController: BaseViewController {
         }
     }
     
+    // MARK: - Custom Methdo
+    
+    private func setupCount() {
+        var totalCount = 0
+        totalCount = repository.fetchRecord("true").count + repository.fetchRecord("false").count
+        totalCountLabel.text = "\(totalCount)"
+    }
+    
     // MARK: - @objc
-        
+    
     @objc private func changeValue(control: UISegmentedControl) {
         currentPage = control.selectedSegmentIndex
     }

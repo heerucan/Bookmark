@@ -47,7 +47,7 @@
 		5B71FEB728DB93C700F311F5 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEB628DB93C700F311F5 /* BookViewController.swift */; };
 		5B71FEB928DB93E200F311F5 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEB828DB93E200F311F5 /* BookView.swift */; };
 		5B71FEBB28DB93E900F311F5 /* PhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEBA28DB93E900F311F5 /* PhraseView.swift */; };
-		5B71FEBD28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEBC28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift */; };
+		5B71FEBD28DB941700F311F5 /* BookmarkBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEBC28DB941700F311F5 /* BookmarkBookTableViewCell.swift */; };
 		5B71FEBF28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEBE28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift */; };
 		5B71FEC228DB946300F311F5 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC128DB946300F311F5 /* Detail.swift */; };
 		5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */; };
@@ -59,7 +59,6 @@
 		5B71FED828DC3B2C00F311F5 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */; };
 		5B71FEDB28DC41B300F311F5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDA28DC41B200F311F5 /* Setting.swift */; };
 		5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */; };
-		5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
@@ -138,7 +137,7 @@
 		5B71FEB628DB93C700F311F5 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		5B71FEB828DB93E200F311F5 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		5B71FEBA28DB93E900F311F5 /* PhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseView.swift; sourceTree = "<group>"; };
-		5B71FEBC28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B71FEBC28DB941700F311F5 /* BookmarkBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBookTableViewCell.swift; sourceTree = "<group>"; };
 		5B71FEBE28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPhraseTableViewCell.swift; sourceTree = "<group>"; };
 		5B71FEC128DB946300F311F5 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSegmentedControl.swift; sourceTree = "<group>"; };
@@ -150,7 +149,6 @@
 		5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		5B71FEDA28DC41B200F311F5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
-		5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionReusableView.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -511,7 +509,6 @@
 			children = (
 				5B71FEBA28DB93E900F311F5 /* PhraseView.swift */,
 				5B71FEB828DB93E200F311F5 /* BookView.swift */,
-				5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */,
 				5B71FEB328DB938800F311F5 /* Cell */,
 			);
 			path = View;
@@ -521,7 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				5B71FEBE28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift */,
-				5B71FEBC28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift */,
+				5B71FEBC28DB941700F311F5 /* BookmarkBookTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -793,7 +790,7 @@
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
 				5B175EC828D103F100101CEC /* UIViewController+.swift in Sources */,
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
-				5B71FEBD28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift in Sources */,
+				5B71FEBD28DB941700F311F5 /* BookmarkBookTableViewCell.swift in Sources */,
 				5B71FEC728DBBCBD00F311F5 /* WriteViewState.swift in Sources */,
 				5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */,
 				5B71FEB928DB93E200F311F5 /* BookView.swift in Sources */,
@@ -805,7 +802,6 @@
 				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
 				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
-				5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */,
 				5B71FEB728DB93C700F311F5 /* BookViewController.swift in Sources */,
 				5B71FEBF28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,

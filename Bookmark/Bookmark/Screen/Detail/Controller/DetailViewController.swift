@@ -27,6 +27,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     let navigationBar = BookmarkNavigationBar(type: .detail)
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
+        $0.separatorStyle = .none
         $0.allowsSelection = false
         $0.register(DetailTableViewCell.self,
                     forCellReuseIdentifier: DetailTableViewCell.identifier)

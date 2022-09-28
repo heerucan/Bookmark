@@ -61,7 +61,7 @@ final class DetailTableViewCell: BaseTableViewCell {
     private let lineView = LineView()
     
     private let locationTitleLabel = UILabel().then {
-        $0.text = "책방에 가고 싶다면"
+        $0.text = "책방에 가는 방법은"
         $0.font = Font.body2.font
     }
     
@@ -171,8 +171,9 @@ final class DetailTableViewCell: BaseTableViewCell {
         }
         
         mapAppButton.snp.makeConstraints { make in
-            make.top.equalTo(mapView.snp.top).inset(16)
+            make.top.equalTo(mapView.snp.top).inset(10)
             make.trailing.equalTo(mapView.snp.trailing).inset(10)
+            make.width.height.equalTo(38)
         }
     }
     

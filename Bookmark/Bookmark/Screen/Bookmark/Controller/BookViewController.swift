@@ -31,22 +31,37 @@ final class BookViewController: BaseViewController {
     // MARK: - Configure UI & Layout
 
     override func setupDelegate() {
-        bookView.configureDelegate(self, self)
+        bookView.configureTableViewDelegate(self, self)
+    }
+    
+    // MARK: - @objc
+    
+    @objc func touchupMoreButton(sender: UIButton) {
+        let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
+            self.bookView.repository.deleteRecord(item: self.bookView.tasks[sender.tag])
+            self.bookView.tableView.reloadData()
+        }
+        showAlert(title: "꽂은 책갈피를",
+                  message: nil,
+                  actions: [delete],
+                  cancelTitle: "그대로 둘게요",
+                  preferredStyle: .actionSheet)
     }
 }
 
-// MARK: - UICollectionView Protocol
+// MARK: - UITableView Protocol
 
-extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension BookViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         bookView.emptyStateView.isHidden = (bookView.tasks.count != 0) ? true : false
         return bookView.tasks.count
     }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkBookCollectionViewCell.identifier, for: indexPath) as? BookmarkBookCollectionViewCell
-        else { return UICollectionViewCell() }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkBookTableViewCell.identifier, for: indexPath) as? BookmarkBookTableViewCell
+        else { return UITableViewCell() }
+        cell.moreButton.addTarget(self, action: #selector(touchupMoreButton(sender:)), for: .touchUpInside)
+        cell.moreButton.tag = indexPath.row
         cell.setupData(record: bookView.tasks[indexPath.item])
         cell.bookImageView.image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(bookView.tasks[indexPath.row].objectId).jpg")
         return cell

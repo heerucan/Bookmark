@@ -73,19 +73,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath {
         case IndexPath(item: 0, section: 0):
-            print("책갈피 색 변경하기")
+            self.presentSafariView(EndPoint.ask.makeURL())
             
         case IndexPath(item: 1, section: 0):
-            self.presentSafariView(EndPoint.ask.makeURL())
-
-        case IndexPath(item: 2, section: 0):
-            print("리뷰 남기기")
             showAlert(title: "다음 업데이트를 기다려주세요 :)",
                       message: nil,
                       actions: [],
                       cancelTitle: "확인",
                       preferredStyle: .alert)
-
+            
         case IndexPath(item: 0, section: 1):
             showAlert(title: "다음 업데이트를 기다려주세요 :)",
                       message: nil,
@@ -102,7 +98,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         case IndexPath(item: 0, section: 2):
             self.presentSafariView(EndPoint.notion.makeURL())
-
+            
         default:
             showAlert(title: "최신 버전입니다 :)",
                       message: nil,

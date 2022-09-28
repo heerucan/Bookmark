@@ -1,17 +1,17 @@
 //
-//  BookmarkPhraseTableViewCell.swift
+//  BookmarkBookTableViewCell.swift
 //  Bookmark
 //
-//  Created by heerucan on 2022/09/21.
+//  Created by heerucan on 2022/09/22.
 //
 
 import UIKit
 
-final class BookmarkPhraseTableViewCell: BaseTableViewCell {
+final class BookmarkBookTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
     
-    let phraseImageView = UIImageView().then {
+    lazy var bookImageView = UIImageView().then {
         $0.backgroundColor = Color.gray500
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
@@ -21,23 +21,12 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.setImage(Icon.Button.more, for: .normal)
     }
     
-    private let dateLabel = UILabel().then {
-        $0.font = Font.body7.font
-        $0.textColor = Color.gray100
-        $0.numberOfLines = 1
-        $0.textAlignment = .left
+    private let tagView = BookmarkBoxView().then {
+        $0.subLabel.text = "#책"
     }
     
-    private let phraseView = BookmarkBoxView().then {
-        $0.subLabel.text = "#글"
-    }
-
     private let bookView = BookmarkBoxView()
     private let storeView = BookmarkBoxView()
-    
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
-    }
     
     // MARK: - Initializer
     
@@ -46,60 +35,52 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     // MARK: - Configure UI & Layout
-
+    
     override func configureLayout() {
-        contentView.addSubviews([phraseImageView,
-                     moreButton,
-                     dateLabel,
-                     phraseView,
-                     bookView,
-                     storeView])
+        contentView.addSubviews([bookImageView,
+                                 moreButton,
+                                 tagView,
+                                 bookView,
+                                 storeView])
         
-        phraseImageView.snp.makeConstraints { make in
+        bookImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(phraseImageView.snp.width)
+            make.height.equalTo(200)
         }
         
         moreButton.snp.makeConstraints { make in
-            make.top.equalTo(phraseImageView.snp.top)
-            make.trailing.equalTo(phraseImageView.snp.trailing).inset(16)
+            make.top.equalTo(bookImageView.snp.top)
+            make.trailing.equalTo(bookImageView.snp.trailing).inset(16)
             make.width.equalTo(24)
             make.height.equalTo(20)
         }
         
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(phraseImageView.snp.bottom).offset(16)
-            make.leading.equalToSuperview().inset(16)
-        }
-        
-        phraseView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(13)
+        tagView.snp.makeConstraints { make in
+            make.top.equalTo(bookImageView.snp.bottom).offset(15)
             make.leading.equalToSuperview().inset(16)
             make.height.equalTo(24)
         }
         
         bookView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(13)
-            make.leading.equalTo(phraseView.snp.trailing).offset(5)
+            make.top.equalTo(bookImageView.snp.bottom).offset(15)
+            make.leading.equalTo(tagView.snp.trailing).offset(5)
             make.height.equalTo(24)
         }
         
         storeView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(13)
+            make.top.equalTo(bookImageView.snp.bottom).offset(15)
             make.leading.equalTo(bookView.snp.trailing).offset(5)
             make.bottom.equalToSuperview().inset(20)
             make.height.equalTo(24)
         }
     }
-        
+    
     // MARK: - Set Up Data
     
     func setupData(record: Record) {
         guard let name = record.store?.name,
               let title = record.title else { return }
         storeView.subLabel.text = name
-        bookView.subLabel.text = title
-        dateLabel.text = record.createdAt.toString()
         if name.isEmpty {
             storeView.subLabel.text = "책방 어딘가"
         }

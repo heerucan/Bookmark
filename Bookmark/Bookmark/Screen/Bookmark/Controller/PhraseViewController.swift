@@ -54,12 +54,10 @@ final class PhraseViewController: BaseViewController {
                 viewController.writeView.completeButton.isDisabled = false
             }
         }
-        
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
             self.phraseView.repository.deleteRecord(item: self.phraseView.tasks[sender.tag])
             self.phraseView.tableView.reloadData()
         }
-        
         showAlert(title: "꽂은 책갈피를",
                   message: nil,
                   actions: [edit, delete],
