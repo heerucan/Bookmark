@@ -11,9 +11,9 @@ enum Matrix {
     static let phraseCategory = true
     static let bookCategory = false
     static let markerSize = 35.0
-    static let cellWidth = 68
-    static let cellHeight = 38
-    static let cellMargin = 16.0
+    static let cellWidth = 74
+    static let cellHeight = 37
+    static let cellMargin = 10.0
     static let cellSpacing = 8.0
     static let new = "0002"
     static let old = "0001"

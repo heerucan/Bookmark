@@ -15,11 +15,9 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     
     private let tagLabel = UILabel().then {
         $0.textColor = Color.black100
-        $0.font = Font.body4.font
+        $0.font = Font.body7.font
     }
-    
-    private let tagImageView = UIImageView()
-    
+        
     var clickCount: Int = 0 {
         didSet {
             if clickCount == 0 {
@@ -50,43 +48,33 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
-        layer.borderColor = Color.gray300.cgColor
-        layer.cornerRadius = 5
+        layer.cornerRadius = 19
         clipsToBounds = true
         backgroundColor = .white
     }
     
     override func configureLayout() {
-        contentView.addSubviews([tagLabel,
-                                 tagImageView])
+        contentView.addSubviews([tagLabel])
         
         tagLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
-            make.leading.trailing.equalToSuperview().inset(14)
-        }
-        
-        tagImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(18)
         }
     }
     
     private func configureSelectionStyle() {
         tagLabel.textColor = Color.main
-        tagImageView.image = Icon.Image.like
-        layer.borderColor = Color.main.cgColor
+        tagLabel.font = Font.body6.font
     }
     
     private func configureUnelectionStyle() {
         tagLabel.textColor = Color.black100
-        tagImageView.image = Icon.Image.unselectedLike
-        layer.borderColor = Color.gray300.cgColor
+        tagLabel.font = Font.body7.font
     }
     
     // MARK: - Set Up Data
     
     func setupData(index: Int) {
-        tagImageView.isHidden = (index != 0) ? true : false
-        tagImageView.image = tagData.getTagImage(index: index)
         tagLabel.text = tagData.getTagTitle(index: index)
     }
 }

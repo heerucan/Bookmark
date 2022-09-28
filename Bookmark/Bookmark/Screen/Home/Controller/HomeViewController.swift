@@ -227,7 +227,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTagCollectionViewCell.identifier, for: indexPath) as? HomeTagCollectionViewCell
         else { return UICollectionViewCell() }
         cell.setupData(index: indexPath.item)
-        cell.makeShadow(radius: 2, offset: CGSize.zero, opacity: 0.15)
+        cell.makeShadow(radius: 3, offset: CGSize(width: 0, height: 1), opacity: 0.25)
         return cell
     }
     

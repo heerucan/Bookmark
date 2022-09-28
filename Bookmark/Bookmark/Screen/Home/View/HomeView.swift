@@ -18,22 +18,19 @@ final class HomeView: BaseView {
     
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: Matrix.cellWidth, height: Matrix.cellHeight-4)
+        layout.itemSize = CGSize(width: Matrix.cellWidth, height: Matrix.cellHeight)
         layout.minimumLineSpacing = Matrix.cellSpacing
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 2, left: Matrix.cellMargin, bottom: 2, right: Matrix.cellMargin)
         layout.scrollDirection = .horizontal
         return layout
     }()
-    
-    private let backView = UIView().then {
-        $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: 2), opacity: 0.3)
-    }
-    
+
     lazy var searchButton = UIButton().then {
         $0.addSubviews([searchLabel, searchIconView])
-        $0.backgroundColor = Color.gray500
-        $0.makeCornerStyle(width: 0, color: nil, radius: 5)
+        $0.backgroundColor = .white
+        $0.makeCornerStyle(width: 0, color: nil, radius: 1)
+        $0.makeShadow(color: Color.black100.cgColor, radius: 5, offset: CGSize(width: 1, height: 1), opacity: 0.25)
     }
     
     private let searchIconView = UIImageView().then {
@@ -58,7 +55,7 @@ final class HomeView: BaseView {
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
         $0.makeShadow(radius: 11, offset: CGSize(width: 0, height: -2), opacity: 0.2)
-        $0.layer.cornerRadius = 20
+        $0.layer.cornerRadius = 0
         $0.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }
     
@@ -96,45 +93,38 @@ final class HomeView: BaseView {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([backView,
+        self.addSubviews([mapView,
                           searchButton,
                           collectionView,
-                          mapView,
                           locationButton,
                           storeButton])
-        
-        backView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(mapView.snp.top)
-        }
-        
+
         searchButton.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(40)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.height.equalTo(45)
         }
         
         searchIconView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(8)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(12)
         }
         
         searchLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
+            make.top.bottom.equalToSuperview().inset(12)
             make.leading.equalTo(searchIconView.snp.trailing).offset(8)
-            make.bottom.equalToSuperview().inset(9)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(searchButton.snp.bottom).offset(12)
+            make.top.equalTo(searchButton.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
+            make.height.equalTo(42)
         }
         
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.directionalHorizontalEdges.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
 
@@ -175,6 +165,7 @@ final class HomeView: BaseView {
     
     func setupCollectionViewDelegate(_ delegate: UICollectionViewDelegate,
                                      _ dataSource: UICollectionViewDataSource) {
+        collectionView.backgroundColor = .clear
         collectionView.delegate = delegate
         collectionView.dataSource = dataSource
         collectionView.register(

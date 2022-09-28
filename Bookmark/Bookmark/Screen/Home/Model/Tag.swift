@@ -9,27 +9,20 @@ import UIKit
 
 struct Tag {
     let title: String?
-    let image: UIImage?
 }
 
 struct TagData {
     var tagArray = [
-        Tag(title: nil, image: Icon.Image.unselectedLike),
-//        Tag(title: "책갈피", image: nil),
-        Tag(title: "새책방", image: nil),
-        Tag(title: "헌책방", image: nil)
+        Tag(title: "책갈피"),
+        Tag(title: "새책방"),
+        Tag(title: "헌책방")
     ]
-    
+
     func getTagCount() -> Int {
         return tagArray.count
     }
     
-    func getTagTitle(index: Int) -> String? {
-        guard let title = tagArray[index].title else { return nil }
-        return title
-    }
-    
-    func getTagImage(index: Int) -> UIImage? {
-        return tagArray[index].image
+    func getTagTitle(index: Int) -> String {
+        return tagArray[index].title!
     }
 }
