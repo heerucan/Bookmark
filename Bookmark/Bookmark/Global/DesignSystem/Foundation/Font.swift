@@ -16,6 +16,7 @@ struct FontStyle {
 
 enum Font {
     case title1
+    case title2
     case body1
     case body2
     case body3
@@ -24,11 +25,15 @@ enum Font {
     case body6
     case body7
     case body8
+    case body9
+    case body10
     
     fileprivate var property: FontStyle {
         switch self {
         case .title1:
             return FontStyle(font: .semibold, size: 20, kern: -0.3, lineHeight: nil)
+        case .title2:
+            return FontStyle(font: .semibold, size: 24, kern: -0.3, lineHeight: nil)
         case .body1:
             return FontStyle(font: .semibold, size: 18, kern: -0.3, lineHeight: nil)
         case .body2:
@@ -45,6 +50,10 @@ enum Font {
             return FontStyle(font: .regular, size: 14, kern: -0.3, lineHeight: nil)
         case .body8:
             return FontStyle(font: .regular, size: 13, kern: -0.3, lineHeight: 22)
+        case .body9:
+            return FontStyle(font: .semibold, size: 15, kern: -0.3, lineHeight: 22)
+        case .body10:
+            return FontStyle(font: .medium, size: 12, kern: -0.3, lineHeight: 10)
         }
     }
 }

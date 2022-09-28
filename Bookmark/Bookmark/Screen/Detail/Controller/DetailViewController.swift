@@ -60,8 +60,6 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     override func configureUI() {
         super.configureUI()
-        guard let detailStoreInfo = detailStoreInfo else { return }
-        navigationBar.titleLabel.text = detailStoreInfo.name
     }
     
     override func configureLayout() {
@@ -83,20 +81,20 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         
         backView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(97)
+            make.height.equalTo(95)
         }
         
         writeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
+            make.top.equalToSuperview().inset(7)
             make.leading.equalToSuperview().inset(16)
-            make.height.equalTo(49)
-            make.trailing.equalTo(bookmarkButton.snp.leading).offset(-12)
+            make.height.equalTo(54)
+            make.trailing.equalTo(bookmarkButton.snp.leading).offset(-7)
         }
         
         bookmarkButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
+            make.top.equalToSuperview().inset(7)
             make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(49)
+            make.height.equalTo(54)
         }
     }
     

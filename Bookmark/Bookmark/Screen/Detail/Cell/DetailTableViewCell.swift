@@ -21,44 +21,49 @@ final class DetailTableViewCell: BaseTableViewCell {
     private var homepage = ""
     private var sns = ""
     
-    private let infoTitleLabel = UILabel().then {
+    private let storeTitleLabel = UILabel().then {
         $0.text = "책방 상세정보"
+        $0.font = Font.title2.font
     }
     
-    private let locationTitleLabel = UILabel().then {
-        $0.text = "책방 위치"
+    private let typeSubLabel = UILabel().then {
+        $0.text = "책방 타입"
     }
     
-    private lazy var detailView = UIView().then {
-        $0.addSubview(cloneButton)
+    private let addressSubLabel = UILabel().then {
+        $0.text = "책방 주소"
     }
     
-    private lazy var detailStackView = UIStackView(
-        arrangedSubviews: [typeLabel, phoneButton, addressLabel]).then {
-            $0.axis = .vertical
-            $0.spacing = 15
-            $0.distribution = .equalSpacing
-        }
+    private let typeLabel = UILabel()
+    private let addressLabel = UILabel()
     
     private let cloneButton = UIButton().then {
         $0.setImage(Icon.Button.clone, for: .normal)
         $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
     }
     
-    private let typeLabel = UILabel()
-    private let addressLabel = UILabel()
-    private let urlView = UIView()
+    private lazy var typeStackView = UIStackView(arrangedSubviews: [typeSubLabel, typeLabel]).then {
+        $0.axis = .horizontal
+        $0.spacing = 12
+        $0.distribution = .fill
+    }
     
-    private lazy var urlStackView = UIStackView(
-        arrangedSubviews: [homePageButton, snsButton]).then {
-            $0.axis = .vertical
-            $0.spacing = 15
-            $0.distribution = .equalSpacing
-        }
+    private lazy var stackView = UIStackView(arrangedSubviews: [phoneButton, homePageButton, snsButton]).then {
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.distribution = .fillEqually
+    }
     
-    private let phoneButton = BookmarkLinkButton(.phone)
-    private let homePageButton = BookmarkLinkButton(.url)
-    private let snsButton = BookmarkLinkButton(.url)
+    private let phoneButton = BookmarkDetailButton(.phone)
+    private let homePageButton = BookmarkDetailButton(.homepage)
+    private let snsButton = BookmarkDetailButton(.sns)
+    
+    private let lineView = LineView()
+    
+    private let locationTitleLabel = UILabel().then {
+        $0.text = "책방에 가고 싶다면"
+        $0.font = Font.body2.font
+    }
     
     private let mapView = NMFMapView(frame: .zero).then {
         $0.allowsScrolling = false
@@ -80,90 +85,94 @@ final class DetailTableViewCell: BaseTableViewCell {
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
-        [detailView, urlView, mapView].forEach {
-            $0.backgroundColor = Color.gray500
-            $0.makeCornerStyle(width: 0, color: nil, radius: 5)
-        }
-        
-        [infoTitleLabel, locationTitleLabel].forEach {
-            $0.font = Font.body2.font
+        [storeTitleLabel, locationTitleLabel].forEach {
             $0.textColor = Color.black100
         }
         
+        [addressSubLabel, typeSubLabel].forEach {
+            $0.textColor = Color.black100
+            $0.font = Font.body9.font
+        }
+        
         [addressLabel, typeLabel].forEach {
-            $0.textColor = Color.gray100
-            $0.font = Font.body7.font
-            $0.isUserInteractionEnabled = true
+            $0.textColor = Color.black100
+            $0.font = Font.body4.font
         }
         
         [phoneButton, homePageButton, snsButton].forEach {
             $0.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
         }
+        
+        addressLabel.numberOfLines = 1
     }
     
     override func configureLayout() {
         super.configureLayout()
-        contentView.addSubviews([infoTitleLabel,
-                                 detailView,
-                                 detailStackView,
-                                 urlView,
-                                 urlStackView,
+        contentView.addSubviews([storeTitleLabel,
+                                 typeStackView,
+                                 addressSubLabel,
+                                 addressLabel,
+                                 cloneButton,
+                                 stackView,
+                                 lineView,
                                  locationTitleLabel,
                                  mapView,
                                  mapAppButton])
         
-        infoTitleLabel.snp.makeConstraints { make in
+        storeTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.leading.equalToSuperview().inset(16)
         }
         
-        detailView.snp.makeConstraints { make in
-            make.top.equalTo(infoTitleLabel.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(detailStackView.snp.bottom).offset(-16)
-        }
-        
-        detailStackView.snp.makeConstraints { make in
-            make.top.equalTo(detailView.snp.top).inset(20)
-            make.trailing.equalTo(detailView.snp.trailing).inset(45)
-            make.leading.equalTo(detailView.snp.leading).inset(20)
-            make.bottom.equalTo(detailView.snp.bottom).inset(20)
-        }
-        
-        urlView.snp.makeConstraints { make in
-            make.top.equalTo(detailView.snp.bottom).offset(16)
+        typeStackView.snp.makeConstraints { make in
+            make.top.equalTo(storeTitleLabel.snp.bottom).offset(22)
             make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalTo(urlStackView.snp.bottom).offset(-16)
+            make.trailing.lessThanOrEqualToSuperview().inset(16)
         }
         
-        urlStackView.snp.makeConstraints { make in
-            make.top.equalTo(urlView.snp.top).inset(20)
-            make.leading.equalTo(urlView.snp.leading).inset(20)
-            make.bottom.equalTo(urlView.snp.bottom).inset(20)
-            make.trailing.equalTo(urlView.snp.trailing).inset(20)
+        addressSubLabel.snp.makeConstraints { make in
+            make.top.equalTo(typeStackView.snp.bottom).offset(17)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalTo(typeSubLabel.snp.trailing)
         }
         
+        addressLabel.snp.makeConstraints { make in
+            make.leading.equalTo(addressSubLabel.snp.trailing).offset(12)
+            make.centerY.equalTo(addressSubLabel.snp.centerY)
+            make.trailing.lessThanOrEqualToSuperview().inset(36)
+        }
+        
+        cloneButton.snp.makeConstraints { make in
+            make.centerY.equalTo(addressLabel.snp.centerY)
+            make.trailing.equalToSuperview().inset(16)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(addressLabel.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(68)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.top.equalTo(stackView.snp.bottom).offset(25)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+
         locationTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(urlView.snp.bottom).offset(35)
+            make.top.equalTo(lineView.snp.bottom).offset(35)
             make.leading.equalToSuperview().inset(16)
         }
         
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(locationTitleLabel.snp.bottom).offset(16)
+            make.top.equalTo(locationTitleLabel.snp.bottom).offset(20)
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
             make.height.equalTo(mapView.snp.width).multipliedBy(0.7)
             make.bottom.equalToSuperview().inset(150)
         }
         
         mapAppButton.snp.makeConstraints { make in
-            make.top.equalTo(mapView.snp.top).inset(15)
-            make.trailing.equalTo(mapView.snp.trailing).inset(15)
-        }
-        
-        cloneButton.snp.makeConstraints { make in
-            make.centerY.equalTo(addressLabel.snp.centerY)
-            make.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(mapView.snp.top).inset(16)
+            make.trailing.equalTo(mapView.snp.trailing).inset(10)
         }
     }
     
@@ -222,28 +231,12 @@ final class DetailTableViewCell: BaseTableViewCell {
         homepage = data.homeURL
         sns = data.sns
         
-        typeLabel.text = "책방타입    \(data.typeName)"
-        addressLabel.text = "책방주소    \(data.address)"
-        phoneButton.setTitle("전화번호    \(data.phone)", for: .normal)
-        homePageButton.setTitle("홈페이지    \(data.homeURL)", for: .normal)
-        snsButton.setTitle("SNS    \(data.sns)", for: .normal)
+        storeTitleLabel.text = data.name
+        typeLabel.text = data.typeName
+        addressLabel.text = data.address
         
-        phoneButton.addLinkStyle(.phone, range: data.phone)
-        homePageButton.addLinkStyle(.url, range: data.homeURL)
-        snsButton.addLinkStyle(.url, range: data.sns)
-        
-        homePageButton.isHidden = (data.homeURL == "") ? true : false
-        snsButton.isHidden = (data.sns == "") ? true : false
-        phoneButton.isHidden = (data.phone.replacingOccurrences(of: " ", with: "") == "") ? true : false
-        
-        if data.homeURL == "" && data.sns == "" {
-            urlView.isHidden = true
-            locationTitleLabel.snp.remakeConstraints { make in
-                make.top.equalTo(detailView.snp.bottom).offset(35)
-                make.leading.equalToSuperview().inset(16)
-            }
-        } else {
-            urlView.isHidden = false
-        }
+        homePageButton.isDisabled = (data.homeURL == "") ? true : false
+        snsButton.isDisabled = (data.sns == "") ? true : false
+        phoneButton.isDisabled = (data.phone.replacingOccurrences(of: " ", with: "") == "") ? true : false
     }
 }
