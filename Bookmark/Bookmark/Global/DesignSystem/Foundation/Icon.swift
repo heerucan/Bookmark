@@ -30,12 +30,12 @@ enum Icon {
         static let unselectedBookmark = UIImage(named: "btnDetailUnselectedLike")
         static let bookmark = UIImage(named: "btnDetailLike")
         static let close = UIImage(named: "btnClose")
+        static let more = UIImage(named: "btnMore")
     }
     
     enum Image {
         static let emptyState = UIImage(named: "imgEmptyState")
         static let search = UIImage(named: "icnSearch")
-        static let like = UIImage(named: "icnLike")
         static let unselectedLike = UIImage(named: "icnUnselectedLike")
         static let gallery = UIImage(named: "icnImage")
         static let phone = UIImage(named: "icnPhone")

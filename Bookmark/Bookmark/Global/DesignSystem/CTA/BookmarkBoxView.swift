@@ -11,21 +11,18 @@ final class BookmarkBoxView: BaseView {
     
     // MARK: - Property
     
-    var text: String = ""
-    
-    let subLabel = UILabel()
+    var subLabel = UILabel() {
+        didSet {
+            subLabel.text = oldValue.text
+        }
+    }
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        subLabel.text = text
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
