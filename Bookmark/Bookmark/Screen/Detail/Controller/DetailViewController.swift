@@ -14,16 +14,8 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     // MARK: - Realm
     
-    let repository = BookmarkRepository()
-    
-    var tasks: Results<Store>! {
-        didSet {
-            guard let name = detailStoreInfo?.name else { return }
-            
-            print("📪bookmarkButton 변화 발생", tasks)
-        }
-    }
-    
+    let repository = BookmarkRepository.shared
+        
     // MARK: - Property
     
     var detailStoreInfo: BookStoreInfo? {
@@ -32,7 +24,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         }
     }
             
-    let navigationBar = BookmarkNavigationBar(type: .all)
+    let navigationBar = BookmarkNavigationBar(type: .detail)
     
     private let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.allowsSelection = false
@@ -51,7 +43,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         $0.addTarget(self, action: #selector(touchupWriteButton), for: .touchUpInside)
     }
     
-    private let bookmarkButton = UIButton().then {
+    let bookmarkButton = UIButton().then {
         $0.setImage(Icon.Button.bookmark, for: .selected)
         $0.setImage(Icon.Button.unselectedBookmark, for: .normal)
         $0.addTarget(self, action: #selector(touchupBookmarkButton(_:)), for: .touchUpInside)
@@ -116,8 +108,8 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     // MARK: - Custom Method
     
     private func setupAction() {
-        navigationBar.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
-        navigationBar.rightBarButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
+        navigationBar.leftButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
+        navigationBar.rightButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
     }
     
     func presentSafariView(_ safariView: SFSafariViewController) {
@@ -131,21 +123,18 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }
-                print("📦", detailStoreInfo.name)
-                viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .sentence
-                viewController.fromWhatView = .detail
                 viewController.writeView.bookStore = detailStoreInfo.name
+                viewController.fromWhatView = .detail
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }
-                viewController.writeView.navigationView.rightBarButton.isHidden = true
                 viewController.writeView.writeViewState = .book
-                viewController.fromWhatView = .detail
                 viewController.writeView.bookStore = detailStoreInfo.name
+                viewController.fromWhatView = .detail
                 viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
@@ -154,13 +143,17 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
     
     @objc func touchupBookmarkButton(_ sender: UIButton) {
+        guard let detailStoreInfo = detailStoreInfo else { return }
         sender.isSelected.toggle()
         if sender.isSelected {
             sender.setImage(Icon.Button.bookmark, for: .selected)
+            repository.updateBookmark(item: ["name": detailStoreInfo.name,
+                                             "bookmark": sender.isSelected])
         } else {
             sender.setImage(Icon.Button.unselectedBookmark, for: .normal)
+            repository.updateBookmark(item: ["name": detailStoreInfo.name,
+                                             "bookmark": !sender.isSelected])
         }
-//        repository.updateBookmark(item: sender.isSelected)
     }
     
     @objc func touchupBackButton() {
@@ -181,8 +174,6 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         guard let detailStoreInfo = detailStoreInfo else {
             return
         }
-
-        print("???웅?")
         let naver = UIAlertAction(title: "네이버맵으로 이동", style: .default) { _ in
             guard let naver = EndPoint.naver.makeURL(detailStoreInfo.name) else { return }
             guard let appStore = EndPoint.appstore.makeURL() else { return }
