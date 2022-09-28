@@ -10,7 +10,7 @@ import Foundation
 enum Matrix {
     static let phraseCategory = true
     static let bookCategory = false
-    static let markerSize = 35.0
+    static let markerSize = 32.0
     static let cellWidth = 74
     static let cellHeight = 37
     static let cellMargin = 10.0

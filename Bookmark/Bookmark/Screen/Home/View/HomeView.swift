@@ -30,7 +30,6 @@ final class HomeView: BaseView {
         $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 1)
-        $0.makeShadow(color: Color.black100.cgColor, radius: 5, offset: CGSize(width: 1, height: 1), opacity: 0.25)
     }
     
     private let searchIconView = UIImageView().then {

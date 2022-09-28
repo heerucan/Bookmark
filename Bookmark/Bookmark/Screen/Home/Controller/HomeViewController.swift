@@ -130,9 +130,11 @@ final class HomeViewController: BaseViewController {
             let marker = NMFMarker()
             marker.position = coordinate
             marker.isHideCollidedMarkers = true
+            marker.isHideCollidedSymbols = true
             marker.tag = UInt(tag)
             marker.width = Matrix.markerSize
             marker.height = Matrix.markerSize
+            marker.iconPerspectiveEnabled = true
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
             marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self,
@@ -180,6 +182,7 @@ final class HomeViewController: BaseViewController {
                 tasks.forEach { bookmarkArray.append($0.name) }
                 self.bookStoreList.forEach { store in
                     if bookmarkArray.contains(store.name) {
+                        markers.forEach { $0.iconImage =  NMFOverlayImage(name: Icon.Image.bookMarker) }
                         setupMarker(storeList: self.bookStoreList.filter { $0.name == store.name }, tag: 3)
                     }
                 }
@@ -227,7 +230,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTagCollectionViewCell.identifier, for: indexPath) as? HomeTagCollectionViewCell
         else { return UICollectionViewCell() }
         cell.setupData(index: indexPath.item)
-        cell.makeShadow(radius: 3, offset: CGSize(width: 0, height: 1), opacity: 0.25)
+//        cell.makeShadow(radius: 3, offset: CGSize(width: 0, height: 1), opacity: 0.25)
         return cell
     }
     

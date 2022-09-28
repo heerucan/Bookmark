@@ -38,10 +38,11 @@ enum Icon {
         static let like = UIImage(named: "icnLike")
         static let unselectedLike = UIImage(named: "icnUnselectedLike")
         static let gallery = UIImage(named: "icnImage")
-        static let marker = "icnMarker"
         static let phone = UIImage(named: "icnPhone")
         static let homepage = UIImage(named: "icnDetailSearch")
         static let sns = UIImage(named: "icnLink")
+        static let marker = "icnMarker"
+        static let bookMarker = "icnSelectedMarker"
     }
     
     enum Logo {

@@ -34,6 +34,6 @@ final class BookmarkSegmentedControl: UISegmentedControl {
     private func configureUI() {
         self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.black100], for: .selected)
         self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.gray300,
-                                     NSAttributedString.Key.font: Font.body1.font], for: .normal)
+                                     NSAttributedString.Key.font: Font.body3.font], for: .normal)
     }
 }

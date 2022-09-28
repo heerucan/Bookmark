@@ -43,14 +43,12 @@ final class BookmarkDetailButton: UIButton {
         didSet {
             isUserInteractionEnabled = isDisabled ? false : true
             buttonLabel.textColor = isDisabled ? Color.gray300 : Color.black100
-            setDisabledImageColor()
         }
     }
     
     var isTouched: Bool = false {
         didSet {
             buttonLabel.textColor = isTouched ? Color.gray300 : Color.black100
-            setHighlightedImageColor()
         }
     }
 
@@ -92,26 +90,6 @@ final class BookmarkDetailButton: UIButton {
         buttonLabel.snp.makeConstraints { make in
             make.top.equalTo(iconView.snp.bottom).offset(4)
             make.centerX.equalToSuperview()
-        }
-    }
-    
-    // MARK: - Custom Method
-    
-    private func setDisabledImageColor() {
-        if !isDisabled {
-            iconView.tintColor = UIColor.clear
-        } else {
-            iconView.image?.withRenderingMode(.alwaysTemplate)
-            iconView.tintColor = Color.gray400
-        }
-    }
-    
-    private func setHighlightedImageColor() {
-        if !isTouched {
-            iconView.tintColor = Color.subMain
-        } else {
-            iconView.image?.withRenderingMode(.alwaysTemplate)
-            iconView.tintColor = UIColor.clear
         }
     }
 }
