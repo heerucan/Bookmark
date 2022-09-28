@@ -34,6 +34,18 @@ final class BookmarkViewController: BaseViewController {
         $0.setViewControllers([dataViewControllers[0]], direction: .forward, animated: true)
     }
     
+    private let titleLabel = UILabel().then {
+        $0.text = "책갈피"
+        $0.font = Font.title3.font
+        $0.textColor = Color.black100
+    }
+    
+    private let totalCountLabel = UILabel().then {
+        $0.text = "34"
+        $0.font = Font.title3.font
+        $0.textColor = Color.subMain
+    }
+    
     let segementedControl = BookmarkSegmentedControl(items: ["글 한 줄", "책 한 권"]).then {
         $0.selectedSegmentIndex = 0
         $0.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
@@ -44,9 +56,8 @@ final class BookmarkViewController: BaseViewController {
         $0.addTarget(self, action: #selector(touchupWriteButton), for: .touchUpInside)
     }
     
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
-    }
+    private let lineView = LineView()
+    private let lineBottomView = LineView()
         
     // MARK: - LifeCycle
     
@@ -62,32 +73,49 @@ final class BookmarkViewController: BaseViewController {
     }
 
     override func configureLayout() {
-        view.addSubviews([segementedControl,
+        view.addSubviews([titleLabel,
+                          totalCountLabel,
+                          segementedControl,
                           writeButton,
-                          lineView])
+                          lineView,
+                          lineBottomView])
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         
-        segementedControl.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(10)
-            make.height.equalTo(57)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.equalToSuperview().inset(16)
         }
         
-        lineView.snp.makeConstraints { make in
-            make.top.equalTo(segementedControl.snp.bottom)
-            make.directionalHorizontalEdges.equalToSuperview()
-            make.height.equalTo(1)
+        totalCountLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(3)
         }
         
         writeButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
-            make.centerY.equalTo(segementedControl.snp.centerY)
+            make.centerY.equalTo(titleLabel.snp.centerY)
             make.width.height.equalTo(44)
         }
         
-        pageViewController.view.snp.makeConstraints { make in
+        lineView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.directionalHorizontalEdges.equalToSuperview()
+        }
+        
+        segementedControl.snp.makeConstraints { make in
             make.top.equalTo(lineView.snp.bottom)
+            make.directionalHorizontalEdges.equalToSuperview()
+            make.height.equalTo(58)
+        }
+        
+        lineBottomView.snp.makeConstraints { make in
+            make.top.equalTo(segementedControl.snp.bottom)
+            make.directionalHorizontalEdges.equalToSuperview()
+        }
+        
+        pageViewController.view.snp.makeConstraints { make in
+            make.top.equalTo(lineBottomView.snp.bottom)
             make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
