@@ -173,7 +173,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         mapAppButton.snp.makeConstraints { make in
             make.top.equalTo(mapView.snp.top).inset(10)
             make.trailing.equalTo(mapView.snp.trailing).inset(10)
-            make.width.height.equalTo(38)
+            make.width.height.equalTo(40)
         }
     }
     

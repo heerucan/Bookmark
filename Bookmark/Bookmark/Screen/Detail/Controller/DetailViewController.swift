@@ -85,17 +85,17 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             make.height.equalTo(95)
         }
         
-        writeButton.snp.makeConstraints { make in
+        bookmarkButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(7)
             make.leading.equalToSuperview().inset(16)
             make.height.equalTo(54)
-            make.trailing.equalTo(bookmarkButton.snp.leading).offset(-7)
         }
         
-        bookmarkButton.snp.makeConstraints { make in
+        writeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(7)
             make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(54)
+            make.leading.equalTo(bookmarkButton.snp.trailing).offset(7)
         }
     }
     
