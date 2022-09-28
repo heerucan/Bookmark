@@ -10,22 +10,20 @@ import UIKit
 final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Property
-   
+    
     let phraseImageView = UIImageView().then {
         $0.makeCornerStyle(width: 0, color: nil, radius: 10)
         $0.backgroundColor = .lightGray
     }
     
-    let dateLabel = UILabel().then {
-        $0.text = "2022.09.21"
+    private let dateLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
         $0.textAlignment = .left
     }
     
-    lazy var bookLabel = UILabel().then {
-        $0.text = "|  🔖  책방 어딘가에서"
+    private lazy var bookLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
@@ -33,7 +31,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
+        $0.backgroundColor = Color.gray500
     }
     
     // MARK: - Initializer
@@ -45,10 +43,10 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-       addSubviews([phraseImageView,
-                   dateLabel,
-                   bookLabel,
-                    lineView])
+        addSubviews([phraseImageView,
+                     dateLabel,
+                     bookLabel,
+                     lineView])
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(18)
@@ -77,9 +75,10 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: Phrase) {
-        phraseImageView.image = data.image
-        dateLabel.text = "2021.09.22"
-        bookLabel.text = "|  🔖  \(data.book)  -  \(data.store)"
+    func setupData(record: Record) {
+        guard let name = record.store?.name,
+              let title = record.title else { return }
+        bookLabel.text = "|  🔖  \(name) \(title)"
+        dateLabel.text = record.createdAt.toString()
     }
 }

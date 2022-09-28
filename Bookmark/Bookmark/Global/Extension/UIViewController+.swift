@@ -11,11 +11,12 @@ extension UIViewController {
     func showAlert(title: String?,
                    message: String?,
                    actions: [UIAlertAction],
+                   cancelTitle: String? = "취소",
                    preferredStyle: UIAlertController.Style = .actionSheet) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: preferredStyle)
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let cancel = UIAlertAction(title: cancelTitle, style: .cancel)
         actions.forEach { alert.addAction($0) }
         alert.addAction(cancel)
         transition(alert, .present)

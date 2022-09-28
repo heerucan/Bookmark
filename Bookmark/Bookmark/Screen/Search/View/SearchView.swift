@@ -64,7 +64,7 @@ final class SearchView: BaseView {
                          tableView])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(6)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(9)
             make.leading.equalToSuperview()
         }
         
@@ -72,17 +72,18 @@ final class SearchView: BaseView {
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
             make.leading.equalTo(backButton.snp.trailing).offset(2)
             make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(40)
+            make.height.equalTo(45)
         }
         
         searchIconView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(8)
+            make.top.equalToSuperview().inset(11)
+            make.bottom.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(12)
         }
         
         searchBar.snp.makeConstraints { make in
             make.top.trailing.bottom.equalToSuperview()
-            make.leading.equalTo(searchIconView.snp.trailing).inset(10)
+            make.leading.equalTo(searchIconView.snp.trailing).inset(8)
         }
         
         resultLabel.snp.makeConstraints { make in

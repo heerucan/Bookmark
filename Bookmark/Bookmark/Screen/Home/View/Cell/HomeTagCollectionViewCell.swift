@@ -51,14 +51,15 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     
     override func configureUI() {
         layer.borderColor = Color.gray300.cgColor
-        layer.cornerRadius = 38/2
-        layer.borderWidth = 1
+        layer.cornerRadius = 5
         clipsToBounds = true
         backgroundColor = .white
     }
     
     override func configureLayout() {
-        contentView.addSubviews([tagLabel, tagImageView])
+        contentView.addSubviews([tagLabel,
+                                 tagImageView])
+        
         tagLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
             make.leading.trailing.equalToSuperview().inset(14)
@@ -68,7 +69,7 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
             make.center.equalToSuperview()
         }
     }
-        
+    
     private func configureSelectionStyle() {
         tagLabel.textColor = Color.green100
         tagImageView.image = Icon.Image.like

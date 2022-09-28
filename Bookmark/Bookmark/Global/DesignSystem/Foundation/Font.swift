@@ -25,7 +25,7 @@ enum Font {
     case body7
     case body8
     
-    var property: FontStyle {
+    fileprivate var property: FontStyle {
         switch self {
         case .title1:
             return FontStyle(font: .semibold, size: 20, kern: -0.3, lineHeight: nil)

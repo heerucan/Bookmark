@@ -52,7 +52,14 @@
 		5B71FEC228DB946300F311F5 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC128DB946300F311F5 /* Detail.swift */; };
 		5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */; };
 		5B71FEC728DBBCBD00F311F5 /* WriteViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */; };
-		5B71FECA28DBBD0C00F311F5 /* FromWhatViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */; };
+		5B71FECA28DBBD0C00F311F5 /* BookmarkViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */; };
+		5B71FECD28DC154D00F311F5 /* BookmarkRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FECC28DC154D00F311F5 /* BookmarkRealmModel.swift */; };
+		5B71FED228DC1C7800F311F5 /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */; };
+		5B71FED528DC38F400F311F5 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED428DC38F400F311F5 /* SettingView.swift */; };
+		5B71FED828DC3B2C00F311F5 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */; };
+		5B71FEDB28DC41B300F311F5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDA28DC41B200F311F5 /* Setting.swift */; };
+		5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */; };
+		5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIError.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
@@ -66,7 +73,6 @@
 		5BB659AA28CF847B0009BF1A /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB659A928CF847B0009BF1A /* Color.xcassets */; };
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
-		5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AF28CF942D0009BF1A /* TagButton.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECBE5528D34C7600E83995 /* ComponentStatus.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
@@ -133,7 +139,14 @@
 		5B71FEC128DB946300F311F5 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSegmentedControl.swift; sourceTree = "<group>"; };
 		5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewState.swift; sourceTree = "<group>"; };
-		5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromWhatViewType.swift; sourceTree = "<group>"; };
+		5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewType.swift; sourceTree = "<group>"; };
+		5B71FECC28DC154D00F311F5 /* BookmarkRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRealmModel.swift; sourceTree = "<group>"; };
+		5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
+		5B71FED428DC38F400F311F5 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		5B71FEDA28DC41B200F311F5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
+		5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionReusableView.swift; sourceTree = "<group>"; };
 		5B799D1128D06AE500648C94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B819ECF28D245D200626693 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -147,7 +160,6 @@
 		5BB659A928CF847B0009BF1A /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
-		5BB659AF28CF942D0009BF1A /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		5BECBE5528D34C7600E83995 /* ComponentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStatus.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +190,7 @@
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
+				5B71FECB28DC153800F311F5 /* Realm */,
 				5B3FACF928CE207D0062D9F6 /* Bookmark */,
 				5B3FACF828CE207D0062D9F6 /* Products */,
 				5B55449928CF108E00781EC8 /* Frameworks */,
@@ -253,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				5BECBE5428D34C5B00E83995 /* Model */,
-				5B96BF9228D7200900C30AA8 /* Cell */,
 				5B799D1028D06ADB00648C94 /* View */,
 				5B55443728CEF95E00781EC8 /* Controller */,
 			);
@@ -263,7 +275,6 @@
 		5B55443528CEF95100781EC8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				5B578A9728D0CF8C0039855C /* Cell */,
 				5B578A9428D0C64B0039855C /* View */,
 				5B55443C28CEFA2900781EC8 /* Controller */,
 			);
@@ -273,6 +284,8 @@
 		5B55443628CEF95900781EC8 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				5B71FED928DC41A800F311F5 /* Model */,
+				5B71FED328DC38E100F311F5 /* View */,
 				5B55445228CEFE1000781EC8 /* Controller */,
 			);
 			path = Setting;
@@ -309,7 +322,6 @@
 		5B55443A28CEF9D200781EC8 /* Bookmark */ = {
 			isa = PBXGroup;
 			children = (
-				5B71FEB328DB938800F311F5 /* Cell */,
 				5B71FEB228DB938400F311F5 /* View */,
 				5B55443B28CEFA1500781EC8 /* Controller */,
 			);
@@ -419,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5544B428CF1A7800781EC8 /* Date+.swift */,
+				5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */,
 				5BB659A528CF7D7F0009BF1A /* UIFont+.swift */,
 				5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */,
 				5B5544B628CF1A7F00781EC8 /* UIView+.swift */,
@@ -471,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				5B578A9528D0C6570039855C /* SearchView.swift */,
+				5B578A9728D0CF8C0039855C /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -488,6 +502,8 @@
 			children = (
 				5B71FEBA28DB93E900F311F5 /* PhraseView.swift */,
 				5B71FEB828DB93E200F311F5 /* BookView.swift */,
+				5B71FEDE28DD56ED00F311F5 /* BookCollectionReusableView.swift */,
+				5B71FEB328DB938800F311F5 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,7 +529,41 @@
 			isa = PBXGroup;
 			children = (
 				5B71FEC628DBBCBD00F311F5 /* WriteViewState.swift */,
-				5B71FEC928DBBD0C00F311F5 /* FromWhatViewType.swift */,
+				5B71FEC928DBBD0C00F311F5 /* BookmarkViewType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B71FECB28DC153800F311F5 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FECC28DC154D00F311F5 /* BookmarkRealmModel.swift */,
+				5B71FED128DC1C7800F311F5 /* BookmarkRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		5B71FED328DC38E100F311F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FED428DC38F400F311F5 /* SettingView.swift */,
+				5B71FED628DC3B0D00F311F5 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B71FED628DC3B0D00F311F5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FED728DC3B2C00F311F5 /* SettingTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5B71FED928DC41A800F311F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B71FEDA28DC41B200F311F5 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -522,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				5B799D1128D06AE500648C94 /* HomeView.swift */,
+				5B96BF9228D7200900C30AA8 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -545,7 +596,6 @@
 		5BB659A728CF83DA0009BF1A /* CTA */ = {
 			isa = PBXGroup;
 			children = (
-				5BB659AF28CF942D0009BF1A /* TagButton.swift */,
 				5BB659AB28CF87930009BF1A /* BookmarkButton.swift */,
 				5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */,
 				5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */,
@@ -714,6 +764,7 @@
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
 				5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */,
+				5B71FED828DC3B2C00F311F5 /* SettingTableViewCell.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
 				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
@@ -723,7 +774,6 @@
 				5B55444028CEFA6600781EC8 /* EndPoint.swift in Sources */,
 				5B71FEBD28DB941700F311F5 /* BookmarkBookCollectionViewCell.swift in Sources */,
 				5B71FEC728DBBCBD00F311F5 /* WriteViewState.swift in Sources */,
-				5BB659B028CF942D0009BF1A /* TagButton.swift in Sources */,
 				5B578A9928D0CFA00039855C /* SearchTableViewCell.swift in Sources */,
 				5B71FEB928DB93E200F311F5 /* BookView.swift in Sources */,
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
@@ -734,6 +784,7 @@
 				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
 				5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */,
 				5B175ECC28D107CA00101CEC /* WriteView.swift in Sources */,
+				5B71FEDF28DD56ED00F311F5 /* BookCollectionReusableView.swift in Sources */,
 				5B71FEB728DB93C700F311F5 /* BookViewController.swift in Sources */,
 				5B71FEBF28DB942B00F311F5 /* BookmarkPhraseTableViewCell.swift in Sources */,
 				5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */,
@@ -742,18 +793,23 @@
 				5B55444528CEFDC100781EC8 /* TabBarViewController.swift in Sources */,
 				5B71FEC428DB950900F311F5 /* BookmarkSegmentedControl.swift in Sources */,
 				5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */,
+				5B71FED228DC1C7800F311F5 /* BookmarkRepository.swift in Sources */,
+				5B71FECD28DC154D00F311F5 /* BookmarkRealmModel.swift in Sources */,
 				5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */,
 				5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */,
 				5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */,
+				5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
 				5B71FEBB28DB93E900F311F5 /* PhraseView.swift in Sources */,
 				5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
 				5B71FEC228DB946300F311F5 /* Detail.swift in Sources */,
-				5B71FECA28DBBD0C00F311F5 /* FromWhatViewType.swift in Sources */,
+				5B71FECA28DBBD0C00F311F5 /* BookmarkViewType.swift in Sources */,
 				5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */,
 				5B819ED028D245D200626693 /* APIError.swift in Sources */,
+				5B71FED528DC38F400F311F5 /* SettingView.swift in Sources */,
+				5B71FEDB28DC41B300F311F5 /* Setting.swift in Sources */,
 				5B55444228CEFA8B00781EC8 /* StoreAPIManager.swift in Sources */,
 				5B5544B728CF1A7F00781EC8 /* UIView+.swift in Sources */,
 				5B5544B528CF1A7800781EC8 /* Date+.swift in Sources */,

@@ -11,13 +11,13 @@ final class BookmarkTextField: UITextField {
     
     // MARK: - Property
     
-    var isFocusing: Bool = false {
+    override var isSelected: Bool {
         didSet {
-            layer.borderColor = isFocusing ?
+            layer.borderColor = isSelected ?
             Color.black100.cgColor : Color.gray300.cgColor
         }
     }
-    
+        
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -45,7 +45,6 @@ final class BookmarkTextField: UITextField {
         attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [.foregroundColor: Color.gray300])
-        
     }
     
     private func configureLayout() {

@@ -17,7 +17,7 @@ final class BookmarkButton: UIButton {
     enum ButtonType {
         case complete, edit, bookmark
         
-        var text: String {
+        fileprivate var text: String {
             switch self {
             case .complete:
                 return "완료"

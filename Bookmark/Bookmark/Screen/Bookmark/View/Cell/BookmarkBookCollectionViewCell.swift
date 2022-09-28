@@ -11,8 +11,7 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Property
     
-    let dateLabel = UILabel().then {
-        $0.text = "2022.09.21"
+    private let dateLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.gray100
         $0.numberOfLines = 1
@@ -24,8 +23,7 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
         $0.addSubview(bookLabel)
     }
     
-    let bookLabel = UILabel().then {
-        $0.text = "책방이름없음"
+    private let bookLabel = UILabel().then {
         $0.font = Font.body1.font
         $0.textColor = .white
         $0.numberOfLines = 1
@@ -37,7 +35,7 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
+    
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
@@ -56,8 +54,8 @@ final class BookmarkBookCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Set Up Data
     
-    func setupData(data: BookWrite) {
-        bookImageView.image = data.image
-        bookLabel.text = data.name
+    func setupData(record: Record) {
+        guard let store = record.store?.name else { return }
+        bookLabel.text = store
     }
 }

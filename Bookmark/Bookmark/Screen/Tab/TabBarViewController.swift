@@ -20,9 +20,10 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
     }
 
     private func configureTabBarViewController() {
-        UITabBar.appearance().scrollEdgeAppearance = tabBar.standardAppearance
         UITabBar.appearance().backgroundColor = .white
         tabBar.tintColor = .black
+        tabBar.barTintColor = .white
+        tabBar.isTranslucent = false
         
         let firstTabController = HomeViewController()
         let secondTabController = BookmarkViewController()

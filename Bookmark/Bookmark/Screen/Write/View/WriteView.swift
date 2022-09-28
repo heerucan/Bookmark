@@ -7,9 +7,23 @@
 
 import UIKit
 
+import RealmSwift
+
 final class WriteView: BaseView {
     
+    // MARK: - Realm
+    
+    let repository = BookmarkRepository.shared
+    
+    var objectId: ObjectId?
+    
     // MARK: - Property
+    
+    var bookStore: String = "" {
+        didSet {
+            navigationView.titleLabel.text = bookStore
+        }
+    }
     
     var image: UIImage? {
         didSet {
@@ -25,16 +39,14 @@ final class WriteView: BaseView {
         }
     }
     
-    let navigationView = BookmarkNavigationBar().then {
-        $0.titleLabel.text = "책갈피 꽂아두기"
-    }
+    let navigationView = BookmarkNavigationBar(type: .write)
     
-    let descriptionLabel = UILabel().then {
+    private let descriptionLabel = UILabel().then {
         $0.font = Font.body5.font
         $0.textColor = Color.black100
     }
     
-    lazy var stackView = UIStackView(arrangedSubviews: [titleTextField, imageButton]).then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [titleTextField, imageButton]).then {
         $0.axis = .vertical
         $0.distribution = .equalSpacing
         $0.spacing = 20
@@ -46,13 +58,13 @@ final class WriteView: BaseView {
     }
     
     lazy var imageButton = UIButton().then {
-        $0.contentMode = .scaleAspectFill
+        $0.imageView?.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.makeCornerStyle(width: 1, color: Color.gray300.cgColor, radius: 5)
         $0.addSubview(iconView)
     }
     
-    let iconView = UIImageView().then {
+    private let iconView = UIImageView().then {
         $0.image = Icon.Image.gallery
     }
     
@@ -109,10 +121,7 @@ final class WriteView: BaseView {
         }
     }
     
-    func setupWriteViewState(_ image: UIImage? = Icon.Button.close,
-                             _ viewStates: WriteViewState) {
-        navigationView.rightBarButton.setImage(image, for: .normal)
-        navigationView.backButton.isHidden = true
+    func setupWriteViewState(_ viewStates: WriteViewState) {
         writeViewState = viewStates
     }
 }

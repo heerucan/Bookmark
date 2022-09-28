@@ -9,40 +9,81 @@ import UIKit
 
 final class BookmarkNavigationBar: BaseView {
     
+    // MARK: - Enum
+    
+    enum NavigationType {
+        case setting
+        case detail
+        case bookmark
+        case write
+        
+        fileprivate var title: String {
+            switch self {
+            case .setting:
+                return "설정"
+            case .bookmark, .write:
+                return "책갈피 꽂아두기"
+            case .detail:
+                return ""
+            }
+        }
+        
+        fileprivate var rightButton: UIImage? {
+            switch self {
+            case .setting:
+                return nil
+            case .detail:
+                return Icon.Button.share
+            case .bookmark, .write:
+                return Icon.Button.close
+            }
+        }
+        
+        fileprivate var leftButton: UIImage? {
+            switch self {
+            case .setting, .bookmark:
+                return nil
+            case .detail, .write:
+                return Icon.Button.back
+            }
+        }
+    }
+    
     let titleLabel = UILabel().then {
         $0.font = Font.title1.font
         $0.textColor = Color.black100
         $0.textAlignment = .center
     }
     
-    let backButton = UIButton().then {
-        $0.setImage(Icon.Button.back, for: .normal)
-    }
-    
-    let rightBarButton = UIButton().then {
-        $0.setImage(Icon.Button.share, for: .normal)
-    }
+    let leftButton = UIButton()
+    let rightButton = UIButton()
     
     private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
+        $0.backgroundColor = Color.gray500
     }
     
     // MARK: - Initializer
     
-    override init(frame: CGRect) {
+    init(type: NavigationType) {
         super.init(frame: .zero)
+        titleLabel.text = type.title
+        leftButton.setImage(type.leftButton, for: .normal)
+        rightButton.setImage(type.rightButton, for: .normal)
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
-        self.addSubviews([backButton, rightBarButton, lineView, titleLabel])
+        self.addSubviews([leftButton,
+                          rightButton,
+                          lineView,
+                          titleLabel])
         
-        backButton.snp.makeConstraints { make in
+        leftButton.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
         }
         
-        rightBarButton.snp.makeConstraints { make in
+        rightButton.snp.makeConstraints { make in
             make.top.trailing.bottom.equalToSuperview()
         }
         

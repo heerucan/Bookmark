@@ -4,6 +4,7 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>kakaomap</string>
 		<string>nmap</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

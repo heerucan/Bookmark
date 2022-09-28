@@ -8,15 +8,17 @@
 import UIKit
 
 final class BookmarkViewController: BaseViewController {
-    
+
     // MARK: - Property
     
     var dataViewControllers: [UIViewController] {
-        [self.phraseViewController, self.bookViewController]
+        [self.phraseViewController,
+         self.bookViewController]
     }
     
     lazy var currentPage: Int = 0 {
         didSet {
+            print(oldValue, self.currentPage)
             let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
             self.pageViewController.setViewControllers([dataViewControllers[self.currentPage]],
                                                        direction: direction,
@@ -27,13 +29,14 @@ final class BookmarkViewController: BaseViewController {
     private let phraseViewController = PhraseViewController()
     private let bookViewController = BookViewController()
     
+    private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll,
+                                                               navigationOrientation: .horizontal).then {
+        $0.setViewControllers([dataViewControllers[0]], direction: .forward, animated: true)
+    }
+    
     let segementedControl = BookmarkSegmentedControl(items: ["글 한 줄", "책 한 권"]).then {
         $0.selectedSegmentIndex = 0
         $0.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
-    }
-    
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray400
     }
     
     let writeButton = UIButton().then {
@@ -41,14 +44,10 @@ final class BookmarkViewController: BaseViewController {
         $0.addTarget(self, action: #selector(touchupWriteButton), for: .touchUpInside)
     }
     
-    private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll,
-                                                               navigationOrientation: .horizontal,
-                                                               options: nil).then {
-        $0.setViewControllers([dataViewControllers[0]],
-                              direction: .forward,
-                              animated: true)
+    private let lineView = UIView().then {
+        $0.backgroundColor = Color.gray500
     }
-    
+        
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -103,18 +102,21 @@ final class BookmarkViewController: BaseViewController {
         let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.setupWriteViewState(Icon.Button.close, .sentence)
+                viewController.writeView.setupWriteViewState(.sentence)
                 viewController.fromWhatView = .bookmark
+                viewController.bookmarkViewStatus = .write
             }
         }
         let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
-                viewController.writeView.setupWriteViewState(Icon.Button.close, .book)
+                viewController.writeView.setupWriteViewState(.book)
                 viewController.fromWhatView = .bookmark
+                viewController.bookmarkViewStatus = .write
             }
         }
-        showAlert(title: "어떤 책갈피를 꽂아두실 건가요?", message: nil,
+        showAlert(title: "어떤 책갈피를 꽂아두실 건가요?",
+                  message: nil,
                   actions: [sentence, book])
     }
 }
