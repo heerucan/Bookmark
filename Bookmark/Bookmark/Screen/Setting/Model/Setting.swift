@@ -26,7 +26,7 @@ enum Setting: CaseIterable, CustomStringConvertible {
     var menu: [String] {
         switch self {
         case .notice:
-            return ["책갈피 색변경하기", "문의하기", "리뷰 남기기"]
+            return ["문의하기", "리뷰 남기기"]
         case .fileManage:
             return ["백업하기", "복구하기"]
         case .aboutBookmark:
