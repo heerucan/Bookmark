@@ -109,27 +109,27 @@ final class WriteViewController: BaseViewController {
     @objc func touchupCompleteButton(sender: UIButton) {
         guard let title = writeView.titleTextField.text,
               let image = writeView.imageButton.imageView?.image else { return }
-        if writeView.writeViewState == .sentence { // 글귀면 true
+        if writeView.writeViewState == .book { // 글귀면 true
             let detailTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                     title: title,
-                                    category: true,
+                                    category: false,
                                     createdAt: Date())
             writeView.repository.addRecord(item: detailTask)
             FileManagerHelper.shared.saveImageToDocument(fileName: "\(detailTask.objectId).jpg", image: image)
             fromWhatView == .detail ? transition(self, .pop) : transition(self, .dismiss)
-        } else if writeView.writeViewState == .book { // 책이면 false
+        } else if writeView.writeViewState == .sentence { // 책이면 false
             if bookmarkViewStatus == .edit { // 수정하기는 무조건 탭바 -> 모달 -> disimiss
                 guard let objectId = objectId else { return }
                 writeView.repository.updateRecord(item:["objectId": objectId,
                                                         "Store": Store(name: writeView.bookStore, bookmark: bookmark),
                                                         "title": title,
-                                                        "category": false,
+                                                        "category": true,
                                                         "createdAt": Date()])
                 transition(self, .dismiss)
             } else { // 글쓰기
                 let bookmarkTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                           title: title,
-                                          category: false,
+                                          category: true,
                                           createdAt: Date())
                 writeView.repository.addRecord(item: bookmarkTask)
                 FileManagerHelper.shared.saveImageToDocument(fileName: "\(bookmarkTask.objectId).jpg", image: image)
