@@ -218,8 +218,8 @@ final class DetailTableViewCell: BaseTableViewCell {
         marker.captionText = data.name
         marker.captionTextSize = 15
         marker.position = coordinate
-        marker.width = Matrix.markerSize
-        marker.height = Matrix.markerSize
+        marker.width = Matrix.markerWidth
+        marker.height = Matrix.markerHeight
         marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
         marker.mapView = mapView
         mapView.moveCamera(NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longtitude)))

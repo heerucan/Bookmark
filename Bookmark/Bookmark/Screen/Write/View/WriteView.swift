@@ -120,7 +120,7 @@ final class WriteView: BaseView {
         
         completeButton.snp.makeConstraints { make in
             make.directionalHorizontalEdges.equalToSuperview().inset(16)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(15)
             make.height.equalTo(54)
         }
     }

@@ -50,27 +50,19 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         
         moreButton.snp.makeConstraints { make in
             make.top.equalTo(bookImageView.snp.top)
-            make.trailing.equalTo(bookImageView.snp.trailing).inset(16)
-            make.width.equalTo(24)
-            make.height.equalTo(20)
+            make.trailing.equalTo(bookImageView.snp.trailing).inset(6)
         }
         
         tagView.snp.makeConstraints { make in
-            make.top.equalTo(bookImageView.snp.bottom).offset(15)
+            make.top.equalTo(bookImageView.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
             make.height.equalTo(24)
         }
         
-        bookView.snp.makeConstraints { make in
-            make.top.equalTo(bookImageView.snp.bottom).offset(15)
-            make.leading.equalTo(tagView.snp.trailing).offset(5)
-            make.height.equalTo(24)
-        }
-        
         storeView.snp.makeConstraints { make in
-            make.top.equalTo(bookImageView.snp.bottom).offset(15)
-            make.leading.equalTo(bookView.snp.trailing).offset(5)
-            make.bottom.equalToSuperview().inset(20)
+            make.top.equalTo(bookImageView.snp.bottom).offset(16)
+            make.leading.equalTo(tagView.snp.trailing).offset(5)
+            make.bottom.equalToSuperview().inset(16)
             make.height.equalTo(24)
         }
     }
@@ -78,14 +70,10 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(record: Record) {
-        guard let name = record.store?.name,
-              let title = record.title else { return }
+        guard let name = record.store?.name else { return }
         storeView.subLabel.text = name
         if name.isEmpty {
             storeView.subLabel.text = "책방 어딘가"
-        }
-        if title.isEmpty {
-            bookView.subLabel.text = "어떤 책에서"
         }
     }
 }

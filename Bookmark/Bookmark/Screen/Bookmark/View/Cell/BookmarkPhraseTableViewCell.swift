@@ -34,11 +34,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
 
     private let bookView = BookmarkBoxView()
     private let storeView = BookmarkBoxView()
-    
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
-    }
-    
+        
     // MARK: - Initializer
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -49,11 +45,11 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
 
     override func configureLayout() {
         contentView.addSubviews([phraseImageView,
-                     moreButton,
-                     dateLabel,
-                     phraseView,
-                     bookView,
-                     storeView])
+                                 moreButton,
+                                 dateLabel,
+                                 phraseView,
+                                 bookView,
+                                 storeView])
         
         phraseImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -62,9 +58,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         
         moreButton.snp.makeConstraints { make in
             make.top.equalTo(phraseImageView.snp.top)
-            make.trailing.equalTo(phraseImageView.snp.trailing).inset(16)
-            make.width.equalTo(24)
-            make.height.equalTo(20)
+            make.trailing.equalTo(phraseImageView.snp.trailing).inset(6)
         }
         
         dateLabel.snp.makeConstraints { make in

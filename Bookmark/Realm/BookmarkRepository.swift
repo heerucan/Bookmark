@@ -30,11 +30,13 @@ protocol BookmarkRepositoryType {
     
     // 5. 책방 북마크 추가-해제
     func updateBookmark(item: Any?)
+    
+    func fetchBookmark(item: String) -> Results<Store>
 }
 
 // MARK: - BookmarkRepository
 
-final class BookmarkRepository: BookmarkRepositoryType {
+final class BookmarkRepository {
     static let shared = BookmarkRepository()
     private init() { }
     
@@ -86,13 +88,29 @@ final class BookmarkRepository: BookmarkRepositoryType {
         return realm.objects(Store.self).sorted(byKeyPath: "bookmark", ascending: true)
     }
     
+    func fetchBookmark(item: String) -> Results<Store> {
+        return realm.objects(Store.self).filter("name == \(item)")
+    }
+    
     // MARK: - true인 애들만 따로 배열로 뽑아서 거기에 home 지도 상에 선택한 마커의 서점 이름과 재도시에 같은 아이로 반환
     
     func updateBookmark(item: Any?) {
         do {
             try realm.write {
                 realm.create(Store.self, value: item as Any, update: .modified)
-                print("Update Bookmark 성공!", item)
+                print("Update Bookmark 성공!", item as Any)
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func updateBookmark(item: Store) {
+        do {
+            try realm.write {
+                item.bookmark = !item.bookmark
+                realm.create(Store.self, value: item as Any, update: .modified)
+                print("Update Bookmark 성공!", item as Any)
             }
         } catch let error {
             print(error)

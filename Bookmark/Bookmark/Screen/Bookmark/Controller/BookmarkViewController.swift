@@ -47,7 +47,7 @@ final class BookmarkViewController: BaseViewController {
     
     private let totalCountLabel = UILabel().then {
         $0.font = Font.title3.font
-        $0.textColor = Color.subMain
+        $0.textColor = Color.main
     }
     
     let segementedControl = BookmarkSegmentedControl(items: ["글 한 줄", "책 한 권"]).then {

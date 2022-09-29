@@ -52,7 +52,7 @@ final class BookView: BaseView {
         }
         
         emptyStateView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(235)
+            make.top.equalToSuperview().inset(160)
             make.centerX.equalToSuperview()
         }
     }

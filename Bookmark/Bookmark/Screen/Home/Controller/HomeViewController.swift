@@ -19,7 +19,7 @@ final class HomeViewController: BaseViewController {
     
     var tasks: Results<Store>! {
         didSet {
-            print("📪bookmarkButton 변화 발생", tasks)
+            print("📪bookmarkButton 변화 발생", tasks as Any)
         }
     }
     
@@ -39,6 +39,8 @@ final class HomeViewController: BaseViewController {
     
     private var markers: [NMFMarker] = []
     
+    private var bookmarkArray: [String] = []
+
     private var newStoreList: [BookStoreInfo] = []
     private var oldStoreList: [BookStoreInfo] = []
     private var bookStoreList: [BookStoreInfo] = []
@@ -132,8 +134,8 @@ final class HomeViewController: BaseViewController {
             marker.isHideCollidedMarkers = true
             marker.isHideCollidedSymbols = true
             marker.tag = UInt(tag)
-            marker.width = Matrix.markerSize
-            marker.height = Matrix.markerSize
+            marker.width = Matrix.markerWidth
+            marker.height = Matrix.markerHeight
             marker.iconPerspectiveEnabled = true
             marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
             marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
@@ -178,7 +180,6 @@ final class HomeViewController: BaseViewController {
         case .bookmark:
             if isBookmarkSelected {
                 markers.filter { $0.tag != 3 }.forEach { $0.mapView = nil }
-                var bookmarkArray: [String] = []
                 tasks.forEach { bookmarkArray.append($0.name) }
                 self.bookStoreList.forEach { store in
                     if bookmarkArray.contains(store.name) {
@@ -211,6 +212,10 @@ final class HomeViewController: BaseViewController {
                 guard let selectedStoreInfo = self.selectedStoreInfo,
                       let name = self.homeView.nameLabel.text else { return }
                 viewController.detailStoreInfo = selectedStoreInfo
+                                
+//                print("📮", self.bookmarkArray.map { $0 } )
+                // 이름이 북마크된 서점 목록리스트에 속한 경우에만 true로 처리해줘야 함
+//                print(self.repository.fetchBookmark())
                 viewController.bookmarkButton.isSelected = (name == selectedStoreInfo.name) ? true : false
             }
         default:

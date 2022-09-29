@@ -15,6 +15,12 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     // MARK: - Realm
     
     let repository = BookmarkRepository.shared
+    
+    var tasks: Results<Store>! {
+        didSet {
+            print("📪DetailViewController", tasks as Any)
+        }
+    }
         
     // MARK: - Property
     
@@ -55,6 +61,11 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupRealm()
     }
     
     // MARK: - Configure UI & Layout
@@ -106,6 +117,11 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     // MARK: - Custom Method
     
+    private func setupRealm() {
+        self.tasks = repository.fetchBookmark()
+
+    }
+    
     private func setupAction() {
         navigationBar.leftButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
         navigationBar.rightButton.addTarget(self, action: #selector(touchupShareButton), for: .touchUpInside)
@@ -137,7 +153,8 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
-        showAlert(title: "어떤 책갈피를 기록하실 건가요?", message: nil,
+        showAlert(title: "어떤 책갈피를 기록하실 건가요?",
+                  message: nil,
                   actions: [sentence, book])
     }
     
@@ -145,13 +162,15 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         guard let detailStoreInfo = detailStoreInfo else { return }
         sender.isSelected.toggle()
         if sender.isSelected {
+            print("선택")
             sender.setImage(Icon.Button.bookmark, for: .selected)
             repository.updateBookmark(item: ["name": detailStoreInfo.name,
-                                             "bookmark": sender.isSelected])
-        } else {
+                                             "bookmark": true])
+        } else if !sender.isSelected {
+            print("선택해제")
             sender.setImage(Icon.Button.unselectedBookmark, for: .normal)
             repository.updateBookmark(item: ["name": detailStoreInfo.name,
-                                             "bookmark": !sender.isSelected])
+                                             "bookmark": false])
         }
     }
     
@@ -161,7 +180,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     @objc func touchupShareButton() {
         guard let detailStoreInfo = detailStoreInfo else { return }
-        showActivity(activityItems: ["🔖",
+        showActivity(activityItems: ["🔖 책갈피",
                                      detailStoreInfo.name,
                                      detailStoreInfo.address,
                                      detailStoreInfo.phone,
