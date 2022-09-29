@@ -58,9 +58,7 @@ final class BookmarkNavigationBar: BaseView {
     let leftButton = UIButton()
     let rightButton = UIButton()
     
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
-    }
+    private let lineView = LineView()
     
     // MARK: - Initializer
     
@@ -96,7 +94,6 @@ final class BookmarkNavigationBar: BaseView {
         lineView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(1)
-            make.height.equalTo(1)
         }
     }
 }

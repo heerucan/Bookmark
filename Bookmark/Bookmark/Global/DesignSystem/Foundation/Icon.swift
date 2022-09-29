@@ -47,6 +47,6 @@ enum Icon {
     
     enum Logo {
         static let white = UIImage(named: "imgSplashWhite")
-        static let red = UIImage(named: "icnLike")
+        static let red = UIImage(named: "imgLogo")
     }
 }
