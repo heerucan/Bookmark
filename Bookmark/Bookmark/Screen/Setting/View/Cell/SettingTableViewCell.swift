@@ -16,9 +16,7 @@ final class SettingTableViewCell: BaseTableViewCell {
         $0.textColor = Color.gray100
     }
     
-    private let lineView = UIView().then {
-        $0.backgroundColor = Color.gray500
-    }
+    private let lineView = LineView()
     
     // MARK: - Initializer
     
@@ -39,7 +37,6 @@ final class SettingTableViewCell: BaseTableViewCell {
         
         lineView.snp.makeConstraints { make in
             make.top.equalTo(cellLabel.snp.bottom).offset(20)
-            make.height.equalTo(1)
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview()
