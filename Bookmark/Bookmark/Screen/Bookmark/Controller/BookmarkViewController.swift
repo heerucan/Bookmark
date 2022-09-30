@@ -21,10 +21,6 @@ final class BookmarkViewController: BaseViewController {
         }
     }
     
-    var phraseCount = 0
-    
-    var bookCount = 0
-    
     var dataViewControllers: [UIViewController] {
         [self.phraseViewController,
          self.bookViewController]
@@ -77,11 +73,18 @@ final class BookmarkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(#function)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function)
         setupCount()
+    }
+        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
     }
     
     // MARK: - Configure UI & Layout
@@ -139,27 +142,17 @@ final class BookmarkViewController: BaseViewController {
         }
     }
     
-    // MARK: - Custom Methdo
+    // MARK: - Custom Method
     
-    private func setupCount() {
+    func setupCount() {
         totalCount = repository.fetchRecord().count
         totalCountLabel.text = "\(totalCount)"
-        NotificationCenter.default.addObserver(self, selector: #selector(receivePhraseCount(_:)), name: NSNotification.Name("countPhrase"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(receiveBookCount(_:)), name: NSNotification.Name("countBook"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveCount(_:)), name: NSNotification.Name("countPhrase"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveCount(_:)), name: NSNotification.Name("countBook"), object: nil)
     }
     
-    @objc func receivePhraseCount(_ notification: Notification) {
-        guard let count = notification.object as? Int else { return }
-//        totalCountLabel.text = "\(count)"
-        phraseCount = count
-        print("글귀개수",count, phraseCount)
-    }
-    
-    @objc func receiveBookCount(_ notification: Notification) {
-        guard let count = notification.object as? Int else { return }
-//        totalCountLabel.text = "\(count)"
-        bookCount = count
-        print("책개수",count, bookCount)
+    @objc func receiveCount(_ notification: Notification) {
+        setupCount()
     }
     
     // MARK: - @objc
@@ -177,7 +170,7 @@ final class BookmarkViewController: BaseViewController {
                 viewController.bookmarkViewStatus = .write
             }
         }
-        let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "갖고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(.book)

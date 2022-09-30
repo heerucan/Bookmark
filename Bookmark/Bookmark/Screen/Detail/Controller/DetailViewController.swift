@@ -144,7 +144,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.fromWhatView = .detail
             }
         }
-        let book = UIAlertAction(title: "사고 싶은 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "갖고 싶은 책 한 권", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }

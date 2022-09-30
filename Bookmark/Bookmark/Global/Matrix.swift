@@ -22,7 +22,7 @@ enum Matrix {
     static let backPopupTitle = "완료하지 않고 나갈 건가요?"
     static let backPopupMessage = "기록한 책갈피는 저장되지 않아요!"
     static let sentence = "공감 가는 글에 책갈피를 꽂아두세요"
-    static let book = "사고 싶은 책에 책갈피를 꽂아두세요"
+    static let book = "갖고 싶은 책에 책갈피를 꽂아두세요"
     static let textFieldPlaceholder = "책 제목은 필수가 아니에요 :)"
     static let clipboard = "클립보드에 책방 주소가 복사됐어요!"
 }
