@@ -24,7 +24,7 @@ final class BookmarkDetailButton: UIButton {
                 return "SNS"
             }
         }
-       
+        
         fileprivate var icon: UIImage? {
             switch self {
             case .homepage:
@@ -43,15 +43,20 @@ final class BookmarkDetailButton: UIButton {
         didSet {
             isUserInteractionEnabled = isDisabled ? false : true
             buttonLabel.textColor = isDisabled ? Color.gray300 : Color.black100
+            if isDisabled {
+                iconView.tintColor = Color.gray300
+            } else {
+                iconView.tintColor = Color.main
+            }
         }
     }
     
     var isTouched: Bool = false {
         didSet {
-            buttonLabel.textColor = isTouched ? Color.gray300 : Color.black100
+            backgroundColor = isTouched ? Color.gray300 : Color.black100
         }
     }
-
+    
     private let buttonLabel = UILabel().then {
         $0.font = Font.body10.font
     }
@@ -66,6 +71,7 @@ final class BookmarkDetailButton: UIButton {
         configureLayout()
         buttonLabel.text = type.text
         iconView.image = type.icon
+        configureImageColor(type: type)
     }
     
     required init?(coder: NSCoder) {
@@ -76,11 +82,12 @@ final class BookmarkDetailButton: UIButton {
     
     private func configureUI() {
         backgroundColor = Color.gray500
+        iconView.tintColor = Color.main
     }
     
     private func configureLayout() {
         self.addSubviews([iconView, buttonLabel])
-
+        
         iconView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
             make.centerX.equalToSuperview()
@@ -90,6 +97,18 @@ final class BookmarkDetailButton: UIButton {
         buttonLabel.snp.makeConstraints { make in
             make.top.equalTo(iconView.snp.bottom).offset(4)
             make.centerX.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Custom Method
+    
+    private func configureImageColor(type: InfoType) {
+        let image = type.icon?.withRenderingMode(.alwaysTemplate)
+        iconView.image = image
+        if isDisabled {
+            iconView.tintColor = Color.gray300
+        } else {
+            iconView.tintColor = Color.main
         }
     }
 }
