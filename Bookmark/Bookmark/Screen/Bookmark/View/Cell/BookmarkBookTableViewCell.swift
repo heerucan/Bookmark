@@ -45,7 +45,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         
         bookImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(bookImageView.snp.width)
         }
         
         moreButton.snp.makeConstraints { make in
@@ -73,7 +73,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         guard let name = record.store?.name else { return }
         storeView.subLabel.text = name
         if name.isEmpty {
-            storeView.subLabel.text = "책방 어딘가"
+            storeView.subLabel.text = "책방에서"
         }
     }
 }

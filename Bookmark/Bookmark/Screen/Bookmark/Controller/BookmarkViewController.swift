@@ -15,6 +15,16 @@ final class BookmarkViewController: BaseViewController {
         
     // MARK: - Property
     
+    var totalCount = 0 {
+        didSet {
+            totalCountLabel.text = "\(totalCount)"
+        }
+    }
+    
+    var phraseCount = 0
+    
+    var bookCount = 0
+    
     var dataViewControllers: [UIViewController] {
         [self.phraseViewController,
          self.bookViewController]
@@ -132,9 +142,24 @@ final class BookmarkViewController: BaseViewController {
     // MARK: - Custom Methdo
     
     private func setupCount() {
-        var totalCount = 0
-        totalCount = repository.fetchRecord("true").count + repository.fetchRecord("false").count
+        totalCount = repository.fetchRecord().count
         totalCountLabel.text = "\(totalCount)"
+        NotificationCenter.default.addObserver(self, selector: #selector(receivePhraseCount(_:)), name: NSNotification.Name("countPhrase"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveBookCount(_:)), name: NSNotification.Name("countBook"), object: nil)
+    }
+    
+    @objc func receivePhraseCount(_ notification: Notification) {
+        guard let count = notification.object as? Int else { return }
+//        totalCountLabel.text = "\(count)"
+        phraseCount = count
+        print("글귀개수",count, phraseCount)
+    }
+    
+    @objc func receiveBookCount(_ notification: Notification) {
+        guard let count = notification.object as? Int else { return }
+//        totalCountLabel.text = "\(count)"
+        bookCount = count
+        print("책개수",count, bookCount)
     }
     
     // MARK: - @objc

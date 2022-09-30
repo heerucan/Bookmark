@@ -13,7 +13,7 @@ struct Tag {
 
 struct TagData {
     var tagArray = [
-        Tag(title: "책갈피"),
+//        Tag(title: "책갈피"),
         Tag(title: "새책방"),
         Tag(title: "헌책방")
     ]

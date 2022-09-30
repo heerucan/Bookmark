@@ -40,7 +40,8 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
     
     private lazy var backView = UIView().then {
-        $0.addSubviews([writeButton, bookmarkButton])
+//        $0.addSubviews([writeButton, bookmarkButton])
+        $0.addSubviews([writeButton])
         $0.makeShadow(radius: 14, offset: CGSize(width: 0, height: -2), opacity: 0.1)
         $0.backgroundColor = .white
     }
@@ -50,11 +51,11 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         $0.addTarget(self, action: #selector(touchupWriteButton), for: .touchUpInside)
     }
     
-    let bookmarkButton = UIButton().then {
-        $0.setImage(Icon.Button.bookmark, for: .selected)
-        $0.setImage(Icon.Button.unselectedBookmark, for: .normal)
-        $0.addTarget(self, action: #selector(touchupBookmarkButton(_:)), for: .touchUpInside)
-    }
+//    let bookmarkButton = UIButton().then {
+//        $0.setImage(Icon.Button.bookmark, for: .selected)
+//        $0.setImage(Icon.Button.unselectedBookmark, for: .normal)
+//        $0.addTarget(self, action: #selector(touchupBookmarkButton(_:)), for: .touchUpInside)
+//    }
         
     // MARK: - LifeCycle
     
@@ -96,17 +97,17 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             make.height.equalTo(95)
         }
         
-        bookmarkButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(7)
-            make.leading.equalToSuperview().inset(16)
-            make.height.equalTo(54)
-        }
+//        bookmarkButton.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(7)
+//            make.leading.equalToSuperview().inset(16)
+//            make.height.equalTo(54)
+//        }
         
         writeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(7)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(54)
-            make.leading.equalTo(bookmarkButton.snp.trailing).offset(7)
+//            make.leading.equalTo(bookmarkButton.snp.trailing).offset(7)
         }
     }
     
@@ -150,7 +151,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.writeView.writeViewState = .book
                 viewController.writeView.bookStore = detailStoreInfo.name
                 viewController.fromWhatView = .detail
-                viewController.bookmark = self.bookmarkButton.isSelected
+//                viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?",

@@ -30,6 +30,7 @@ final class HomeView: BaseView {
         $0.addSubviews([searchLabel, searchIconView])
         $0.backgroundColor = .white
         $0.makeCornerStyle(width: 0, color: nil, radius: 1)
+        $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 2), opacity: 0.1)
     }
     
     private let searchIconView = UIImageView().then {
@@ -53,7 +54,6 @@ final class HomeView: BaseView {
     lazy var storeButton = UIButton().then {
         $0.addSubviews([nameLabel, addressLabel, distanceLabel])
         $0.backgroundColor = .white
-//        $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: -2), opacity: 0.1)
         $0.layer.cornerRadius = 0
         $0.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
     }

@@ -13,7 +13,7 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     
     private var tagData = TagData()
     
-    private let tagLabel = UILabel().then {
+    let tagLabel = UILabel().then {
         $0.textColor = Color.black100
         $0.font = Font.body7.font
     }

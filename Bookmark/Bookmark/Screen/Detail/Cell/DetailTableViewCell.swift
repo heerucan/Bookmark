@@ -220,7 +220,7 @@ final class DetailTableViewCell: BaseTableViewCell {
         marker.position = coordinate
         marker.width = Matrix.markerWidth
         marker.height = Matrix.markerHeight
-        marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
+        marker.iconImage = NMFOverlayImage(name: Icon.marker)
         marker.mapView = mapView
         mapView.moveCamera(NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longtitude)))
     }

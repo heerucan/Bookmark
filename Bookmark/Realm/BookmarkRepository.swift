@@ -44,6 +44,10 @@ final class BookmarkRepository {
     
     // MARK: - Record
     
+    func fetchRecord() -> Results<Record> {
+        return realm.objects(Record.self).sorted(byKeyPath: "createdAt", ascending: false)
+    }
+    
     func fetchRecord(_ item: String) -> Results<Record> {
         return realm.objects(Record.self).sorted(byKeyPath: "createdAt", ascending: false).filter("category == \(item)")
     }
@@ -105,11 +109,12 @@ final class BookmarkRepository {
         }
     }
     
+    // 문제 업데이트인데 이게 계속 생성되는 게 문제였음
     func updateBookmark(item: Store) {
         do {
             try realm.write {
                 item.bookmark = !item.bookmark
-                realm.create(Store.self, value: item as Any, update: .modified)
+//                realm.create(Store.self, value: item as Any, update: .modified)
                 print("Update Bookmark 성공!", item as Any)
             }
         } catch let error {

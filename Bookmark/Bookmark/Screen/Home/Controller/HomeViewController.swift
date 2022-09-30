@@ -130,6 +130,11 @@ final class HomeViewController: BaseViewController {
                   let lng = Double(bookStore.longtitude) else { return }
             let coordinate = NMGLatLng(lat: lat, lng: lng)
             let marker = NMFMarker()
+            
+            
+//            marker.userInfo = ["type": bookStore.type]
+            
+            
             marker.position = coordinate
             marker.isHideCollidedMarkers = true
             marker.isHideCollidedSymbols = true
@@ -137,12 +142,13 @@ final class HomeViewController: BaseViewController {
             marker.width = Matrix.markerWidth
             marker.height = Matrix.markerHeight
             marker.iconPerspectiveEnabled = true
-            marker.iconImage = NMFOverlayImage(name: Icon.Image.marker)
+            marker.iconImage = NMFOverlayImage(name: Icon.marker)
             marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self,
                       let lat = self.myLatitude,
                       let long = self.myLongtitude else { return false }
                 let myCoordinate = NMGLatLng(lat: lat, lng: long)
+                marker.iconImage = NMFOverlayImage(name: Icon.selectedMarker)
                 self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
                 self.transformView(.storeButtonShow)
                 self.selectedStoreInfo = bookStore
@@ -157,6 +163,7 @@ final class HomeViewController: BaseViewController {
         switch filter {
         case .new:
             if isNewSelected {
+                isOldSelected = false
                 markers.filter { $0.tag != 0 }.forEach { $0.mapView = nil }
                 setupMarker(storeList: self.newStoreList, tag: 0)
             } else {
@@ -166,6 +173,7 @@ final class HomeViewController: BaseViewController {
             
         case .old:
             if isOldSelected {
+                isNewSelected = false
                 markers.filter { $0.tag != 1 }.forEach { $0.mapView = nil }
                 setupMarker(storeList: self.oldStoreList, tag: 1)
             } else {
@@ -174,23 +182,25 @@ final class HomeViewController: BaseViewController {
             }
             
         case .all:
+            isOldSelected = false
+            isNewSelected = false
             self.homeView.mapView.zoomLevel = 13
             setupMarker(storeList: self.bookStoreList, tag: 2)
             
-        case .bookmark:
-            if isBookmarkSelected {
-                markers.filter { $0.tag != 3 }.forEach { $0.mapView = nil }
-                tasks.forEach { bookmarkArray.append($0.name) }
-                self.bookStoreList.forEach { store in
-                    if bookmarkArray.contains(store.name) {
-                        markers.forEach { $0.iconImage =  NMFOverlayImage(name: Icon.Image.bookMarker) }
-                        setupMarker(storeList: self.bookStoreList.filter { $0.name == store.name }, tag: 3)
-                    }
-                }
-            } else {
-                markers.filter { $0.tag == 3 }.forEach { $0.mapView = nil }
-                setupMarker(storeList: self.bookStoreList, tag: 2)
-            }
+//        case .bookmark:
+//            if isBookmarkSelected {
+//                markers.filter { $0.tag != 3 }.forEach { $0.mapView = nil }
+//                tasks.forEach { bookmarkArray.append($0.name) }
+//                self.bookStoreList.forEach { store in
+//                    if bookmarkArray.contains(store.name) {
+//                        markers.forEach { $0.iconImage =  NMFOverlayImage(name: Icon.bookMarker) }
+//                        setupMarker(storeList: self.bookStoreList.filter { $0.name == store.name }, tag: 3)
+//                    }
+//                }
+//            } else {
+//                markers.filter { $0.tag == 3 }.forEach { $0.mapView = nil }
+//                setupMarker(storeList: self.bookStoreList, tag: 2)
+//            }
         }
         print("📦", markers.count, filter, "//new-", isNewSelected, "//old-", isOldSelected)
     }
@@ -216,7 +226,7 @@ final class HomeViewController: BaseViewController {
 //                print("📮", self.bookmarkArray.map { $0 } )
                 // 이름이 북마크된 서점 목록리스트에 속한 경우에만 true로 처리해줘야 함
 //                print(self.repository.fetchBookmark())
-                viewController.bookmarkButton.isSelected = (name == selectedStoreInfo.name) ? true : false
+//                viewController.bookmarkButton.isSelected = (name == selectedStoreInfo.name) ? true : false
             }
         default:
             break
@@ -235,7 +245,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTagCollectionViewCell.identifier, for: indexPath) as? HomeTagCollectionViewCell
         else { return UICollectionViewCell() }
         cell.setupData(index: indexPath.item)
-//        cell.makeShadow(radius: 3, offset: CGSize(width: 0, height: 1), opacity: 0.25)
+        cell.makeShadow(radius: 2, offset: CGSize(width: 0, height: 1), opacity: 0.25)
         return cell
     }
     
@@ -250,20 +260,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         // MARK: - TODO new가 false인 경우에 마커가 안떠야 하는데 마커가 뜨는 엉키는 문제가 발생
-        if indexPath.item == 0 && cell.isSelected {
-            isBookmarkSelected.toggle()
-            updateMarker(filter: .bookmark)
-        }
-        
-        if indexPath.item == 1 && cell.isSelected {
+        if cell.tagLabel.text == "새책방" {
             isNewSelected.toggle()
             updateMarker(filter: .new)
-        }
-        
-        if indexPath.item == 2 && cell.isSelected {
+        } else if cell.tagLabel.text == "헌책방" {
             isOldSelected.toggle()
             updateMarker(filter: .old)
+        } else {
+            updateMarker(filter: .all)
         }
+        
+//        if indexPath.item == 2 && cell.isSelected {
+//            isBookmarkSelected.toggle()
+//            updateMarker(filter: .old)
+//        }
     }
 }
 
@@ -363,7 +373,7 @@ extension HomeViewController {
                     y: -self.homeView.storeButton.frame.height)
                 self.homeView.locationButton.transform = CGAffineTransform(
                     translationX: 0,
-                    y: -self.homeView.locationButton.frame.height-20)
+                    y: -self.homeView.locationButton.frame.height-40)
             }
         }
     }

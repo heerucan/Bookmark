@@ -18,7 +18,7 @@ final class PhraseView: BaseView {
     var tasks: Results<Record>! {
         didSet {
             tableView.reloadData()
-            print("Tasks 변화 발생", tasks)
+            print("💌Tasks 변화 발생", tasks.count)
         }
     }
     

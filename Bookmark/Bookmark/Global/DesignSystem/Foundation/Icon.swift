@@ -8,7 +8,11 @@
 import UIKit
 
 enum Icon {
-    // TabBar Icon
+
+    static let marker = "icnMarker"
+    static let bookMarker = "icnBookmarkMarker"
+    static let selectedMarker = "icnSelectedMarker"
+    
     enum TabBar {
         static let map = UIImage(named: "icnMap")
         static let unselectedMap = UIImage(named: "icnUnselectedMap")
@@ -41,10 +45,8 @@ enum Icon {
         static let phone = UIImage(named: "icnPhone")
         static let homepage = UIImage(named: "icnDetailSearch")
         static let sns = UIImage(named: "icnLink")
-        static let marker = "icnMarker"
-        static let bookMarker = "icnSelectedMarker"
     }
-    
+
     enum Logo {
         static let white = UIImage(named: "imgSplashWhite")
         static let red = UIImage(named: "imgLogo")

@@ -11,7 +11,7 @@ final class BookViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let bookView = BookView()
+     let bookView = BookView()
     
     // MARK: - LifeCycle
     
@@ -39,6 +39,7 @@ final class BookViewController: BaseViewController {
     @objc func touchupMoreButton(sender: UIButton) {
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
             self.bookView.repository.deleteRecord(item: self.bookView.tasks[sender.tag])
+            NotificationCenter.default.post(name: NSNotification.Name("countBook"), object: self.bookView.tasks.count)
             self.bookView.tableView.reloadData()
         }
         showAlert(title: "꽂은 책갈피를",

@@ -95,7 +95,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         bookView.subLabel.text = title
         dateLabel.text = record.createdAt.toString()
         if name.isEmpty {
-            storeView.subLabel.text = "책방 어딘가"
+            storeView.isHidden = true
         }
         if title.isEmpty {
             bookView.subLabel.text = "어떤 책에서"

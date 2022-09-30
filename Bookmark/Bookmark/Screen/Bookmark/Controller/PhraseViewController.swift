@@ -11,7 +11,7 @@ final class PhraseViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let phraseView = PhraseView()
+    let phraseView = PhraseView()
   
     // MARK: - LifeCycle
     
@@ -56,7 +56,9 @@ final class PhraseViewController: BaseViewController {
         }
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
             self.phraseView.repository.deleteRecord(item: self.phraseView.tasks[sender.tag])
+            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: self.phraseView.tasks.count)
             self.phraseView.tableView.reloadData()
+
         }
         showAlert(title: "꽂은 책갈피를",
                   message: nil,
