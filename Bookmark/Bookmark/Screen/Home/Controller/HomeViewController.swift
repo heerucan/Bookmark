@@ -33,7 +33,11 @@ final class HomeViewController: BaseViewController {
     private var isBookmarkSelected: Bool = false
     
     private let geocoder = CLGeocoder()
-    private let locationManager = CLLocationManager()
+    
+    private let locationManager = CLLocationManager().then {
+        $0.distanceFilter = 10000
+    }
+    
     private lazy var myLatitude = locationManager.location?.coordinate.latitude
     private lazy var myLongtitude = locationManager.location?.coordinate.longitude
     
@@ -116,7 +120,9 @@ final class HomeViewController: BaseViewController {
     // MARK: - Customize Map
     
     private func updateCurrentLocation() {
-        guard let lat = myLatitude, let long = myLongtitude else { return }
+        guard let lat = locationManager.location?.coordinate.latitude,
+              let long = locationManager.location?.coordinate.longitude else { return }
+        locationManager.stopUpdatingLocation()
         let coordinate = NMGLatLng(lat: lat, lng: long)
         let cameraUpdate = NMFCameraUpdate(scrollTo: coordinate, zoomTo: 14)
         cameraUpdate.animation = .linear
@@ -130,11 +136,6 @@ final class HomeViewController: BaseViewController {
                   let lng = Double(bookStore.longtitude) else { return }
             let coordinate = NMGLatLng(lat: lat, lng: lng)
             let marker = NMFMarker()
-            
-            
-//            marker.userInfo = ["type": bookStore.type]
-            
-            
             marker.position = coordinate
             marker.isHideCollidedMarkers = true
             marker.isHideCollidedSymbols = true
@@ -148,6 +149,9 @@ final class HomeViewController: BaseViewController {
                       let lat = self.myLatitude,
                       let long = self.myLongtitude else { return false }
                 let myCoordinate = NMGLatLng(lat: lat, lng: long)
+                self.markers.forEach {
+                    $0.iconImage = NMFOverlayImage(name: Icon.marker)
+                }
                 marker.iconImage = NMFOverlayImage(name: Icon.selectedMarker)
                 self.homeView.setupData(data: bookStore, distance: myCoordinate.distance(to: coordinate))
                 self.transformView(.storeButtonShow)
@@ -214,6 +218,7 @@ final class HomeViewController: BaseViewController {
             transition(viewController)
             
         case homeView.locationButton:
+            locationManager.startUpdatingLocation()
             updateCurrentLocation()
             
         case homeView.storeButton:
@@ -259,7 +264,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.clickCount += 1
         }
         
-        // MARK: - TODO new가 false인 경우에 마커가 안떠야 하는데 마커가 뜨는 엉키는 문제가 발생
         if cell.tagLabel.text == "새책방" {
             isNewSelected.toggle()
             updateMarker(filter: .new)
@@ -331,7 +335,6 @@ extension HomeViewController {
             print("아직 결정 X")
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
         case .restricted, .denied:
             print("거부 or 아이폰 설정 유도")
             showLocationServiceAlert()
