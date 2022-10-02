@@ -46,7 +46,7 @@ final class HomeView: BaseView {
     lazy var mapView = NMFMapView(frame: self.frame).then {
         $0.minZoomLevel = 9.5
         $0.maxZoomLevel = 16
-        $0.positionMode = .direction
+        $0.positionMode = .compass
         $0.locationOverlay.hidden = false
         $0.locationOverlay.circleColor = Color.main.withAlphaComponent(0)
     }

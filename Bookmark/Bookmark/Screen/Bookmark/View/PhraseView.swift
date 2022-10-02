@@ -19,7 +19,6 @@ final class PhraseView: BaseView {
         didSet {
             tableView.reloadData()
             NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: tasks.count)
-            print("💌Tasks 변화 발생", tasks.count)
         }
     }
     

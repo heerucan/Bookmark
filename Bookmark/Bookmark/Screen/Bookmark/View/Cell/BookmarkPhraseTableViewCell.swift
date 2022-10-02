@@ -28,7 +28,13 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.textAlignment = .left
     }
     
-    private let phraseView = BookmarkBoxView().then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [bookView, storeView]).then {
+        $0.axis = .horizontal
+        $0.spacing = 5
+        $0.isLayoutMarginsRelativeArrangement = true
+    }
+    
+    let phraseView = BookmarkBoxView().then {
         $0.subLabel.text = "#글"
     }
 
@@ -48,8 +54,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
                                  moreButton,
                                  dateLabel,
                                  phraseView,
-                                 bookView,
-                                 storeView])
+                                 stackView])
         
         phraseImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -69,18 +74,14 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         phraseView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(13)
             make.leading.equalToSuperview().inset(16)
+            make.width.equalTo(39)
             make.height.equalTo(24)
         }
         
-        bookView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(13)
             make.leading.equalTo(phraseView.snp.trailing).offset(5)
-            make.height.equalTo(24)
-        }
-        
-        storeView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(13)
-            make.leading.equalTo(bookView.snp.trailing).offset(5)
+            make.trailing.lessThanOrEqualTo(contentView.snp.trailing).inset(16)
             make.bottom.equalToSuperview().inset(20)
             make.height.equalTo(24)
         }
@@ -89,6 +90,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(record: Record) {
+        
         guard let name = record.store?.name,
               let title = record.title else { return }
         storeView.subLabel.text = name

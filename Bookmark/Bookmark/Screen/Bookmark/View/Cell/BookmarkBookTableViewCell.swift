@@ -25,7 +25,12 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         $0.subLabel.text = "#책"
     }
     
-    private let bookView = BookmarkBoxView()
+    private lazy var stackView = UIStackView(arrangedSubviews: [storeView]).then {
+        $0.axis = .horizontal
+        $0.spacing = 5
+        $0.isLayoutMarginsRelativeArrangement = true
+    }
+    
     private let storeView = BookmarkBoxView()
     
     // MARK: - Initializer
@@ -40,8 +45,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         contentView.addSubviews([bookImageView,
                                  moreButton,
                                  tagView,
-                                 bookView,
-                                 storeView])
+                                 stackView])
         
         bookImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -59,10 +63,11 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
             make.height.equalTo(24)
         }
         
-        storeView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(bookImageView.snp.bottom).offset(16)
             make.leading.equalTo(tagView.snp.trailing).offset(5)
-            make.bottom.equalToSuperview().inset(16)
+            make.trailing.lessThanOrEqualTo(contentView.snp.trailing).inset(16)
+            make.bottom.equalToSuperview().inset(20)
             make.height.equalTo(24)
         }
     }
