@@ -8,6 +8,7 @@
 import UIKit
 
 import SafariServices
+import StoreKit
 
 final class SettingViewController: BaseViewController {
     
@@ -76,11 +77,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.presentSafariView(EndPoint.ask.makeURL())
             
         case IndexPath(item: 1, section: 0):
-            showAlert(title: "다음 업데이트를 기다려주세요 :)",
-                      message: nil,
-                      actions: [],
-                      cancelTitle: "확인",
-                      preferredStyle: .alert)
+            if let appstoreUrl = URL(string: APIKey.myAppId) {
+                var urlComp = URLComponents(url: appstoreUrl, resolvingAgainstBaseURL: false)
+                urlComp?.queryItems = [
+                    URLQueryItem(
+                        name: "action",
+                        value: "write-review")
+                ]
+                guard let reviewUrl = urlComp?.url else { return }
+                UIApplication.shared.open(reviewUrl, options: [:], completionHandler: nil)
+            }
             
         case IndexPath(item: 0, section: 1):
             showAlert(title: "다음 업데이트를 기다려주세요 :)",
@@ -98,7 +104,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         case IndexPath(item: 0, section: 2):
             self.presentSafariView(EndPoint.notion.makeURL())
-            
         default:
             showAlert(title: "최신 버전입니다 :)",
                       message: nil,
@@ -106,6 +111,5 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                       cancelTitle: "확인",
                       preferredStyle: .alert)
         }
-        
     }
 }

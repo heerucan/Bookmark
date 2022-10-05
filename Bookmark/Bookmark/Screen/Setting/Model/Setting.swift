@@ -30,7 +30,7 @@ enum Setting: CaseIterable, CustomStringConvertible {
         case .fileManage:
             return ["백업하기", "복구하기"]
         case .aboutBookmark:
-            return ["책갈피 소개", "버전 1.0.0"]
+            return ["책갈피 소개"]
         }
     }
     
