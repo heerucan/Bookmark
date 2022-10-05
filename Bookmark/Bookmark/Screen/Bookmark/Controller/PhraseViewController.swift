@@ -37,6 +37,33 @@ final class PhraseViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
+        let share = UIAlertAction(title: "인스타그램에 공유하고 싶어요", style: .default) { [self] _ in
+            guard let cell = self.phraseView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
+                    as? BookmarkPhraseTableViewCell else { return }
+            
+            if let instaURL = EndPoint.instagram.makeURL() {
+                if UIApplication.shared.canOpenURL(instaURL) {
+                    let renderer = UIGraphicsImageRenderer(size: cell.contentView.bounds.size)
+                    let renderImage = renderer.image { _ in
+                        cell.contentView.drawHierarchy(in: cell.contentView.bounds, afterScreenUpdates: true)
+                    }
+                    guard let imageData = renderImage.pngData() else { return }
+                    
+                    let pasteboardItems: [String: Any] = [
+                        "com.instagram.sharedSticker.stickerImage": imageData,
+                        "com.instagram.sharedSticker.backgroundTopColor": "#ffffff",
+                        "com.instagram.sharedSticker.backgroundBottomColor": "#ffffff",
+                    ]
+                    let pasteboardOptions = [
+                        UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
+                    ]
+                    UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+                    UIApplication.shared.open(instaURL, options: [:], completionHandler: nil)
+                } else {
+                    self.showAlert(title: "인스타그램이 없네요 :(", message: nil, actions: [])
+                }
+            }
+        }
         let edit = UIAlertAction(title: "수정하고 싶어요", style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
@@ -60,7 +87,7 @@ final class PhraseViewController: BaseViewController {
         }
         showAlert(title: "꽂은 책갈피를",
                   message: nil,
-                  actions: [edit, delete],
+                  actions: [share, edit, delete],
                   cancelTitle: "그대로 둘게요",
                   preferredStyle: .actionSheet)
         NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: nil)

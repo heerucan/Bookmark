@@ -78,7 +78,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         guard let name = record.store?.name else { return }
         storeView.subLabel.text = name
         if name.isEmpty {
-            storeView.subLabel.text = "책방에서"
+            storeView.isHidden = true
         }
     }
 }

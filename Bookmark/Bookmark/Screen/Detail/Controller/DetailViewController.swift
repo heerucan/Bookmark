@@ -190,19 +190,15 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     }
     
     @objc func touchupMapAppButton() {
-        guard let detailStoreInfo = detailStoreInfo else {
-            return
-        }
+        guard let detailStoreInfo = detailStoreInfo else { return }
         let naver = UIAlertAction(title: "네이버맵으로 이동", style: .default) { _ in
             guard let naver = EndPoint.naver.makeURL(detailStoreInfo.name) else { return }
-            guard let appStore = EndPoint.appstore.makeURL() else { return }
             if UIApplication.shared.canOpenURL(naver) {
                 UIApplication.shared.open(naver)
             } else {
-                UIApplication.shared.open(appStore)
+                self.showAlert(title: "네이버맵이 없네요 :(", message: nil, actions: [])
             }
         }
-        
         let kakao = UIAlertAction(title: "카카오맵으로 이동", style: .default) { _ in
             guard let kakao = EndPoint.kakao.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
             if UIApplication.shared.canOpenURL(URL(string: "kakaomap://open")!) {
@@ -211,7 +207,6 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 self.showAlert(title: "카카오맵이 없네요 :(", message: nil, actions: [])
             }
         }
-        
         let google = UIAlertAction(title: "구글맵으로 이동", style: .default) { _ in
             guard let google = EndPoint.google.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
             if UIApplication.shared.canOpenURL((URL(string:"comgooglemaps://")!)) {

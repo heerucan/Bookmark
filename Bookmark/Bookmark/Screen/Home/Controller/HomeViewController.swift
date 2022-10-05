@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FirebaseAnalytics
 import RealmSwift
 import CoreLocation
 import NMapsMap
@@ -72,6 +73,7 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setupAction()
         requestAPI()
+        setupFirebaseAnalytics()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -379,5 +381,16 @@ extension HomeViewController {
                     y: -self.homeView.locationButton.frame.height-40)
             }
         }
+    }
+}
+
+// MARK: - Firebase
+
+extension HomeViewController {
+    private func setupFirebaseAnalytics() {
+        Analytics.logEvent("analyticsUser", parameters: [
+          "name": "이름" as NSObject,
+          "full_text": "텍스트" as NSObject,
+        ])
     }
 }

@@ -100,7 +100,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
             storeView.isHidden = true
         }
         if title.isEmpty {
-            bookView.subLabel.text = "어떤 책에서"
+            bookView.isHidden = true
         }
     }
 }

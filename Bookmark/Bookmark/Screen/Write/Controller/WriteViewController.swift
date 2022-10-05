@@ -16,7 +16,7 @@ final class WriteViewController: BaseViewController {
     
     var tasks: Results<Record>! {
         didSet {
-            print("Tasks 변화 발생", tasks)
+            print("Tasks 변화 발생", tasks) as Any
         }
     }
     
