@@ -7,10 +7,6 @@
 		<string>kakaomap</string>
 		<string>nmap</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!</string>
 	<key>NMFClientId</key>
 	<string>ezmxtxc1hy</string>
 	<key>NSAppTransportSecurity</key>

@@ -43,6 +43,8 @@
 		5B5AA8ED28CF6F1800BBD00D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA8E928CF6F1800BBD00D /* Pretendard-Medium.otf */; };
 		5B5AA8EF28CF6FD400BBD00D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8EE28CF6FD400BBD00D /* Font.swift */; };
 		5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA8F028CF6FDB00BBD00D /* Color.swift */; };
+		5B6FA9A128ED3CF1006F3102 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6FA9A028ED3CF1006F3102 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		5B6FA9A328ED3CF1006F3102 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6FA9A228ED3CF1006F3102 /* FirebaseCrashlytics */; };
 		5B71FEB528DB939800F311F5 /* PhraseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEB428DB939800F311F5 /* PhraseViewController.swift */; };
 		5B71FEB728DB93C700F311F5 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEB628DB93C700F311F5 /* BookViewController.swift */; };
 		5B71FEB928DB93E200F311F5 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEB828DB93E200F311F5 /* BookView.swift */; };
@@ -77,6 +79,7 @@
 		5BB659AC28CF87930009BF1A /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AB28CF87930009BF1A /* BookmarkButton.swift */; };
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
+		5BD307ED28ED1D37003E0663 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */; };
 		5BECBE5628D34C7600E83995 /* ComponentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECBE5528D34C7600E83995 /* ComponentStatus.swift */; };
 		F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698FF564138487E828A752E6 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
@@ -167,6 +170,7 @@
 		5BB659AB28CF87930009BF1A /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BECBE5528D34C7600E83995 /* ComponentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStatus.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A651DBDD74A3122D53EBFEA /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,7 +182,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6FA9A328ED3CF1006F3102 /* FirebaseCrashlytics in Frameworks */,
 				F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */,
+				5B6FA9A128ED3CF1006F3102 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +258,7 @@
 				5B5544C428CF486E00781EC8 /* Font */,
 				5B5544C328CF482500781EC8 /* Asset */,
 				5B3FAD0828CE207F0062D9F6 /* Info.plist */,
+				5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */,
 				5B3FAD0528CE207F0062D9F6 /* LaunchScreen.storyboard */,
 				5B3FACFA28CE207D0062D9F6 /* AppDelegate.swift */,
 				5B3FACFC28CE207D0062D9F6 /* SceneDelegate.swift */,
@@ -664,6 +671,7 @@
 				5B3FACF528CE207D0062D9F6 /* Resources */,
 				5B55449C28CF108E00781EC8 /* Embed Frameworks */,
 				7EFB0E3B2B0F3B8875E41091 /* [CP] Embed Pods Frameworks */,
+				5B39E3EB28ED2E580047B420 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -671,6 +679,8 @@
 			);
 			name = Bookmark;
 			packageProductDependencies = (
+				5B6FA9A028ED3CF1006F3102 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				5B6FA9A228ED3CF1006F3102 /* FirebaseCrashlytics */,
 			);
 			productName = Bookmark;
 			productReference = 5B3FACF728CE207D0062D9F6 /* Bookmark.app */;
@@ -701,6 +711,7 @@
 			);
 			mainGroup = 5B3FACEE28CE207D0062D9F6;
 			packageReferences = (
+				5B6FA99F28ED3CF1006F3102 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 5B3FACF828CE207D0062D9F6 /* Products */;
 			projectDirPath = "";
@@ -717,6 +728,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5AA8EA28CF6F1800BBD00D /* Pretendard-SemiBold.otf in Resources */,
+				5BD307ED28ED1D37003E0663 /* GoogleService-Info.plist in Resources */,
 				5B5AA8EB28CF6F1800BBD00D /* Pretendard-Bold.otf in Resources */,
 				5B5AA8EC28CF6F1800BBD00D /* Pretendard-Regular.otf in Resources */,
 				5B3FAD0728CE207F0062D9F6 /* LaunchScreen.storyboard in Resources */,
@@ -729,6 +741,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5B39E3EB28ED2E580047B420 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
 		745E9CC8C131DFF3221D4981 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -980,6 +1011,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5GQ6QL9S3X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookmark/Support/Info.plist;
@@ -987,6 +1019,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요해요!";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요해요!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -999,7 +1032,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruheekim.Bookmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1023,6 +1056,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "책갈피를 꽂아 기록하기 위해 카메라가 필요해요!";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "책갈피에서 책방의 위치 정보를 제공해드리고 싶어요!";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "책갈피를 꽂아 기록하기 위해 사진이 필요해요!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1035,7 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruheekim.Bookmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1066,6 +1100,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B6FA99F28ED3CF1006F3102 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B6FA9A028ED3CF1006F3102 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B6FA99F28ED3CF1006F3102 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		5B6FA9A228ED3CF1006F3102 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B6FA99F28ED3CF1006F3102 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B3FACEF28CE207D0062D9F6 /* Project object */;
 }
