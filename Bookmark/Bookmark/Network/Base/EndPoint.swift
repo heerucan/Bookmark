@@ -12,11 +12,11 @@ enum EndPoint {
     case naver
     case kakao
     case google
-    case appstore
     case phone
     case safari
     case notion
     case ask
+    case instagram
     
     func makeURL(_ path: String? = nil) -> URL? {
         switch self {
@@ -35,9 +35,6 @@ enum EndPoint {
             guard let number = path else { return nil }
             let google = "comgooglemaps://?center=\(number)&zoom=14"
             return  URL(string: google)
-        case .appstore:
-            let appStore =  "https://apps.apple.com/kr/app/%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%A7%80%EB%8F%84-%EB%82%B4%EB%B9%84%EA%B2%8C%EC%9D%B4%EC%85%98/id311867728"
-            return URL(string: appStore)
         case .phone:
             guard let number = path else { return nil }
             let phone = "tel://" + number
@@ -53,6 +50,9 @@ enum EndPoint {
         case .ask:
             guard let askURL = NSURL(string: APIKey.ask) as URL? else { return nil }
             return askURL
+        case .instagram:
+            let instagramURL = "instagram-stories://share"
+            return URL(string: instagramURL)
         }
     }
 }
