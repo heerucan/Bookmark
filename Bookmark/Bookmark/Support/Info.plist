@@ -4,6 +4,7 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>instagram-stories</string>
 		<string>kakaomap</string>
 		<string>nmap</string>
 	</array>
