@@ -43,17 +43,7 @@ final class BookmarkDetailButton: UIButton {
         didSet {
             isUserInteractionEnabled = isDisabled ? false : true
             buttonLabel.textColor = isDisabled ? Color.gray300 : Color.black100
-            if isDisabled {
-                iconView.tintColor = Color.gray300
-            } else {
-                iconView.tintColor = Color.main
-            }
-        }
-    }
-    
-    var isTouched: Bool = false {
-        didSet {
-            backgroundColor = isTouched ? Color.gray300 : Color.black100
+            iconView.tintColor = isDisabled ? Color.gray300 : Color.main
         }
     }
     
@@ -105,10 +95,5 @@ final class BookmarkDetailButton: UIButton {
     private func configureImageColor(type: InfoType) {
         let image = type.icon?.withRenderingMode(.alwaysTemplate)
         iconView.image = image
-        if isDisabled {
-            iconView.tintColor = Color.gray300
-        } else {
-            iconView.tintColor = Color.main
-        }
     }
 }
