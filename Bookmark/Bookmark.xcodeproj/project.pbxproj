@@ -66,7 +66,6 @@
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
 		5B819ED728D25F1100626693 /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED628D25F1100626693 /* BookStore.swift */; };
 		5B96BF8B28D646FD00C30AA8 /* Transition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8A28D646FD00C30AA8 /* Transition+.swift */; };
-		5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */; };
 		5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9028D705A700C30AA8 /* Protocol.swift */; };
 		5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */; };
 		5B96BF9628D731BC00C30AA8 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B96BF9528D731BC00C30AA8 /* Tag.swift */; };
@@ -157,7 +156,6 @@
 		5B819ED328D2589400626693 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		5B819ED628D25F1100626693 /* BookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
 		5B96BF8A28D646FD00C30AA8 /* Transition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+.swift"; sourceTree = "<group>"; };
-		5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkLinkButton.swift; sourceTree = "<group>"; };
 		5B96BF9028D705A700C30AA8 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		5B96BF9328D7202700C30AA8 /* HomeTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B96BF9528D731BC00C30AA8 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -619,7 +617,6 @@
 			children = (
 				5BB659AB28CF87930009BF1A /* BookmarkButton.swift */,
 				5B9C44BE28E42A2300C50B80 /* BookmarkDetailButton.swift */,
-				5B96BF8C28D6477A00C30AA8 /* BookmarkLinkButton.swift */,
 				5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */,
 				5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */,
 				5B71FEC328DB950900F311F5 /* BookmarkSegmentedControl.swift */,
@@ -812,7 +809,6 @@
 				5B3FACFB28CE207D0062D9F6 /* AppDelegate.swift in Sources */,
 				5B5AA8F128CF6FDB00BBD00D /* Color.swift in Sources */,
 				5B9C44BD28E429BE00C50B80 /* BookmarkLineView.swift in Sources */,
-				5B96BF8D28D6477A00C30AA8 /* BookmarkLinkButton.swift in Sources */,
 				5B71FED828DC3B2C00F311F5 /* SettingTableViewCell.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
