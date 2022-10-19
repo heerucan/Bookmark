@@ -1,0 +1,2 @@
+app_identifier("com.ruheekim.Bookmark") # The bundle identifier of your app
+apple_id("jwyandkrh@naver.com") # Your Apple Developer Portal username
