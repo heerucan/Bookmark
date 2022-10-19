@@ -77,10 +77,10 @@ final class BookmarkRepository {
     func deleteRecord(item: Record) {
         do {
             try realm.write {
+                FileManagerHelper.shared.removeImageFromDocument(fileName: "\(item.objectId).jpg")
                 realm.delete(item)
                 print("Delete Realm 성공!")
             }
-//            FileManagerHelper.shared.removeImageFromDocument(fileName: "\(item.objectId).jpg")
         } catch let error {
             print(error)
         }
