@@ -7,22 +7,11 @@
 
 import Foundation
 
-enum Setting: CaseIterable, CustomStringConvertible {
+enum Setting {
     case notice
     case fileManage
     case aboutBookmark
-    
-    var description: String {
-        switch self {
-        case .notice:
-            return "공지"
-        case .fileManage:
-            return "개인"
-        case .aboutBookmark:
-            return "기타"
-        }
-    }
-    
+
     var menu: [String] {
         switch self {
         case .notice:
@@ -32,9 +21,5 @@ enum Setting: CaseIterable, CustomStringConvertible {
         case .aboutBookmark:
             return ["책갈피 소개"]
         }
-    }
-    
-    var numberOfRowInSection: Int {
-        return menu.count
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SettingTableViewCell: BaseTableViewCell {
+final class SettingCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Property
     
@@ -20,8 +20,8 @@ final class SettingTableViewCell: BaseTableViewCell {
     
     // MARK: - Initializer
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     // MARK: - Configure UI & Layout

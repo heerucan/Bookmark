@@ -9,12 +9,17 @@ import UIKit
 
 import SafariServices
 import StoreKit
+import nanopb
 
 final class SettingViewController: BaseViewController {
     
     // MARK: - Property
     
-    let settingView = SettingView()
+    static let sectionFooterElementKind = "section-footer-element-kind"
+    
+    private let settingView = SettingView()
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Int, String>!
     
     // MARK: - LifeCycle
     
@@ -24,13 +29,14 @@ final class SettingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDataSource()
+        settingView.setupCollectionView(self)
     }
     
     // MARK: - Configure UI & Layout
     
     override func configureLayout() {
         super.configureLayout()
-        settingView.configureDelegate(self, self)
     }
     
     // MARK: - Custom Method
@@ -40,38 +46,41 @@ final class SettingViewController: BaseViewController {
         let viewController = SFSafariViewController(url: url)
         transition(viewController, .present)
     }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<SettingCollectionViewCell, String> { cell, indexPath, itemIdentifier in
+            cell.setupData(data: itemIdentifier)
+        }
+        
+        let footerRegistration = UICollectionView.SupplementaryRegistration
+        <SettingSupplementaryView>(elementKind: SettingViewController.sectionFooterElementKind) {
+            (supplementaryView, string, indexPath) in
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource(collectionView: settingView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration, for: indexPath, item: itemIdentifier)
+            return cell
+        })
+        
+        dataSource.supplementaryViewProvider = { (view, kind, index) in
+            return self.settingView.collectionView.dequeueConfiguredReusableSupplementary(
+                using: footerRegistration, for: index)
+        }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0, 1, 2])
+        snapshot.appendItems(Setting.notice.menu, toSection: 0)
+        snapshot.appendItems(Setting.fileManage.menu, toSection: 1)
+        snapshot.appendItems(Setting.aboutBookmark.menu, toSection: 2)
+        dataSource.apply(snapshot)
+    }
 }
 
-// MARK: - UITableView Protocol
+// MARK: - CollectionView Delegate
 
-extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = Color.gray500
-        return view
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return Setting.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Setting.allCases[section].numberOfRowInSection
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
-        let data = Setting.allCases[indexPath.section].menu[indexPath.row]
-        cell.setupData(data: data)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+extension SettingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath {
         case IndexPath(item: 0, section: 0):
             self.presentSafariView(EndPoint.ask.makeURL())
@@ -104,6 +113,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         case IndexPath(item: 0, section: 2):
             self.presentSafariView(EndPoint.notion.makeURL())
+            
         default:
             showAlert(title: "최신 버전입니다 :)",
                       message: nil,

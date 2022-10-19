@@ -77,6 +77,7 @@
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		5BD307ED28ED1D37003E0663 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */; };
+		5BE6BD622900114C00794569 /* SettingSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */; };
 		5BE8635D28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635C28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		5BE8635F28F86CB1006C45A4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635E28F86CB1006C45A4 /* FirebaseCrashlytics */; };
 		5BE8636128F86CB1006C45A4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8636028F86CB1006C45A4 /* FirebaseMessaging */; };
@@ -170,6 +171,7 @@
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSupplementaryView.swift; sourceTree = "<group>"; };
 		5BE8636228F873FB006C45A4 /* Bookmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookmark.entitlements; sourceTree = "<group>"; };
 		5BECBE5528D34C7600E83995 /* ComponentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStatus.swift; sourceTree = "<group>"; };
 		698FF564138487E828A752E6 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -563,6 +565,7 @@
 			children = (
 				5B71FED428DC38F400F311F5 /* SettingView.swift */,
 				5B71FED628DC3B0D00F311F5 /* Cell */,
+				5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */,
 				5B55444C28CEFDF500781EC8 /* DetailViewController.swift in Sources */,
 				5BB659A628CF7D7F0009BF1A /* UIFont+.swift in Sources */,
+				5BE6BD622900114C00794569 /* SettingSupplementaryView.swift in Sources */,
 				5B71FEBB28DB93E900F311F5 /* PhraseView.swift in Sources */,
 				5B96BF9428D7202700C30AA8 /* HomeTagCollectionViewCell.swift in Sources */,
 				5B5544C228CF46D800781EC8 /* Icon.swift in Sources */,
