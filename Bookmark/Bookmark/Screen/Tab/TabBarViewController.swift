@@ -9,13 +9,17 @@ import UIKit
 
 final class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDelegate()
+        setupDelegate()
         configureTabBarViewController()
     }
     
-    private func configureDelegate() {
+    // MARK: - Custom Method
+    
+    private func setupDelegate() {
         delegate = self
     }
 

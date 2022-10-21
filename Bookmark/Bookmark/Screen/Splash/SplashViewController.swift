@@ -16,10 +16,14 @@ final class SplashViewController: BaseViewController {
         $0.alpha = 0
     }
     
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAnimation()
     }
+    
+    // MARK: - Configure UI & Layout
     
     override func configureUI() {
         view.backgroundColor = Color.black100
