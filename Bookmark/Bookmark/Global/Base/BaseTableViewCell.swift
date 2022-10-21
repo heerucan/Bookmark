@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BaseTableViewCell: UITableViewCell {
+class BaseTableViewCell: UITableViewCell, BaseMethodProtocol {
     
     // MARK: - Initializer
     

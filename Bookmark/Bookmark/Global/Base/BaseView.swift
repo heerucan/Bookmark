@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BaseView: UIView {
+class BaseView: UIView, BaseMethodProtocol {
     
     // MARK: - Initializer
     

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, BaseMethodProtocol {
     
     // MARK: - Property
     
@@ -23,6 +23,7 @@ class BaseViewController: UIViewController {
         configureUI()
         configureLayout()
         setupDelegate()
+        bindData()
         setupNotificationCenter()
     }
 
@@ -34,6 +35,10 @@ class BaseViewController: UIViewController {
     
     func configureLayout() { }
     func setupDelegate() { }
+    
+    // MARK: - Bind Data
+    
+    func bindData() { }
     
     // MARK: - Keyboard
     
