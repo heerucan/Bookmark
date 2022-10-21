@@ -67,7 +67,7 @@ final class SettingViewController: BaseViewController {
             return self.settingView.collectionView.dequeueConfiguredReusableSupplementary(
                 using: footerRegistration, for: index)
         }
-        
+                
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
         snapshot.appendSections([0, 1, 2])
         snapshot.appendItems(Setting.notice.menu, toSection: 0)

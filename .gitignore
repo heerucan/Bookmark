@@ -1,8 +1,5 @@
-
-APIKey.swift
-
-# Created by https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods
-# Edit at https://www.toptal.com/developers/gitignore?templates=swift,xcode,cocoapods
+# Created by https://www.toptal.com/developers/gitignore/api/swiftpackagemanager,xcode,swift,cocoapods
+# Edit at https://www.toptal.com/developers/gitignore?templates=swiftpackagemanager,xcode,swift,cocoapods
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
@@ -17,10 +14,10 @@ Pods/
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-
 ## User settings
 xcuserdata/
 *.DS_Store
+APIKey.swift
 
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
@@ -99,21 +96,23 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+### SwiftPackageManager ###
+Packages
+xcuserdata
+*.xcodeproj
+
+
 ### Xcode ###
-# Xcode
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-
-
-## Gcc Patch
-/*.gcno
+## Xcode 8 and earlier
 
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
+/*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods
-
+# End of https://www.toptal.com/developers/gitignore/api/swiftpackagemanager,xcode,swift,cocoapods

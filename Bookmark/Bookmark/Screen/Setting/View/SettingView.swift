@@ -11,9 +11,6 @@ final class SettingView: BaseView {
     
     // MARK: - Property
     
-    static let footer = "footer"
-
-    
     let navigationBar = BookmarkNavigationBar(type: .setting)
     
     // 지연저장 프로퍼티로 해줘야 하는 이유 : 그래야 호출 시에 메모리에 올라감
