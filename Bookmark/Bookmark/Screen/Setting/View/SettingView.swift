@@ -11,9 +11,8 @@ final class SettingView: BaseView {
     
     // MARK: - Property
     
-    let navigationBar = BookmarkNavigationBar(type: .setting)
+    private let navigationBar = BookmarkNavigationBar(type: .setting)
     
-    // 지연저장 프로퍼티로 해줘야 하는 이유 : 그래야 호출 시에 메모리에 올라감
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
     
     // MARK: - Initializer
@@ -42,7 +41,9 @@ final class SettingView: BaseView {
     }
     
     func setupCollectionView(_ delegate: UICollectionViewDelegate) {
-        collectionView.register(SettingSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "SettingSupplementaryView")
+        collectionView.register(SettingSupplementaryView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "SettingSupplementaryView")
         collectionView.delegate = delegate
     }
 }

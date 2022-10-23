@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+final class SettingViewModel {
+    var settingList: Observable<[Setting]> = Observable(Setting.allCases)
+}
