@@ -23,7 +23,6 @@ class BaseViewController: UIViewController, BaseMethodProtocol {
         configureUI()
         configureLayout()
         setupDelegate()
-        bindData()
         setupNotificationCenter()
     }
 
@@ -35,10 +34,6 @@ class BaseViewController: UIViewController, BaseMethodProtocol {
     
     func configureLayout() { }
     func setupDelegate() { }
-    
-    // MARK: - Bind Data
-    
-    func bindData() { }
     
     // MARK: - Keyboard
     
