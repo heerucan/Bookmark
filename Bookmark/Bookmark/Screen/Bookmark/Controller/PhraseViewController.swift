@@ -37,7 +37,7 @@ final class PhraseViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
-        let share = UIAlertAction(title: "인스타그램에 공유하고 싶어요", style: .default) { [self] _ in
+        let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { _ in
             guard let cell = self.phraseView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
                     as? BookmarkPhraseTableViewCell else { return }
             
@@ -83,6 +83,7 @@ final class PhraseViewController: BaseViewController {
         }
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
             self.phraseView.repository.deleteRecord(item: self.phraseView.tasks[sender.tag])
+            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: sender.tag)
             self.phraseView.fetchRealm()
         }
         showAlert(title: "꽂은 책갈피를",
@@ -90,7 +91,6 @@ final class PhraseViewController: BaseViewController {
                   actions: [share, edit, delete],
                   cancelTitle: "그대로 둘게요",
                   preferredStyle: .actionSheet)
-        NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: nil)
     }
 }
 
