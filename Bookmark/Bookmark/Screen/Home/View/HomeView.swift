@@ -44,7 +44,7 @@ final class HomeView: BaseView {
     }
     
     lazy var mapView = NMFMapView(frame: self.frame).then {
-        $0.minZoomLevel = 9.5
+        $0.minZoomLevel = 9
         $0.maxZoomLevel = 16
         $0.positionMode = .compass
         $0.locationOverlay.hidden = false
@@ -147,7 +147,7 @@ final class HomeView: BaseView {
         distanceLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(addressLabel.snp.centerY)
-            make.width.equalTo(50)
+            make.width.equalTo(100)
         }
         
         locationButton.snp.makeConstraints { make in

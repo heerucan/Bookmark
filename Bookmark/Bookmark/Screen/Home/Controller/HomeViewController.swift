@@ -20,7 +20,7 @@ final class HomeViewController: BaseViewController {
     
     var tasks: Results<Store>! {
         didSet {
-            print("📪bookmarkButton 변화 발생", tasks as Any)
+//            print("📪bookmarkButton 변화 발생", tasks as Any)
         }
     }
     
