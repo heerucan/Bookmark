@@ -18,7 +18,6 @@ final class PhraseView: BaseView {
     var tasks: Results<Record>! {
         didSet {
             tableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: tasks.count)
         }
     }
     

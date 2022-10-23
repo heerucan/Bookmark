@@ -58,7 +58,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         
         phraseImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(phraseImageView.snp.width)
+            make.height.equalTo(phraseImageView.snp.width).multipliedBy(1)
         }
         
         moreButton.snp.makeConstraints { make in
@@ -90,7 +90,6 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(record: Record) {
-        
         guard let name = record.store?.name,
               let title = record.title else { return }
         storeView.subLabel.text = name
