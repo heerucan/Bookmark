@@ -7,8 +7,8 @@
 
 import Foundation
 
+@frozen
 enum EndPoint {
-    case seoul
     case naver
     case kakao
     case google
@@ -20,9 +20,6 @@ enum EndPoint {
     
     func makeURL(_ path: String? = nil) -> URL? {
         switch self {
-        case .seoul:
-            let seoul = "http://openapi.seoul.go.kr:8088/\(APIKey.seoul)/json/TbSlibBookstoreInfo/1/613"
-            return URL(string: seoul)
         case .naver:
             guard let search = path?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
             let naver = "nmap://search?query=\(String(describing: search))&appname=\(APIKey.bundleName)"
