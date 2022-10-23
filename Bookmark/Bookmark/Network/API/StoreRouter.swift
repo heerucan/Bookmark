@@ -11,7 +11,7 @@ import Alamofire
 
 @frozen
 enum StoreRouter {
-    case bootStore
+    case bookStore(endIndex: Int)
 }
 
 extension StoreRouter: URLRequestConvertible {
@@ -21,16 +21,15 @@ extension StoreRouter: URLRequestConvertible {
     
     private var method: HTTPMethod {
         switch self {
-        case .bootStore:
+        case .bookStore:
             return .get
         }
     }
     
     private var path: String {
         switch self {
-        case .bootStore:
-            // MARK: - FIX endIndex로 변경
-            return "/\(APIKey.bookStoreAccessKey)/json/TbSlibBookstoreInfo/1/613"
+        case .bookStore(let endIndex):
+            return "/\(APIKey.bookStoreAccessKey)/json/TbSlibBookstoreInfo/1/\(endIndex)"
         }
     }
     

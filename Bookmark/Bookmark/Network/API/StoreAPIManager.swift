@@ -17,8 +17,8 @@ final class StoreAPIManager {
     
     // MARK: - GET : BookStore
     
-    func fetchBookStore(completion: @escaping completion) {
-        AF.request(StoreRouter.bootStore).validate(statusCode: 200..<500).responseDecodable(of: BookStore.self) { response in
+    func fetchBookStore(endIndex: Int, completion: @escaping completion) {
+        AF.request(StoreRouter.bookStore(endIndex: endIndex)).validate(statusCode: 200..<500).responseDecodable(of: BookStore.self) { response in
             let statusCode = response.response?.statusCode
             switch response.result {
             case .success(let value):

@@ -93,7 +93,7 @@ final class HomeViewController: BaseViewController {
     // MARK: - Network
     
     private func requestAPI() {
-        StoreAPIManager.shared.fetchBookStore { [weak self] (data, status, error) in
+        StoreAPIManager.shared.fetchBookStore(endIndex: 1000) { [weak self] (data, status, error) in
             guard let self = self,
                   let data = data else { return }
             self.bookStoreList = data.total.info
