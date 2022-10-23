@@ -65,7 +65,8 @@ final class BookViewController: BaseViewController {
             }
         }
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
-            self.bookView.repository.deleteRecord(item: self.bookView.tasks[sender.tag])
+            self.bookView.repository.deleteRecord(record: self.bookView.tasks[sender.tag],
+                                                    store: self.bookView.tasks[sender.tag].store ?? Store())
             NotificationCenter.default.post(name: NSNotification.Name("countBook"), object: sender.tag)
             self.bookView.fetchRealm()
         }

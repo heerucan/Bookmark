@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StoreAPIManager {
+final class StoreAPIManager {
     private init() { }
     static let shared = StoreAPIManager()
     

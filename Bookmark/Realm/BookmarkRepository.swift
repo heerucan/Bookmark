@@ -23,15 +23,17 @@ protocol BookmarkRepositoryType {
     func updateRecord(item: Any?)
     
     // 3. 글삭제
-    func deleteRecord(item: Record)
+    func deleteRecord(record: Record, store: Store)
         
     // 4. 책방 북마크 초기 정렬
     func fetchBookmark() -> Results<Store>
     
-    // 5. 책방 북마크 추가-해제
+    // 5.
+    func fetchBookmark(item: String) -> Results<Store>
+    
+    // 6. 책방 북마크 추가-해제
     func updateBookmark(item: Any?)
     
-    func fetchBookmark(item: String) -> Results<Store>
 }
 
 // MARK: - BookmarkRepository
@@ -74,12 +76,13 @@ final class BookmarkRepository {
         }
     }
     
-    func deleteRecord(item: Record) {
+    func deleteRecord(record: Record, store: Store) {
         do {
             try realm.write {
-                FileManagerHelper.shared.removeImageFromDocument(fileName: "\(item.objectId).jpg")
-                realm.delete(item)
-                print("Delete Realm 성공!")
+                FileManagerHelper.shared.removeImageFromDocument(fileName: "\(record.objectId).jpg")
+                realm.delete(record)
+                realm.delete(store)
+                print("Delete Record, Store Realm 성공!")
             }
         } catch let error {
             print(error)
@@ -95,6 +98,17 @@ final class BookmarkRepository {
     func fetchBookmark(item: String) -> Results<Store> {
         return realm.objects(Store.self).filter("name == \(item)")
     }
+    
+//    func deleteStore(item: Store) {
+//        do {
+//            try realm.write {
+//                realm.delete(item)
+//                print("Delete Store Realm 성공!")
+//            }
+//        } catch let error {
+//            print(error)
+//        }
+//    }
     
     // MARK: - true인 애들만 따로 배열로 뽑아서 거기에 home 지도 상에 선택한 마커의 서점 이름과 재도시에 같은 아이로 반환
     

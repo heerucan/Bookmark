@@ -34,7 +34,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.isLayoutMarginsRelativeArrangement = true
     }
     
-    let phraseView = BookmarkBoxView().then {
+    private let phraseView = BookmarkBoxView().then {
         $0.subLabel.text = "#글"
     }
 
@@ -92,7 +92,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     func setupData(record: Record) {
         guard let name = record.store?.name,
               let title = record.title else { return }
-        storeView.subLabel.text = name
+        storeView.subLabel.text = "#" + name
         bookView.subLabel.text = title
         dateLabel.text = record.createdAt.toString()
         if name.isEmpty {
