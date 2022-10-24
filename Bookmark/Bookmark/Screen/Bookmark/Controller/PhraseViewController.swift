@@ -84,7 +84,7 @@ final class PhraseViewController: BaseViewController {
         let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
             self.phraseView.repository.deleteRecord(record: self.phraseView.tasks[sender.tag],
                                                     store: self.phraseView.tasks[sender.tag].store ?? Store())
-            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: sender.tag)
+            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: nil)
             self.phraseView.fetchRealm()
         }
         showAlert(title: "꽂은 책갈피를",

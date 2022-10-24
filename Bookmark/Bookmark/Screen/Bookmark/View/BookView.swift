@@ -56,7 +56,8 @@ final class BookView: BaseView {
         }
     }
     
-    func configureTableViewDelegate(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+    func configureTableViewDelegate(_ delegate: UITableViewDelegate,
+                                    _ datasource: UITableViewDataSource) {
         tableView.delegate = delegate
         tableView.dataSource = datasource
     }
