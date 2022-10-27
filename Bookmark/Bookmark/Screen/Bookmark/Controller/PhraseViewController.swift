@@ -34,9 +34,6 @@ final class PhraseViewController: BaseViewController {
         phraseView.configureTableViewDelegate(self, self)
     }
     
-    // MARK: - Custom Method
-
-    
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
