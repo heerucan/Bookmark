@@ -32,7 +32,6 @@ extension UIViewController {
     }
     
     func topViewController(currentViewController: UIViewController) -> UIViewController {
-        
         if let tabBarController = currentViewController as? UITabBarController,
            let selectedViewController = tabBarController.selectedViewController {
             return self.topViewController(currentViewController: selectedViewController)
@@ -47,5 +46,28 @@ extension UIViewController {
         } else {
             return currentViewController
         }
+    }
+    
+    func saveImageOnPhone(image: UIImage, name: String) -> URL? {
+        let imagePath = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(name).png"
+        let imageUrl = URL(fileURLWithPath: imagePath)
+        
+        do {
+            try image.pngData()?.write(to: imageUrl)
+            return imageUrl
+        } catch {
+            return nil
+        }
+    }
+    
+    func shareImage(cell: UITableViewCell) {
+        let imageToShare = cell.contentView.toImage()
+        let activityItems: NSMutableArray = []
+        activityItems.add(imageToShare)
+        
+        guard let url = self.saveImageOnPhone(image: imageToShare, name: "Bookmark") else { return }
+        let viewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        viewController.excludedActivityTypes = [UIActivity.ActivityType.saveToCameraRoll]
+        self.present(viewController, animated: true, completion: nil)
     }
 }

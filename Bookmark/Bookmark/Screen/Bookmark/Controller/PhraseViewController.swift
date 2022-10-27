@@ -34,35 +34,17 @@ final class PhraseViewController: BaseViewController {
         phraseView.configureTableViewDelegate(self, self)
     }
     
+    // MARK: - Custom Method
+
+    
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
         let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { _ in
             guard let cell = self.phraseView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
-                    as? BookmarkPhraseTableViewCell else { return }
-            
-            if let instaURL = EndPoint.instagram.makeURL() {
-                if UIApplication.shared.canOpenURL(instaURL) {
-                    let renderer = UIGraphicsImageRenderer(size: cell.contentView.bounds.size)
-                    let renderImage = renderer.image { _ in
-                        cell.contentView.drawHierarchy(in: cell.contentView.bounds, afterScreenUpdates: true)
-                    }
-                    guard let imageData = renderImage.pngData() else { return }
-                    
-                    let pasteboardItems: [String: Any] = [
-                        "com.instagram.sharedSticker.stickerImage": imageData,
-                        "com.instagram.sharedSticker.backgroundTopColor": "#ffffff",
-                        "com.instagram.sharedSticker.backgroundBottomColor": "#ffffff",
-                    ]
-                    let pasteboardOptions = [
-                        UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
-                    ]
-                    UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
-                    UIApplication.shared.open(instaURL, options: [:], completionHandler: nil)
-                } else {
-                    self.showAlert(title: "인스타그램이 없네요 :(", message: nil, actions: [])
-                }
-            }
+                    as? BookmarkPhraseTableViewCell
+            else { return }
+            self.shareImage(cell: cell)
         }
         let edit = UIAlertAction(title: "수정하고 싶어요", style: .default) { _ in
             let viewController = WriteViewController()
@@ -73,7 +55,6 @@ final class PhraseViewController: BaseViewController {
                 viewController.objectId = self.phraseView.tasks[sender.tag].objectId
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
                 
-                // 수정하기 화면으로 데이터 전달
                 let image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(self.phraseView.tasks[sender.tag].objectId).jpg")
                 viewController.writeView.imageButton.setImage(image, for: .normal)
                 viewController.writeView.titleTextField.text = self.phraseView.tasks[sender.tag].title
@@ -81,10 +62,10 @@ final class PhraseViewController: BaseViewController {
                 viewController.writeView.completeButton.isDisabled = false
             }
         }
-        let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
+        let delete = UIAlertAction(title: "지우고 싶어요", style: .destructive) { _ in
             self.phraseView.repository.deleteRecord(record: self.phraseView.tasks[sender.tag],
                                                     store: self.phraseView.tasks[sender.tag].store ?? Store())
-            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.countPhrase, object: nil)
             self.phraseView.fetchRealm()
         }
         showAlert(title: "꽂은 책갈피를",

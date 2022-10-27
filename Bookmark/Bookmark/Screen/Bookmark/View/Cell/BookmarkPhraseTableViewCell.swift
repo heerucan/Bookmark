@@ -50,6 +50,10 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     // MARK: - Configure UI & Layout
+    
+    override func configureUI() {
+        contentView.backgroundColor = .white
+    }
 
     override func configureLayout() {
         contentView.addSubviews([phraseImageView,

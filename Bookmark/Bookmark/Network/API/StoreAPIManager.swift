@@ -13,12 +13,14 @@ final class StoreAPIManager {
     private init() { }
     static let shared = StoreAPIManager()
     
-    typealias completion = ((BookStore?, Int?, Error?) -> Void)
+    typealias Completion = ((BookStore?, Int?, Error?) -> Void)
     
     // MARK: - GET : BookStore
     
-    func fetchBookStore(endIndex: Int, completion: @escaping completion) {
-        AF.request(StoreRouter.bookStore(endIndex: endIndex)).validate(statusCode: 200..<500).responseDecodable(of: BookStore.self) { response in
+    func fetchBookStore(endIndex: Int, completion: @escaping Completion) {
+        AF.request(StoreRouter.bookStore(endIndex: endIndex))
+            .validate(statusCode: 200..<500)
+            .responseDecodable(of: BookStore.self) { response in
             let statusCode = response.response?.statusCode
             switch response.result {
             case .success(let value):

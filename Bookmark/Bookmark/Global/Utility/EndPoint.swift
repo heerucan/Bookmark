@@ -16,7 +16,6 @@ enum EndPoint {
     case safari
     case notion
     case ask
-    case instagram
     
     func makeURL(_ path: String? = nil) -> URL? {
         switch self {
@@ -47,9 +46,6 @@ enum EndPoint {
         case .ask:
             guard let askURL = NSURL(string: APIKey.ask) as URL? else { return nil }
             return askURL
-        case .instagram:
-            let instagramURL = "instagram-stories://share"
-            return URL(string: instagramURL)
         }
     }
 }

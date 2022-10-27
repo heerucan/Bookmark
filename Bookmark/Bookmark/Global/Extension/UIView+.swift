@@ -64,4 +64,13 @@ extension UIView {
         actions.forEach { alert.addAction($0) }
         alert.addAction(cancel)
     }
+    
+    func toImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, UIScreen.main.scale)
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
 }
