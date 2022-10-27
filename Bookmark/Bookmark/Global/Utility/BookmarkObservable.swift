@@ -1,5 +1,5 @@
 //
-//  Observable.swift
+//  BookmarkObservable.swift
 //  Bookmark
 //
 //  Created by heerucan on 2022/10/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Observable<T> {
+final class BookmarkObservable<T> {
     private var listener: ((T) -> Void)?
     
     var value: T {
