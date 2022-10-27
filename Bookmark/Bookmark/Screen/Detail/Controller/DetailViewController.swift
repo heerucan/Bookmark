@@ -16,11 +16,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     let repository = BookmarkRepository.shared
     
-    var tasks: Results<Store>! {
-        didSet {
-            print("📪DetailViewController", tasks as Any)
-        }
-    }
+    var tasks: Results<Store>!
         
     // MARK: - Property
     

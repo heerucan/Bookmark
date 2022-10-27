@@ -15,6 +15,8 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.backgroundColor = Color.gray500
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = Color.gray500.cgColor
     }
     
     let moreButton = UIButton().then {
@@ -34,7 +36,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         $0.isLayoutMarginsRelativeArrangement = true
     }
     
-    let phraseView = BookmarkBoxView().then {
+    private let phraseView = BookmarkBoxView().then {
         $0.subLabel.text = "#글"
     }
 
@@ -48,17 +50,21 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     // MARK: - Configure UI & Layout
+    
+    override func configureUI() {
+        contentView.backgroundColor = .white
+    }
 
     override func configureLayout() {
         contentView.addSubviews([phraseImageView,
                                  moreButton,
                                  dateLabel,
-                                 phraseView,
-                                 stackView])
+                                 bookView,
+                                 phraseView])
         
         phraseImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(phraseImageView.snp.width)
+            make.height.equalTo(phraseImageView.snp.width).multipliedBy(1)
         }
         
         moreButton.snp.makeConstraints { make in
@@ -78,7 +84,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
             make.height.equalTo(24)
         }
         
-        stackView.snp.makeConstraints { make in
+        bookView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(13)
             make.leading.equalTo(phraseView.snp.trailing).offset(5)
             make.trailing.lessThanOrEqualTo(contentView.snp.trailing).inset(16)
@@ -90,17 +96,18 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     // MARK: - Set Up Data
     
     func setupData(record: Record) {
-        
-        guard let name = record.store?.name,
-              let title = record.title else { return }
-        storeView.subLabel.text = name
-        bookView.subLabel.text = title
-        dateLabel.text = record.createdAt.toString()
+        guard let name = record.store?.name else { return }
+        guard let title = record.title else { return }
         if name.isEmpty {
-            storeView.isHidden = true
+            dateLabel.text = record.createdAt.toString()
+        } else {
+            dateLabel.text = record.createdAt.toString() + ",  \(name)"
         }
+        
         if title.isEmpty {
             bookView.isHidden = true
+        } else {
+            bookView.subLabel.text = title
         }
     }
 }

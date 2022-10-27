@@ -7,18 +7,19 @@
 
 import Foundation
 
-enum Setting {
-    case notice
-    case fileManage
-    case aboutBookmark
+@frozen
+enum Setting: CaseIterable {
+    case first
+    case second
+    case third
 
     var menu: [String] {
         switch self {
-        case .notice:
+        case .first:
             return ["문의하기", "리뷰 남기기"]
-        case .fileManage:
+        case .second:
             return ["백업하기", "복구하기"]
-        case .aboutBookmark:
+        case .third:
             return ["책갈피 소개"]
         }
     }

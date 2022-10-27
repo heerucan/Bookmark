@@ -35,7 +35,8 @@ final class BookmarkBoxView: BaseView {
         
         subLabel.snp.makeConstraints { make in
             make.directionalVerticalEdges.equalToSuperview().inset(1)
-            make.directionalHorizontalEdges.equalToSuperview().inset(9)
+            make.leading.equalToSuperview().inset(9)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
     

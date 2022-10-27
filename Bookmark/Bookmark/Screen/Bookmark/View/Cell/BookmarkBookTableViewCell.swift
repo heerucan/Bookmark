@@ -15,6 +15,8 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
         $0.backgroundColor = Color.gray500
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = Color.gray500.cgColor
     }
     
     let moreButton = UIButton().then {
@@ -24,13 +26,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
     private let tagView = BookmarkBoxView().then {
         $0.subLabel.text = "#책"
     }
-    
-    private lazy var stackView = UIStackView(arrangedSubviews: [storeView]).then {
-        $0.axis = .horizontal
-        $0.spacing = 5
-        $0.isLayoutMarginsRelativeArrangement = true
-    }
-    
+
     private let storeView = BookmarkBoxView()
     
     // MARK: - Initializer
@@ -41,11 +37,15 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
     
     // MARK: - Configure UI & Layout
     
+    override func configureUI() {
+        contentView.backgroundColor = .white
+    }
+    
     override func configureLayout() {
         contentView.addSubviews([bookImageView,
                                  moreButton,
                                  tagView,
-                                 stackView])
+                                 storeView])
         
         bookImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -63,7 +63,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
             make.height.equalTo(24)
         }
         
-        stackView.snp.makeConstraints { make in
+        storeView.snp.makeConstraints { make in
             make.top.equalTo(bookImageView.snp.bottom).offset(16)
             make.leading.equalTo(tagView.snp.trailing).offset(5)
             make.trailing.lessThanOrEqualTo(contentView.snp.trailing).inset(16)
@@ -76,9 +76,10 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
     
     func setupData(record: Record) {
         guard let name = record.store?.name else { return }
-        storeView.subLabel.text = name
         if name.isEmpty {
             storeView.isHidden = true
+        } else {
+            storeView.subLabel.text = name
         }
     }
 }

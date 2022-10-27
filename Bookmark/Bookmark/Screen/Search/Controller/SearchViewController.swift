@@ -49,14 +49,13 @@ final class SearchViewController: BaseViewController {
         searchView.setupSearchBarDelegate(self)
     }
     
-    // MARK: - RequestAPI
+    // MARK: - Network
     
     private func requestAPI() {
-        StoreAPIManager.shared.fetchBookStore() { (data, error) in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.bookStoreList.append(contentsOf: data.total.info)
-            }
+        StoreAPIManager.shared.fetchBookStore(endIndex: 1000) { [weak self] (data, status, error) in
+            guard let self = self,
+                  let data = data else { return }
+            self.bookStoreList = data.total.info
         }
     }
     

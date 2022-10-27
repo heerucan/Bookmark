@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - BookStore
 
-struct BookStore: Codable {
+struct BookStore: Decodable {
     let total: BookStoreTotal
 
     enum CodingKeys: String, CodingKey {
@@ -19,7 +19,7 @@ struct BookStore: Codable {
 
 // MARK: - BookStoreInfo
 
-struct BookStoreTotal: Codable {
+struct BookStoreTotal: Decodable {
     let totalCount: Int
     let result: Result
     let info: [BookStoreInfo]
@@ -33,7 +33,7 @@ struct BookStoreTotal: Codable {
 
 // MARK: - Result
 
-struct Result: Codable {
+struct Result: Decodable {
     let code, message: String
 
     enum CodingKeys: String, CodingKey {
@@ -44,7 +44,7 @@ struct Result: Codable {
 
 // MARK: - BookStoreInfo
 
-struct BookStoreInfo: Codable {
+struct BookStoreInfo: Decodable {
     let name, district, address, phone: String
     let homeURL, typeNo, typeName, latitude, longtitude: String
     let sns: String

@@ -15,15 +15,8 @@ final class BookmarkViewController: BaseViewController {
         
     // MARK: - Property
     
-    var totalCount = 0 {
-        didSet {
-            totalCountLabel.text = "\(totalCount)"
-        }
-    }
-    
     var dataViewControllers: [UIViewController] {
-        [self.phraseViewController,
-         self.bookViewController]
+        [phraseViewController, bookViewController]
     }
     
     lazy var currentPage: Int = 0 {
@@ -38,12 +31,9 @@ final class BookmarkViewController: BaseViewController {
     private let phraseViewController = PhraseViewController()
     private let bookViewController = BookViewController()
     
-    private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll,
-                                                               navigationOrientation: .horizontal).then {
-        $0.setViewControllers([dataViewControllers[0]],
-                              direction: .forward,
-                              animated: true)
-    }
+    private lazy var pageViewController = UIPageViewController(
+        transitionStyle: .scroll,
+        navigationOrientation: .horizontal)
     
     private let titleLabel = UILabel().then {
         $0.text = "책갈피"
@@ -77,13 +67,9 @@ final class BookmarkViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupCount()
+        countBookmark()
     }
-        
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
+
     // MARK: - Configure UI & Layout
     
     override func configureUI() {
@@ -141,21 +127,29 @@ final class BookmarkViewController: BaseViewController {
     
     // MARK: - Custom Method
     
-    func setupCount() {
-        totalCount = repository.fetchRecord().count
-        totalCountLabel.text = "\(totalCount)"
-        NotificationCenter.default.addObserver(self, selector: #selector(receiveCount(_:)), name: NSNotification.Name("countPhrase"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(receiveCount(_:)), name: NSNotification.Name("countBook"), object: nil)
-    }
-    
-    @objc func receiveCount(_ notification: Notification) {
-        setupCount()
+    private func countBookmark() {
+        totalCountLabel.text = "\(repository.fetchRecord().count)"
     }
     
     // MARK: - @objc
+
+    @objc func receiveCount(_ notification: Notification) {
+        countBookmark()
+    }
     
     @objc private func changeValue(control: UISegmentedControl) {
         currentPage = control.selectedSegmentIndex
+        if currentPage == 0 {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(receiveCount(_:)),
+                                                   name: NSNotification.Name("countPhrase"),
+                                                   object: nil)
+        } else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(receiveCount(_:)),
+                                                   name: NSNotification.Name("countBook"),
+                                                   object: nil)
+        }
     }
     
     @objc private func touchupWriteButton() {

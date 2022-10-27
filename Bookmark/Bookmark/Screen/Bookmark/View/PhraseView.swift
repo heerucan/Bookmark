@@ -18,7 +18,6 @@ final class PhraseView: BaseView {
     var tasks: Results<Record>! {
         didSet {
             tableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name("countPhrase"), object: tasks.count)
         }
     }
     
@@ -57,7 +56,8 @@ final class PhraseView: BaseView {
         }
     }
 
-    func configureTableViewDelegate(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+    func configureTableViewDelegate(_ delegate: UITableViewDelegate,
+                                    _ datasource: UITableViewDataSource) {
         tableView.delegate = delegate
         tableView.dataSource = datasource
     }

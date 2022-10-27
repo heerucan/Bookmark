@@ -37,35 +37,15 @@ final class BookViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
-        let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { [self] _ in
+        let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { _ in
             guard let cell = self.bookView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
                     as? BookmarkBookTableViewCell else { return }
-            
-            if let instaURL = EndPoint.instagram.makeURL() {
-                if UIApplication.shared.canOpenURL(instaURL) {
-                    let renderer = UIGraphicsImageRenderer(size: cell.contentView.bounds.size)
-                    let renderImage = renderer.image { _ in
-                        cell.contentView.drawHierarchy(in: cell.contentView.bounds, afterScreenUpdates: true)
-                    }
-                    guard let imageData = renderImage.pngData() else { return }
-                    
-                    let pasteboardItems: [String: Any] = [
-                        "com.instagram.sharedSticker.stickerImage": imageData,
-                        "com.instagram.sharedSticker.backgroundTopColor": "#ffffff",
-                        "com.instagram.sharedSticker.backgroundBottomColor": "#ffffff",
-                    ]
-                    let pasteboardOptions = [
-                        UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
-                    ]
-                    UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
-                    UIApplication.shared.open(instaURL, options: [:], completionHandler: nil)
-                } else {
-                    self.showAlert(title: "인스타그램이 없네요 :(", message: nil, actions: [])
-                }
-            }
+            self.shareImage(cell: cell)
         }
-        let delete = UIAlertAction(title: "지우고 싶어요", style: .default) { _ in
-            self.bookView.repository.deleteRecord(item: self.bookView.tasks[sender.tag])
+        let delete = UIAlertAction(title: "지우고 싶어요", style: .destructive) { _ in
+            self.bookView.repository.deleteRecord(record: self.bookView.tasks[sender.tag],
+                                                  store: self.bookView.tasks[sender.tag].store ?? Store())
+            NotificationCenter.default.post(name: NSNotification.countBook, object: nil)
             self.bookView.fetchRealm()
         }
         showAlert(title: "꽂은 책갈피를",
@@ -73,7 +53,6 @@ final class BookViewController: BaseViewController {
                   actions: [share, delete],
                   cancelTitle: "그대로 둘게요",
                   preferredStyle: .actionSheet)
-        NotificationCenter.default.post(name: NSNotification.Name("countBook"), object: nil)
     }
 }
 

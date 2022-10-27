@@ -23,15 +23,17 @@ protocol BookmarkRepositoryType {
     func updateRecord(item: Any?)
     
     // 3. 글삭제
-    func deleteRecord(item: Record)
+    func deleteRecord(record: Record, store: Store)
         
     // 4. 책방 북마크 초기 정렬
     func fetchBookmark() -> Results<Store>
     
-    // 5. 책방 북마크 추가-해제
+    // 5.
+    func fetchBookmark(item: String) -> Results<Store>
+    
+    // 6. 책방 북마크 추가-해제
     func updateBookmark(item: Any?)
     
-    func fetchBookmark(item: String) -> Results<Store>
 }
 
 // MARK: - BookmarkRepository
@@ -74,12 +76,13 @@ final class BookmarkRepository {
         }
     }
     
-    func deleteRecord(item: Record) {
+    func deleteRecord(record: Record, store: Store) {
         do {
             try realm.write {
-                FileManagerHelper.shared.removeImageFromDocument(fileName: "\(item.objectId).jpg")
-                realm.delete(item)
-                print("Delete Realm 성공!")
+                FileManagerHelper.shared.removeImageFromDocument(fileName: "\(record.objectId).jpg")
+                realm.delete(record)
+                realm.delete(store)
+                print("Delete Record, Store Realm 성공!")
             }
         } catch let error {
             print(error)

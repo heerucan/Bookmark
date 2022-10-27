@@ -8,8 +8,6 @@
 import UIKit
 
 import SafariServices
-import StoreKit
-import nanopb
 
 final class SettingViewController: BaseViewController {
     
@@ -18,6 +16,7 @@ final class SettingViewController: BaseViewController {
     static let sectionFooterElementKind = "section-footer-element-kind"
     
     private let settingView = SettingView()
+    private let settingViewModel = SettingViewModel()
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>!
     
@@ -30,13 +29,27 @@ final class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
+        setupDelegate()
+        bindData()
+    }
+    
+    // MARK: - Set Up Delegate
+    
+    override func setupDelegate() {
         settingView.setupCollectionView(self)
     }
     
-    // MARK: - Configure UI & Layout
+    // MARK: - Bind Data
     
-    override func configureLayout() {
-        super.configureLayout()
+    private func bindData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        settingViewModel.settingList.bind { setting in
+            for i in 0...2 {
+                snapshot.appendSections([i])
+                snapshot.appendItems(setting[i].menu, toSection: i)
+            }
+            self.dataSource.apply(snapshot)
+        }
     }
     
     // MARK: - Custom Method
@@ -67,13 +80,6 @@ final class SettingViewController: BaseViewController {
             return self.settingView.collectionView.dequeueConfiguredReusableSupplementary(
                 using: footerRegistration, for: index)
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
-        snapshot.appendSections([0, 1, 2])
-        snapshot.appendItems(Setting.notice.menu, toSection: 0)
-        snapshot.appendItems(Setting.fileManage.menu, toSection: 1)
-        snapshot.appendItems(Setting.aboutBookmark.menu, toSection: 2)
-        dataSource.apply(snapshot)
     }
 }
 
@@ -98,14 +104,14 @@ extension SettingViewController: UICollectionViewDelegate {
             }
             
         case IndexPath(item: 0, section: 1):
-            showAlert(title: "다음 업데이트를 기다려주세요 :)",
+            showAlert(title: "준비 중입니다 :)",
                       message: nil,
                       actions: [],
                       cancelTitle: "확인",
                       preferredStyle: .alert)
             
         case IndexPath(item: 1, section: 1):
-            showAlert(title: "다음 업데이트를 기다려주세요 :)",
+            showAlert(title: "준비 중입니다 :)",
                       message: nil,
                       actions: [],
                       cancelTitle: "확인",

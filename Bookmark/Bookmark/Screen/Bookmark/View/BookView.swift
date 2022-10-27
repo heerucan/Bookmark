@@ -18,8 +18,6 @@ final class BookView: BaseView {
     var tasks: Results<Record>! {
         didSet {
             tableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name("countBook"), object: tasks.count)
-            print("📪tableView 변화 발생", tasks as Any)
         }
     }
     
@@ -58,7 +56,8 @@ final class BookView: BaseView {
         }
     }
     
-    func configureTableViewDelegate(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+    func configureTableViewDelegate(_ delegate: UITableViewDelegate,
+                                    _ datasource: UITableViewDataSource) {
         tableView.delegate = delegate
         tableView.dataSource = datasource
     }
