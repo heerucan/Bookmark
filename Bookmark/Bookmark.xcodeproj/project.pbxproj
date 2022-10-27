@@ -60,11 +60,13 @@
 		5B71FEDD28DCFD8300F311F5 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */; };
 		5B737B04290AB9A800612B57 /* StoreAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B03290AB9A800612B57 /* StoreAPIManager.swift */; };
 		5B737B06290AB9DA00612B57 /* StoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B05290AB9DA00612B57 /* StoreRouter.swift */; };
-		5B737B09290ABA6E00612B57 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B08290ABA6E00612B57 /* Observable.swift */; };
+		5B737B09290ABA6E00612B57 /* BookmarkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B08290ABA6E00612B57 /* BookmarkObservable.swift */; };
 		5B737B0B290ABABA00612B57 /* BaseMethodProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B0A290ABABA00612B57 /* BaseMethodProtocol.swift */; };
 		5B737B0D290ABB4100612B57 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B0C290ABB4100612B57 /* NSNotification.swift */; };
 		5B737B10290ABE7F00612B57 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B737B0F290ABE7F00612B57 /* SettingViewModel.swift */; };
 		5B737B13290ABFAC00612B57 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B737B12290ABFAC00612B57 /* Alamofire */; };
+		5B737B17290AF2E700612B57 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5B737B16290AF2E700612B57 /* RxCocoa */; };
+		5B737B19290AF2E700612B57 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B737B18290AF2E700612B57 /* RxSwift */; };
 		5B799D1228D06AE500648C94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B799D1128D06AE500648C94 /* HomeView.swift */; };
 		5B819ED028D245D200626693 /* APIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ECF28D245D200626693 /* APIConstant.swift */; };
 		5B819ED428D2589400626693 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B819ED328D2589400626693 /* Matrix.swift */; };
@@ -160,7 +162,7 @@
 		5B71FEDC28DCFD8200F311F5 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
 		5B737B03290AB9A800612B57 /* StoreAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAPIManager.swift; sourceTree = "<group>"; };
 		5B737B05290AB9DA00612B57 /* StoreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRouter.swift; sourceTree = "<group>"; };
-		5B737B08290ABA6E00612B57 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		5B737B08290ABA6E00612B57 /* BookmarkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkObservable.swift; sourceTree = "<group>"; };
 		5B737B0A290ABABA00612B57 /* BaseMethodProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMethodProtocol.swift; sourceTree = "<group>"; };
 		5B737B0C290ABB4100612B57 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		5B737B0F290ABE7F00612B57 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -195,11 +197,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B737B17290AF2E700612B57 /* RxCocoa in Frameworks */,
 				5B737B13290ABFAC00612B57 /* Alamofire in Frameworks */,
 				5BE8636128F86CB1006C45A4 /* FirebaseMessaging in Frameworks */,
 				5BE8635F28F86CB1006C45A4 /* FirebaseCrashlytics in Frameworks */,
 				F0315D921008477C1643B6BB /* Pods_Bookmark.framework in Frameworks */,
 				5BE8635D28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				5B737B19290AF2E700612B57 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,7 @@
 		5B55443528CEF95100781EC8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				5B737B14290AF23700612B57 /* ViewModel */,
 				5B578A9428D0C64B0039855C /* View */,
 				5B55443C28CEFA2900781EC8 /* Controller */,
 			);
@@ -606,7 +611,7 @@
 			children = (
 				5B55443F28CEFA6600781EC8 /* EndPoint.swift */,
 				5B819ED328D2589400626693 /* Matrix.swift */,
-				5B737B08290ABA6E00612B57 /* Observable.swift */,
+				5B737B08290ABA6E00612B57 /* BookmarkObservable.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -615,6 +620,13 @@
 			isa = PBXGroup;
 			children = (
 				5B737B0F290ABE7F00612B57 /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B737B14290AF23700612B57 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -720,6 +732,8 @@
 				5BE8635E28F86CB1006C45A4 /* FirebaseCrashlytics */,
 				5BE8636028F86CB1006C45A4 /* FirebaseMessaging */,
 				5B737B12290ABFAC00612B57 /* Alamofire */,
+				5B737B16290AF2E700612B57 /* RxCocoa */,
+				5B737B18290AF2E700612B57 /* RxSwift */,
 			);
 			productName = Bookmark;
 			productReference = 5B3FACF728CE207D0062D9F6 /* Bookmark.app */;
@@ -752,6 +766,7 @@
 			packageReferences = (
 				5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 5B3FACF828CE207D0062D9F6 /* Products */;
 			projectDirPath = "";
@@ -868,7 +883,7 @@
 				5B5544B928CF1A9A00781EC8 /* UITextField+.swift in Sources */,
 				5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */,
 				5B96BF9128D705A700C30AA8 /* Protocol.swift in Sources */,
-				5B737B09290ABA6E00612B57 /* Observable.swift in Sources */,
+				5B737B09290ABA6E00612B57 /* BookmarkObservable.swift in Sources */,
 				5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */,
 				5B55444928CEFDE600781EC8 /* BookmarkViewController.swift in Sources */,
 				5B0CD78E28DAB27200175528 /* BookFilter.swift in Sources */,
@@ -1157,6 +1172,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1172,6 +1195,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		5B737B16290AF2E700612B57 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5B737B18290AF2E700612B57 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 		5BE8635C28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
