@@ -9,6 +9,8 @@ import UIKit
 
 final class SettingSupplementaryView: UICollectionReusableView {
     
+    static let identifier = "SettingSupplementaryView"
+    
     // MARK: - Init
       
     override init(frame: CGRect) {

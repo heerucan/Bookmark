@@ -19,6 +19,7 @@ final class SettingView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        setupCollectionView()
     }
     
     // MARK: - Configure UI & Layout
@@ -40,11 +41,10 @@ final class SettingView: BaseView {
         }
     }
     
-    func setupCollectionView(_ delegate: UICollectionViewDelegate) {
+    private func setupCollectionView() {
         collectionView.register(SettingSupplementaryView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                                withReuseIdentifier: "SettingSupplementaryView")
-        collectionView.delegate = delegate
+                                withReuseIdentifier: SettingSupplementaryView.identifier)
     }
 }
 
