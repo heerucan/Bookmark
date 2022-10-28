@@ -7,6 +7,9 @@
 
 import Foundation
 
+import RxSwift
+import RxRelay
+
 final class SettingViewModel {
-    var settingList: Observable<[Setting]> = Observable(Setting.allCases)
+    let settingList = BehaviorRelay(value: Setting.allCases)
 }
