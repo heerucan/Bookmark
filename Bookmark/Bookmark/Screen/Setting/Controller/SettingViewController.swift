@@ -42,15 +42,15 @@ final class SettingViewController: BaseViewController {
     
     private func bindData() {
         settingViewModel.settingList
-            .asDriver()
-            .drive { [weak self] value in
-                guard let self = self else { return }
+            .withUnretained(self)
+            .asDriver(onErrorJustReturn: (self, Setting.allCases))
+            .drive { (vc, value) in
                 var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
                 for i in 0...2 {
                     snapshot.appendSections([i])
                     snapshot.appendItems(value[i].menu, toSection: i)
                 }
-                self.dataSource.apply(snapshot)
+                vc.dataSource.apply(snapshot)
             }
             .disposed(by: disposeBag)
                 
@@ -131,3 +131,4 @@ extension SettingViewController {
         }
     }
 }
+
