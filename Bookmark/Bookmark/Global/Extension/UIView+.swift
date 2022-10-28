@@ -53,9 +53,9 @@ extension UIView {
         }
     }
     
-    func showAlert(title: String?,
-                   message: String?,
-                   actions: [UIAlertAction],
+    func showAlert(title: String? = nil,
+                   message: String? = nil,
+                   actions: [UIAlertAction] = [],
                    preferredStyle: UIAlertController.Style = .actionSheet) {
         let alert = UIAlertController(title: title,
                                       message: message,

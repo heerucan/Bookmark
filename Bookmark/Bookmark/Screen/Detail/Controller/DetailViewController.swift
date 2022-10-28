@@ -151,7 +151,6 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             }
         }
         showAlert(title: "어떤 책갈피를 기록하실 건가요?",
-                  message: nil,
                   actions: [sentence, book])
     }
     
@@ -192,7 +191,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             if UIApplication.shared.canOpenURL(naver) {
                 UIApplication.shared.open(naver)
             } else {
-                self.showAlert(title: "네이버맵이 없네요 :(", message: nil, actions: [])
+                self.showAlert(title: "네이버맵이 없네요 :(")
             }
         }
         let kakao = UIAlertAction(title: "카카오맵으로 이동", style: .default) { _ in
@@ -200,7 +199,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             if UIApplication.shared.canOpenURL(URL(string: "kakaomap://open")!) {
                 UIApplication.shared.open(kakao)
             } else {
-                self.showAlert(title: "카카오맵이 없네요 :(", message: nil, actions: [])
+                self.showAlert(title: "카카오맵이 없네요 :(")
             }
         }
         let google = UIAlertAction(title: "구글맵으로 이동", style: .default) { _ in
@@ -208,11 +207,10 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             if UIApplication.shared.canOpenURL((URL(string:"comgooglemaps://")!)) {
                 UIApplication.shared.open(google)
             } else {
-                self.showAlert(title: "구글맵이 없네요 :(", message: nil, actions: [])
+                self.showAlert(title: "구글맵이 없네요 :(")
             }
         }
         showAlert(title: "앱을 선택하세요",
-                  message: nil,
                   actions: [naver, kakao, google],
                   preferredStyle: .actionSheet)
     }

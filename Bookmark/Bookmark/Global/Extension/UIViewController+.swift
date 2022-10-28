@@ -8,9 +8,9 @@
 import UIKit
 
 extension UIViewController {
-    func showAlert(title: String?,
-                   message: String?,
-                   actions: [UIAlertAction],
+    func showAlert(title: String? = nil,
+                   message: String? = nil,
+                   actions: [UIAlertAction] = [],
                    cancelTitle: String? = "취소",
                    preferredStyle: UIAlertController.Style = .actionSheet) {
         let alert = UIAlertController(title: title,

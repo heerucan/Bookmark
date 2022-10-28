@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+import RxSwift
+
+final class SearchViewModel {
+    
+    let filterredList = PublishSubject<BookStoreInfo>()
+    let bookstoreList = PublishSubject<BookStoreInfo>()
+    
+    
+}

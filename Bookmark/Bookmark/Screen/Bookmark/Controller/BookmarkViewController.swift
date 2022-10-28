@@ -170,7 +170,6 @@ final class BookmarkViewController: BaseViewController {
             }
         }
         showAlert(title: "어떤 책갈피를 꽂아두실 건가요?",
-                  message: nil,
                   actions: [sentence, book])
     }
 }

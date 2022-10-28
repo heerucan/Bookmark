@@ -14,6 +14,7 @@ final class SearchViewController: BaseViewController {
     private var isSearching = true
     
     private let searchView = SearchView()
+    private let searchViewModel = SearchViewModel()
     
     private var filterredList: [BookStoreInfo] = [] {
         didSet {
@@ -40,6 +41,7 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         setupAction()
         requestAPI()
+        bind()
     }
     
     // MARK: - Configure UI & Layout
@@ -47,6 +49,12 @@ final class SearchViewController: BaseViewController {
     override func setupDelegate() {
         searchView.setupTableView(self, self)
         searchView.setupSearchBarDelegate(self)
+    }
+    
+    // MARK: - Bind Data
+    
+    private func bind() {
+        
     }
     
     // MARK: - Network

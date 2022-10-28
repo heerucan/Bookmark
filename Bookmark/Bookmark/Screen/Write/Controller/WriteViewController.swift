@@ -101,7 +101,6 @@ final class WriteViewController: BaseViewController {
             self.setupPhotoPicker()
         }
         showAlert(title: "갤러리/카메라 접근",
-                  message: nil,
                   actions: [camera, photo],
                   preferredStyle: .actionSheet)
     }

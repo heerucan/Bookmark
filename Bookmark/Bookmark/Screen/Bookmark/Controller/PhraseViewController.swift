@@ -66,7 +66,6 @@ final class PhraseViewController: BaseViewController {
             self.phraseView.fetchRealm()
         }
         showAlert(title: "꽂은 책갈피를",
-                  message: nil,
                   actions: [share, edit, delete],
                   cancelTitle: "그대로 둘게요",
                   preferredStyle: .actionSheet)
