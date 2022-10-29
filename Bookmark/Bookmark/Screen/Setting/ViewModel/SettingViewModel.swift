@@ -8,8 +8,7 @@
 import Foundation
 
 import RxSwift
-import RxRelay
 
 final class SettingViewModel {
-    let settingList = BehaviorRelay(value: Setting.allCases)
+    let settingList = Observable<[Setting]>.of(Setting.allCases)
 }
