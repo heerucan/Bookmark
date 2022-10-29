@@ -12,8 +12,9 @@
   - [fastlane을 사용한 자동배포화 적용 삽질기 *testflight에만 적용](https://huree-can-do-it.notion.site/Fastlane-3f733e4a32a5480db76c91fb594a9695)
   
 - `Refactor`
-  - [설정뷰에 처음 시도해본 MVVM + Compositional + DiffableDataSource](https://huree-can-do-it.notion.site/MVVM-a050808dee564704b9f118c25fb6eb1a)
   - [URLRequestConvertible을 사용해서 Network 통신 코드 개선하기](https://huree-can-do-it.notion.site/URLRequestConvertible-e118bbf9dd9640a59db13a726ac9779a)
+  - [설정뷰에 처음 시도해본 MVVM + Compositional + DiffableDataSource](https://huree-can-do-it.notion.site/MVVM-a050808dee564704b9f118c25fb6eb1a)
+  - [설정뷰 Rx 적용해서 개선하기 feat. 멘토님 피드백 반영](https://huree-can-do-it.notion.site/2-Rx-MVVM-70cc157972ff4dc28447a1a342b3abca)
   
 - `BugFix`
   - [1기가 넘게 줄줄 새고 있던 메모리 누수 해결](https://huree-can-do-it.notion.site/ccad55aa67be4eb5a79bc6dfb93243c9)
