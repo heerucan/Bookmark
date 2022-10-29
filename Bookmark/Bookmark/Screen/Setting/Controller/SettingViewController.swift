@@ -24,7 +24,7 @@ final class SettingViewController: BaseViewController {
     private let settingView = SettingView()
     private let settingViewModel = SettingViewModel()
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, String>!
+    private var dataSource: UICollectionViewDiffableDataSource<Setting, String>!
     
     // MARK: - LifeCycle
     
@@ -35,51 +35,49 @@ final class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        bindData()
+        bindViewModel()
     }
     
-    // MARK: - Bind Data
+    // MARK: - BindViewModel
     
-    private func bindData() {
+    private func bindViewModel() {
         settingViewModel.settingList
             .withUnretained(self)
-            .asDriver(onErrorJustReturn: (self, Setting.allCases))
-            .drive { (vc, value) in
-                var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
-                for i in 0...2 {
-                    snapshot.appendSections([i])
-                    snapshot.appendItems(value[i].menu, toSection: i)
+            .subscribe { (vc, _) in
+                var snapshot = NSDiffableDataSourceSnapshot<Setting, String>()
+                Setting.allCases.forEach {
+                    snapshot.appendSections([$0])
+                    snapshot.appendItems($0.menu, toSection: $0)
                 }
                 vc.dataSource.apply(snapshot)
             }
             .disposed(by: disposeBag)
                 
         settingView.collectionView.rx.itemSelected
-            .asDriver()
-            .drive { [weak self] item in
-                guard let self = self else { return }
+            .withUnretained(self)
+            .subscribe { (vc, item) in
                 switch item {
-                case IndexPath(item: 0, section: 0):
-                    self.presentSafariView(EndPoint.ask.makeURL())
+                case IndexPath(item: 0, section: Setting.help.rawValue):
+                    vc.presentSafariView(EndPoint.ask.makeURL())
                     
-                case IndexPath(item: 1, section: 0):
-                    self.presentReviewView()
+                case IndexPath(item: 1, section: Setting.help.rawValue):
+                    vc.presentReviewView()
                     
-                case IndexPath(item: 0, section: 1):
-                    self.showAlert(title: "준비 중입니다 :)",
+                case IndexPath(item: 0, section: Setting.manage.rawValue):
+                    vc.showAlert(title: "준비 중입니다 :)",
                                  cancelTitle: "확인",
                                  preferredStyle: .alert)
                     
-                case IndexPath(item: 1, section: 1):
-                    self.showAlert(title: "준비 중입니다 :)",
+                case IndexPath(item: 1, section: Setting.manage.rawValue):
+                    vc.showAlert(title: "준비 중입니다 :)",
                                  cancelTitle: "확인",
                                  preferredStyle: .alert)
                     
-                case IndexPath(item: 0, section: 2):
-                    self.presentSafariView(EndPoint.notion.makeURL())
+                case IndexPath(item: 0, section: Setting.about.rawValue):
+                    vc.presentSafariView(EndPoint.notion.makeURL())
                     
                 default:
-                    self.showAlert(title: "최신 버전입니다 :)",
+                    vc.showAlert(title: "최신 버전입니다 :)",
                                  cancelTitle: "확인",
                                  preferredStyle: .alert)
                 }
@@ -131,4 +129,3 @@ extension SettingViewController {
         }
     }
 }
-
