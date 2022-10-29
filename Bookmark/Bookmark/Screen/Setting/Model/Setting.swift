@@ -8,18 +8,18 @@
 import Foundation
 
 @frozen
-enum Setting: CaseIterable {
-    case first
-    case second
-    case third
+enum Setting: Int, CaseIterable {
+    case help
+    case manage
+    case about
 
     var menu: [String] {
         switch self {
-        case .first:
+        case .help:
             return ["문의하기", "리뷰 남기기"]
-        case .second:
+        case .manage:
             return ["백업하기", "복구하기"]
-        case .third:
+        case .about:
             return ["책갈피 소개"]
         }
     }
