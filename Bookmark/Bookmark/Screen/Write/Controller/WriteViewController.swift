@@ -25,6 +25,8 @@ final class WriteViewController: BaseViewController {
     // MARK: - Property
     
     let writeView = WriteView()
+    var dataSource: UICollectionViewDiffableDataSource<Int, UIImage?>?
+    var bookmarkViewStatus: ViewStatus = .write
     
     var fromWhatView: FromWhatView = .detail {
         didSet {
@@ -33,11 +35,9 @@ final class WriteViewController: BaseViewController {
         }
     }
     
-    var bookmarkViewStatus: ViewStatus = .write
-    
     var bookmark: Bool = false
     
-    var photoList: [PHPickerResult] = []
+    var photoList: [UIImage] = []
     
     // MARK: - LifeCycle
     
@@ -48,6 +48,8 @@ final class WriteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
+        configureDataSource()
+        applySnapshot(photoList)
     }
     
     override func configureUI() {
@@ -68,7 +70,6 @@ final class WriteViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func setupAction() {
-        writeView.imageButton.addTarget(self, action: #selector(touchupImageButton), for: .touchUpInside)
         writeView.completeButton.addTarget(self, action: #selector(touchupCompleteButton(sender:)), for: .touchUpInside)
         writeView.navigationView.rightButton.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
         writeView.navigationView.leftButton.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
@@ -165,6 +166,31 @@ final class WriteViewController: BaseViewController {
     }
 }
 
+// MARK: - DiffableDataSource
+
+extension WriteViewController {
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<WriteCollectionViewCell, UIImage?> { cell, IndexPath, itemIdentifier in
+            cell.setupData(image: itemIdentifier)
+            cell.imageButton.addTarget(self, action: #selector(self.touchupImageButton), for: .touchUpInside)
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource(collectionView: writeView.collectionView,
+                                                        cellProvider: { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            return cell
+        })
+    }
+    
+    private func applySnapshot(_ items: [UIImage?]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, UIImage?>()
+        snapshot.appendSections([0, 1])
+        snapshot.appendItems([UIImage()], toSection: 0)
+        snapshot.appendItems(items, toSection: 1)
+        dataSource?.apply(snapshot)
+    }
+}
+
 // MARK: - TextField Delegate
 
 extension WriteViewController: UITextFieldDelegate {
@@ -189,8 +215,7 @@ extension WriteViewController: UITextFieldDelegate {
 
 extension WriteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-    
-        picker.dismiss(animated: true)
+        picker.transition(self, .dismiss)
         
         if !results.isEmpty {
             photoList.removeAll()
@@ -201,7 +226,8 @@ extension WriteViewController: PHPickerViewControllerDelegate, UINavigationContr
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, _) in
                         DispatchQueue.main.async {
                             guard let self = self else { return }
-                            self.photoList.append(result)
+                            self.photoList.append(image as! UIImage)
+                            self.applySnapshot(self.photoList)
                         }
                     }
                 }
