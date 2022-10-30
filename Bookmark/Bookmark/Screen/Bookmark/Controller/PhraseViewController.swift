@@ -53,9 +53,8 @@ final class PhraseViewController: BaseViewController {
                 viewController.writeView.completeButton.setTitle("수정", for: .normal)
                 
                 let image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(self.phraseView.tasks[sender.tag].objectId).jpg")
-                viewController.writeView.imageButton.setImage(image, for: .normal)
+                viewController.photoList.append(image!)
                 viewController.writeView.titleTextField.text = self.phraseView.tasks[sender.tag].title
-                viewController.writeView.imageButton.isUserInteractionEnabled = false
                 viewController.writeView.completeButton.isDisabled = false
             }
         }
