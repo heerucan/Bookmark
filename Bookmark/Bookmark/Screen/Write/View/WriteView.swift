@@ -27,13 +27,6 @@ final class WriteView: BaseView {
         }
     }
     
-    var image: UIImage? {
-        didSet {
-            imageButton.setImage(image, for: .normal)
-            completeButton.isDisabled = image != nil ? false : true
-        }
-    }
-    
     var writeViewState: WriteViewState = .book {
         didSet {
             descriptionLabel.text = writeViewState.description
@@ -46,16 +39,6 @@ final class WriteView: BaseView {
     private let descriptionLabel = UILabel().then {
         $0.font = Font.body3.font
         $0.textColor = Color.black100
-    }
-    
-    lazy var imageButton = UIButton().then {
-        $0.imageView?.contentMode = .scaleAspectFill
-        $0.backgroundColor = Color.gray300
-        $0.addSubview(iconView)
-    }
-    
-    private let iconView = UIImageView().then {
-        $0.image = Icon.Image.gallery
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
@@ -154,7 +137,6 @@ extension WriteView {
             
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = 8
-            
             switch sectionIndex {
             case 0:
                 section.contentInsets = NSDirectionalEdgeInsets(
@@ -162,7 +144,6 @@ extension WriteView {
             default:
                 section.contentInsets = NSDirectionalEdgeInsets(
                     top: 0, leading: 0, bottom: 0, trailing: spacing)
-                
             }
             return section
         }

@@ -17,7 +17,7 @@ final class WriteCollectionViewCell: BaseCollectionViewCell {
         $0.addSubview(iconView)
     }
     
-    private let iconView = UIImageView().then {
+    let iconView = UIImageView().then {
         $0.image = Icon.Image.gallery
     }
     
@@ -44,6 +44,6 @@ final class WriteCollectionViewCell: BaseCollectionViewCell {
     // MARK: - Set Up Data
     
     func setupData(image: UIImage?) {
-        imageButton.imageView?.image = image
+        imageButton.setImage(image, for: .normal)
     }
 }
