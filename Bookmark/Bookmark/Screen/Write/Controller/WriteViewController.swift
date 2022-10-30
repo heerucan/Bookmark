@@ -25,9 +25,9 @@ final class WriteViewController: BaseViewController {
     // MARK: - Property
     
     let writeView = WriteView()
-    var dataSource: UICollectionViewDiffableDataSource<Int, UIImage?>?
     var bookmarkViewStatus: ViewStatus = .write
-    
+    private var dataSource: UICollectionViewDiffableDataSource<Int, UIImage?>?
+
     var fromWhatView: FromWhatView = .detail {
         didSet {
             writeView.navigationView.rightButton.isHidden = fromWhatView.rightButtonIsHidden
@@ -37,7 +37,11 @@ final class WriteViewController: BaseViewController {
     
     var bookmark: Bool = false
     
-    var photoList: [UIImage] = []
+    var photoList: [UIImage] = [] {
+        didSet {
+            writeView.completeButton.isDisabled = photoList.count == 0 ? true : false
+        }
+    }
     
     // MARK: - LifeCycle
     
@@ -82,7 +86,6 @@ final class WriteViewController: BaseViewController {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         transition(picker, .present)
-        self.present(picker, animated: true)
     }
     
     private func setupImagePicker() {
@@ -91,7 +94,7 @@ final class WriteViewController: BaseViewController {
         picker.allowsEditing = true
         picker.mediaTypes = ["public.image"]
         picker.delegate = self
-        self.present(picker, animated: true)
+        transition(picker, .present)
     }
     
     // MARK: - @objc
@@ -110,7 +113,8 @@ final class WriteViewController: BaseViewController {
     
     @objc func touchupCompleteButton(sender: UIButton) {
         guard let title = writeView.titleTextField.text,
-              let image = writeView.imageButton.imageView?.image else { return }
+              // MARK: - TODO 여기 사진 여러장을 하나씩 FileManager에 저장해야 함
+              let image = photoList.first else { return }
         if writeView.writeViewState == .book { // 글귀면 true
             let detailTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                     title: title,
@@ -171,13 +175,21 @@ final class WriteViewController: BaseViewController {
 extension WriteViewController {
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<WriteCollectionViewCell, UIImage?> { cell, IndexPath, itemIdentifier in
+            switch IndexPath.section {
+            case 1:
+                cell.imageButton.isUserInteractionEnabled = false
+                cell.iconView.isHidden = true
+            default:
+                break
+            }
             cell.setupData(image: itemIdentifier)
             cell.imageButton.addTarget(self, action: #selector(self.touchupImageButton), for: .touchUpInside)
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: writeView.collectionView,
                                                         cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            let cell = collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration, for: indexPath, item: itemIdentifier)
             return cell
         })
     }
@@ -211,9 +223,11 @@ extension WriteViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - PHPicker / UIImagePicker / UINavigation Protocol
+// MARK: - PHPickerDelegate / UIImagePickerDelegate / UINavigationDelegate
 
-extension WriteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension WriteViewController: PHPickerViewControllerDelegate,
+                                UINavigationControllerDelegate,
+                                UIImagePickerControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.transition(self, .dismiss)
         
@@ -240,7 +254,11 @@ extension WriteViewController: PHPickerViewControllerDelegate, UINavigationContr
             picker.transition(self, .dismiss)
             return
         }
-        self.writeView.image = image
+        if !photoList.isEmpty {
+            photoList.removeAll()
+        }
+        self.photoList.append(image)
+        self.applySnapshot(self.photoList)
         picker.transition(self, .dismiss)
     }
 }
