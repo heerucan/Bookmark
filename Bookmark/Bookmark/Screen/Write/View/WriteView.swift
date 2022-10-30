@@ -8,6 +8,8 @@
 import UIKit
 
 import RealmSwift
+import RxCocoa
+import RxSwift
 
 final class WriteView: BaseView {
     
@@ -55,11 +57,13 @@ final class WriteView: BaseView {
     private let iconView = UIImageView().then {
         $0.image = Icon.Image.gallery
     }
+    
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
 
     private let imageDescriptionLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.main
-        $0.text = "* 이미지는 추후 수정하실 수 없어요."
+        $0.text = Matrix.writeInfoText
     }
     
     let titleTextField = BookmarkTextField().then {
@@ -78,10 +82,14 @@ final class WriteView: BaseView {
   
     // MARK: - Configure UI & Layout
     
+    override func configureUI() {
+        collectionView.showsHorizontalScrollIndicator = false
+    }
+    
     override func configureLayout() {
         self.addSubviews([navigationView,
                           descriptionLabel,
-                          imageButton,
+                          collectionView,
                           imageDescriptionLabel,
                           titleTextField,
                           completeButton])
@@ -97,18 +105,14 @@ final class WriteView: BaseView {
             make.centerX.equalToSuperview()
         }
         
-        imageButton.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(23)
-            make.leading.equalToSuperview().inset(16)
-            make.width.height.equalTo(110)
-        }
-        
-        iconView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.directionalHorizontalEdges.equalToSuperview()
+            make.height.equalTo(120)
         }
         
         imageDescriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageButton.snp.bottom).offset(10)
+            make.top.equalTo(collectionView.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(16)
         }
         
@@ -127,5 +131,48 @@ final class WriteView: BaseView {
     
     func setupWriteViewState(_ viewStates: WriteViewState) {
         writeViewState = viewStates
+    }
+}
+
+// MARK: - Composition Layout
+
+extension WriteView {
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
+            let spacing = 16.0
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .absolute(120),
+                heightDimension: .absolute(120))
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: groupSize,
+                subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 8
+            
+            switch sectionIndex {
+            case 0:
+                section.contentInsets = NSDirectionalEdgeInsets(
+                    top: 0, leading: spacing, bottom: 0, trailing: 8)
+            default:
+                section.contentInsets = NSDirectionalEdgeInsets(
+                    top: 0, leading: 0, bottom: 0, trailing: spacing)
+                
+            }
+            return section
+        }
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let configuration = UICollectionViewCompositionalLayoutConfiguration()
+        let layout = createCompositionalLayout()
+        configuration.scrollDirection = .horizontal
+        layout.configuration = configuration
+        return layout
     }
 }
