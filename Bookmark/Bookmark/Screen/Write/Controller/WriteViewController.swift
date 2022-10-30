@@ -37,6 +37,8 @@ final class WriteViewController: BaseViewController {
     
     var bookmark: Bool = false
     
+    var photoList: [PHPickerResult] = []
+    
     // MARK: - LifeCycle
     
     override func loadView() {
@@ -74,8 +76,8 @@ final class WriteViewController: BaseViewController {
     
     private func setupPhotoPicker() {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .any(of: [.images])
+        configuration.selectionLimit = 3
+        configuration.filter = .images
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         transition(picker, .present)
@@ -187,13 +189,20 @@ extension WriteViewController: UITextFieldDelegate {
 
 extension WriteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true) {
-            if let itemProvider = results.first?.itemProvider,
-               itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, err) in
-                    DispatchQueue.main.async {
-                        guard let self = self else { return }
-                        self.writeView.image = image as? UIImage
+    
+        picker.dismiss(animated: true)
+        
+        if !results.isEmpty {
+            photoList.removeAll()
+
+            results.forEach { result in
+                let itemProvider = result.itemProvider
+                if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, _) in
+                        DispatchQueue.main.async {
+                            guard let self = self else { return }
+                            self.photoList.append(result)
+                        }
                     }
                 }
             }
