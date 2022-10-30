@@ -7,8 +7,9 @@
 
 import Foundation
 
-// MARK: - Enum
+// MARK: - FromWhatView
 
+@frozen
 enum FromWhatView {
     case detail
     case bookmark
@@ -33,6 +34,9 @@ enum FromWhatView {
     }
 }
 
+// MARK: - ViewStatus
+
+@frozen
 enum ViewStatus {
     case write
     case edit

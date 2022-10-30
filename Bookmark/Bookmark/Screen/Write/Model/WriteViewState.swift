@@ -7,8 +7,9 @@
 
 import UIKit
 
-// MARK: - Enum
+// MARK: - WriteViewState
 
+@frozen
 enum WriteViewState {
     case sentence
     case book
