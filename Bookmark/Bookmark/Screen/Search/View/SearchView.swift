@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class SearchView: BaseView {
     
     // MARK: - Property
@@ -40,7 +43,7 @@ final class SearchView: BaseView {
         $0.textColor = Color.black100
     }
     
-    private let tableView = UITableView(frame: .zero, style: .plain).then {
+    let tableView = UITableView(frame: .zero, style: .plain).then {
         $0.keyboardDismissMode = .onDrag
         $0.backgroundColor = .white
         $0.separatorStyle = .none
@@ -114,11 +117,6 @@ final class SearchView: BaseView {
                          .font: Font.body5.font])
         searchBar.searchTextField.attributedPlaceholder = attributedString
         searchBar.searchTextField.leftView = .none
-    }
-    
-    func setupTableView(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
-        tableView.delegate = delegate
-        tableView.dataSource = datasource
     }
     
     func setupSearchBarDelegate(_ delegate: UISearchBarDelegate) {
