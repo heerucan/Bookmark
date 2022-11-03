@@ -95,7 +95,7 @@ final class WriteView: BaseView {
         }
         
         imageDescriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(12)
+            make.top.equalTo(collectionView.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
         }
         

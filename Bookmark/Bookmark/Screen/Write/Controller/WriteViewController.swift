@@ -257,8 +257,8 @@ extension WriteViewController: PHPickerViewControllerDelegate,
         if !photoList.isEmpty {
             photoList.removeAll()
         }
-        self.photoList.append(image)
-        self.applySnapshot(self.photoList)
+        photoList.append(image)
+        applySnapshot(self.photoList)
         picker.transition(self, .dismiss)
     }
 }

@@ -208,7 +208,6 @@ final class HomeViewController: BaseViewController {
 //                setupMarker(storeList: self.bookStoreList, tag: 2)
 //            }
         }
-        print("📦", markers.count, filter, "//new-", isNewSelected, "//old-", isOldSelected)
     }
     
     // MARK: - @objc
