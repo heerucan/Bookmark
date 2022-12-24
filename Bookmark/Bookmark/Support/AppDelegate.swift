@@ -10,13 +10,15 @@ import UIKit
 import FirebaseCore
 import FirebaseMessaging
 import NMapsMap
+import Network
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NMFAuthManager.shared().clientId = APIKey.clientId
-//        FirebaseApp.configure()
+        FirebaseApp.configure()
+        NetworkMonitor.shared.startMonitoring()
         
         // 알림 시스템에 앱 등록 - 권한 요청
         if #available(iOS 10.0, *) {

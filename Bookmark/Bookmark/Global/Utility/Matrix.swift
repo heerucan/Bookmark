@@ -34,4 +34,10 @@ enum Matrix {
     static let textFieldPlaceholder = "책 제목은 필수가 아니에요 :)"
     static let clipboard = "클립보드에 책방 주소가 복사됐어요!"
     static let writeInfoText = "* 이미지는 추후 수정하실 수 없어요."
+    
+    enum Network {
+        static let title = "네트워크 연결 불가"
+        static let subtitle = "Wi-Fi 또는 데이터를 활성화 후 재시도해주세요."
+        static let button = "재시도"
+    }
 }
