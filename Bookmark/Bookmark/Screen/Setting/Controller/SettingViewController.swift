@@ -63,23 +63,11 @@ final class SettingViewController: BaseViewController {
                 case IndexPath(item: 1, section: Setting.help.rawValue):
                     vc.presentReviewView()
                     
-                case IndexPath(item: 0, section: Setting.manage.rawValue):
-                    vc.showAlert(title: "준비 중입니다 :)",
-                                 cancelTitle: "확인",
-                                 preferredStyle: .alert)
-                    
-                case IndexPath(item: 1, section: Setting.manage.rawValue):
-                    vc.showAlert(title: "준비 중입니다 :)",
-                                 cancelTitle: "확인",
-                                 preferredStyle: .alert)
-                    
                 case IndexPath(item: 0, section: Setting.about.rawValue):
                     vc.presentSafariView(EndPoint.notion.makeURL())
                     
                 default:
-                    vc.showAlert(title: "최신 버전입니다 :)",
-                                 cancelTitle: "확인",
-                                 preferredStyle: .alert)
+                    break
                 }
             }
             .disposed(by: disposeBag)
