@@ -8,8 +8,6 @@
 import UIKit
 
 import RealmSwift
-import RxCocoa
-import RxSwift
 
 final class WriteView: BaseView {
     
@@ -27,6 +25,13 @@ final class WriteView: BaseView {
         }
     }
     
+    var image: UIImage? {
+        didSet {
+            imageButton.setImage(image, for: .normal)
+            completeButton.isDisabled = image != nil ? false : true
+        }
+    }
+    
     var writeViewState: WriteViewState = .book {
         didSet {
             descriptionLabel.text = writeViewState.description
@@ -41,12 +46,20 @@ final class WriteView: BaseView {
         $0.textColor = Color.black100
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+    lazy var imageButton = UIButton().then {
+        $0.imageView?.contentMode = .scaleAspectFill
+        $0.backgroundColor = Color.gray300
+        $0.addSubview(iconView)
+    }
+    
+    private let iconView = UIImageView().then {
+        $0.image = Icon.Image.gallery
+    }
 
     private let imageDescriptionLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.main
-        $0.text = Matrix.writeInfoText
+        $0.text = "* 이미지는 추후 수정하실 수 없어요."
     }
     
     let titleTextField = BookmarkTextField().then {
@@ -65,14 +78,10 @@ final class WriteView: BaseView {
   
     // MARK: - Configure UI & Layout
     
-    override func configureUI() {
-        collectionView.showsHorizontalScrollIndicator = false
-    }
-    
     override func configureLayout() {
         self.addSubviews([navigationView,
                           descriptionLabel,
-                          collectionView,
+                          imageButton,
                           imageDescriptionLabel,
                           titleTextField,
                           completeButton])
@@ -88,14 +97,18 @@ final class WriteView: BaseView {
             make.centerX.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints { make in
+        imageButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(23)
-            make.directionalHorizontalEdges.equalToSuperview()
-            make.height.equalTo(120)
+            make.leading.equalToSuperview().inset(16)
+            make.width.height.equalTo(110)
+        }
+        
+        iconView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
         
         imageDescriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(16)
+            make.top.equalTo(imageButton.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(16)
         }
         
@@ -114,46 +127,5 @@ final class WriteView: BaseView {
     
     func setupWriteViewState(_ viewStates: WriteViewState) {
         writeViewState = viewStates
-    }
-}
-
-// MARK: - Composition Layout
-
-extension WriteView {
-    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let spacing = 16.0
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .absolute(120),
-                heightDimension: .absolute(120))
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: groupSize,
-                subitems: [item])
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 8
-            switch sectionIndex {
-            case 0:
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 0, leading: spacing, bottom: 0, trailing: 8)
-            default:
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 0, leading: 0, bottom: 0, trailing: spacing)
-            }
-            return section
-        }
-    }
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let configuration = UICollectionViewCompositionalLayoutConfiguration()
-        let layout = createCompositionalLayout()
-        configuration.scrollDirection = .horizontal
-        layout.configuration = configuration
-        return layout
     }
 }

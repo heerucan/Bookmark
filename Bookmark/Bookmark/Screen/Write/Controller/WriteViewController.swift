@@ -25,9 +25,7 @@ final class WriteViewController: BaseViewController {
     // MARK: - Property
     
     let writeView = WriteView()
-    var bookmarkViewStatus: ViewStatus = .write
-    private var dataSource: UICollectionViewDiffableDataSource<Int, UIImage?>?
-
+    
     var fromWhatView: FromWhatView = .detail {
         didSet {
             writeView.navigationView.rightButton.isHidden = fromWhatView.rightButtonIsHidden
@@ -35,13 +33,9 @@ final class WriteViewController: BaseViewController {
         }
     }
     
-    var bookmark: Bool = false
+    var bookmarkViewStatus: ViewStatus = .write
     
-    var photoList: [UIImage] = [] {
-        didSet {
-            writeView.completeButton.isDisabled = photoList.count == 0 ? true : false
-        }
-    }
+    var bookmark: Bool = false
     
     // MARK: - LifeCycle
     
@@ -52,8 +46,6 @@ final class WriteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
-        configureDataSource()
-        applySnapshot(photoList)
     }
     
     override func configureUI() {
@@ -74,6 +66,7 @@ final class WriteViewController: BaseViewController {
     // MARK: - Custom Method
     
     private func setupAction() {
+        writeView.imageButton.addTarget(self, action: #selector(touchupImageButton), for: .touchUpInside)
         writeView.completeButton.addTarget(self, action: #selector(touchupCompleteButton(sender:)), for: .touchUpInside)
         writeView.navigationView.rightButton.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
         writeView.navigationView.leftButton.addTarget(self, action: #selector(touchupButton(_:)), for: .touchUpInside)
@@ -81,11 +74,12 @@ final class WriteViewController: BaseViewController {
     
     private func setupPhotoPicker() {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 3
-        configuration.filter = .images
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images])
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         transition(picker, .present)
+        self.present(picker, animated: true)
     }
     
     private func setupImagePicker() {
@@ -94,7 +88,7 @@ final class WriteViewController: BaseViewController {
         picker.allowsEditing = true
         picker.mediaTypes = ["public.image"]
         picker.delegate = self
-        transition(picker, .present)
+        self.present(picker, animated: true)
     }
     
     // MARK: - @objc
@@ -113,8 +107,7 @@ final class WriteViewController: BaseViewController {
     
     @objc func touchupCompleteButton(sender: UIButton) {
         guard let title = writeView.titleTextField.text,
-              // MARK: - TODO 여기 사진 여러장을 하나씩 FileManager에 저장해야 함
-              let image = photoList.first else { return }
+              let image = writeView.imageButton.imageView?.image else { return }
         if writeView.writeViewState == .book { // 글귀면 true
             let detailTask = Record(store: Store(name: writeView.bookStore, bookmark: bookmark),
                                     title: title,
@@ -170,39 +163,6 @@ final class WriteViewController: BaseViewController {
     }
 }
 
-// MARK: - DiffableDataSource
-
-extension WriteViewController {
-    private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<WriteCollectionViewCell, UIImage?> { cell, IndexPath, itemIdentifier in
-            switch IndexPath.section {
-            case 1:
-                cell.imageButton.isUserInteractionEnabled = false
-                cell.iconView.isHidden = true
-            default:
-                break
-            }
-            cell.setupData(image: itemIdentifier)
-            cell.imageButton.addTarget(self, action: #selector(self.touchupImageButton), for: .touchUpInside)
-        }
-        
-        dataSource = UICollectionViewDiffableDataSource(collectionView: writeView.collectionView,
-                                                        cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueConfiguredReusableCell(
-                using: cellRegistration, for: indexPath, item: itemIdentifier)
-            return cell
-        })
-    }
-    
-    private func applySnapshot(_ items: [UIImage?]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, UIImage?>()
-        snapshot.appendSections([0, 1])
-        snapshot.appendItems([UIImage()], toSection: 0)
-        snapshot.appendItems(items, toSection: 1)
-        dataSource?.apply(snapshot)
-    }
-}
-
 // MARK: - TextField Delegate
 
 extension WriteViewController: UITextFieldDelegate {
@@ -223,26 +183,17 @@ extension WriteViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - PHPickerDelegate / UIImagePickerDelegate / UINavigationDelegate
+// MARK: - PHPicker / UIImagePicker / UINavigation Protocol
 
-extension WriteViewController: PHPickerViewControllerDelegate,
-                                UINavigationControllerDelegate,
-                                UIImagePickerControllerDelegate {
+extension WriteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.transition(self, .dismiss)
-        
-        if !results.isEmpty {
-            photoList.removeAll()
-
-            results.forEach { result in
-                let itemProvider = result.itemProvider
-                if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, _) in
-                        DispatchQueue.main.async {
-                            guard let self = self else { return }
-                            self.photoList.append(image as! UIImage)
-                            self.applySnapshot(self.photoList)
-                        }
+        picker.dismiss(animated: true) {
+            if let itemProvider = results.first?.itemProvider,
+               itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, err) in
+                    DispatchQueue.main.async {
+                        guard let self = self else { return }
+                        self.writeView.image = image as? UIImage
                     }
                 }
             }
@@ -254,11 +205,7 @@ extension WriteViewController: PHPickerViewControllerDelegate,
             picker.transition(self, .dismiss)
             return
         }
-        if !photoList.isEmpty {
-            photoList.removeAll()
-        }
-        photoList.append(image)
-        applySnapshot(self.photoList)
+        self.writeView.image = image
         picker.transition(self, .dismiss)
     }
 }
