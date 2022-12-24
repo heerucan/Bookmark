@@ -119,6 +119,11 @@ final class SearchView: BaseView {
         searchBar.searchTextField.leftView = .none
     }
     
+    func setupTableView(_ delegate: UITableViewDelegate, _ datasource: UITableViewDataSource) {
+        tableView.delegate = delegate
+        tableView.dataSource = datasource
+    }
+    
     func setupSearchBarDelegate(_ delegate: UISearchBarDelegate) {
         searchBar.delegate = delegate
     }

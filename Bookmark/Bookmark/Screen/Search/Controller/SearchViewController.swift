@@ -47,17 +47,19 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAction()
-        bindViewModel()
+        requestAPI()
+        checkNetworkStatus()
+//        bindViewModel()
     }
     
     // MARK: - Configure UI & Layout
     
     override func setupDelegate() {
+        searchView.setupTableView(self, self)
         searchView.setupSearchBarDelegate(self)
     }
     
-    // MARK: - Bind ViewModel
-    
+    // MARK: - Bind ViewModel 리팩토링 필요!
     
     // 1. 테이블뷰에 셀 등록하기 - SearchView에서 이미 해주고 있음
     // 2. 데이터를 테이블뷰에 바인딩하기 -
@@ -89,7 +91,6 @@ final class SearchViewController: BaseViewController {
 
         // 여기까지 테이블뷰 구성은 했어
         
-        
         // 검색창을 구현해야함
         // 1. 검색어 입력 시에 -> 테이블뷰에 검색어 관련 내용이 나와야 함
         
@@ -100,8 +101,16 @@ final class SearchViewController: BaseViewController {
                 vc.searchViewModel.filterBookStore(text: value)
             }
             .disposed(by: disposeBag)
-        
-        
+    }
+    
+    // MARK: - Network
+    
+    private func requestAPI() {
+        StoreAPIManager.shared.fetchBookStore(endIndex: 1000) { [weak self] (data, status, error) in
+            guard let self = self,
+                  let data = data else { return }
+            self.bookStoreList = data.total.info
+        }
     }
     
     // MARK: - Custom Method
@@ -115,6 +124,12 @@ final class SearchViewController: BaseViewController {
         return data[index]
     }
     
+    private func checkNetworkStatus() {
+        NetworkMonitor.shared.changeUIBytNetworkConnection(vc: self) {
+            self.requestAPI()
+        }
+    }
+    
     // MARK: - @objc
     
     @objc func touchupBackButton() {
@@ -124,38 +139,36 @@ final class SearchViewController: BaseViewController {
 
 // MARK: - TableView Protocol
 
-//extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-////    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        searchView.result = filterredList.count == 0 ? bookStoreList.count : filterredList.count
-////        return filterredList.count == 0 ? bookStoreList.count : filterredList.count
-////    }
-////
-////    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-////        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell
-////        else { return UITableViewCell() }
-////        cell.setupData(divideCaseOfData(indexPath.row))
-////
-////        // MARK: - TODO 기능 구현하면서 cell 관련 UI니까 쪽으로 분리시키기 + 색대응 오류 발견
-////        if isSearching {
-////            if let searchWord = searchView.searchBar.text {
-////                cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord)
-////            }
-////        } else {
-////            if let searchWord = searchView.searchBar.text {
-////                cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord, color: Color.black100)
-////            }
-////        }
-////        return cell
-////    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let viewController = DetailViewController()
-//        transition(viewController, .push) { _ in
-//            viewController.detailStoreInfo = self.divideCaseOfData(indexPath.row)
-//        }
-//    }
-//}
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        searchView.result = filterredList.count == 0 ? bookStoreList.count : filterredList.count
+        return filterredList.count == 0 ? bookStoreList.count : filterredList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell
+        else { return UITableViewCell() }
+        cell.setupData(divideCaseOfData(indexPath.row))
+        if isSearching {
+            if let searchWord = searchView.searchBar.text {
+                cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord)
+            }
+        } else {
+            if let searchWord = searchView.searchBar.text {
+                cell.storeLabel.changeSearchTextColor(cell.storeLabel.text, searchWord, color: Color.black100)
+            }
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewController = DetailViewController()
+        transition(viewController, .push) { _ in
+            viewController.detailStoreInfo = self.divideCaseOfData(indexPath.row)
+        }
+    }
+}
 
 // MARK: - SearchBar Protocol
 

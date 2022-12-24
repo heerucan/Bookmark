@@ -45,10 +45,12 @@ final class SplashViewController: BaseViewController {
             self.iconImage.image = Icon.Logo.red
             self.iconImage.alpha = 1
         } completion: { finished in
-            let viewController = UINavigationController(rootViewController: TabBarViewController())
-            viewController.modalPresentationStyle = .fullScreen
-            viewController.modalTransitionStyle = .crossDissolve
-            self.present(viewController, animated: false, completion: nil)
+            NetworkMonitor.shared.changeUIBytNetworkConnection(vc: self) {
+                let viewController = UINavigationController(rootViewController: TabBarViewController())
+                viewController.modalPresentationStyle = .fullScreen
+                viewController.modalTransitionStyle = .crossDissolve
+                self.present(viewController, animated: false, completion: nil)
+            }
         }
     }
 }
