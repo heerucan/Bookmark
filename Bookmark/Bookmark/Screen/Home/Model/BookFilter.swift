@@ -9,8 +9,8 @@ import Foundation
 
 enum BookFilter: Int {
     case new = 0
-    case old = 1
-    case all = 2
+    case old
+    case all
 //    case bookmark = 3
     
     var typeNo: String? {
@@ -21,6 +21,17 @@ enum BookFilter: Int {
             return Matrix.old
         case .all:
             return nil
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .new:
+            return "새책방"
+        case .old:
+            return "헌책방"
+        case .all:
+            return "전체"
         }
     }
 }

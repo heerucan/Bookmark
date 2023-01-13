@@ -265,10 +265,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.clickCount += 1
         }
         
-        if cell.tagLabel.text == "새책방" {
+        if cell.tagLabel.text == BookFilter.new.name {
             isNewSelected.toggle()
             updateMarker(filter: .new)
-        } else if cell.tagLabel.text == "헌책방" {
+        } else if cell.tagLabel.text == BookFilter.old.name {
             isOldSelected.toggle()
             updateMarker(filter: .old)
         } else {

@@ -38,7 +38,7 @@ protocol BookmarkRepositoryType {
 
 // MARK: - BookmarkRepository
 
-final class BookmarkRepository {
+final class BookmarkRepository: BookmarkRepositoryType {
     static let shared = BookmarkRepository()
     private init() { }
     
