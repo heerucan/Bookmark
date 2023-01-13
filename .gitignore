@@ -108,6 +108,11 @@ iOSInjectionProject/
 ## Gcc Patch
 /*.gcno
 
+## cer
+*.p12
+*.certSigningRequest
+*.cer
+
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
