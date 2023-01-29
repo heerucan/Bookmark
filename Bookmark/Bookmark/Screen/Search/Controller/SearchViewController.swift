@@ -85,7 +85,7 @@ final class SearchViewController: BaseViewController {
         searchViewModel.bookstoreList
             .withUnretained(self)
             .bind { (vc, value) in
-                vc.searchView.resultLabel.text = "검색 결과 \(value.count)개"
+                vc.searchView.resultLabel.text = "total".localized + " \(value.count)" + "storeUnit".localized
             }
             .disposed(by: disposeBag)
 

@@ -77,7 +77,7 @@ final class NetworkMonitor{
                                               message: Matrix.Network.subtitle,
                                               preferredStyle: .alert)
                 
-                let closeAction = UIAlertAction(title: "종료", style: .default) { _ in
+                let closeAction = UIAlertAction(title: "networkTerminate".localized, style: .default) { _ in
                     UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         exit(0)

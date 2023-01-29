@@ -27,11 +27,11 @@ final class DetailTableViewCell: BaseTableViewCell {
     }
     
     private let typeSubLabel = UILabel().then {
-        $0.text = "책방 타입"
+        $0.text = "storeType".localized
     }
     
     private let addressSubLabel = UILabel().then {
-        $0.text = "책방 주소"
+        $0.text = "address".localized
     }
     
     private let typeLabel = UILabel()
@@ -61,7 +61,7 @@ final class DetailTableViewCell: BaseTableViewCell {
     private let lineView = LineView()
     
     private let locationTitleLabel = UILabel().then {
-        $0.text = "책방에 가는 방법은"
+        $0.text = "wayToGoToBookStore".localized
         $0.font = Font.body2.font
     }
     

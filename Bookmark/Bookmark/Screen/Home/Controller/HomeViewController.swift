@@ -348,12 +348,12 @@ extension HomeViewController {
     }
     
     private func showLocationServiceAlert() {
-        let setting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+        let setting = UIAlertAction(title: "settingTitle".localized, style: .destructive) { _ in
             if let setting = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(setting)
             }
         }
-        showAlert(title: "위치 정보 이용",
+        showAlert(title: "localAlertTitle".localized,
                   message: Matrix.settingMessage,
                   actions: [setting],
                   preferredStyle: .alert)

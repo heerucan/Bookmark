@@ -37,7 +37,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
     }
     
     private let phraseView = BookmarkBoxView().then {
-        $0.subLabel.text = "#글"
+        $0.subLabel.text = "smallWrite".localized
     }
 
     private let bookView = BookmarkBoxView()
@@ -80,7 +80,7 @@ final class BookmarkPhraseTableViewCell: BaseTableViewCell {
         phraseView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(13)
             make.leading.equalToSuperview().inset(16)
-            make.width.equalTo(39)
+            make.width.greaterThanOrEqualTo(39)
             make.height.equalTo(24)
         }
         

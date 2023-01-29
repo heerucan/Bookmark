@@ -38,7 +38,7 @@ final class HomeView: BaseView {
     }
     
     private let searchLabel = UILabel().then {
-        $0.text = "책방을 검색해주세요"
+        $0.text = "searchPlaceHolder".localized
         $0.textColor = Color.gray200
         $0.font = Font.body5.font
     }

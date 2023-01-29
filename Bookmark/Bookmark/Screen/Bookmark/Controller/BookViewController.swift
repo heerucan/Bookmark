@@ -37,20 +37,20 @@ final class BookViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
-        let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { _ in
+        let share = UIAlertAction(title: "share".localized, style: .default) { _ in
             guard let cell = self.bookView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
                     as? BookmarkBookTableViewCell else { return }
             self.shareImage(cell: cell)
         }
-        let delete = UIAlertAction(title: "지우고 싶어요", style: .destructive) { _ in
+        let delete = UIAlertAction(title: "delete".localized, style: .destructive) { _ in
             self.bookView.repository.deleteRecord(record: self.bookView.tasks[sender.tag],
                                                   store: self.bookView.tasks[sender.tag].store ?? Store())
             NotificationCenter.default.post(name: NSNotification.countBook, object: nil)
             self.bookView.fetchRealm()
         }
-        showAlert(title: "꽂은 책갈피를",
+        showAlert(title: "moreActionSheetTitle".localized,
                   actions: [share, delete],
-                  cancelTitle: "그대로 둘게요",
+                  cancelTitle: "cancel".localized,
                   preferredStyle: .actionSheet)
     }
 }

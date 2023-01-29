@@ -24,7 +24,7 @@ final class BookmarkBookTableViewCell: BaseTableViewCell {
     }
     
     private let tagView = BookmarkBoxView().then {
-        $0.subLabel.text = "#책"
+        $0.subLabel.text = "smallBook".localized
     }
 
     private let storeView = BookmarkBoxView()

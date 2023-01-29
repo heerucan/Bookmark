@@ -37,20 +37,20 @@ final class PhraseViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupMoreButton(sender: UIButton) {
-        let share = UIAlertAction(title: "공유하고 싶어요", style: .default) { _ in
+        let share = UIAlertAction(title: "share".localized, style: .default) { _ in
             guard let cell = self.phraseView.tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0))
                     as? BookmarkPhraseTableViewCell
             else { return }
             self.shareImage(cell: cell)
         }
-        let edit = UIAlertAction(title: "수정하고 싶어요", style: .default) { _ in
+        let edit = UIAlertAction(title: "edit".localized, style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(.sentence)
                 viewController.fromWhatView = .bookmark
                 viewController.bookmarkViewStatus = .edit
                 viewController.objectId = self.phraseView.tasks[sender.tag].objectId
-                viewController.writeView.completeButton.setTitle("수정", for: .normal)
+                viewController.writeView.completeButton.setTitle("edit".localized, for: .normal)
                 
                 let image = FileManagerHelper.shared.loadImageFromDocument(fileName: "\(self.phraseView.tasks[sender.tag].objectId).jpg")
                 viewController.writeView.imageButton.setImage(image, for: .normal)
@@ -59,15 +59,15 @@ final class PhraseViewController: BaseViewController {
                 viewController.writeView.completeButton.isDisabled = false
             }
         }
-        let delete = UIAlertAction(title: "지우고 싶어요", style: .destructive) { _ in
+        let delete = UIAlertAction(title: "delete".localized, style: .destructive) { _ in
             self.phraseView.repository.deleteRecord(record: self.phraseView.tasks[sender.tag],
                                                     store: self.phraseView.tasks[sender.tag].store ?? Store())
             NotificationCenter.default.post(name: NSNotification.countPhrase, object: nil)
             self.phraseView.fetchRealm()
         }
-        showAlert(title: "꽂은 책갈피를",
+        showAlert(title: "moreActionSheetTitle".localized,
                   actions: [share, edit, delete],
-                  cancelTitle: "그대로 둘게요",
+                  cancelTitle: "cancel".localized,
                   preferredStyle: .actionSheet)
     }
 }

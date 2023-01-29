@@ -131,7 +131,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     // MARK: - @objc
     
     @objc func touchupWriteButton() {
-        let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+        let sentence = UIAlertAction(title: "addWriting".localized, style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }
@@ -140,7 +140,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
                 viewController.fromWhatView = .detail
             }
         }
-        let book = UIAlertAction(title: "갖고 싶은 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "addBook".localized, style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .push) { _ in
                 guard let detailStoreInfo = self.detailStoreInfo else { return }
@@ -150,7 +150,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
 //                viewController.bookmark = self.bookmarkButton.isSelected
             }
         }
-        showAlert(title: "어떤 책갈피를 기록하실 건가요?",
+        showAlert(title: "addActionSheetTitle".localized,
                   actions: [sentence, book])
     }
     
@@ -186,31 +186,31 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     @objc func touchupMapAppButton() {
         guard let detailStoreInfo = detailStoreInfo else { return }
-        let naver = UIAlertAction(title: "네이버맵으로 이동", style: .default) { _ in
+        let naver = UIAlertAction(title: "NaverMap".localized, style: .default) { _ in
             guard let naver = EndPoint.naver.makeURL(detailStoreInfo.name) else { return }
             if UIApplication.shared.canOpenURL(naver) {
                 UIApplication.shared.open(naver)
             } else {
-                self.showAlert(title: "네이버맵이 없네요 :(")
+                self.showAlert(title: "noNaver".localized)
             }
         }
-        let kakao = UIAlertAction(title: "카카오맵으로 이동", style: .default) { _ in
+        let kakao = UIAlertAction(title: "KakaoMap".localized, style: .default) { _ in
             guard let kakao = EndPoint.kakao.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
             if UIApplication.shared.canOpenURL(URL(string: "kakaomap://open")!) {
                 UIApplication.shared.open(kakao)
             } else {
-                self.showAlert(title: "카카오맵이 없네요 :(")
+                self.showAlert(title: "noKakao".localized)
             }
         }
-        let google = UIAlertAction(title: "구글맵으로 이동", style: .default) { _ in
+        let google = UIAlertAction(title: "GoogleMap".localized, style: .default) { _ in
             guard let google = EndPoint.google.makeURL("\(detailStoreInfo.latitude),\(detailStoreInfo.longtitude)") else { return }
             if UIApplication.shared.canOpenURL((URL(string:"comgooglemaps://")!)) {
                 UIApplication.shared.open(google)
             } else {
-                self.showAlert(title: "구글맵이 없네요 :(")
+                self.showAlert(title: "noGoogle".localized)
             }
         }
-        showAlert(title: "앱을 선택하세요",
+        showAlert(title: "mapActionSheetTitle".localized,
                   actions: [naver, kakao, google],
                   preferredStyle: .actionSheet)
     }

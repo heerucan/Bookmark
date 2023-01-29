@@ -15,9 +15,9 @@ enum Setting: Int, CaseIterable {
     var menu: [String] {
         switch self {
         case .help:
-            return ["문의하기", "리뷰 남기기"]
+            return ["contact".localized, "review".localized]
         case .about:
-            return ["책갈피 소개"]
+            return ["aboutBookmark".localized]
         }
     }
 }

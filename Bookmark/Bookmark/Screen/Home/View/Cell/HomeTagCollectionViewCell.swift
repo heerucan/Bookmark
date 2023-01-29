@@ -16,6 +16,7 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
     let tagLabel = UILabel().then {
         $0.textColor = Color.black100
         $0.font = Font.body7.font
+        $0.textAlignment = .center
     }
         
     var clickCount: Int = 0 {
@@ -58,7 +59,7 @@ final class HomeTagCollectionViewCell: BaseCollectionViewCell {
         
         tagLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
-            make.leading.trailing.equalToSuperview().inset(18)
+            make.leading.trailing.equalToSuperview().inset(15)
         }
     }
     
