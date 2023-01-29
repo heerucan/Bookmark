@@ -20,9 +20,9 @@ final class BookmarkNavigationBar: BaseView {
         fileprivate var title: String {
             switch self {
             case .setting:
-                return "설정"
+                return "Settings".localized
             case .bookmark, .write:
-                return "책갈피 꽂아두기"
+                return "writingNavigationTitle".localized
             case .detail:
                 return ""
             }

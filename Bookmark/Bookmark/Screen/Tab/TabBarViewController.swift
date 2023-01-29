@@ -34,17 +34,17 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         let thirdTabController = SettingViewController()
         
         firstTabController.tabBarItem = UITabBarItem(
-            title: "홈",
+            title: "Home".localized,
             image: Icon.TabBar.unselectedMap,
             selectedImage: Icon.TabBar.map)
                 
         secondTabController.tabBarItem = UITabBarItem(
-            title: "책갈피",
+            title: "Bookmark".localized,
             image: Icon.TabBar.unselectedBookmark,
             selectedImage: Icon.TabBar.bookmark)
         
         thirdTabController.tabBarItem = UITabBarItem(
-            title: "설정",
+            title: "Settings".localized,
             image: Icon.TabBar.unselectedSetting,
             selectedImage: Icon.TabBar.setting)
         

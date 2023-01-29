@@ -16,7 +16,7 @@ final class SearchView: BaseView {
     
     var result = 0 {
         willSet {
-            resultLabel.text = "검색 결과 \(newValue)개"
+            resultLabel.text = "total".localized + " \(newValue)" + "storeUnit".localized
         }
     }
     
@@ -112,7 +112,7 @@ final class SearchView: BaseView {
         searchBar.searchTextField.font = Font.body5.font
         searchBar.makeCornerStyle(width: 0, color: nil, radius: 5)
         let attributedString = NSMutableAttributedString(
-            string: "책방을 검색해주세요",
+            string: "searchPlaceHolder".localized,
             attributes: [.foregroundColor: Color.gray300,
                          .font: Font.body5.font])
         searchBar.searchTextField.attributedPlaceholder = attributedString

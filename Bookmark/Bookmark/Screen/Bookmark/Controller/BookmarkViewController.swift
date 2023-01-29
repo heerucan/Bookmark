@@ -36,7 +36,7 @@ final class BookmarkViewController: BaseViewController {
         navigationOrientation: .horizontal)
     
     private let titleLabel = UILabel().then {
-        $0.text = "책갈피"
+        $0.text = "Bookmark".localized
         $0.font = Font.title3.font
         $0.textColor = Color.black100
     }
@@ -46,7 +46,7 @@ final class BookmarkViewController: BaseViewController {
         $0.textColor = Color.main
     }
     
-    let segementedControl = BookmarkSegmentedControl(items: ["글 한 줄", "책 한 권"]).then {
+    let segementedControl = BookmarkSegmentedControl(items: ["Writing".localized, "Book".localized]).then {
         $0.selectedSegmentIndex = 0
         $0.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
     }
@@ -153,7 +153,7 @@ final class BookmarkViewController: BaseViewController {
     }
     
     @objc private func touchupWriteButton() {
-        let sentence = UIAlertAction(title: "공감 가는 글 한 줄", style: .default) { _ in
+        let sentence = UIAlertAction(title: "addWriting".localized, style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(.sentence)
@@ -161,7 +161,7 @@ final class BookmarkViewController: BaseViewController {
                 viewController.bookmarkViewStatus = .write
             }
         }
-        let book = UIAlertAction(title: "갖고 싶은 책 한 권", style: .default) { _ in
+        let book = UIAlertAction(title: "addBook".localized, style: .default) { _ in
             let viewController = WriteViewController()
             self.transition(viewController, .present) { _ in
                 viewController.writeView.setupWriteViewState(.book)
@@ -169,7 +169,7 @@ final class BookmarkViewController: BaseViewController {
                 viewController.bookmarkViewStatus = .write
             }
         }
-        showAlert(title: "어떤 책갈피를 꽂아두실 건가요?",
+        showAlert(title: "addActionSheetTitle".localized,
                   actions: [sentence, book])
     }
 }

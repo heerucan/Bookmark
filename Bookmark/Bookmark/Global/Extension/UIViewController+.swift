@@ -11,7 +11,7 @@ extension UIViewController {
     func showAlert(title: String? = nil,
                    message: String? = nil,
                    actions: [UIAlertAction] = [],
-                   cancelTitle: String? = "취소",
+                   cancelTitle: String? = "cancel".localized,
                    preferredStyle: UIAlertController.Style = .actionSheet) {
         let alert = UIAlertController(title: title,
                                       message: message,

@@ -1,0 +1,93 @@
+/* 
+  Localizable.strings
+  Bookmark
+
+  Created by heerucan on 2023/01/29.
+  
+*/
+
+// 홈
+"Home" = "Home";
+"new" = "NEW";
+"old" = "OLD";
+
+// 책갈피
+"Bookmark" = "Bookmark";
+"Writing" = "Writing";
+"Book" = "Book";
+
+"smallWrite" = "#writing";
+"smallBook" = "#book";
+
+// 설정
+"Settings" = "Settings";
+"contact" = "Contact Us";
+"review" = "Review";
+"aboutBookmark" = "About Bookmark";
+
+// 상세
+"storeType" = "Store Type";
+"address" = "Address";
+"phone" = "Phone";
+"url" = "URL";
+"sns" = "SNS";
+"wayToGoToBookStore" = "Bookstore Location
+";
+
+"bookmarkButtonTitle" = "Bookmark";
+
+"clipBoardToast" = "Copied to clipboard!";
+
+// 지도 액션시트
+"mapActionSheetTitle" = "Please select an app";
+"NaverMap" = "NaverMap";
+"KakaoMap" = "KakaoMap";
+"GoogleMap" = "GoogleMap";
+
+"noNaver" = "There's no NaverMap on it.";
+"noKakao" = "There's no KakaoMap on it.";
+"noGoogle" = "There's no GoogleMap on it.";
+
+// 글쓰기
+"writingNavigationTitle" = "Bookmark";
+"writingSubTitle" = "Bookmark the heart-warming sentence";
+"bookSubTitle" = "Bookmark the book you want";
+"imageModifyMessage" = "You can't modify the image later.";
+"titlePlaceHolder" = "The title of the book is not required :)";
+
+"Done" = "Done";
+
+// 검색
+"searchPlaceHolder" = "Please search the bookstore";
+"total" = "Total";
+"storeUnit" = "";
+
+// 팝업창
+"settingTitle" = "Open Settings";
+"localAlertTitle" = "Getting User Location";
+"settingMessage" = "Location services are not available. Please turn on location service in 'Settings > Privacy' on your device.";
+
+"backPopupTitle" = "Are you going out without completing it?";
+"backPopupMessage" = "Your bookmarks will not be saved!";
+
+// 액션시트
+"moreActionSheetTitle" = "What do you want?";
+"share" = "Share";
+"edit" = "Edit";
+"delete" = "Delete";
+"cancel" = "Cancel";
+"ok" = "Ok";
+
+"imageActionSheetTitle" = "Choose Image";
+"Camera" = "Camera";
+"Photo" = "Photo";
+
+"addActionSheetTitle" = "Bookmark What?";
+"addWriting" = "A piece of Writing";
+"addBook" = "A Book";
+
+// 네트워크
+"networkTitle" = "Unable to connect to the network";
+"networkSubTitle" = "Please activate Wi-Fi or Cellular and try again.";
+"networkButton" = "Retry";
+"networkTerminate" = "Close";

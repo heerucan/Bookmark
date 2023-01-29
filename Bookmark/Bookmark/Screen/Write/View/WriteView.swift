@@ -59,7 +59,7 @@ final class WriteView: BaseView {
     private let imageDescriptionLabel = UILabel().then {
         $0.font = Font.body8.font
         $0.textColor = Color.main
-        $0.text = "* 이미지는 추후 수정하실 수 없어요."
+        $0.text = "imageModifyMessage".localized
     }
     
     let titleTextField = BookmarkTextField().then {

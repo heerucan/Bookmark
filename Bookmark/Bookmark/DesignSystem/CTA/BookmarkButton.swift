@@ -20,11 +20,11 @@ final class BookmarkButton: UIButton {
         fileprivate var text: String {
             switch self {
             case .complete:
-                return "완료"
+                return "done".localized
             case .edit:
-                return "수정"
+                return "edit".localized
             case .bookmark:
-                return "책갈피 꽂아두기"
+                return "bookmarkButtonTitle".localized
             }
         }
     }

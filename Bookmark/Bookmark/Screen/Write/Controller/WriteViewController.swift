@@ -94,13 +94,13 @@ final class WriteViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchupImageButton() {
-        let camera = UIAlertAction(title: "카메라 촬영", style: .default) { _ in
+        let camera = UIAlertAction(title: "Camera".localized, style: .default) { _ in
             self.setupImagePicker()
         }
-        let photo = UIAlertAction(title: "갤러리 선택", style: .default) { _ in
+        let photo = UIAlertAction(title: "Photo".localized, style: .default) { _ in
             self.setupPhotoPicker()
         }
-        showAlert(title: "갤러리/카메라 접근",
+        showAlert(title: "imageActionSheetTitle".localized,
                   actions: [camera, photo],
                   preferredStyle: .actionSheet)
     }
@@ -138,7 +138,7 @@ final class WriteViewController: BaseViewController {
     }
     
     @objc private func touchupButton(_ sender: UIButton) {
-        let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
+        let ok = UIAlertAction(title: "ok".localized, style: .destructive) { _ in
             switch sender {
             case self.writeView.navigationView.leftButton:
                 return self.transition(self, .pop)

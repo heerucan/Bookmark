@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  Bookmark
+
+  Created by heerucan on 2023/01/29.
+  
+*/
+
+// 홈
+"Home" = "홈";
+"new" = "새책방";
+"old" = "헌책방";
+
+// 책갈피
+"Bookmark" = "책갈피";
+"Writing" = "글 한 줄";
+"Book" = "책 한 권";
+
+"smallWrite" = "#글";
+"smallBook" = "#책";
+
+// 설정
+"Settings" = "설정";
+"contact" = "문의하기";
+"review" = "리뷰 남기기";
+"aboutBookmark" = "책갈피 소개";
+
+// 상세
+"storeType" = "책방 타입";
+"address" = "책방 주소";
+"phone" = "전화번호";
+"url" = "홈페이지";
+"sns" = "SNS";
+"wayToGoToBookStore" = "책방에 가는 방법은";
+
+"bookmarkButtonTitle" = "책갈피 꽂아두기";
+
+"clipBoardToast" = "클립보드에 책방 주소가 복사됐어요!";
+
+// 지도 액션시트
+"mapActionSheetTitle" = "앱을 선택하세요";
+"NaverMap" = "네이버맵으로 이동";
+"KakaoMap" = "카카오맵으로 이동";
+"GoogleMap" = "구글맵으로 이동";
+
+"noNaver" = "네이버맵이 없네요 :(";
+"noKakao" = "카카오맵이 없네요 :(";
+"noGoogle" = "구글맵이 없네요 :(";
+
+// 글쓰기
+"writingNavigationTitle" = "책갈피 꽂아두기";
+"writingSubTitle" = "공감 가는 글을 꽂아두세요";
+"bookSubTitle" = "갖고 싶은 책 한 권을 꽂아두세요";
+"imageModifyMessage" = "* 이미지는 추후 수정하실 수 없어요.";
+"titlePlaceHolder" = "책 제목은 필수가 아니에요 :)";
+
+"Done" = "완료";
+
+// 검색
+"searchPlaceHolder" = "책방을 검색해주세요";
+"total" = "총";
+"storeUnit" = "개";
+
+// 팝업창
+"settingTitle" = "설정으로 이동";
+"localAlertTitle" = "위치 정보 이용";
+"settingMessage" = "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.";
+
+"backPopupTitle" = "완료하지 않고 나갈 건가요?";
+"backPopupMessage" = "기록한 책갈피는 저장되지 않아요!";
+
+// 액션시트
+"moreActionSheetTitle" = "꽂은 책갈피를";
+"share" = "공유하기";
+"edit" = "수정하기";
+"delete" = "삭제하기";
+"cancel" = "취소";
+"ok" = "확인";
+
+"imageActionSheetTitle" = "갤러리/카메라 접근";
+"Camera" = "카메라 촬영";
+"Photo" = "갤러리 선택";
+
+"addActionSheetTitle" = "어떤 책갈피를 꽂아두실 건가요?";
+"addWriting" = "공감 가는 글 한 줄";
+"addBook" = "갖고 싶은 책 한 권";
+
+// 네트워크
+"networkTitle" = "네트워크 연결 불가";
+"networkSubTitle" = "Wi-Fi 또는 데이터를 활성화 후 재시도해주세요.";
+"networkButton" = "재시도";
+"networkTerminate" = "종료";

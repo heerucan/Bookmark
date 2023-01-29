@@ -14,8 +14,8 @@ struct Tag {
 struct TagData {
     var tagArray = [
 //        Tag(title: "책갈피"),
-        Tag(title: "새책방"),
-        Tag(title: "헌책방")
+        Tag(title: "new".localized),
+        Tag(title: "old".localized)
     ]
 
     func getTagCount() -> Int {

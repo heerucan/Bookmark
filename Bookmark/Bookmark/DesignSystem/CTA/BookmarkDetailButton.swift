@@ -17,11 +17,11 @@ final class BookmarkDetailButton: UIButton {
         fileprivate var text: String {
             switch self {
             case .homepage:
-                return "홈페이지"
+                return "url".localized
             case .phone:
-                return "전화번호"
+                return "phone".localized
             case .sns:
-                return "SNS"
+                return "sns".localized
             }
         }
         

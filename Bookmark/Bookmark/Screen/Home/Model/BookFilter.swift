@@ -27,9 +27,9 @@ enum BookFilter: Int {
     var name: String {
         switch self {
         case .new:
-            return "새책방"
+            return "new".localized
         case .old:
-            return "헌책방"
+            return "old".localized
         case .all:
             return "전체"
         }
