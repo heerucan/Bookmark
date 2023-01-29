@@ -803,9 +803,9 @@
 			);
 			mainGroup = 5B3FACEE28CE207D0062D9F6;
 			packageReferences = (
-				5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
 			);
 			productRefGroup = 5B3FACF828CE207D0062D9F6 /* Products */;
 			projectDirPath = "";
@@ -857,13 +857,16 @@
 		};
 		F69121F42C46A009BCD5859A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookmark/Pods-Bookmark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookmark/Pods-Bookmark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1223,7 +1226,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1231,7 +1234,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1239,7 +1242,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1252,32 +1255,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		5B737B12290ABFAC00612B57 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 5B737B11290ABFAC00612B57 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		5B737B16290AF2E700612B57 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		5B737B18290AF2E700612B57 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 5B737B15290AF2E700612B57 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		5BE8635C28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 		5BE8635E28F86CB1006C45A4 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		5BE8636028F86CB1006C45A4 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 5BE8635B28F86CB1006C45A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
