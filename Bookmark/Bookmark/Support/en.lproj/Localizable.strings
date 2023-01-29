@@ -1,0 +1,77 @@
+/* 
+  Localizable.strings
+  Bookmark
+
+  Created by heerucan on 2023/01/29.
+  
+*/
+
+// 홈
+"Home" = "Home";
+"new" = "new";
+"old" = "old";
+
+
+// 책갈피
+"Bookmark" = "Bookmark";
+"Writing" = "Writing"
+"Book" = "Book"
+
+
+
+// 설정
+"Settings" = "Settings";
+"Contact Us" = "Contact Us";
+"Review" = "Review";
+"About Bookmark" = "About Bookmark";
+
+// 상세
+"Store Type" = "Store Type";
+"Address" = "Address";
+"Phone" = "Phone";
+"URL" = "URL";
+"SNS" = "SNS";
+"The way to go to the bookstore" = "The way to go to the bookstore";
+"BookmarkWriting" = "Bookmark";
+"Copied to clipboard" = "Copied to clipboard";
+"Please select an app" = "Please select an app";
+"NaverMap" = "NaverMap";
+"KakaoMap" = "KakaoMap";
+"GoogleMap" = "GoogleMap";
+
+
+
+// 글쓰기
+"BookmarkWriting" = "Bookmark";
+"Bookmark the heart-warming sentence" = "Bookmark the heart-warming sentence";
+"Bookmark the book you want" = "Bookmark the book you want";
+"You can't modify the image later." = "You can't modify the image later.";
+"The title of the book is not required :)" = "The title of the book is not required :)";
+
+"Camera/Photo" = "Camera/Photo";
+"Camera" = "Camera";
+"Photo" = "Photo";
+
+"Done" = "Done";
+
+
+// 검색
+"Please search the bookstore" = "Please search the bookstore";
+"Total" = "Total";
+
+
+// 팝업창
+
+"Are you going out without completing it?" = "Are you going out without completing it?";
+"Your bookmarks will not be saved!" = "Your bookmarks will not be saved!";
+
+"I want to" = "I want to";
+"share" = "share";
+"edit" = "edit";
+"delete" = "delete";
+"cancel" = "cancel";
+"ok" = "ok";
+"Bookmark What?" = "Bookmark What?";
+"a piece of writing" = "a piece of writing";
+"a book" = "a book";
+
