@@ -39,10 +39,12 @@
 
 // 지도 액션시트
 "mapActionSheetTitle" = "앱을 선택하세요";
+"AppleMap" = "애플맵으로 이동";
 "NaverMap" = "네이버맵으로 이동";
 "KakaoMap" = "카카오맵으로 이동";
 "GoogleMap" = "구글맵으로 이동";
 
+"noApple" = "애플맵이 없네요 :(";
 "noNaver" = "네이버맵이 없네요 :(";
 "noKakao" = "카카오맵이 없네요 :(";
 "noGoogle" = "구글맵이 없네요 :(";
