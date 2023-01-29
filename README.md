@@ -1,12 +1,14 @@
 # 서울시 책방 지도 서비스, 책갈피 🔖
-### 서울시 공공데이터에서 받아온 책방 데이터를 토대로 책방의 위치와 상세 정보를 알려주는 앱  
+![Project Thumb (Mobile) 3](https://user-images.githubusercontent.com/63235947/215312018-9ac9df53-1f65-44e6-90f2-543ef618b636.png)
 
-🌐  [AppStore에서 책갈피 다운받기](https://apps.apple.com/kr/app/%EC%B1%85%EA%B0%88%ED%94%BC/id1645004700)
+
+
+### ✳️  [앱스토어에서 책갈피 다운받기](https://apps.apple.com/kr/app/%EC%B1%85%EA%B0%88%ED%94%BC/id1645004700)
+
 
 <br>
 
-
-## 🔖 책갈피 기획 의도 소개
+## 🔖 기획 의도
 
 - 스스로 그동안 불편하다고 느낀 점들을 해결하기 위해 만들었다.
 
@@ -19,7 +21,7 @@
 
 ## 🔖 책갈피 소개
 
-- 개발기간 **:** 2022.09.08 ~ 2022.09.30
+- 개발기간 **:** 2022.09.08 ~ 09.30
 
 - 출시날짜 **:** 2022.10.01
 
@@ -29,12 +31,16 @@
 
 - iOS15 이상 대응
 
+- 다국어 대응 (영어, 한국어)
+
+- Fastlane을 통한 배포 자동화
+
 
 <br>
 
-## 🔖 책갈피 화면 소개
+## 🔖 기능 및 상세화면
 
-🌟 [책갈피 구현 화면 영상으로 보기](https://youtu.be/X2OyW07WnZc)
+#### 🌟 [책갈피 구현 화면 영상으로 보기](https://youtu.be/X2OyW07WnZc)
 
 <br>
 
@@ -58,7 +64,7 @@
 
 <br>
 
-## 🔖 책갈피 기술 스택 소개
+## 🔖 기술 스택
 
 - `MVC` `MVVM` : MVC를 기본 패턴으로 채택하고, 리팩 과정에서 MVVM으로 변경 진행 중
 
@@ -78,7 +84,7 @@
 
 <br>
 
-## 🔖 책갈피 트러블슈팅
+## 🔖 트러블슈팅
 ### 1. 글 작성 시 동일한 사진을 업로드 시 
 **supplied item identifiers are not unique 이슈**
 
@@ -379,7 +385,7 @@ marker.isHideCollidedMarkers = true
 
 <br>
 
-## 🔖 책갈피 개발 일지
+## 🔖 개발 일지
 - `Git` 
   - [눙물 줄줄 나는 Couldn’t load project](https://huree-can-do-it.notion.site/gitignore-feat-Couldn-t-load-Project-784231d4681043bdad3d42839935e1a7)
   
@@ -393,6 +399,19 @@ marker.isHideCollidedMarkers = true
   - [URLRequestConvertible을 사용해서 Network 통신 코드 개선하기](https://huree-can-do-it.notion.site/URLRequestConvertible-e118bbf9dd9640a59db13a726ac9779a)
   - [설정뷰에 처음 시도해본 MVVM + Compositional + DiffableDataSource](https://huree-can-do-it.notion.site/MVVM-a050808dee564704b9f118c25fb6eb1a)
   - [설정뷰 Rx 적용해서 개선하기 feat. 멘토님 피드백 반영](https://huree-can-do-it.notion.site/2-Rx-MVVM-70cc157972ff4dc28447a1a342b3abca)
+
+<br>
+
+## 🔖 버전 업데이트 기록
+
+|버전|이유|내용|
+|:-:|:-|:-|
+|`1.0.1`|버그픽스|책갈피 탭에서 도서/책방이름이 길어지는 경우 화면 밖으로 잘리는 버그 해결|
+|`1.0.2`|기능업데이트|책갈피 탭에 인스타그램 스토리 공유 기능 추가 및 설정에 리뷰 남기기 기능 추가|
+|`1.0.3`|기능업데이트/코드개선|파베 애널리틱스,크래쉬리틱스, 푸시알림 기능 추가 <br> 설정뷰 컴포지셔널 및 디퍼블로 코드 개선|
+|`1.0.4`|버그픽스/코드개선|책갈피 메모리 누수로 인한 강종 이슈 해결 <br> 책방 태그 사라지는 버그 픽스 <br> 서비스 코드 alamofire로 개선 <br> 설정뷰 MVVM으로 개선|
+|`1.0.5`|사용성개선|네트워크 연결 상태에 따른 사용성 개선|
+|`1.1.0`|기능업데이트|다국어(영어) 대응|
 
 <br>
 <hr>
