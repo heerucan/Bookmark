@@ -1,10 +1,12 @@
 PODS:
-  - NMapsMap (3.16.0)
-  - Realm (10.30.0):
-    - Realm/Headers (= 10.30.0)
-  - Realm/Headers (10.30.0)
-  - RealmSwift (10.30.0):
-    - Realm (= 10.30.0)
+  - NMapsGeometry (1.0.1)
+  - NMapsMap (3.16.1):
+    - NMapsGeometry
+  - Realm (10.34.1):
+    - Realm/Headers (= 10.34.1)
+  - Realm/Headers (10.34.1)
+  - RealmSwift (10.34.1):
+    - Realm (= 10.34.1)
   - SnapKit (5.6.0)
   - Then (3.0.0)
 
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - NMapsGeometry
     - NMapsMap
     - Realm
     - RealmSwift
@@ -23,9 +26,10 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
-  NMapsMap: a2593320fca2bb09e521c05b4dffee4da42e96ed
-  Realm: 247ccacf72e656c6ee09b242f7d24d5cf99cc058
-  RealmSwift: b3f5c52afa6ac480bd9c3e791c2576f55b3ecb44
+  NMapsGeometry: 53c573ead66466681cf123f99f698dc8071a4b83
+  NMapsMap: 926c3a303d381a24bec8da3cd6e198f50af93ae9
+  Realm: fe824cd5b183cd55a50a6bcb4bce3ac1650e60b6
+  RealmSwift: c7f668f82982fc8b62366b78b8dc761f15141df6
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
