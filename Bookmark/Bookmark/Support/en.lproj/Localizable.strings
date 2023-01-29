@@ -39,10 +39,10 @@
 "clipBoardToast" = "Copied to clipboard!";
 
 // 지도 액션시트
-"mapActionSheetTitle" = "Please select an app";
-"NaverMap" = "NaverMap";
-"KakaoMap" = "KakaoMap";
-"GoogleMap" = "GoogleMap";
+"mapActionSheetTitle" = "Choose an external app and get directions to the bookstore.";
+"NaverMap" = "Open NaverMap";
+"KakaoMap" = "Open KakaoMap";
+"GoogleMap" = "Open GoogleMap";
 
 "noNaver" = "There's no NaverMap on it.";
 "noKakao" = "There's no KakaoMap on it.";
