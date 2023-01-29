@@ -31,22 +31,23 @@
 "phone" = "Phone";
 "url" = "URL";
 "sns" = "SNS";
-"wayToGoToBookStore" = "Bookstore Location
-";
+"wayToGoToBookStore" = "Bookstore Location";
 
 "bookmarkButtonTitle" = "Bookmark";
 
 "clipBoardToast" = "Copied to clipboard!";
 
 // 지도 액션시트
-"mapActionSheetTitle" = "Choose an external app and get directions to the bookstore.";
-"NaverMap" = "Open NaverMap";
-"KakaoMap" = "Open KakaoMap";
-"GoogleMap" = "Open GoogleMap";
+"mapActionSheetTitle" = "Choose an app to find location.";
+"AppleMap" = "Open Apple Maps";
+"NaverMap" = "Open Naver Maps";
+"KakaoMap" = "Open Kakao Maps";
+"GoogleMap" = "Open Google Maps";
 
-"noNaver" = "There's no NaverMap on it.";
-"noKakao" = "There's no KakaoMap on it.";
-"noGoogle" = "There's no GoogleMap on it.";
+"noApple" = "There's no Apple Maps on it.";
+"noNaver" = "There's no Naver Maps on it.";
+"noKakao" = "There's no Kakao Maps on it.";
+"noGoogle" = "There's no Google Maps on it.";
 
 // 글쓰기
 "writingNavigationTitle" = "Bookmark";
