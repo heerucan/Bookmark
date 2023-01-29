@@ -7,6 +7,9 @@
 
 import UIKit
 
+import MapKit
+import CoreLocation
+
 import RealmSwift
 import SafariServices
 
@@ -158,12 +161,10 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
         guard let detailStoreInfo = detailStoreInfo else { return }
         sender.isSelected.toggle()
         if sender.isSelected {
-            print("선택")
             sender.setImage(Icon.Button.bookmark, for: .selected)
             repository.updateBookmark(item: ["name": detailStoreInfo.name,
                                              "bookmark": true])
         } else if !sender.isSelected {
-            print("선택해제")
             sender.setImage(Icon.Button.unselectedBookmark, for: .normal)
             repository.updateBookmark(item: ["name": detailStoreInfo.name,
                                              "bookmark": false])
@@ -186,6 +187,12 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
     
     @objc func touchupMapAppButton() {
         guard let detailStoreInfo = detailStoreInfo else { return }
+        let apple = UIAlertAction(title: "AppleMap".localized, style: .default) { _ in
+            let coordinate = CLLocationCoordinate2DMake(Double(detailStoreInfo.latitude)!, Double(detailStoreInfo.longtitude)!)
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
+            mapItem.name = detailStoreInfo.name
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        }
         let naver = UIAlertAction(title: "NaverMap".localized, style: .default) { _ in
             guard let naver = EndPoint.naver.makeURL(detailStoreInfo.name) else { return }
             if UIApplication.shared.canOpenURL(naver) {
@@ -211,7 +218,7 @@ final class DetailViewController: BaseViewController, SafariViewDelegate {
             }
         }
         showAlert(title: "mapActionSheetTitle".localized,
-                  actions: [naver, kakao, google],
+                  actions: [apple, naver, kakao, google],
                   preferredStyle: .actionSheet)
     }
 }
