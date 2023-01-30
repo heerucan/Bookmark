@@ -120,5 +120,9 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+## Ruby Bundler
+/.bundle/
+/vendor/bundle
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods
 
