@@ -86,7 +86,6 @@
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		5BD307ED28ED1D37003E0663 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */; };
-		5BDE3DE429A3894E005BFF06 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */; };
 		5BE6BD622900114C00794569 /* SettingSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */; };
 		5BE8635D28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635C28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		5BE8635F28F86CB1006C45A4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635E28F86CB1006C45A4 /* FirebaseCrashlytics */; };
@@ -124,7 +123,6 @@
 		5B3FAD0328CE207F0062D9F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B3FAD0628CE207F0062D9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B3FAD0828CE207F0062D9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkNavigationBar.swift; sourceTree = "<group>"; };
@@ -406,7 +404,6 @@
 		5B55443E28CEFA4B00781EC8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */,
 				5B819ECF28D245D200626693 /* APIConstant.swift */,
 			);
 			path = Base;
@@ -881,7 +878,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDE3DE429A3894E005BFF06 /* APIKey.swift in Sources */,
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B799D1228D06AE500648C94 /* HomeView.swift in Sources */,
 				5B819ED728D25F1100626693 /* BookStore.swift in Sources */,
