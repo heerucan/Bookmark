@@ -86,6 +86,7 @@
 		5BB659AE28CF90200009BF1A /* BookmarkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */; };
 		5BCC85E328D12A8300B2B026 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */; };
 		5BD307ED28ED1D37003E0663 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */; };
+		5BDE3DE429A3894E005BFF06 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */; };
 		5BE6BD622900114C00794569 /* SettingSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */; };
 		5BE8635D28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635C28F86CB1006C45A4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		5BE8635F28F86CB1006C45A4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE8635E28F86CB1006C45A4 /* FirebaseCrashlytics */; };
@@ -756,7 +757,6 @@
 				5B3FACF428CE207D0062D9F6 /* Frameworks */,
 				5B3FACF528CE207D0062D9F6 /* Resources */,
 				5B55449C28CF108E00781EC8 /* Embed Frameworks */,
-				5B39E3EB28ED2E580047B420 /* ShellScript */,
 				2863468CFDEBE17800B95B30 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -850,25 +850,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bookmark/Pods-Bookmark-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B39E3EB28ED2E580047B420 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
 		9C11716C26DDCE3CDBEB4FE2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -898,6 +879,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDE3DE429A3894E005BFF06 /* APIKey.swift in Sources */,
 				5B55449F28CF125300781EC8 /* BaseViewController.swift in Sources */,
 				5B799D1228D06AE500648C94 /* HomeView.swift in Sources */,
 				5B819ED728D25F1100626693 /* BookStore.swift in Sources */,
