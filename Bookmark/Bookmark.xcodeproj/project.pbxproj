@@ -15,7 +15,6 @@
 		5B3FACFD28CE207D0062D9F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FACFC28CE207D0062D9F6 /* SceneDelegate.swift */; };
 		5B3FAD0428CE207F0062D9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FAD0328CE207F0062D9F6 /* Assets.xcassets */; };
 		5B3FAD0728CE207F0062D9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FAD0528CE207F0062D9F6 /* LaunchScreen.storyboard */; };
-		5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1028CE20BD0062D9F6 /* APIKey.swift */; };
 		5B3FAD1928CEDA110062D9F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FAD1828CEDA110062D9F6 /* HomeViewController.swift */; };
 		5B3FE00928D0DAC300B3DB69 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00828D0DAC300B3DB69 /* UILabel+.swift */; };
 		5B3FE00E28D0F22300B3DB69 /* BookmarkNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FE00D28D0F22300B3DB69 /* BookmarkNavigationBar.swift */; };
@@ -908,7 +907,6 @@
 				5B71FED828DC3B2C00F311F5 /* SettingCollectionViewCell.swift in Sources */,
 				5B55444F28CEFE0200781EC8 /* WriteViewController.swift in Sources */,
 				5B5544BD28CF1D2D00781EC8 /* BaseTableViewCell.swift in Sources */,
-				5B3FAD1128CE20BD0062D9F6 /* APIKey.swift in Sources */,
 				5BF4502D290ED653002EAC9B /* PhraseSupplementaryView.swift in Sources */,
 				5B5544BF28CF1D3E00781EC8 /* BaseCollectionViewCell.swift in Sources */,
 				5B55444728CEFDD600781EC8 /* SearchViewController.swift in Sources */,
