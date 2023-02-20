@@ -759,6 +759,7 @@
 				5B55449C28CF108E00781EC8 /* Embed Frameworks */,
 				5B39E3EB28ED2E580047B420 /* ShellScript */,
 				2863468CFDEBE17800B95B30 /* [CP] Embed Pods Frameworks */,
+				5BDE3DE329A37C37005BFF06 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -869,6 +870,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		5BDE3DE329A37C37005BFF06 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#!/bin/sh\n# Install CocoaPods using Homebrew.\nbrew install cocoapods\n# Install dependencies you manage with CocoaPods.\npod install\n\n";
 		};
 		9C11716C26DDCE3CDBEB4FE2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
