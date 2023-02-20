@@ -82,7 +82,7 @@ final class SettingViewController: BaseViewController {
     }
     
     private func presentReviewView() {
-        if let appstoreUrl = URL(string: APIKey.myAppId) {
+        if let appstoreUrl = URL(string: APIConstant.myAppId) {
             var urlComp = URLComponents(url: appstoreUrl, resolvingAgainstBaseURL: false)
             urlComp?.queryItems = [URLQueryItem(name: "action", value: "write-review")]
             guard let reviewUrl = urlComp?.url else { return }

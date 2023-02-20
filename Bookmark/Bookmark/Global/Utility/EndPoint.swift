@@ -21,7 +21,7 @@ enum EndPoint {
         switch self {
         case .naver:
             guard let search = path?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-            let naver = "nmap://search?query=\(String(describing: search))&appname=\(APIKey.bundleName)"
+            let naver = "nmap://search?query=\(String(describing: search))&appname=\(APIConstant.bundleName)"
             return URL(string: naver)
         case .kakao:
             guard let number = path else { return nil }
@@ -41,10 +41,10 @@ enum EndPoint {
             guard let safariURL = NSURL(string: pageLink) as URL? else { return nil }
             return safariURL
         case .notion:
-            guard let notionURL = NSURL(string: APIKey.notion) as URL? else { return nil }
+            guard let notionURL = NSURL(string: APIConstant.notion) as URL? else { return nil }
             return notionURL
         case .ask:
-            guard let askURL = NSURL(string: APIKey.ask) as URL? else { return nil }
+            guard let askURL = NSURL(string: APIConstant.ask) as URL? else { return nil }
             return askURL
         }
     }

@@ -193,6 +193,7 @@
 		5BB659AD28CF90200009BF1A /* BookmarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTextField.swift; sourceTree = "<group>"; };
 		5BCC85E228D12A8300B2B026 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		5BD307EC28ED1D37003E0663 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BDE3DE529A3E058005BFF06 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		5BE6BD612900114B00794569 /* SettingSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSupplementaryView.swift; sourceTree = "<group>"; };
 		5BE8636228F873FB006C45A4 /* Bookmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookmark.entitlements; sourceTree = "<group>"; };
 		5BECBE5528D34C7600E83995 /* ComponentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStatus.swift; sourceTree = "<group>"; };
@@ -237,6 +238,7 @@
 		5B3FACEE28CE207D0062D9F6 = {
 			isa = PBXGroup;
 			children = (
+				5BDE3DE529A3E058005BFF06 /* Secrets.xcconfig */,
 				5B71FECB28DC153800F311F5 /* Realm */,
 				5B3FACF928CE207D0062D9F6 /* Bookmark */,
 				5B3FACF828CE207D0062D9F6 /* Products */,
@@ -1100,7 +1102,7 @@
 		};
 		5B3FAD0C28CE207F0062D9F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C078D63AE6A0E571AEA0FCDC /* Pods-Bookmark.debug.xcconfig */;
+			baseConfigurationReference = 5BDE3DE529A3E058005BFF06 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1141,7 +1143,7 @@
 		};
 		5B3FAD0D28CE207F0062D9F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4596C0792EDBFC856CC75506 /* Pods-Bookmark.release.xcconfig */;
+			baseConfigurationReference = 5BDE3DE529A3E058005BFF06 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -2,14 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ASK_NOTION</key>
+	<string>$(ASK_NOTION)</string>
+	<key>BOOKSTORE_API_KEY
+</key>
+	<string>$(BOOKSTORE_API_KEY)</string>
+	<key>BUNDLE_NAME</key>
+	<string>$(BUNDLE_NAME)</string>
+	<key>CLIENT_ID</key>
+	<string>$(CLIENT_ID)</string>
+	<key>INTRODUCE_NOTION</key>
+	<string>$(INTRODUCE_NOTION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram-stories</string>
 		<string>kakaomap</string>
 		<string>nmap</string>
 	</array>
+	<key>MY_APP_ID</key>
+	<string>$(MY_APP_ID)</string>
 	<key>NMFClientId</key>
 	<string>ezmxtxc1hy</string>
+	<key>NOTION</key>
+	<string>$(NOTION)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
