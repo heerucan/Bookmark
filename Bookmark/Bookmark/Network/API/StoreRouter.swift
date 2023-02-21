@@ -29,7 +29,7 @@ extension StoreRouter: URLRequestConvertible {
     private var path: String {
         switch self {
         case .bookStore(let endIndex):
-            return "/\(APIConstant.bookStoreAccessKey)/json/TbSlibBookstoreInfo/1/\(endIndex)"
+            return APIConstant.bookStoreAccessKey + "/json/TbSlibBookstoreInfo/1/\(endIndex)"
         }
     }
     
